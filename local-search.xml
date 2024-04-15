@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>Github图床配置教程</title>
+    <link href="/2024/04/15/Typora%E5%9B%BE%E5%BA%8A%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"/>
+    <url>/2024/04/15/Typora%E5%9B%BE%E5%BA%8A%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<p>本文详细地描述了如何利用Typora+PicGo+Github建立图床，并且列出了很多新手容易踩的坑（自己淋过雨要为大家撑伞）。如果对于某些步骤有疑惑或者出错了可以留下评论。</p><span id="more"></span><h3 id="一、建立Github仓库"><a href="#一、建立Github仓库" class="headerlink" title="一、建立Github仓库"></a>一、建立Github仓库</h3><h5 id="1-新建仓库"><a href="#1-新建仓库" class="headerlink" title="1.新建仓库"></a>1.新建仓库</h5><p>先登录进自己的Github账号，按图示依次点击，就能新建一个仓库了。</p><p>（1）<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415201356717.png" alt="image-20240415201356717"></p><p>（2）</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415201449418.png" alt="image-20240415201449418"></p><p>（3）填写仓库名，设置为公开，记得要勾选添加README文件，这样才能在仓库中直接创建一个默认的main分支。</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415202107013.png" alt="image-20240415202107013"></p><h5 id="2-生成一个token，用于PicGo访问Github"><a href="#2-生成一个token，用于PicGo访问Github" class="headerlink" title="2.生成一个token，用于PicGo访问Github"></a>2.生成一个token，用于PicGo访问Github</h5><p>（1）依次进入settings&#x2F;Developer settings&#x2F;Personal access tokens</p><p>（反正作者的Github上真的找不到这样一个路径，所以以上工作做好后，可以直接访问如下网站进入这个界面，亲测无误。网址：<a href="https://github.com/settings/tokens">Personal Access Tokens (Classic) (github.com)</a>）</p><p>（2）（据说选上面的Beta选项会变得不幸，虽然作者第一次失败时也是选了上面的Beta选项，但是由于还存在其他漏洞，所以它究竟可不可用不得而知）<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415203006752.png" alt="image-20240415203006752"></p><p>（3）Note随便写就行，时间限度我选了永久，因为害怕token失效；</p><p>下面的其他选项都不用管，只要将repo勾选上就好。</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415203417667.png" alt="image-20240415203417667"></p><p>（4）得到token后好好保存（它只会在这里显示一次），等会还需要用上。</p><p>tips：如果因为某些步骤失误，需要重新生成token，记得把先前生成的token删掉。</p><h3 id="二、PicGo配置"><a href="#二、PicGo配置" class="headerlink" title="二、PicGo配置"></a>二、PicGo配置</h3><h5 id="1-下载PicGo"><a href="#1-下载PicGo" class="headerlink" title="1.下载PicGo"></a>1.下载PicGo</h5><p>（1）点击链接，直达：<a href="https://github.com/Molunerfinn/PicGo/releases/tag/v2.3.1">Release 2.3.1 · Molunerfinn&#x2F;PicGo (github.com)</a></p><p>（2）我所给出的链接是2.3.1正式版，如果需要最新版，可以点击releases，如图<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415204546713.png" alt="image-20240415204546713"></p><p>（3）在2.3.1这个版本界面一直下滑，直到如图，点击Assets会出现以下版本，可根据需求下载。比如我的设备是Windows11，我下载的版本已在图中圈出。</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415204936447.png" alt="image-20240415204936447"></p><p>（4）下载后进行安装，步骤比较简单就省略了。记住安装时的路径，后面会需要。</p><p>（5）然后！是作者踩得一个大坑。在安装后，我怎么都无法打开这个软件。一开始我以为是版本不兼容等问题，但是设置之后仍旧无法打开。但是任务管理器上它明明就在运行……我还卸载重新安装了很多次。后来才发现，点开如图的地方，才发现它在偷偷运行呢！不知道为什么它运行时居然不显示界面，需要点一下才会显示。</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415205718027.png" alt="image-20240415205718027"></p><h5 id="2-PicGo配置"><a href="#2-PicGo配置" class="headerlink" title="2.PicGo配置"></a>2.PicGo配置</h5><p>（1）进入PicGo后，将框住的地方修改为Github</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415205845506.png" alt="image-20240415205845506"></p><p>（7）点击图床设置，选择Github设置，进入如下界面。</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415210205262.png" alt="image-20240415210205262"></p><p>仓库名格式：“Github用户名&#x2F;仓库名”</p><p>分支名：main（不要用master）</p><p>token：在第一步保存的token直接粘贴进来</p><p>存储路径：可设可不设</p><p>自定义域名格式：<a href="https://cdn.jsdelivr.net/gh/[Github%E7%94%A8%E6%88%B7%E5%90%8D]/[%E4%BB%93%E5%BA%93%E5%90%8D]@main">https://cdn.jsdelivr.net/gh/[Github用户名]/[仓库名]@main</a></p><p>（这个域名据说可以加快访问图片的速度，不知道日后会不会失效，但是暂时是可以用的）</p><p>点击确定，PicGo就配置好啦。</p><p>（8）补充：点击PicGo设置中的设置sever，如果下图处不是36677要修改为36677，否则会出错</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415210909195.png" alt="image-20240415210909195"></p><h3 id="三、Typora配置"><a href="#三、Typora配置" class="headerlink" title="三、Typora配置"></a>三、Typora配置</h3><p>（1）点击右上角文件，进入偏好设置</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415211109267.png" alt="image-20240415211109267"></p><p>（2）进入图像设置，插入图片时选择上传图片，并将如图所示的选项打勾；</p><p>上传服务设定设置为PicGo（app），下面填写PicGo安装的路径，一定要填写完整，把PicGo.exe也要放到路径里。</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415211453817.png" alt="image-20240415211453817"></p><p>（3）至此所有的配置已经完成。</p><p>确保网络已经连接好，点击上图左下角的验证图片上传选项，若出现如下图的界面，证明上传成功，PicGo应用也会发来通知说上传成功。此时在自己的Github仓库里也能够找到相应图片。</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240415211851779.png" alt="image-20240415211851779"></p><p>如果仍然不成功也不要气馁呀。作者配置了快一天才成功…………因为先配置了Gitee结果发现它失效了（失效了还不删教程，太过分了！！！！）</p><p>如果配置成功啦就恭喜你啦，从此以后就可以丝滑地在Typora里粘贴图片了~</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Typora</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Typora</tag>
+      
+      <tag>Github</tag>
+      
+      <tag>PicGo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Github博客搭建</title>
+    <link href="/2024/04/13/github%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%8B%E6%95%99%E7%A8%8B/"/>
+    <url>/2024/04/13/github%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%8B%E6%95%99%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><h3 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h3><h5 id="1-建立Github账号"><a href="#1-建立Github账号" class="headerlink" title="1.建立Github账号"></a>1.建立Github账号</h5><p>如果已经有账号，可跳过此步。</p><p>首先登陆官网<a href="https://github.com/">GitHub</a>，点击sign up跟随步骤申请一个自己的账号。</p><h5 id="2-安装git和NodeJS"><a href="#2-安装git和NodeJS" class="headerlink" title="2.安装git和NodeJS"></a>2.安装git和NodeJS</h5><p>（1）安装git</p><p>访问git官网<a href="https://git-scm.com/">Git (git-scm.com)</a>，下滑找到Downloads,根据自己的设备下载对应的安装包</p><p>安装好之后，鼠标右键，点击显示更多选项，可以看到这两个选项</p><p>输入：git –version</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>github</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2024/04/12/hello-world/"/>
+    <url>/2024/04/12/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
