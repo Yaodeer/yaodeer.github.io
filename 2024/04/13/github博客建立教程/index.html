@@ -25,9 +25,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240416163624718.png">
 <meta property="article:published_time" content="2024-04-13T14:18:59.246Z">
-<meta property="article:modified_time" content="2024-04-21T06:08:13.221Z">
+<meta property="article:modified_time" content="2024-04-21T07:44:47.072Z">
 <meta property="article:author" content="Yaodeer">
-<meta property="article:tag" content="-Github -fluid">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="fluid">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240416163624718.png">
   
@@ -263,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          760 words
+          886 words
         
       </span>
     
@@ -274,7 +275,7 @@
         
         
         
-          7 mins
+          8 mins
         
       </span>
     
@@ -354,8 +355,9 @@
 
 <h5 id="2-在根目录下部署"><a href="#2-在根目录下部署" class="headerlink" title="2.在根目录下部署"></a>2.在根目录下部署</h5><p>有时候搭建博客在部署时会忘记退出到根目录，此时也会出错。</p>
 <h4 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h4><p>1.在部署博客时最好hexo clean后再hexo g+hexo d。</p>
-<p>2.千万不要轻易使用git init这个指令！使用后我的图片全部没有了……其他问题倒没有发现。</p>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
+<p>2.博文的文件放置在source文件夹下的_posts文件夹内。（fluid主题配置后都会默认创建一个这样的文件，里面有一篇默认的文档）</p>
+<p>3.博客主题文档的配置需要很多图片，千万不要把他们放在public文件夹下。因为public是每次部署博客生成的静态文件，每次hexo clean之后就会将其删除。但是博客文件是会保留下来的，所以不用担心。那么<strong>这些照片，最好放在source文件夹下的img文件夹内保存</strong>（若没有就新建一个这样的文件夹）。</p>
+
                 
               </div>
             
@@ -388,7 +390,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Github-fluid/" class="print-no-link">#-Github -fluid</a>
+        <a href="/tags/Github/" class="print-no-link">#Github</a>
+      
+        <a href="/tags/fluid/" class="print-no-link">#fluid</a>
       
     </div>
   
@@ -471,6 +475,29 @@
   
     <article id="comments" lazyload>
       
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-f02rukhrs-yaodeers-projects.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
     </article>
   
@@ -568,7 +595,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
     </div>
   
   
