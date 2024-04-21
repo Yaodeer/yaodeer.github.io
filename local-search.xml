@@ -4,13 +4,25 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2024/04/15/%E6%96%B0%E5%BB%BA%20%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/"/>
-    <url>/2024/04/15/%E6%96%B0%E5%BB%BA%20%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</url>
+    <title>Typora基本使用教程</title>
+    <link href="/2024/04/21/Typora%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
+    <url>/2024/04/21/Typora%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>本文旨在帮助刚刚入门Typora的大家写博文👻。</p><span id="more"></span><p>​打开Typora后，看到一片空白一定有些蒙圈。不要害怕！学会文中的几个指令后就能丝滑写出像样的文章啦，其实Typora和word相差也没有太大。</p><h4 id="一、如何写Frontmatter？"><a href="#一、如何写Frontmatter？" class="headerlink" title="一、如何写Frontmatter？"></a>一、如何写Frontmatter？</h4><h5 id="1-何为frontmatter？"><a href="#1-何为frontmatter？" class="headerlink" title="1.何为frontmatter？"></a>1.何为frontmatter？</h5><p>如下图所示：</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421141453727.png" alt="image-20240421141453727"></p><p>它定义了你的博文标题、这篇博文的分类、标签和作者名等。</p><p>对于我的博客来说，作者一般都是我自己，在主题配置文件修改过后就不用每次都写一遍了。除此之外，时间一般会默认为创建博文文档的时间，也可自行修改。</p><h5 id="2-写frontmatter的格式是什么？"><a href="#2-写frontmatter的格式是什么？" class="headerlink" title="2.写frontmatter的格式是什么？"></a>2.写frontmatter的格式是什么？</h5><p>若想在博文中插入frontmatter，需要打出三个短横线“—”，再Enter，可以看到</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421142133810.png" alt="image-20240421142133810"></p><p>示例：</p><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421142500459.png" alt="image-20240421142500459"></p><p>注意：1.只有在博文最上方打frontmatter才会生效</p><p>​2.要使用英文冒号，冒号后需要有空格。</p><p>​3.若需要打多个标签，格式如下：<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421142627174.png" alt="image-20240421142627174"></p><h5 id="3-常见的frontmatter"><a href="#3-常见的frontmatter" class="headerlink" title="3.常见的frontmatter"></a>3.常见的frontmatter</h5><p>title：标题</p><p>auther：作者</p><p>date：建立日期</p><p>updated：更新日期</p><p>comments：是否开启文章评论功能（默认值true）</p><p>tags：标签</p><p>categories：分类</p><p>permalink：覆盖文章的永久链接，永久链接应该以 <code>/</code> 或 <code>.html</code> 结尾</p><p>published：文章是否发布</p><h4 id="二、写文章常用指令"><a href="#二、写文章常用指令" class="headerlink" title="二、写文章常用指令"></a>二、写文章常用指令</h4><h5 id="1-多级标题"><a href="#1-多级标题" class="headerlink" title="1.多级标题"></a>1.多级标题</h5><p>在写文章时，往往需要用到多级标题。在Typora里，一级标题的字大小最大。</p><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs clean"># 一级标题<br>## 二级标题<br></code></pre></td></tr></table></figure><p>依次类推。#后要加空格才会生效。</p><h5 id="2-代码块"><a href="#2-代码块" class="headerlink" title="2.代码块"></a>2.代码块</h5><p>如果想要在文中加入可直接复制的代码块，只需要打出”&#96;&#96;&#96;“再Enter。</p><p>代码块右下方可以调整代码语言。</p><h5 id="3-emjoy"><a href="#3-emjoy" class="headerlink" title="3.emjoy"></a>3.emjoy</h5><p>很多好看的emjoy都在这个网页：<a href="https://www.webfx.com/tools/emoji-cheat-sheet/">🎁 Emoji cheat sheet for GitHub, Basecamp, Slack &amp; more (webfx.com)</a></p><p>下滑找到喜欢的emjoy点击就能够复制了哦😋。</p><h5 id="4-加粗字体-斜体等"><a href="#4-加粗字体-斜体等" class="headerlink" title="4.加粗字体&#x2F;斜体等"></a>4.加粗字体&#x2F;斜体等</h5><p>只要鼠标圈出想要修改的文本，右键就可以修改啦。</p>]]></content>
     
     
+    <categories>
+      
+      <category>Typora</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Typora</tag>
+      
+    </tags>
     
   </entry>
   
@@ -46,17 +58,23 @@
   
   
   <entry>
-    <title>Github博客搭建</title>
+    <title>【踩雷合辑】利用Hexo搭建以fluid为主题的Github博客需要注意什么？</title>
     <link href="/2024/04/13/github%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%8B%E6%95%99%E7%A8%8B/"/>
     <url>/2024/04/13/github%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%8B%E6%95%99%E7%A8%8B/</url>
     
-    <content type="html"><![CDATA[<span id="more"></span><h3 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h3><h5 id="1-建立Github账号"><a href="#1-建立Github账号" class="headerlink" title="1.建立Github账号"></a>1.建立Github账号</h5><p>如果已经有账号，可跳过此步。</p><p>首先登陆官网<a href="https://github.com/">GitHub</a>，点击sign up跟随步骤申请一个自己的账号。</p><h5 id="2-安装git和NodeJS"><a href="#2-安装git和NodeJS" class="headerlink" title="2.安装git和NodeJS"></a>2.安装git和NodeJS</h5><p>（1）安装git</p><p>访问git官网<a href="https://git-scm.com/">Git (git-scm.com)</a>，下滑找到Downloads,根据自己的设备下载对应的安装包</p><p>安装好之后，鼠标右键，点击显示更多选项，可以看到这两个选项</p><p>输入：git –version</p>]]></content>
+    <content type="html"><![CDATA[<p>​搭建博客是一个非常漫长的过程，在期间我参照过几十篇教程，在非常厉害的Gina同学的帮助下，反反复复试验了很多很多次，经过很多天后才终于能通过我的博客网址访问我的博客主页啦。<span id="more"></span>中间踩过不少雷，有时候一度绝望过（因为在网上根本搜不到和我一样的错误QAQ），好在最终坚持下来了。</p><p>​先附上fluid主题的官方文档：<a href="https://github.com/fluid-dev/hexo-theme-fluid">fluid-dev&#x2F;hexo-theme-fluid: :ocean: 一款 Material Design 风格的 Hexo 主题 &#x2F; An elegant Material-Design theme for Hexo (github.com)</a>里面有很详细的配置教程哦。</p><h4 id="一、-config-yml配置文件撰写"><a href="#一、-config-yml配置文件撰写" class="headerlink" title="一、_config.yml配置文件撰写"></a>一、_config.yml配置文件撰写</h4><p>​它就在你所搭建的博客文档的根目录里，是非常重要的配置文档。</p><h5 id="1-博客主题修改"><a href="#1-博客主题修改" class="headerlink" title="1.博客主题修改"></a>1.博客主题修改</h5><p>​打开文档后拉到下面，找到<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240416163624718.png" alt="image-20240416163624718"></p><p>​将theme后改为fluid，注意fluid主题的文件要放入themes文件夹里。如果是下载了zip压缩包，需要将其解压到该文件夹里并修改名字为fluid。</p><h5 id="2-deploy配置"><a href="#2-deploy配置" class="headerlink" title="2.deploy配置"></a>2.deploy配置</h5><p>​这个代码块就在主题配置的下方。注意不要按照网上搜索的教程配置，因为很多教程都已经很老了，所以可能会出问题。按照下面的格式配置是没有问题的。（分支必须是main）</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"># <span class="hljs-title class_">Deployment</span><br>## <span class="hljs-title class_">Docs</span>: <span class="hljs-attr">https</span>:<span class="hljs-comment">//hexo.io/docs/one-command-deployment</span><br><span class="hljs-attr">deploy</span>:<br>  <span class="hljs-attr">type</span>: git<br>  <span class="hljs-attr">repo</span>: git@github.<span class="hljs-property">com</span>:[博客名]/[仓库名].<span class="hljs-property">github</span>.<span class="hljs-property">io</span>.<span class="hljs-property">git</span><br>  <span class="hljs-attr">branch</span>: main<br></code></pre></td></tr></table></figure><p>注意：每个冒号后都有一个空格。</p><h5 id="3-记得保存修改"><a href="#3-记得保存修改" class="headerlink" title="3.记得保存修改"></a>3.记得保存修改</h5><p>​我所用的编译软件是vscode，这个软件直接退出是不会保存的。快捷键Ctrl+s可以保存修改，然后不用退出就可以继续hexo g+hexo s两步走试看网页效果啦。</p><h4 id="二、博客部署的问题"><a href="#二、博客部署的问题" class="headerlink" title="二、博客部署的问题"></a>二、博客部署的问题</h4><p>​我们知道要搭建博客，就要去Github官网创建一个博客，然后再建立一个仓库用于保存我们的网页。博客的名字可以随意取，但是仓库名，如果你和我一样取的是英文名，<strong>第一个字母一定要小写！！！！！</strong></p><p>​因为我们会发现，当我们想要进入自己的博客官网时，输入的网址格式如下：https:&#x2F;&#x2F;[仓库名].github.io&#x2F;，而每次进入网址时，仓库名的第一个字母就会自动从大写变成小写，因此访问时就会显示404。</p><p>​不知道是主题的问题还是什么，反正这个问题害我找bug找了快两个小时……</p><h5 id="1-配置安装缺失"><a href="#1-配置安装缺失" class="headerlink" title="1.配置安装缺失"></a>1.配置安装缺失</h5><p>有时候hexo d后报错是因为有些配置没有安装,用下面的指令安装好就可</p><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install hexo-deployer-git <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure><h5 id="2-在根目录下部署"><a href="#2-在根目录下部署" class="headerlink" title="2.在根目录下部署"></a>2.在根目录下部署</h5><p>有时候搭建博客在部署时会忘记退出到根目录，此时也会出错。</p><h4 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h4><p>1.在部署博客时最好hexo clean后再hexo g+hexo d。</p><p>2.千万不要轻易使用git init这个指令！使用后我的图片全部没有了……其他问题倒没有发现。</p><h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
     
+    
+    <categories>
+      
+      <category>Github</category>
+      
+    </categories>
     
     
     <tags>
       
-      <tag>github</tag>
+      <tag>-Github -fluid</tag>
       
     </tags>
     
