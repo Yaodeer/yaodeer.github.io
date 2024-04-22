@@ -16,29 +16,35 @@
   <meta name="author" content="Yaodeer">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本文旨在帮助刚刚入门Typora的大家写博文👻。">
+    <meta name="description" content="​		想要在Github博客中部署一个评论模块有许多选择，其中waline是在valine的基础上衍化而来，因此功能也会更多。但是在跟着官方文档配置的时候需要注意一些问题，否则会一直出错😿……（如果你因fail to fetch这个错误而来，那真是找对人了）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Typora基本使用教程">
-<meta property="og:url" content="http://example.com/2024/04/21/Typora%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:title" content="为博客配置waline评论模块需要注意什么">
+<meta property="og:url" content="http://example.com/2024/04/22/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AEwaline%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88/index.html">
 <meta property="og:site_name" content="Yaodeer">
-<meta property="og:description" content="本文旨在帮助刚刚入门Typora的大家写博文👻。">
+<meta property="og:description" content="​		想要在Github博客中部署一个评论模块有许多选择，其中waline是在valine的基础上衍化而来，因此功能也会更多。但是在跟着官方文档配置的时候需要注意一些问题，否则会一直出错😿……（如果你因fail to fetch这个错误而来，那真是找对人了）">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421141453727.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421142133810.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421142500459.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421142627174.png">
-<meta property="article:published_time" content="2024-04-21T06:40:22.028Z">
-<meta property="article:modified_time" content="2024-04-21T07:20:38.172Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422144225513.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422144718930.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422145045708.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422145236754.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151514648.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151659178.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151922923.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422152645310.png">
+<meta property="article:published_time" content="2024-04-22T07:30:47.559Z">
+<meta property="article:modified_time" content="2024-04-22T07:30:47.723Z">
 <meta property="article:author" content="Yaodeer">
-<meta property="article:tag" content="Typora">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="waline">
+<meta property="article:tag" content="comments">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421141453727.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422144225513.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Typora基本使用教程 - Yaodeer</title>
+  <title>为博客配置waline评论模块需要注意什么 - Yaodeer</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +249,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Typora基本使用教程"></span>
+            <span id="subtitle" data-typed-text="为博客配置waline评论模块需要注意什么"></span>
           
         </div>
 
@@ -254,8 +260,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-21 14:40" pubdate>
-          April 21, 2024 pm
+        <time datetime="2024-04-22 15:30" pubdate>
+          April 22, 2024 pm
         </time>
       </span>
     
@@ -266,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          498 words
+          1.3k words
         
       </span>
     
@@ -277,7 +283,7 @@
         
         
         
-          5 mins
+          12 mins
         
       </span>
     
@@ -326,12 +332,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Typora基本使用教程</h1>
+            <h1 id="seo-header">为博客配置waline评论模块需要注意什么</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on April 21, 2024 pm
+                    Last updated on April 22, 2024 pm
                   
                 
               </p>
@@ -339,39 +345,37 @@
             
               <div class="markdown-body">
                 
-                <p>本文旨在帮助刚刚入门Typora的大家写博文👻。</p>
+                <p>​		想要在Github博客中部署一个评论模块有许多选择，其中waline是在valine的基础上衍化而来，因此功能也会更多。但是在跟着官方文档配置的时候需要注意一些问题，否则会一直出错😿……（如果你因fail to fetch这个错误而来，那真是找对人了）</p>
 <span id="more"></span>
 
-<p>​		打开Typora后，看到一片空白一定有些蒙圈。不要害怕！学会文中的几个指令后就能丝滑写出像样的文章啦，其实Typora和word相差也没有太大。</p>
-<h4 id="一、如何写Frontmatter？"><a href="#一、如何写Frontmatter？" class="headerlink" title="一、如何写Frontmatter？"></a>一、如何写Frontmatter？</h4><h5 id="1-何为frontmatter？"><a href="#1-何为frontmatter？" class="headerlink" title="1.何为frontmatter？"></a>1.何为frontmatter？</h5><p>如下图所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421141453727.png" srcset="/img/loading.gif" lazyload alt="image-20240421141453727"></p>
-<p>它定义了你的博文标题、这篇博文的分类、标签和作者名等。</p>
-<p>对于我的博客来说，作者一般都是我自己，在主题配置文件修改过后就不用每次都写一遍了。除此之外，时间一般会默认为创建博文文档的时间，也可自行修改。</p>
-<h5 id="2-写frontmatter的格式是什么？"><a href="#2-写frontmatter的格式是什么？" class="headerlink" title="2.写frontmatter的格式是什么？"></a>2.写frontmatter的格式是什么？</h5><p>若想在博文中插入frontmatter，需要打出三个短横线“—”，再Enter，可以看到</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421142133810.png" srcset="/img/loading.gif" lazyload alt="image-20240421142133810"></p>
-<p>示例：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421142500459.png" srcset="/img/loading.gif" lazyload alt="image-20240421142500459"></p>
-<p>注意：1.只有在博文最上方打frontmatter才会生效</p>
-<p>​			2.要使用英文冒号，冒号后需要有空格。</p>
-<p>​			3.若需要打多个标签，格式如下：<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240421142627174.png" srcset="/img/loading.gif" lazyload alt="image-20240421142627174"></p>
-<h5 id="3-常见的frontmatter"><a href="#3-常见的frontmatter" class="headerlink" title="3.常见的frontmatter"></a>3.常见的frontmatter</h5><p>title：标题</p>
-<p>auther：作者</p>
-<p>date：建立日期</p>
-<p>updated：更新日期</p>
-<p>comments：是否开启文章评论功能（默认值true）</p>
-<p>tags：标签</p>
-<p>categories：分类</p>
-<p>permalink：覆盖文章的永久链接，永久链接应该以 <code>/</code> 或 <code>.html</code> 结尾</p>
-<p>published：文章是否发布</p>
-<h4 id="二、写文章常用指令"><a href="#二、写文章常用指令" class="headerlink" title="二、写文章常用指令"></a>二、写文章常用指令</h4><h5 id="1-多级标题"><a href="#1-多级标题" class="headerlink" title="1.多级标题"></a>1.多级标题</h5><p>在写文章时，往往需要用到多级标题。在Typora里，一级标题的字大小最大。</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs clean"># 一级标题<br>## 二级标题<br></code></pre></td></tr></table></figure>
-
-<p>依次类推。#后要加空格才会生效。</p>
-<h5 id="2-代码块"><a href="#2-代码块" class="headerlink" title="2.代码块"></a>2.代码块</h5><p>如果想要在文中加入可直接复制的代码块，只需要打出”&#96;&#96;&#96;“再Enter。</p>
-<p>代码块右下方可以调整代码语言。</p>
-<h5 id="3-emjoy"><a href="#3-emjoy" class="headerlink" title="3.emjoy"></a>3.emjoy</h5><p>很多好看的emjoy都在这个网页：<a target="_blank" rel="noopener" href="https://www.webfx.com/tools/emoji-cheat-sheet/">🎁 Emoji cheat sheet for GitHub, Basecamp, Slack &amp; more (webfx.com)</a></p>
-<p>下滑找到喜欢的emjoy点击就能够复制了哦😋。</p>
-<h5 id="4-加粗字体-斜体等"><a href="#4-加粗字体-斜体等" class="headerlink" title="4.加粗字体&#x2F;斜体等"></a>4.加粗字体&#x2F;斜体等</h5><p>只要鼠标圈出想要修改的文本，右键就可以修改啦。</p>
+<p>​		先附上官方教程文档：<a target="_blank" rel="noopener" href="https://waline.js.org/guide/get-started/#vercel-%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E7%AB%AF">快速上手 | Waline</a></p>
+<p>​		首先要注意的是在注册LeanCloud账号时最好注册国际版，这样比较方便。</p>
+<h3 id="一、vercel部署部分"><a href="#一、vercel部署部分" class="headerlink" title="一、vercel部署部分"></a>一、vercel部署部分</h3><h5 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h5><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422144225513.png" srcset="/img/loading.gif" lazyload alt="image-20240422144225513"></p>
+<p>如上图所示，首先需要点击Deploy然后进行登录，登陆完成之后，会显示这个界面：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422144718930.png" srcset="/img/loading.gif" lazyload alt="image-20240422144718930"></p>
+<p>这时我一脸蒙，于是就真的随便找了一个项目creat了（页面和教程不一样但我并未在意）……</p>
+<p>其实应该退回到教程页，再点一遍deploy，就可以和教程一致了。</p>
+<h5 id="2-环境变量配置"><a href="#2-环境变量配置" class="headerlink" title="2.环境变量配置"></a>2.环境变量配置</h5><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422145045708.png" srcset="/img/loading.gif" lazyload alt="image-20240422145045708"></p>
+<p>​		第一次看这段话的时候我有点疑惑，加上这时候设置的界面和教程有细微差别，所以我的配置也出错了。如下图所示，正确的配置应该是KEY栏分别写入LEAN_ID<code>, </code>LEAN_KEY和LEAN_MASTER_KEY，Value栏分别写入它们三个的值。（需要add more新创建两个栏）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422145236754.png" srcset="/img/loading.gif" lazyload alt="image-20240422145236754"></p>
+<h5 id="3-获取服务端地址"><a href="#3-获取服务端地址" class="headerlink" title="3.获取服务端地址"></a>3.获取服务端地址</h5><p>​		教程中写到，部署结束后点击visit后跳转到的网页的网址即是服务器地址，也就是后面的serverURL，在HTML文件部署的时候也需要用到。</p>
+<p>​		重点来了！！！！在我把所有东西全部部署结束，且保证绝对无误的情况下，虽然我的博客网页上已经展现出了评论的模块，我居然还是评论不了（会显示fail to fetch）……（此时心态已崩🤯）我反反复复找了很久的错误，翻看了视频教程下的评论，终于发现了和我一样错误的友友。他说原因是“<strong>完成后访问的visit地址和第二次在ver项目中打开的server地址不一样</strong>”。我反复琢磨了很久，因为我反复点开visit，这个网址一直不变啊。。。突然，一切都变了，某个瞬间当我点开visit时，它居然显示网页停止访问😨。我三分疑惑四分愤怒地又点开了很多次，终于它加载出来了，定睛一看网页的域名居然变了😇😇😇😇😇😇😇</p>
+<p>​		当我把变化后的域名代替先前的域名后，错误就解决了！</p>
+<h3 id="二、HTML引入"><a href="#二、HTML引入" class="headerlink" title="二、HTML引入"></a>二、HTML引入</h3><h5 id="1-找到index-html"><a href="#1-找到index-html" class="headerlink" title="1.找到index.html"></a>1.找到index.html</h5><p>​		（ps：不知道不同主题是否对这个配置文件名有影响，我所用的是fluid这个主题）</p>
+<p>​		这里我又犯错了，因为我发现.deploy_git和public文件夹下都有一个这样的文件。由于先前我知道了每次hexo clean后都会删掉public文件夹，因此我毅然决然地选择修改了.deploy_git里的文件。于是每次部署网页之后，我都惊奇地发现回到这个文件后我做的修改都离奇消失了。直到我在hexo d时仔细地看了一眼运行结果，发现它赫然写着delete  .deploy_git以及保留public，我的小脑都萎缩了🫠。</p>
+<p>​		因此结论就是，一定要<strong>修改public文件夹下的index.html文件</strong>，这样才能生效。</p>
+<h5 id="2-如何修改"><a href="#2-如何修改" class="headerlink" title="2.如何修改"></a>2.如何修改</h5><p>​		注意在修改的时候不要把教程文档的所有代码全部粘贴进html文件。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151514648.png" srcset="/img/loading.gif" lazyload alt="image-20240422151514648"></p>
+<p>​		第一部分：head部分，只将中间的那一部分添加入自己html文件的head部分里。记得缩进一定要规范。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151659178.png" srcset="/img/loading.gif" lazyload alt="image-20240422151659178"></p>
+<p>​		第二部分：body部分。我们在html文件中找到<body>后点开方便的符号就可以折叠，这样就可以找到body部分的末尾在哪里<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151922923.png" srcset="/img/loading.gif" lazyload alt="image-20240422151922923"></p>
+<p>而第二部分最好添加进body部分的最后面。由于我的文件里写道要把某部分保留在最后，因此这一部分代码我就放在那部分前面了。仍然要注意缩进的格式！但是因为我的文件中，body内的很多代码都没有缩进，因此这一部分代码我也没有缩进一格。</p>
+<h3 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h3><h5 id="1-部署博客主题配置文件"><a href="#1-部署博客主题配置文件" class="headerlink" title="1.部署博客主题配置文件"></a>1.部署博客主题配置文件</h5><p>​		在我配置评论功能的时候，不仅部署了html文件，还部署了yml文件。具体的部署要视各主题而定。因为主题部署文件可能并未默认开启评论功能，因此要去文件中找到“comment”部分，打开评论功能，并配置其他相应必要代码。</p>
+<h5 id="2-重新创建项目"><a href="#2-重新创建项目" class="headerlink" title="2.重新创建项目"></a>2.重新创建项目</h5><p>​		如果在第一次配置时出错了，想要再次配置，一定要先删掉之前的项目，删除方法如下图所示，点开Geberal下滑到最下面就可以删掉了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422152645310.png" srcset="/img/loading.gif" lazyload alt="image-20240422152645310"></p>
+<p>​		但是仅仅在这里删掉是没有用的。还需要进入自己的GitHub网站，你会发现那里也创建了一个同名项目，需要将它也删除。</p>
+<p>​		（这个错误也硬控我半小时😾）</p>
+<p>​		如果跟着教程文档配置结束后，也排除了我的文章里的问题，还是没有成功，可以在这里或教程下留下评论，让大家一起找找。听说有官方QQ群，但是不知道是哪个😴</p>
 
                 
               </div>
@@ -390,7 +394,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Typora/" class="category-chain-item">Typora</a>
+  <a href="/categories/Github/" class="category-chain-item">Github</a>
   
   
 
@@ -405,7 +409,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Typora/" class="print-no-link">#Typora</a>
+        <a href="/tags/Github/" class="print-no-link">#Github</a>
+      
+        <a href="/tags/waline/" class="print-no-link">#waline</a>
+      
+        <a href="/tags/comments/" class="print-no-link">#comments</a>
       
     </div>
   
@@ -417,8 +425,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Typora基本使用教程</div>
-      <div>http://example.com/2024/04/21/Typora基本使用教程/</div>
+      <div>为博客配置waline评论模块需要注意什么</div>
+      <div>http://example.com/2024/04/22/为博客配置waline评论模块需要注意什么/</div>
     </div>
     <div class="license-meta">
       
@@ -430,7 +438,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>April 21, 2024</div>
+          <div>April 22, 2024</div>
         </div>
       
       
@@ -462,18 +470,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/22/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AEwaline%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88/" title="为博客配置waline评论模块需要注意什么">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">为博客配置waline评论模块需要注意什么</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/15/Typora%E5%9B%BE%E5%BA%8A%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/" title="Github图床配置教程">
-                        <span class="hidden-mobile">Github图床配置教程</span>
+                      <a href="/2024/04/21/Typora%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="Typora基本使用教程">
+                        <span class="hidden-mobile">Typora基本使用教程</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
