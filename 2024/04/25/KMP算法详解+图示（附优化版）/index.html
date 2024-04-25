@@ -16,35 +16,30 @@
   <meta name="author" content="Yaodeer">
   <meta name="keywords" content="">
   
-    <meta name="description" content="​		想要在Github博客中部署一个评论模块有许多选择，其中waline是在valine的基础上衍化而来，因此功能也会更多。但是在跟着官方文档配置的时候需要注意一些问题，否则会一直出错😿……（如果你因fail to fetch这个错误而来，那真是找对人了）">
+    <meta name="description" content="一、KMP算法的意义​		在求解这样的算法问题时：已知两个字符串s1和s2，其中s2是s1的字串，请找到s2在s1中的位置。传统的寻找方法即暴力解法：分别从两个字串的第一个字符开始找起，若可以匹配就继续下一个字符；若匹配失败，s1回溯到第二个字符，s2回溯到第一个字符，依此类推…… ​		暴力解法在字串长度过大时往往时间复杂度很高，而其主要原因是因为回溯的次数太多，而KMP算法的作用就是用已知">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为博客配置waline评论模块需要注意什么">
-<meta property="og:url" content="http://example.com/2024/04/22/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AEwaline%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88/index.html">
+<meta property="og:title" content="KMP算法详解+图示（附优化版）">
+<meta property="og:url" content="http://example.com/2024/04/25/KMP%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3+%E5%9B%BE%E7%A4%BA%EF%BC%88%E9%99%84%E4%BC%98%E5%8C%96%E7%89%88%EF%BC%89/index.html">
 <meta property="og:site_name" content="Yaodeer">
-<meta property="og:description" content="​		想要在Github博客中部署一个评论模块有许多选择，其中waline是在valine的基础上衍化而来，因此功能也会更多。但是在跟着官方文档配置的时候需要注意一些问题，否则会一直出错😿……（如果你因fail to fetch这个错误而来，那真是找对人了）">
+<meta property="og:description" content="一、KMP算法的意义​		在求解这样的算法问题时：已知两个字符串s1和s2，其中s2是s1的字串，请找到s2在s1中的位置。传统的寻找方法即暴力解法：分别从两个字串的第一个字符开始找起，若可以匹配就继续下一个字符；若匹配失败，s1回溯到第二个字符，s2回溯到第一个字符，依此类推…… ​		暴力解法在字串长度过大时往往时间复杂度很高，而其主要原因是因为回溯的次数太多，而KMP算法的作用就是用已知">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422144225513.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422144718930.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422145045708.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422145236754.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151514648.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151659178.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151922923.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422152645310.png">
-<meta property="article:published_time" content="2024-04-22T07:30:47.559Z">
-<meta property="article:modified_time" content="2024-04-22T07:30:47.723Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425170716134.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425171406127.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425172526743.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425211350229.png">
+<meta property="article:published_time" content="2024-04-25T10:00:09.480Z">
+<meta property="article:modified_time" content="2024-04-25T13:52:05.725Z">
 <meta property="article:author" content="Yaodeer">
-<meta property="article:tag" content="Github">
-<meta property="article:tag" content="waline">
-<meta property="article:tag" content="comments">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="KMP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422144225513.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425170716134.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>为博客配置waline评论模块需要注意什么 - Yaodeer</title>
+  <title>KMP算法详解+图示（附优化版） - Yaodeer</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -249,7 +244,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="为博客配置waline评论模块需要注意什么"></span>
+            <span id="subtitle" data-typed-text="KMP算法详解+图示（附优化版）"></span>
           
         </div>
 
@@ -260,8 +255,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-22 15:30" pubdate>
-          April 22, 2024 pm
+        <time datetime="2024-04-25 18:00" pubdate>
+          April 25, 2024 pm
         </time>
       </span>
     
@@ -272,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k words
+          2.1k words
         
       </span>
     
@@ -283,7 +278,7 @@
         
         
         
-          12 mins
+          18 mins
         
       </span>
     
@@ -332,12 +327,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">为博客配置waline评论模块需要注意什么</h1>
+            <h1 id="seo-header">KMP算法详解+图示（附优化版）</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on April 22, 2024 pm
+                    Last updated on April 25, 2024 pm
                   
                 
               </p>
@@ -345,37 +340,53 @@
             
               <div class="markdown-body">
                 
-                <p>​		想要在Github博客中部署一个评论模块有许多选择，其中waline是在valine的基础上衍化而来，因此功能也会更多。但是在跟着官方文档配置的时候需要注意一些问题，否则会一直出错😿……（如果你因fail to fetch这个错误而来，那真是找对人了）</p>
-<span id="more"></span>
+                <span id="more"></span>
 
-<p>​		先附上官方教程文档：<a target="_blank" rel="noopener" href="https://waline.js.org/guide/get-started/#vercel-%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E7%AB%AF">快速上手 | Waline</a></p>
-<p>​		首先要注意的是在注册LeanCloud账号时最好注册国际版，这样比较方便。</p>
-<h3 id="一、vercel部署部分"><a href="#一、vercel部署部分" class="headerlink" title="一、vercel部署部分"></a>一、vercel部署部分</h3><h5 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h5><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422144225513.png" srcset="/img/loading.gif" lazyload alt="image-20240422144225513"></p>
-<p>如上图所示，首先需要点击Deploy然后进行登录，登陆完成之后，会显示这个界面：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422144718930.png" srcset="/img/loading.gif" lazyload alt="image-20240422144718930"></p>
-<p>这时我一脸蒙，于是就真的随便找了一个项目creat了（页面和教程不一样但我并未在意）……</p>
-<p>其实应该退回到教程页，再点一遍deploy，就可以和教程一致了。</p>
-<h5 id="2-环境变量配置"><a href="#2-环境变量配置" class="headerlink" title="2.环境变量配置"></a>2.环境变量配置</h5><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422145045708.png" srcset="/img/loading.gif" lazyload alt="image-20240422145045708"></p>
-<p>​		第一次看这段话的时候我有点疑惑，加上这时候设置的界面和教程有细微差别，所以我的配置也出错了。如下图所示，正确的配置应该是KEY栏分别写入LEAN_ID<code>, </code>LEAN_KEY和LEAN_MASTER_KEY，Value栏分别写入它们三个的值。（需要add more新创建两个栏）</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422145236754.png" srcset="/img/loading.gif" lazyload alt="image-20240422145236754"></p>
-<h5 id="3-获取服务端地址"><a href="#3-获取服务端地址" class="headerlink" title="3.获取服务端地址"></a>3.获取服务端地址</h5><p>​		教程中写到，部署结束后点击visit后跳转到的网页的网址即是服务器地址，也就是后面的serverURL，在HTML文件部署的时候也需要用到。</p>
-<p>​		重点来了！！！！在我把所有东西全部部署结束，且保证绝对无误的情况下，虽然我的博客网页上已经展现出了评论的模块，我居然还是评论不了（会显示fail to fetch）……（此时心态已崩🤯）我反反复复找了很久的错误，翻看了视频教程下的评论，终于发现了和我一样错误的友友。他说原因是“<strong>完成后访问的visit地址和第二次在ver项目中打开的server地址不一样</strong>”。我反复琢磨了很久，因为我反复点开visit，这个网址一直不变啊。。。突然，一切都变了，某个瞬间当我点开visit时，它居然显示网页停止访问😨。我三分疑惑四分愤怒地又点开了很多次，终于它加载出来了，定睛一看网页的域名居然变了😇😇😇😇😇😇😇</p>
-<p>​		当我把变化后的域名代替先前的域名后，错误就解决了！</p>
-<h3 id="二、HTML引入"><a href="#二、HTML引入" class="headerlink" title="二、HTML引入"></a>二、HTML引入</h3><h5 id="1-找到index-html"><a href="#1-找到index-html" class="headerlink" title="1.找到index.html"></a>1.找到index.html</h5><p>​		（ps：不知道不同主题是否对这个配置文件名有影响，我所用的是fluid这个主题）</p>
-<p>​		这里我又犯错了，因为我发现.deploy_git和public文件夹下都有一个这样的文件。由于先前我知道了每次hexo clean后都会删掉public文件夹，因此我毅然决然地选择修改了.deploy_git里的文件。于是每次部署网页之后，我都惊奇地发现回到这个文件后我做的修改都离奇消失了。直到我在hexo d时仔细地看了一眼运行结果，发现它赫然写着delete  .deploy_git以及保留public，我的小脑都萎缩了🫠。</p>
-<p>​		因此结论就是，一定要<strong>修改public文件夹下的index.html文件</strong>，这样才能生效。</p>
-<h5 id="2-如何修改"><a href="#2-如何修改" class="headerlink" title="2.如何修改"></a>2.如何修改</h5><p>​		注意在修改的时候不要把教程文档的所有代码全部粘贴进html文件。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151514648.png" srcset="/img/loading.gif" lazyload alt="image-20240422151514648"></p>
-<p>​		第一部分：head部分，只将中间的那一部分添加入自己html文件的head部分里。记得缩进一定要规范。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151659178.png" srcset="/img/loading.gif" lazyload alt="image-20240422151659178"></p>
-<p>​		第二部分：body部分。我们在html文件中找到<body>后点开方便的符号就可以折叠，这样就可以找到body部分的末尾在哪里<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422151922923.png" srcset="/img/loading.gif" lazyload alt="image-20240422151922923"></p>
-<p>而第二部分最好添加进body部分的最后面。由于我的文件里写道要把某部分保留在最后，因此这一部分代码我就放在那部分前面了。仍然要注意缩进的格式！但是因为我的文件中，body内的很多代码都没有缩进，因此这一部分代码我也没有缩进一格。</p>
-<h3 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h3><h5 id="1-部署博客主题配置文件"><a href="#1-部署博客主题配置文件" class="headerlink" title="1.部署博客主题配置文件"></a>1.部署博客主题配置文件</h5><p>​		在我配置评论功能的时候，不仅部署了html文件，还部署了yml文件。具体的部署要视各主题而定。因为主题部署文件可能并未默认开启评论功能，因此要去文件中找到“comment”部分，打开评论功能，并配置其他相应必要代码。</p>
-<h5 id="2-重新创建项目"><a href="#2-重新创建项目" class="headerlink" title="2.重新创建项目"></a>2.重新创建项目</h5><p>​		如果在第一次配置时出错了，想要再次配置，一定要先删掉之前的项目，删除方法如下图所示，点开Geberal下滑到最下面就可以删掉了。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240422152645310.png" srcset="/img/loading.gif" lazyload alt="image-20240422152645310"></p>
-<p>​		但是仅仅在这里删掉是没有用的。还需要进入自己的GitHub网站，你会发现那里也创建了一个同名项目，需要将它也删除。</p>
-<p>​		（这个错误也硬控我半小时😾）</p>
-<p>​		如果跟着教程文档配置结束后，也排除了我的文章里的问题，还是没有成功，可以在这里或教程下留下评论，让大家一起找找。听说有官方QQ群，但是不知道是哪个😴</p>
+<h3 id="一、KMP算法的意义"><a href="#一、KMP算法的意义" class="headerlink" title="一、KMP算法的意义"></a>一、KMP算法的意义</h3><p>​		在求解这样的算法问题时：已知两个字符串s1和s2，其中s2是s1的字串，请找到s2在s1中的位置。传统的寻找方法即暴力解法：分别从两个字串的第一个字符开始找起，若可以匹配就继续下一个字符；若匹配失败，s1回溯到第二个字符，s2回溯到第一个字符，依此类推……</p>
+<p>​		暴力解法在字串长度过大时往往时间复杂度很高，而其主要原因是因为回溯的次数太多，而KMP算法的作用就是用已知的信息量去尽可能减少回溯次数，达到简洁且迅速的效果。</p>
+<h3 id="二、KMP算法的步骤"><a href="#二、KMP算法的步骤" class="headerlink" title="二、KMP算法的步骤"></a>二、KMP算法的步骤</h3><h4 id="1-计算字符串中每个位置之前字串的最长相等前后缀长度"><a href="#1-计算字符串中每个位置之前字串的最长相等前后缀长度" class="headerlink" title="1.计算字符串中每个位置之前字串的最长相等前后缀长度"></a>1.计算字符串中每个位置之前字串的最长相等前后缀长度</h4><p>（1）最长相等前后缀的概念</p>
+<p>​		已知一个字符串abaaba,它的前缀字串和后缀字串分别为：</p>
+<p>前缀：a,ab,<strong>aba</strong>,abaa,abaab;</p>
+<p>后缀：a,ba,<strong>aba</strong>,aaba,baaba;</p>
+<p>​		那么很明显，aba是它的最长相等前后缀，即这个字符串的最长相等前后缀长度为3。</p>
+<p>（2）next[n]数组</p>
+<p>​		对于字符串abaabac，我们想要用数组next[n]中的元素next[i]来保存字符串第i个字符前的字串的最长相等前后缀的长度。</p>
+<p>​		首先，我们规定next[0]&#x3D;-1（前面没有字串），next[1]&#x3D;0(字串没有前后缀)。那么就可以得到next[n]的值：</p>
+<p>​		 a		b		a		a		b		a		c</p>
+<p>next[0]  	[1] 	[2]      [3]     [4]      [5]     [6]</p>
+<p>​	    -1   	 0   	 0    	1    	1   	 2        3</p>
+<h4 id="2-根据next数组，对字串进行匹配"><a href="#2-根据next数组，对字串进行匹配" class="headerlink" title="2.根据next数组，对字串进行匹配"></a>2.根据next数组，对字串进行匹配</h4><p>​		创建如下图所示的两个字符串。</p>
+<p>​		已知在进行前六个字符的匹配时，由于都能够匹配成功，因此箭头同步向右移动。当匹配到如图所示的位置时，匹配失败了。如果按照暴力解法，那么上面的字符串应该从第一个b开始匹配，而子串需要从头匹配。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425170716134.png" srcset="/img/loading.gif" lazyload alt="image-20240425170716134"></p>
+<p>​		而KMP算法则利用上一步我们求解的next数组，已知子串中字符<strong>c</strong>的位置是6，而<strong>next[6]&#x3D;3</strong>。因此下一次匹配时，我们直接移动子串，使得子串位置为<strong>3</strong>的字符<strong>a</strong>对准箭头所在的地方，如图。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425171406127.png" srcset="/img/loading.gif" lazyload alt="image-20240425171406127"></p>
+<p>​		接下来让我们理解一下这一步的原理是什么。我会讲解地通俗一点（可能我的理解比较浅显，但是这个思路是可以弄清楚这个算法的）。</p>
+<p>​		我们知道KMP算法的作用是要减少回溯的次数，那么如何减少呢？当我们已经走到图一的位置时，我们很容易发现按照暴力方法很浪费时间，因为很明显直接按图二移动是最方便快捷的。由于字符串的匹配不可能每次都让我们用眼睛看到，因此我们需要将信息存储在数组里，需要的时候就可以使用。而next数组就是存储这个重要信息的数组。比如在图一的位置，next数组可以告诉程序，在已知匹配的字符串中，前三位字符和后三位字符是相等的。而此时只有最后一位是不匹配的，因此，我们只需要把前三位平移过来，那么就可以得到图二的结果：有三位字符是匹配的，然后我们继续判断下一位是否和p匹配。既然最大相等前后缀字符串的长度为3，那么对应的，箭头就应该指向子串位置为3的字符（从0计）。</p>
+<p>​		以此类推，由于next[3]&#x3D;1,那么相应的，箭头应该指向第二个字符b。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425172526743.png" srcset="/img/loading.gif" lazyload alt="image-20240425172526743"></p>
+<p>​		接下来，聪明的你应该知道，箭头应该指向a了。可是这时候仍然是不匹配的，而且next[0]&#x3D;-1，这时候应该怎么办呢？很简单，这时候应该将字符串的箭头向右移动了，而子串的箭头位置不变，因为它已经指向字串的第0个字符了。</p>
+<h3 id="三、KMP算法的代码实现"><a href="#三、KMP算法的代码实现" class="headerlink" title="三、KMP算法的代码实现"></a>三、KMP算法的代码实现</h3><h4 id="1-计算next数组"><a href="#1-计算next数组" class="headerlink" title="1.计算next数组"></a>1.计算next数组</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">getnext</span><span class="hljs-params">(string s,<span class="hljs-type">int</span> next[])</span></span><br><span class="hljs-function"></span>&#123;<br>    next[<span class="hljs-number">0</span>]=<span class="hljs-number">-1</span>;<br>    <span class="hljs-type">int</span> i=<span class="hljs-number">0</span>,k=<span class="hljs-number">-1</span>;<br>	<span class="hljs-keyword">while</span>(i&lt;s.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>)&#123;<br>        <span class="hljs-keyword">if</span>(k==<span class="hljs-number">-1</span>||s[i]==s[k])&#123;<br>            i++,k++;<br>            next[i]=k;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            k=next[k];<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>​		这个函数真的很不好理解。如果让我直接去想这个代码我是肯定想不到的，因此只能就着代码理清思路，这样做题的时候不至于忘记。</p>
+<p>​		首先，由于k的初始值是-1，所以一定会进入if函数里，这样一来，next[1]就被赋为0了。</p>
+<p>​		当k&#x3D;-1或者s[i]&#x3D;s[k]的时候，会将i和k同时右移。我们先分析，什么时候k&#x3D;-1呢？只有上一次循环时k&#x3D;0，并且s[0]!&#x3D;s[i]时，在k&#x3D;next[k]这个公式里，才会将k又赋为-1。故而此时，i+1前并无相等前后缀，也就又将next[i+1]赋为0。接着，又会判断s[i+1]与s[0]是否相等，如果相等，则i+2前最大相等前后缀长度就为1了。</p>
+<p>​		若前面已经有相等前后缀，此时s[i]&#x3D;s[k]，那么相当于相等前后缀的延长，因此s和k会同时后移观察下一位是否也相等。</p>
+<p>​		比较复杂的情况如下图（理解k&#x3D;next[k]）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425211350229.png" srcset="/img/loading.gif" lazyload alt="image-20240425211350229"></p>
+<p>​		如图是一串字符串，下标i和next[i]的值分别在其上下标出。在i&#x3D;6，k&#x3D;3之前，可以发现最大前后缀是3，而此时s[i]&#x3D;s[k]不相等。而这个函数的关键之处：k&#x3D;next[k]，将k的值改变成了1（next[3]&#x3D;1)。我们可以发现，如果将k和i分别向前移一位，此时k&#x3D;0，i&#x3D;5，而s[i]的值刚好等于s[k]。这并不是巧合。因为i&#x3D;6之前最大前后缀长度为3，也就是说明字符串前三位和i&#x3D;6之前的三位是相等的。而下标i&#x3D;3之前的最大前后缀长度为1，也就是说明i&#x3D;0、i&#x3D;2、i&#x3D;3、i&#x3D;5这几个数的值也是相等的。所以现在我们向前回溯到，与i&#x3D;6不相等的那个下标（此处为3）之前的子串中的相等前后缀，它的长度对应的下标前的子串一定和i&#x3D;6前的某个后缀相等。然后我们继续比较该下标的值和i&#x3D;6处的值是否相等，以此类推。</p>
+<p>​		如果还是不太明白可以多试几个字符串多多验证几次，推导几遍，就会渐渐思路清晰。（其实我们会发现这个思想和前面讲到的KMP思想很类似）</p>
+<p>​		ps:while函数中之所以i&lt;s.size()-1，是因为每次都是先i++再赋值的。</p>
+<h4 id="2-KMP算法的代码"><a href="#2-KMP算法的代码" class="headerlink" title="2.KMP算法的代码"></a>2.KMP算法的代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">KMPinit</span><span class="hljs-params">(string s,string p)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> len=p.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-type">int</span> next[len],i=<span class="hljs-number">0</span>,j=<span class="hljs-number">0</span>;<span class="hljs-comment">//初始化</span><br>    <span class="hljs-built_in">getnext</span>(p,next);<span class="hljs-comment">//求出next数组</span><br>    <span class="hljs-keyword">while</span>(i&lt;s.<span class="hljs-built_in">size</span>()&amp;&amp;j&lt;len)&#123;<span class="hljs-comment">//跳出循环要么找完s字符串都没找到，要么已经找完了</span><br>        <span class="hljs-keyword">if</span>(j==<span class="hljs-number">-1</span>||s[i]==s[j])&#123;<span class="hljs-comment">//根据图示理解</span><br>            i++,j++;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            j=next[j];<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(j&gt;=len)&#123;<span class="hljs-comment">//如果跳出循环是因为已经匹配完毕，那么就可以返回位置了</span><br>        <span class="hljs-type">int</span> index=i-len;<br>        <span class="hljs-keyword">return</span> index;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<span class="hljs-comment">//找不到匹配项</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、KMP代码的优化"><a href="#四、KMP代码的优化" class="headerlink" title="四、KMP代码的优化"></a>四、KMP代码的优化</h3><p>​		假设子串为aaaaaab，并且字符串为aaaaaacccc。我们会发现b与c不匹配，接着便是前一位的a与c进行匹配，但是依旧不匹配，而紧接着会将前面的a依次与c匹配，得到的结果仍旧是不匹配，因此当next数组指向的字符和它本身相等时，便没有必要再匹配下去。</p>
+<p>​		所以我们可以把next函数做以下修正(KMP函数无需改变)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">getnext</span><span class="hljs-params">(string s,<span class="hljs-type">int</span> next[])</span></span><br><span class="hljs-function"></span>&#123;<br>    next[<span class="hljs-number">0</span>]=<span class="hljs-number">-1</span>;<br>    <span class="hljs-type">int</span> i=<span class="hljs-number">0</span>,k=<span class="hljs-number">-1</span>;<br>	<span class="hljs-keyword">while</span>(i&lt;s.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>)&#123;<br>        <span class="hljs-keyword">if</span>(k==<span class="hljs-number">-1</span>||s[i]==s[k])&#123;<br>            i++,k++;<br>            <span class="hljs-keyword">if</span>(s[i]!=s[k])<br>            	next[i]=k;<br>            <span class="hljs-keyword">else</span><br>                next[i]=next[k];<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            k=next[k];<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>参考博客：CSDN（哈顿之光）</p>
 
                 
               </div>
@@ -394,7 +405,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Github/" class="category-chain-item">Github</a>
+  <a href="/categories/C/" class="category-chain-item">C++</a>
   
   
 
@@ -409,11 +420,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Github/" class="print-no-link">#Github</a>
+        <a href="/tags/C/" class="print-no-link">#C++</a>
       
-        <a href="/tags/waline/" class="print-no-link">#waline</a>
-      
-        <a href="/tags/comments/" class="print-no-link">#comments</a>
+        <a href="/tags/KMP/" class="print-no-link">#KMP</a>
       
     </div>
   
@@ -425,8 +434,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>为博客配置waline评论模块需要注意什么</div>
-      <div>http://example.com/2024/04/22/为博客配置waline评论模块需要注意什么/</div>
+      <div>KMP算法详解+图示（附优化版）</div>
+      <div>http://example.com/2024/04/25/KMP算法详解+图示（附优化版）/</div>
     </div>
     <div class="license-meta">
       
@@ -438,7 +447,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>April 22, 2024</div>
+          <div>April 25, 2024</div>
         </div>
       
       
@@ -470,18 +479,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/25/KMP%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3+%E5%9B%BE%E7%A4%BA%EF%BC%88%E9%99%84%E4%BC%98%E5%8C%96%E7%89%88%EF%BC%89/" title="KMP算法详解+图示（附优化版）">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">KMP算法详解+图示（附优化版）</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/21/Typora%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="Typora基本使用教程">
-                        <span class="hidden-mobile">Typora基本使用教程</span>
+                      <a href="/2024/04/22/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AEwaline%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88/" title="为博客配置waline评论模块需要注意什么">
+                        <span class="hidden-mobile">为博客配置waline评论模块需要注意什么</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
