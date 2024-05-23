@@ -16,30 +16,28 @@
   <meta name="author" content="Yaodeer">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、KMP算法的意义​		在求解这样的算法问题时：已知两个字符串s1和s2，其中s2是s1的字串，请找到s2在s1中的位置。传统的寻找方法即暴力解法：分别从两个字串的第一个字符开始找起，若可以匹配就继续下一个字符；若匹配失败，s1回溯到第二个字符，s2回溯到第一个字符，依此类推…… ​		暴力解法在字串长度过大时往往时间复杂度很高，而其主要原因是因为回溯的次数太多，而KMP算法的作用就是用已知">
+    <meta name="description" content="三、网络的七层协议，TCP UDP的区别 ，mac地址，ip 端口 子网掩码分别是干什么用的 https 攻击方式 1、数据被监听2、数据被篡改 进程间有哪些通信方式 管道、共享内存、消息队列、信号 https是怎么加密的  加密就是把明⽂(要传输的信息)进行⼀系列变换, ⽣成密文；解密就是把密⽂再进⾏⼀系列变换, 还原成明文。 对称加密（算法公开、计算量⼩、加密速度快、加密效率高）、非对称加密（">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KMP算法详解+图示（附优化版）">
-<meta property="og:url" content="http://example.com/2024/04/25/KMP%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3+%E5%9B%BE%E7%A4%BA%EF%BC%88%E9%99%84%E4%BC%98%E5%8C%96%E7%89%88%EF%BC%89/index.html">
+<meta property="og:title" content="计算机网络面经">
+<meta property="og:url" content="http://example.com/2024/05/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E7%BB%8F/index.html">
 <meta property="og:site_name" content="Yaodeer">
-<meta property="og:description" content="一、KMP算法的意义​		在求解这样的算法问题时：已知两个字符串s1和s2，其中s2是s1的字串，请找到s2在s1中的位置。传统的寻找方法即暴力解法：分别从两个字串的第一个字符开始找起，若可以匹配就继续下一个字符；若匹配失败，s1回溯到第二个字符，s2回溯到第一个字符，依此类推…… ​		暴力解法在字串长度过大时往往时间复杂度很高，而其主要原因是因为回溯的次数太多，而KMP算法的作用就是用已知">
+<meta property="og:description" content="三、网络的七层协议，TCP UDP的区别 ，mac地址，ip 端口 子网掩码分别是干什么用的 https 攻击方式 1、数据被监听2、数据被篡改 进程间有哪些通信方式 管道、共享内存、消息队列、信号 https是怎么加密的  加密就是把明⽂(要传输的信息)进行⼀系列变换, ⽣成密文；解密就是把密⽂再进⾏⼀系列变换, 还原成明文。 对称加密（算法公开、计算量⼩、加密速度快、加密效率高）、非对称加密（">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425170716134.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425171406127.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425172526743.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425211350229.png">
-<meta property="article:published_time" content="2024-04-25T10:00:09.480Z">
-<meta property="article:modified_time" content="2024-05-04T13:42:28.218Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240509223423753.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240509221747850.png">
+<meta property="article:published_time" content="2024-05-09T03:31:26.895Z">
+<meta property="article:modified_time" content="2024-05-15T08:30:43.961Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="C++">
-<meta property="article:tag" content="KMP">
+<meta property="article:tag" content="计网">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425170716134.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240509223423753.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>KMP算法详解+图示（附优化版） - Yaodeer</title>
+  <title>计算机网络面经 - Yaodeer</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -244,7 +242,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="KMP算法详解+图示（附优化版）"></span>
+            <span id="subtitle" data-typed-text="计算机网络面经"></span>
           
         </div>
 
@@ -255,8 +253,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-25 18:00" pubdate>
-          April 25, 2024 pm
+        <time datetime="2024-05-09 11:31" pubdate>
+          May 9, 2024 am
         </time>
       </span>
     
@@ -267,7 +265,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k words
+          3.5k words
         
       </span>
     
@@ -278,7 +276,7 @@
         
         
         
-          18 mins
+          30 mins
         
       </span>
     
@@ -327,12 +325,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">KMP算法详解+图示（附优化版）</h1>
+            <h1 id="seo-header">计算机网络面经</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on May 4, 2024 pm
+                    Last updated on May 15, 2024 pm
                   
                 
               </p>
@@ -340,53 +338,84 @@
             
               <div class="markdown-body">
                 
-                <span id="more"></span>
+                <p>三、网络的七层协议，TCP UDP的区别 ，mac地址，ip 端口 子网掩码分别是干什么用的</p>
+<p><strong>https 攻击方式</strong></p>
+<p>1、数据被监听2、数据被篡改</p>
+<p><strong>进程间有哪些通信方式</strong></p>
+<p>管道、共享内存、消息队列、信号</p>
+<p><strong>https是怎么加密的</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240509223423753.png" srcset="/img/loading.gif" lazyload alt="image-20240509223423753"></p>
+<p>加密就是把明⽂(要传输的信息)进行⼀系列变换, ⽣成密文；解密就是把密⽂再进⾏⼀系列变换, 还原成明文。</p>
+<p>对称加密（算法公开、计算量⼩、加密速度快、加密效率高）、非对称加密（算法强度复杂、运算速度很慢）、数据摘要</p>
+<p><strong>cpu调度算法的评价指标?</strong></p>
+<p>cpu利用率、系统吞吐量、周转时间、等待时间、响应时间</p>
+<p><strong>为什么说tcp是可靠的?</strong></p>
+<p>TCP保证可靠性一般有以下几种方法：</p>
+<p>检验和：在数据传输过程中，把传输的数据当作一个16位整数。吧所有的数据加起来，最前面的进位补到最后一位，然后取反得到校验和。发送方和接收方验证校验和是否相同。不相同则数据传输有误，相同也可能有问题。<br>确认应答：ACK和序列号（一应一答）机制保证数据的完整性（三次握手于四次挥手过程中通过比对Seq和ACK来实现）<br>超时重传：发送数据包在一定的时间周期内没有收到相应的ACK，等待一定的时间，超时之后就认为这个数据包丢失，就会重新发送（也就是发送数据后，长时间没收到回应，会把数据再发一次。）<br>连接管理：三次握手，四次挥手<br>最大消息长度：理想的情况下是该长度的数据刚好不被网络层分块。<br>拥塞控制：控制传输上流量（发送数据时开始是慢启动，先发送一点点数据去探测网络拥塞不拥塞，如果不拥塞了，则大量的发送数据。如果突然拥塞了，则又很慢的发送数据。这样是为了尽可能快的发送数据，避免网络拥塞造成一系列问题）<br>流量控制：TCP利用滑动窗口实现流量控制，流量控制是为了控制发送方的发送速率，保证接收方可以及时接收</p>
+<p><strong>网络协议有哪些？</strong></p>
+<p>1、HTTP（Hypertext Transfer Protocol）协议是一种用于传输超文本的协议，通常用于在Web浏览器和Web服务器之间传递数据。它基于请求-响应模型：客户端发送HTTP请求，服务器返回HTTP响应。通信使用明文进行，不具备加密性。lHTTP广泛应用于Web开发，用于获取网页、传输HTML、CSS、JavaScript等资源。它的无状态特性使其适用于快速、轻量级的数据传输。</p>
+<p>HTTP协议的特点</p>
+<p>支持服务器&#x2F;客户端模式</p>
+<p>传输较快速，客户端向服务器发送请求，只需要传输请求方法和路径</p>
+<p>灵活，HTTP允许传输任意类型的数据对象</p>
+<p>无连接，每次连接只能处理一个请求，服务器处理完客户端请求，客户端收到响应后就断开连接</p>
+<p>无状态，协议本身对事务处理没有记忆能力，如果后序连接需要之前发送的信息时就需要重传</p>
+<p>(1)HTTP1.0和HTTP1.1的区别：</p>
+<p>长连接：HTTP1.0只支持浏览器与服务器的短连接，即每次请求都要重新建立连接，服务器无法记录每个历史请求，HTTP1.1支持长连接即在一次连接下，浏览器可以向服务器发送多次请求</p>
+<p>增加Host字段：HTTP1.0中认为每个服务器都绑定这唯一一个IP，所有发送的请求头URL中没有host信息，而HTTP1.1在请求和响应中都支持了host头域，且请求消息中如果没有Host头域会报告一个错误(400 Bad Request)</p>
+<p>缓存：HTTP1.1在1.0的基础上加入了一些cache的新特性，当缓存对象的Age超过Expire时变为stale对象，cache不需要直接抛弃stale对象，而是与源服务器进行重新激活（revalidation）。</p>
+<p>错误提示：HTTP1.0中定义了16个状态码，对错误或警告的提示不够具体。HTTP1.1引入了一个Warning头域，增加对错误或警告信息的描述，并且还新增了24个状态响应码，如409(Conflict)表示请求的资源与资源的当前状态发生冲突；410(Gone)表示服务器上的某个资源被永久性的删除</p>
+<p>(2)HTTP1.X和HTTP2.0的区别</p>
+<p>增加二进制格式解析：HTTP1.X解析基于文本，而文本格式本身就具有多样性，很多场景下不方便，而引入二进制后，只有0和1组合，使解析更加方便也增强了健壮性</p>
+<p>多路复用：即每个request都是是用作连接共享机制的，每个request都对应一个id，使一个连接可以有多个请求，再根据id将request归属到不同的服务端请求里</p>
+<p>header压缩：HTTP1.X中，每次传输都要写点header头，占用了大量数据，因此HTTP2.0在客户端和服务端各保存了一份header fields表，每次传输时只需传输header的更新信息，将header fields表更新即可实现header传输</p>
+<p>2、SMTP（Simple Mail Transfer Protocol）是一种电子邮件传输协议，用于在邮件客户端和邮件服务器之间传递电子邮件。它定义了邮件的格式以及在不同设备之间的传递方式。</p>
+<p>3、FTP（File Transfer Protocol）是一种用于在计算机之间传输文件的协议。它支持用户通过用户名和密码进行身份验证，并提供文件上传和下载功能。</p>
+<p>4、DNS（Domain Name System）是一种将域名映射到IP地址的分布式数据库系统。它允许用户使用易记的域名而不是复杂的IP地址访问互联网资源。</p>
+<p><strong>避免缓存雪崩如何实现</strong></p>
+<p>缓存雪崩是指在某个时间点，大量缓存同时失效，导致大量请求直接落到<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%95%B0%E6%8D%AE%E5%BA%93&spm=1001.2101.3001.7020">数据库</a>上，造成数据库负载激增的现象。</p>
+<p>1 合理设置缓存失效时间：<br>将缓存的失效时间分散开，避免同时失效。可以在原有的失效时间基础上，加上一个随机的时间偏移，或者使用带有范围的失效时间。</p>
+<p>2 采用永不过期策略：<br>对于热点数据，可以考虑使用永不过期的策略，即在缓存中永远不主动删除，而在数据更新时手动刷新缓存。这样可以避免大量缓存同时失效的情况。</p>
+<p>3 使用多级缓存：<br>引入多级缓存架构，例如本地缓存、分布式缓存（如Redis）、全局缓存（如CDN），这样即使一个级别的缓存失效，其他级别的缓存仍然可以提供服务，降低缓存雪崩的风险。</p>
+<p>4 缓存预热：<br>在系统启动或低峰期，提前加载热门数据到缓存中，避免在高峰期大量请求涌入时触发缓存失效。</p>
+<p>5 限流和熔断：<br>实施限流和熔断机制，控制并发访问的数量，防止瞬时请求过多导致缓存雪崩。</p>
+<p>6 缓存穿透保护：<br>使用类似布隆过滤器算法，防止缓存穿透，即查询一个不存在的数据导致缓存和数据库都不命中。</p>
+<p>7 灾备机制：<br>部署灾备机制，当主缓存出现问题时，可以切换到备用缓存，保障系统的可用性。</p>
+<p>8 分批更新缓存：<br>当大量数据需要更新时，采用分批更新的方式，避免一次性大规模的缓存更新。</p>
+<p><strong>protocol buffer</strong></p>
+<p><strong>Speed协议</strong></p>
+<p><strong>2.TCP和UDP区别</strong><br>① TCP协议是有连接的，即在传输实际数据之前TCP的客户端和服务器端必须通过三次握手建立连接，会话结束后还要结束连接。而UDP是无连接的。<br>②TCP协议保证数据按序发送以及到达，超时重传来保证可靠性，但是UDP不保证按序到达，不保证到达，只是努力交付，即使是按序发送的序列，也不保准按序送到。<br>③TCP协议所需的资源多，首部需要20个字节，UDP首部只需要8个字节<br>④TCP有流量控制和拥塞控制，UDP有没有网络堵塞不会影响发送端的发送速率。<br>⑤TCP是一对一连接，而UDP是一对一 一对多 多对多的通信<br>⑥TCP面向的是字节流的服务，UDP面向的是报文的服务。</p>
+<p>4.<strong>进程和程序的区别</strong><br>①进程是程序的一次执行。<br>②进程是可以并行执行的计算<br>③进程是一个程序与其使用的数据在处理机上顺序执行时发生的活动。<br>④进程是系统进行资源分配和调度的一个独立单位<br>本质区别：<br>①程序是永存的，进程是暂时的<br>②进程有并发性，程序没有<br>③二者不是一一对应关系，一个程序可以对应多个进程，多个进程可执行同一个程序，一个进程可执行一个或者几个程序<br>④进程是竞争计算机资源的基本单位，但是程序不是。</p>
+<h5 id="为啥不多进程而是多线程呢？"><a href="#为啥不多进程而是多线程呢？" class="headerlink" title="为啥不多进程而是多线程呢？"></a>为啥不多进程而是多线程呢？</h5><p>答：线程廉价且启动较快，对系统资源的冲击比较小，多进程不可预测且测试困难。</p>
+<p>7.读写锁（这个不会，但好像也挺基础的）<br>读锁是共享的<br>　写锁是排他的<br>　<br>读-读能共存，<br>读-写不能共存，<br>写-写不能共存。</p>
+<p>8.堆和栈<br>栈内存：存储局部变量，更新速度快，声明周期短<br>堆内存：存储数组和对象，凡是new建立的都是在堆中，堆中存放的是实体，实体用于封装数据，java垃圾回收（不定时）。</p>
+<p>9.虚拟内存和实际内存（操作系统学的，有点久远）<br>当虚拟内存中的值真正需要用的时候，物理内存才会开辟一段地址来存储虚拟内存中的值<br>所以真正能使用的物理内存的大小则为：虚拟内存(pagefile.sys) + 物理内存</p>
+<p>10.抢占式进程调度（这个也不会，菜哭了）<br>最常见的现象是你这个进程运行时间太长了，是时候切换到另一个进程了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240509221747850.png" srcset="/img/loading.gif" lazyload alt="image-20240509221747850"></p>
+<h6 id="tcp和udp应用场景"><a href="#tcp和udp应用场景" class="headerlink" title="tcp和udp应用场景"></a>tcp和udp应用场景</h6><p>tcp：文件传输、接收邮件、远程登录<br>udp：在线视频、qq聊天、广播通信</p>
+<p>对于3次握手：主要是要初始化Sequence Number 的初始值。通信的双方要互相通知对方自己的初始化的Sequence Number（缩写为ISN：Inital Sequence Number）——所以叫SYN，全称Synchronize Sequence Numbers。也就上图中的 x 和 y。这个号要作为以后的数据通信的序号，以保证应用层接收到的数据不会因为网络上的传输的问题而乱序（TCP会用这个序号来拼接数据）。<br>对于4次挥手：其实你仔细看是2次，因为TCP是全双工的，所以，发送方和接收方都需要Fin和Ack。只不过，有一方是被动的，所以看上去就成了所谓的4次挥手。如果两边同时断连接，那就会就进入到CLOSING状态，然后到达TIME_WAIT状态。</p>
+<p>拥塞控制主要是四个算法：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs">慢启动<br>拥塞避免<br>拥塞发生<br>快速恢复<br></code></pre></td></tr></table></figure>
 
-<h3 id="一、KMP算法的意义"><a href="#一、KMP算法的意义" class="headerlink" title="一、KMP算法的意义"></a>一、KMP算法的意义</h3><p>​		在求解这样的算法问题时：已知两个字符串s1和s2，其中s2是s1的字串，请找到s2在s1中的位置。传统的寻找方法即暴力解法：分别从两个字串的第一个字符开始找起，若可以匹配就继续下一个字符；若匹配失败，s1回溯到第二个字符，s2回溯到第一个字符，依此类推……</p>
-<p>​		暴力解法在字串长度过大时往往时间复杂度很高，而其主要原因是因为回溯的次数太多，而KMP算法的作用就是用已知的信息量去尽可能减少回溯次数，达到简洁且迅速的效果。</p>
-<h3 id="二、KMP算法的步骤"><a href="#二、KMP算法的步骤" class="headerlink" title="二、KMP算法的步骤"></a>二、KMP算法的步骤</h3><h4 id="1-计算字符串中每个位置之前字串的最长相等前后缀长度"><a href="#1-计算字符串中每个位置之前字串的最长相等前后缀长度" class="headerlink" title="1.计算字符串中每个位置之前字串的最长相等前后缀长度"></a>1.计算字符串中每个位置之前字串的最长相等前后缀长度</h4><p>（1）最长相等前后缀的概念</p>
-<p>​		已知一个字符串abaaba,它的前缀字串和后缀字串分别为：</p>
-<p>前缀：a,ab,<strong>aba</strong>,abaa,abaab;</p>
-<p>后缀：a,ba,<strong>aba</strong>,aaba,baaba;</p>
-<p>​		那么很明显，aba是它的最长相等前后缀，即这个字符串的最长相等前后缀长度为3。</p>
-<p>（2）next[n]数组</p>
-<p>​		对于字符串abaabac，我们想要用数组next[n]中的元素next[i]来保存字符串第i个字符前的字串的最长相等前后缀的长度。</p>
-<p>​		首先，我们规定next[0]&#x3D;-1（前面没有字串），next[1]&#x3D;0(字串没有前后缀)。那么就可以得到next[n]的值：</p>
-<p>​		 a		b		a		a		b		a		c</p>
-<p>next[0]  	[1] 	[2]      [3]     [4]      [5]     [6]</p>
-<p>​	    -1   	 0   	 0    	1    	1   	 2        3</p>
-<h4 id="2-根据next数组，对字串进行匹配"><a href="#2-根据next数组，对字串进行匹配" class="headerlink" title="2.根据next数组，对字串进行匹配"></a>2.根据next数组，对字串进行匹配</h4><p>​		创建如下图所示的两个字符串。</p>
-<p>​		已知在进行前六个字符的匹配时，由于都能够匹配成功，因此箭头同步向右移动。当匹配到如图所示的位置时，匹配失败了。如果按照暴力解法，那么上面的字符串应该从第一个b开始匹配，而子串需要从头匹配。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425170716134.png" srcset="/img/loading.gif" lazyload alt="image-20240425170716134"></p>
-<p>​		而KMP算法则利用上一步我们求解的next数组，已知子串中字符<strong>c</strong>的位置是6，而<strong>next[6]&#x3D;3</strong>。因此下一次匹配时，我们直接移动子串，使得子串位置为<strong>3</strong>的字符<strong>a</strong>对准箭头所在的地方，如图。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425171406127.png" srcset="/img/loading.gif" lazyload alt="image-20240425171406127"></p>
-<p>​		接下来让我们理解一下这一步的原理是什么。我会讲解地通俗一点（可能我的理解比较浅显，但是这个思路是可以弄清楚这个算法的）。</p>
-<p>​		我们知道KMP算法的作用是要减少回溯的次数，那么如何减少呢？当我们已经走到图一的位置时，我们很容易发现按照暴力方法很浪费时间，因为很明显直接按图二移动是最方便快捷的。由于字符串的匹配不可能每次都让我们用眼睛看到，因此我们需要将信息存储在数组里，需要的时候就可以使用。而next数组就是存储这个重要信息的数组。比如在图一的位置，next数组可以告诉程序，在已知匹配的字符串中，前三位字符和后三位字符是相等的。而此时只有最后一位是不匹配的，因此，我们只需要把前三位平移过来，那么就可以得到图二的结果：有三位字符是匹配的，然后我们继续判断下一位是否和p匹配。既然最大相等前后缀字符串的长度为3，那么对应的，箭头就应该指向子串位置为3的字符（从0计）。</p>
-<p>​		以此类推，由于next[3]&#x3D;1,那么相应的，箭头应该指向第二个字符b。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425172526743.png" srcset="/img/loading.gif" lazyload alt="image-20240425172526743"></p>
-<p>​		接下来，聪明的你应该知道，箭头应该指向a了。可是这时候仍然是不匹配的，而且next[0]&#x3D;-1，这时候应该怎么办呢？很简单，这时候应该将字符串的箭头向右移动了，而子串的箭头位置不变，因为它已经指向字串的第0个字符了。</p>
-<h3 id="三、KMP算法的代码实现"><a href="#三、KMP算法的代码实现" class="headerlink" title="三、KMP算法的代码实现"></a>三、KMP算法的代码实现</h3><h4 id="1-计算next数组"><a href="#1-计算next数组" class="headerlink" title="1.计算next数组"></a>1.计算next数组</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">getnext</span><span class="hljs-params">(string s,<span class="hljs-type">int</span> next[])</span></span><br><span class="hljs-function"></span>&#123;<br>    next[<span class="hljs-number">0</span>]=<span class="hljs-number">-1</span>;<br>    <span class="hljs-type">int</span> i=<span class="hljs-number">0</span>,k=<span class="hljs-number">-1</span>;<br>	<span class="hljs-keyword">while</span>(i&lt;s.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>)&#123;<br>        <span class="hljs-keyword">if</span>(k==<span class="hljs-number">-1</span>||s[i]==s[k])&#123;<br>            i++,k++;<br>            next[i]=k;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            k=next[k];<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>​		这个函数真的很不好理解。如果让我直接去想这个代码我是肯定想不到的，因此只能就着代码理清思路，这样做题的时候不至于忘记。</p>
-<p>​		首先，由于k的初始值是-1，所以一定会进入if函数里，这样一来，next[1]就被赋为0了。</p>
-<p>​		当k&#x3D;-1或者s[i]&#x3D;s[k]的时候，会将i和k同时右移。我们先分析，什么时候k&#x3D;-1呢？只有上一次循环时k&#x3D;0，并且s[0]!&#x3D;s[i]时，在k&#x3D;next[k]这个公式里，才会将k又赋为-1。故而此时，i+1前并无相等前后缀，也就又将next[i+1]赋为0。接着，又会判断s[i+1]与s[0]是否相等，如果相等，则i+2前最大相等前后缀长度就为1了。</p>
-<p>​		若前面已经有相等前后缀，此时s[i]&#x3D;s[k]，那么相当于相等前后缀的延长，因此s和k会同时后移观察下一位是否也相等。</p>
-<p>​		比较复杂的情况如下图（理解k&#x3D;next[k]）</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240425211350229.png" srcset="/img/loading.gif" lazyload alt="image-20240425211350229"></p>
-<p>​		如图是一串字符串，下标i和next[i]的值分别在其上下标出。在i&#x3D;6，k&#x3D;3之前，可以发现最大前后缀是3，而此时s[i]&#x3D;s[k]不相等。而这个函数的关键之处：k&#x3D;next[k]，将k的值改变成了1（next[3]&#x3D;1)。我们可以发现，如果将k和i分别向前移一位，此时k&#x3D;0，i&#x3D;5，而s[i]的值刚好等于s[k]。这并不是巧合。因为i&#x3D;6之前最大前后缀长度为3，也就是说明字符串前三位和i&#x3D;6之前的三位是相等的。而下标i&#x3D;3之前的最大前后缀长度为1，也就是说明i&#x3D;0、i&#x3D;2、i&#x3D;3、i&#x3D;5这几个数的值也是相等的。所以现在我们向前回溯到，与i&#x3D;6不相等的那个下标（此处为3）之前的子串中的相等前后缀，它的长度对应的下标前的子串一定和i&#x3D;6前的某个后缀相等。然后我们继续比较该下标的值和i&#x3D;6处的值是否相等，以此类推。</p>
-<p>​		如果还是不太明白可以多试几个字符串多多验证几次，推导几遍，就会渐渐思路清晰。（其实我们会发现这个思想和前面讲到的KMP思想很类似）</p>
-<p>​		ps:while函数中之所以i&lt;s.size()-1，是因为每次都是先i++再赋值的。</p>
-<h4 id="2-KMP算法的代码"><a href="#2-KMP算法的代码" class="headerlink" title="2.KMP算法的代码"></a>2.KMP算法的代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">KMPinit</span><span class="hljs-params">(string s,string p)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> len=p.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-type">int</span> next[len],i=<span class="hljs-number">0</span>,j=<span class="hljs-number">0</span>;<span class="hljs-comment">//初始化</span><br>    <span class="hljs-built_in">getnext</span>(p,next);<span class="hljs-comment">//求出next数组</span><br>    <span class="hljs-keyword">while</span>(i&lt;s.<span class="hljs-built_in">size</span>()&amp;&amp;j&lt;len)&#123;<span class="hljs-comment">//跳出循环要么找完s字符串都没找到，要么已经找完了</span><br>        <span class="hljs-keyword">if</span>(j==<span class="hljs-number">-1</span>||s[i]==s[j])&#123;<span class="hljs-comment">//根据图示理解</span><br>            i++,j++;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            j=next[j];<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(j&gt;=len)&#123;<span class="hljs-comment">//如果跳出循环是因为已经匹配完毕，那么就可以返回位置了</span><br>        <span class="hljs-type">int</span> index=i-len;<br>        <span class="hljs-keyword">return</span> index;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<span class="hljs-comment">//找不到匹配项</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="四、KMP代码的优化"><a href="#四、KMP代码的优化" class="headerlink" title="四、KMP代码的优化"></a>四、KMP代码的优化</h3><p>​		假设子串为aaaaaab，并且字符串为aaaaaacccc。我们会发现b与c不匹配，接着便是前一位的a与c进行匹配，但是依旧不匹配，而紧接着会将前面的a依次与c匹配，得到的结果仍旧是不匹配，因此当next数组指向的字符和它本身相等时，便没有必要再匹配下去。</p>
-<p>​		所以我们可以把next函数做以下修正(KMP函数无需改变)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">getnext</span><span class="hljs-params">(string s,<span class="hljs-type">int</span> next[])</span></span><br><span class="hljs-function"></span>&#123;<br>    next[<span class="hljs-number">0</span>]=<span class="hljs-number">-1</span>;<br>    <span class="hljs-type">int</span> i=<span class="hljs-number">0</span>,k=<span class="hljs-number">-1</span>;<br>	<span class="hljs-keyword">while</span>(i&lt;s.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>)&#123;<br>        <span class="hljs-keyword">if</span>(k==<span class="hljs-number">-1</span>||s[i]==s[k])&#123;<br>            i++,k++;<br>            <span class="hljs-keyword">if</span>(s[i]!=s[k])<br>            	next[i]=k;<br>            <span class="hljs-keyword">else</span><br>                next[i]=next[k];<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            k=next[k];<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<p>参考博客：CSDN（哈顿之光）</p>
+<p><strong>浏览器输入一个URL按下回车后，其流程是？</strong></p>
+<p>分析：如果要连接到远程服务器，首先要知道服务器的IP地址和端口，然后发送请求到服务器，服务器再响应。因此寻址和如何建立连接是关键。</p>
+<p>步骤：</p>
+<p>（1）进行寻址：若浏览器缓存中存有URL的对应IP，则直接查询IP；否则访问DNS（Domain Name System）进行寻址（Domain Name Resolution）。</p>
+<p>（2） DNS或者URL Cache返回网页服务器的IP地址。</p>
+<p>（3）浏览器与网页服务器进行三次握手建立TCP连接。由于是网页浏览服务，故连接到服务器的80端口。</p>
+<p>（4）浏览器与服务器建立HTTP会话（Session），接收来自服务器的HTTP数据。</p>
+<p>（5）浏览器解析HTTP数据，在本地窗口内渲染并显示网页。</p>
+<p>（6）当浏览器页面被关闭时，终止HTTP会话并关闭连接。</p>
+<p><strong>多线程建立有哪几种方法</strong></p>
+<p>继承thread、建立线程池、实现Runnable、实现Callable</p>
+<p><strong>多线程并发的三大特性</strong></p>
+<p>可见性、原子性（要么全部执行且不会被打乱要么全部不执行）、有序性</p>
+<h3 id="PC端"><a href="#PC端" class="headerlink" title="PC端"></a>PC端</h3><p>浏览器多样化，需要考虑兼容性的问题，传统方式布局比较繁杂</p>
+<h3 id="移动端"><a href="#移动端" class="headerlink" title="移动端"></a>移动端</h3><p>移动端浏览器大部分内核为<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=webkit&spm=1001.2101.3001.7020">webkit</a>，不需要考虑兼容性的问题，且移动端可以放心使用flex弹性布局</p>
+<p>移动端技术解决方案</p>
+<p>移动端浏览器<br>移动端浏览器基本以webkit内核为主,因此我们就考虑webkit兼容性问题<br>我们可以放心使用H5标签和css3样式<br>同时我们浏览器的私有前缀我们只需要考虑添加webkit即可</p>
+<p>css初始化 normalize.css<br>移动端css初始化推荐使用normalize.css<br>好处<br>保护了有价值的默认值<br>修复了浏览器的bug<br>是模块化的<br>拥有详细的文档<br>网址 : <a target="_blank" rel="noopener" href="http://necolas.github.io/normalize.css/">http://necolas.github.io/normalize.css/</a></p>
+<p>css3 盒子模型 box-sizing<br>box-sizing:border-box<br>padding和border不会在撑大盒子了<br>默认值<br>box-sizing:content-box<br>padding和border和原来一样会在撑大盒子</p>
 
                 
               </div>
@@ -405,7 +434,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/C/" class="category-chain-item">C++</a>
+  <a href="/categories/%E5%85%AB%E8%82%A1%E9%9D%A2%E7%BB%8F/" class="category-chain-item">八股面经</a>
   
   
 
@@ -422,7 +451,7 @@
       
         <a href="/tags/C/" class="print-no-link">#C++</a>
       
-        <a href="/tags/KMP/" class="print-no-link">#KMP</a>
+        <a href="/tags/%E8%AE%A1%E7%BD%91/" class="print-no-link">#计网</a>
       
     </div>
   
@@ -434,8 +463,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>KMP算法详解+图示（附优化版）</div>
-      <div>http://example.com/2024/04/25/KMP算法详解+图示（附优化版）/</div>
+      <div>计算机网络面经</div>
+      <div>http://example.com/2024/05/09/计算机网络面经/</div>
     </div>
     <div class="license-meta">
       
@@ -447,7 +476,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>April 25, 2024</div>
+          <div>May 9, 2024</div>
         </div>
       
       
@@ -479,9 +508,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/04/DFS%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="DFS刷题记录">
+                      <a href="/2024/05/14/c++%E9%93%BE%E8%A1%A8%E8%AF%A6%E8%A7%A3%EF%BC%88%E6%A6%82%E5%BF%B5+%E4%BE%8B%E9%A2%98%EF%BC%89/" title="c++链表详解（概念+例题）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">DFS刷题记录</span>
+                        <span class="hidden-mobile">c++链表详解（概念+例题）</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -489,8 +518,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/22/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AEwaline%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88/" title="为博客配置waline评论模块需要注意什么">
-                        <span class="hidden-mobile">为博客配置waline评论模块需要注意什么</span>
+                      <a href="/2024/05/09/cpp%E9%9D%A2%E7%BB%8F/" title="cpp面经（杂乱版）">
+                        <span class="hidden-mobile">cpp面经（杂乱版）</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
