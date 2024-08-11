@@ -1,0 +1,872 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="此博客记录如何成功运行一个spring boot项目并用APIFOX进行测试。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过idea基于maven新建spring boot项目并运行（2024版本）">
+<meta property="og:url" content="http://example.com/2024/07/01/%E9%80%9A%E8%BF%87idea%E5%9F%BA%E4%BA%8Emaven%E6%96%B0%E5%BB%BAspring-boot%E9%A1%B9%E7%9B%AE%E5%B9%B6%E8%BF%90%E8%A1%8C%EF%BC%882024%E7%89%88%E6%9C%AC%EF%BC%89/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="此博客记录如何成功运行一个spring boot项目并用APIFOX进行测试。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701104309249.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-07-01%20110538.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701110456636.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701110615522.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701144938865.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701145920537.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701150249468.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701150551021.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701150654448.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701150713132.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701152318300.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701152517651.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701152534710.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701152723798.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701153234536.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701153703817.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701153818223.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701163121572.png">
+<meta property="article:published_time" content="2024-07-01T03:26:37.881Z">
+<meta property="article:modified_time" content="2024-08-11T11:33:00.737Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="spring boot">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="maven">
+<meta property="article:tag" content="IntelliJ IDEA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701104309249.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>通过idea基于maven新建spring boot项目并运行（2024版本） - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="通过idea基于maven新建spring boot项目并运行（2024版本）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-01 11:26" pubdate>
+          July 1, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">通过idea基于maven新建spring boot项目并运行（2024版本）</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on August 11, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>此博客记录如何成功运行一个spring boot项目并用APIFOX进行测试。</p>
+<span id="more"></span>
+
+<p>运行项目运行了很久都是不报错但是加载不出界面的情况，一开始以为是版本不匹配的原因，后来发现其实不是！（现在安装了JDK22、17、11三个版本……已老实）目前IDEA版本是最新版2024.1.4，JDK是22版本，maven也是最新版。</p>
+<h3 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h3><h4 id="1、首先需要配置JDK、maven两个软件"><a href="#1、首先需要配置JDK、maven两个软件" class="headerlink" title="1、首先需要配置JDK、maven两个软件"></a>1、首先需要配置JDK、maven两个软件</h4><h5 id="（1）下载软件"><a href="#（1）下载软件" class="headerlink" title="（1）下载软件"></a>（1）下载软件</h5><p>JDK：<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/downloads/#jdk22-windows">https://www.oracle.com/java/technologies/downloads/#jdk22-windows</a></p>
+<p>我一般会下载最新版（但是老版兼容性会更好一些）</p>
+<p>maven：<a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a>  下滑找到如图所示版本下载</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701104309249.png" srcset="/img/loading.gif" lazyload alt="image-20240701104309249"></p>
+<h5 id="（2）配置环境变量"><a href="#（2）配置环境变量" class="headerlink" title="（2）配置环境变量"></a>（2）配置环境变量</h5><p>在系统变量下添加如下所示两个环境变量，变量值是文件的地址（按照自己的文件地址添加）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-07-01%20110538.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2024-07-01 110538"></p>
+<p>在系统变量中找到Path变量，点击编辑，在后面添加如下所示两条</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701110456636.png" srcset="/img/loading.gif" lazyload alt="image-20240701110456636"></p>
+<p>cmd打开终端，输入如下命令，出现如图所示的信息，显示了maven和JDK版本，说明配置成功。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">mvn -<span class="hljs-built_in">version</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701110615522.png" srcset="/img/loading.gif" lazyload alt="image-20240701110615522"></p>
+<h4 id="2、-下载IntelliJ-IDEA"><a href="#2、-下载IntelliJ-IDEA" class="headerlink" title="2、  下载IntelliJ IDEA"></a>2、  下载IntelliJ IDEA</h4><p>仍旧是去官网下载：<a target="_blank" rel="noopener" href="https://www.jetbrains.com.cn/idea/download/?section=windows">下载 IntelliJ IDEA – 领先的 Java 和 Kotlin IDE (jetbrains.com.cn)</a></p>
+<p>但是我们会发现这是收费的，于是只能去下载破解版。此处贴上我当时参考的链接：</p>
+<p><a target="_blank" rel="noopener" href="https://www.quanxiaoha.com/idea-pojie/idea-pojie-20241.html">IDEA 2024.1 最新激活码，破解版安装教程（亲测有效~） - 犬小哈教程 (quanxiaoha.com)</a></p>
+<h3 id="二、开始创建项目"><a href="#二、开始创建项目" class="headerlink" title="二、开始创建项目"></a>二、开始创建项目</h3><p>我运行出来的结果是这样的：</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701144938865.png" srcset="/img/loading.gif" lazyload alt="image-20240701144938865" style="zoom: 67%;" />
+
+<p>虽然很简单但是搞了一下午加一晚上……不知道为什么跟着教程或者GPT都弄不出来，总是各种报错……后来GPT突然活了，我调整了一下文件结构然后就成功了！！</p>
+<h4 id="1、安装插件（可选）"><a href="#1、安装插件（可选）" class="headerlink" title="1、安装插件（可选）"></a>1、安装插件（可选）</h4><p>很多插件都是内置的，我只迷迷糊糊安装了一个wl spring assistant，也不知道有什么用。不过首先要安装的还是汉化包。按照我搜到的教程，应该是要安装Spring Initializr这个插件的，但是它需要Spring  boot helper这个插件才能正常工作。但是Spring  boot helper也需要购买，免费的老版本也需要老版本的idea才行。（在我激情卸载新版本下载老版本后，我发现老版本的破解帖子大多都失效了……）</p>
+<h4 id="2、新建项目"><a href="#2、新建项目" class="headerlink" title="2、新建项目"></a>2、新建项目</h4><p>（1）如图，由于我没有下载Spring Initializr这个插件，所以我只能选择Spring Boot这个选项，和网上的教程都不一样（所以我才急切想下载过去的版本，但是失败了anyway）。</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701145920537.png" srcset="/img/loading.gif" lazyload alt="image-20240701145920537" style="zoom: 50%;" />
+
+<p>但是当我最终放弃下载老版本，又灰溜溜把新版本装好后，把鼠标放在Spring Boot这个选项上面时，它显示了这样一句话。。。。（所以其实是一样的，好像没有什么不同！）</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701150249468.png" srcset="/img/loading.gif" lazyload style="zoom: 80%;" />
+
+<p>（2）右边我选的就是这样，只改动了圈出的地方，最上面名称可以自己设置。</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701150551021.png" srcset="/img/loading.gif" lazyload alt="image-20240701150551021" style="zoom: 67%;" />
+
+<p>（3）选择依赖项</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701150654448.png" srcset="/img/loading.gif" lazyload alt="image-20240701150654448"><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701150713132.png" srcset="/img/loading.gif" lazyload alt="image-20240701150713132"></p>
+<p>由于这个项目比较简单所以就选择了这两个，暂时不需要数据库的依赖项。</p>
+<p>然后项目就创建好了！</p>
+<h3 id="三、配置项目"><a href="#三、配置项目" class="headerlink" title="三、配置项目"></a>三、配置项目</h3><p>进入项目后，把重要文件夹展开后是这样（刚新建项目没有target文件夹）</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701152318300.png" srcset="/img/loading.gif" lazyload alt="image-20240701152318300" style="zoom:67%;" />
+
+<p>其实我不是很明白为什么会出现test文件夹（不管项目怎么命名都会出现，但是最开始是没有的……不知道是不是我按了什么不该按的）下面这两个文件是可以运行的。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701152517651.png" srcset="/img/loading.gif" lazyload alt="image-20240701152517651"><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701152534710.png" srcset="/img/loading.gif" lazyload alt="image-20240701152534710"></p>
+<p>第一步：需要添加两个文件。右键下面任意一个软件包，选择添加一个java类，我命名为了helloController</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701152723798.png" srcset="/img/loading.gif" lazyload alt="image-20240701152723798" style="zoom:67%;" />
+
+<p>在这个文件中添加如下代码（请看注释要点！不然会报错）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.example.test; <span class="hljs-comment">//注意test这个单词是要改成你的项目名字的</span><br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;  <span class="hljs-comment">//不用改</span><br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;  <span class="hljs-comment">//不用改</span><br><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">helloController</span> &#123;  <span class="hljs-comment">//这个类名要和刚刚创建的java类名一致</span><br><br>    <span class="hljs-meta">@GetMapping(&quot;/&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">home</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;index&quot;</span>; <span class="hljs-comment">// 返回模板文件的名称，不需要扩展名</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后右键这个文件夹选择新建一个html文件，命名为index</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701153234536.png" srcset="/img/loading.gif" lazyload alt="image-20240701153234536"></p>
+<p>在文件中添加如下代码（body内添加内容，&lt; br&#x2F; &gt;是换行符）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>hello<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>##################<span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>  <br>############<span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>第二步就可以点击运行了。但是此时可能会报错，如你的报错原因是如下图，那么应该是跟我一样，因为默认端口号8080已经被占用了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701153703817.png" srcset="/img/loading.gif" lazyload alt="image-20240701153703817"></p>
+<p>解决方法也很简单，就是换个端口号，点开下面的文件，在其最上方添加一行代码server.port&#x3D;8016（可以自己改端口号）（当然也可以选择在管理员终端终止8080端口运行，但是还是改个端口更简单）</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701153818223.png" srcset="/img/loading.gif" lazyload alt="image-20240701153818223" style="zoom:80%;" />
+
+<p>然后应该就能运行成功了！这时我们在电脑上访问localhost:8016（端口号），就可以看见我们在html中写的内容了。</p>
+<h3 id="四、API测试"><a href="#四、API测试" class="headerlink" title="四、API测试"></a>四、API测试</h3><h4 id="1、在官网下载APIFox"><a href="#1、在官网下载APIFox" class="headerlink" title="1、在官网下载APIFox"></a>1、在官网下载APIFox</h4><p><a target="_blank" rel="noopener" href="https://apifox.com/">https://apifox.com/</a></p>
+<h4 id="2、创建一个新的项目"><a href="#2、创建一个新的项目" class="headerlink" title="2、创建一个新的项目"></a>2、创建一个新的项目</h4><p>项目类型选择html</p>
+<h4 id="3、添加一个新的接口"><a href="#3、添加一个新的接口" class="headerlink" title="3、添加一个新的接口"></a>3、添加一个新的接口</h4><p>配置请求：</p>
+<ul>
+<li>请求方法：GET</li>
+<li>请求 URL：&#96;<a href="http://localhost:8016‘">http://localhost:8016‘</a></li>
+<li>添加查询参数：name（可选）</li>
+<li>返回相应的内容格式选html</li>
+</ul>
+<h4 id="4、点击发送按钮查看响应"><a href="#4、点击发送按钮查看响应" class="headerlink" title="4、点击发送按钮查看响应"></a>4、点击发送按钮查看响应</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240701163121572.png" srcset="/img/loading.gif" lazyload alt="image-20240701163121572"></p>
+<h3 id="五、一些问题记录"><a href="#五、一些问题记录" class="headerlink" title="五、一些问题记录"></a>五、一些问题记录</h3><h4 id="1、依赖项thymeleaf的作用"><a href="#1、依赖项thymeleaf的作用" class="headerlink" title="1、依赖项thymeleaf的作用"></a>1、依赖项thymeleaf的作用</h4><p>将 Thymeleaf 集成到 Spring Boot 应用中，使得你可以使用 Thymeleaf 作为模板引擎来渲染 HTML 页面。</p>
+<p>如果一开始新建项目时没有添加这个依赖项，也可以打开pom.xml文件中添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="2、Controller文件的作用"><a href="#2、Controller文件的作用" class="headerlink" title="2、Controller文件的作用"></a>2、Controller文件的作用</h4><p>控制器（Controller）是用于处理 HTTP 请求的核心组件。控制器的主要职责是接收用户的输入，并根据该输入返回相应的响应。控制器通常与视图模板或 RESTful API 结合使用。</p>
+<p>上面的helloController文件按理来说应该命名为HomeController，表示端口号域名不加任何后续路径，处理根路径’ &#x2F; ‘并返回index.html模板。</p>
+<p>然后我们还可以新建一个HelloController文件，用于处理 ’ hello ‘ 路径并返回一个简单的字符串响应。例如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.example.demoa;<br><br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestParam;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;<br><br><span class="hljs-meta">@RestController</span>      <span class="hljs-comment">//RESTful控制器，返回JSON数据</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloController</span> &#123;<br><br>    <span class="hljs-meta">@GetMapping(&quot;/hello&quot;)</span>  <span class="hljs-comment">//括号里是路径</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">hello</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(value = &quot;name&quot;, defaultValue = &quot;World&quot;)</span> String name)</span> &#123;<br>        <span class="hljs-keyword">return</span> String.format(<span class="hljs-string">&quot;Hello, %s!&quot;</span>, name);  <span class="hljs-comment">//返回Hello World！</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/xxx/" class="category-chain-item">xxx</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/spring-boot/" class="print-no-link">#spring boot</a>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/maven/" class="print-no-link">#maven</a>
+      
+        <a href="/tags/IntelliJ-IDEA/" class="print-no-link">#IntelliJ IDEA</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>通过idea基于maven新建spring boot项目并运行（2024版本）</div>
+      <div>http://example.com/2024/07/01/通过idea基于maven新建spring-boot项目并运行（2024版本）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 1, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/31/springboot%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="springboot学习记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">springboot学习记录</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/29/%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%B0%E5%BD%95/" title="配置服务器记录">
+                        <span class="hidden-mobile">配置服务器记录</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
