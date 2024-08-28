@@ -16,15 +16,15 @@
   <meta name="author" content="Yaodeer">
   <meta name="keywords" content="">
   
-    <meta name="description" content="开始整合比较小的页面">
+    <meta name="description" content="钱币转换小app">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react课程2-kick off">
-<meta property="og:url" content="http://example.com/2024/08/11/react%E8%AF%BE%E7%A8%8B2-kick-off/index.html">
+<meta property="og:title" content="react课程-challenge">
+<meta property="og:url" content="http://example.com/2024/08/22/%E4%BB%A3%E7%A0%81/index.html">
 <meta property="og:site_name" content="Yaodeer">
-<meta property="og:description" content="开始整合比较小的页面">
+<meta property="og:description" content="钱币转换小app">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-11T11:28:19.781Z">
-<meta property="article:modified_time" content="2024-08-11T11:28:19.938Z">
+<meta property="article:published_time" content="2024-08-22T06:45:32.524Z">
+<meta property="article:modified_time" content="2024-08-28T12:25:25.628Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>react课程2-kick off - Yaodeer</title>
+  <title>react课程-challenge - Yaodeer</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -238,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="react课程2-kick off"></span>
+            <span id="subtitle" data-typed-text="react课程-challenge"></span>
           
         </div>
 
@@ -249,8 +249,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-11 19:28" pubdate>
-          August 11, 2024 pm
+        <time datetime="2024-08-22 14:45" pubdate>
+          August 22, 2024 pm
         </time>
       </span>
     
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k words
+          262 words
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          16 mins
+          3 mins
         
       </span>
     
@@ -321,12 +321,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">react课程2-kick off</h1>
+            <h1 id="seo-header">react课程-challenge</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on August 11, 2024 pm
+                    Last updated on August 28, 2024 pm
                   
                 
               </p>
@@ -334,102 +334,10 @@
             
               <div class="markdown-body">
                 
-                <p>开始整合比较小的页面</p>
+                <p>钱币转换小app</p>
 <span id="more"></span>
 
-<p>最好不要嵌套函数声明</p>
-<h3 id="一、Babel"><a href="#一、Babel" class="headerlink" title="一、Babel"></a>一、Babel</h3><p>Babel 是一个广泛使用的 JavaScript 编译器，主要用于将现代 JavaScript 代码（ES6+）转换为与旧浏览器兼容的代码。它能够将新版本的 JavaScript 语法和特性编译为更旧版本，从而确保代码可以在不支持这些新特性的环境中运行。</p>
-<p>Babel 的主要功能包括：</p>
-<ol>
-<li><strong>语法转换</strong>：将现代 JavaScript 语法（如箭头函数、类、模板字符串等）转换为较旧的等效代码。</li>
-<li><strong>插件系统</strong>：Babel 提供了一个强大的插件系统，用户可以根据需要定制 Babel 的行为，例如添加支持 TypeScript、React JSX 等。</li>
-<li><strong>Polyfill</strong>：通过 <code>@babel/polyfill</code>，可以在旧浏览器中引入新 JavaScript 标准库功能（如 Promise、Map 等）。</li>
-<li><strong>代码转换</strong>：Babel 还可以用于代码的其他转换，例如重命名变量、删除未使用的代码等。</li>
-</ol>
-<p>在 React 项目中，Babel 通常与 Webpack 一起使用，通过配置 Babel Loader 来处理 JavaScript 文件的转换，使得开发者可以使用最新的 JavaScript 特性进行开发，同时确保代码的兼容性。</p>
-<h3 id="二、webpack"><a href="#二、webpack" class="headerlink" title="二、webpack"></a>二、webpack</h3><p>Webpack 是一个现代 JavaScript 应用的模块打包工具（bundler）。它的主要功能是将各种资源（JavaScript、CSS、图片等）作为模块进行打包，从而生成可以在浏览器中运行的文件。Webpack 的核心思想是把所有的项目资源都视为模块，无论是 JavaScript 代码、样式表还是图片等资源，最终打包成一个或多个输出文件，以便在浏览器中更高效地加载。</p>
-<p>以下是 Webpack 的一些核心概念：</p>
-<ol>
-<li><strong>Entry（入口）</strong>：<ul>
-<li>Webpack 从一个或多个入口文件开始构建依赖关系图，找出项目中所有的模块及其依赖关系。</li>
-<li>默认入口文件是 <code>./src/index.js</code>，但可以通过 Webpack 配置文件 (<code>webpack.config.js</code>) 来指定。</li>
-</ul>
-</li>
-<li><strong>Output（输出）</strong>：<ul>
-<li>配置输出文件的名称和路径。打包后的文件通常命名为 <code>bundle.js</code>，但也可以自定义。</li>
-<li>例如，将输出文件放在 <code>./dist</code> 目录下。</li>
-</ul>
-</li>
-<li><strong>Loaders（加载器）</strong>：<ul>
-<li>Loaders 用于转换不同类型的模块，如将 ES6+ 的 JavaScript 转换为兼容的 ES5，或者将 SCSS 文件编译为 CSS。</li>
-<li>常用的加载器有 <code>babel-loader</code>（处理 JavaScript）、<code>css-loader</code>（处理 CSS）、<code>file-loader</code>（处理文件资源）等。</li>
-</ul>
-</li>
-<li><strong>Plugins（插件）</strong>：<ul>
-<li>插件用于执行复杂的任务，如优化打包文件的大小、生成 HTML 文件、提取 CSS 文件等。</li>
-<li>常见的插件有 <code>HtmlWebpackPlugin</code>（生成 HTML 文件）、<code>MiniCssExtractPlugin</code>（提取 CSS 到单独文件）、<code>UglifyJsPlugin</code>（压缩 JavaScript 文件）等。</li>
-</ul>
-</li>
-<li><strong>Mode（模式）</strong>：<ul>
-<li>Webpack 提供了两种模式：<code>development</code> 和 <code>production</code>。</li>
-<li><code>development</code> 模式适用于开发环境，具有更好的调试体验，代码不会被压缩。</li>
-<li><code>production</code> 模式适用于生产环境，代码会被优化和压缩，以提高性能。</li>
-</ul>
-</li>
-<li><strong>DevServer</strong>：<ul>
-<li>Webpack DevServer 是一个开发服务器，它可以实时重新加载页面，提供热模块替换（Hot Module Replacement，HMR）功能，使开发过程更加高效。</li>
-</ul>
-</li>
-</ol>
-<p>在实际应用中，Webpack 通常与 Babel、Sass、PostCSS 等工具结合使用，以构建现代 Web 应用程序。通过配置 Webpack，你可以在开发过程中享受模块化开发的便利，同时确保最终生成的文件在性能和兼容性上达到最佳状态。</p>
-<h3 id="三、React的分离特性"><a href="#三、React的分离特性" class="headerlink" title="三、React的分离特性"></a>三、React的分离特性</h3><p>React 框架的确与传统的分离式（HTML、CSS、JavaScript 分离）开发方式有所不同。在 React 中，开发者通常会将逻辑、结构和样式组合在一个组件内，使用 JavaScript 来创建用户界面。这种方法称为<strong>组件化开发</strong>，其核心理念是将 UI 拆分为独立、可复用的组件。</p>
-<p>尽管 React 不再像传统方式那样严格分离 HTML、CSS、JS，但它依然在不同层次上体现了分离性：</p>
-<ol>
-<li><strong>组件分离</strong></li>
-</ol>
-<ul>
-<li>React 强调将页面分解成多个独立的组件，每个组件只负责自己的功能和状态管理。这种分离方式使得代码更加模块化和可维护。</li>
-<li>每个组件可以包含自己的结构（HTML）、样式（CSS）、逻辑（JS），并且可以独立开发、测试和复用。</li>
-</ul>
-<ol start="2">
-<li><strong>JSX 的语义分离</strong></li>
-</ol>
-<ul>
-<li>在 React 中，JSX 允许开发者在 JavaScript 中编写类似 HTML 的语法。尽管看似混合了 HTML 和 JavaScript，但其实 JSX 只是 React 的语法糖，最终会被编译成纯 JavaScript。</li>
-<li>通过 JSX，结构化的 UI 代码嵌入在 JavaScript 中，但仍然保持了逻辑和展示之间的清晰分离。代码语义化也得到了增强，因为 JSX 语法比传统的字符串拼接方式更直观。</li>
-</ul>
-<ol start="3">
-<li><strong>CSS-in-JS</strong></li>
-</ol>
-<ul>
-<li>React 生态中有许多样式解决方案，比如 styled-components、emotion，它们允许在 JavaScript 文件中编写样式。这种方式使样式与组件逻辑紧密绑定，避免了传统全局 CSS 带来的样式冲突问题。</li>
-<li>CSS-in-JS 提供了样式的局部作用域（scoped styling），从而实现了样式的隔离和组件化管理。</li>
-</ul>
-<ol start="4">
-<li><strong>Context 和 Hooks 的逻辑分离</strong></li>
-</ol>
-<ul>
-<li>React 提供了 Context 和 Hooks，使得状态管理和业务逻辑可以与 UI 组件分离。例如，使用 <code>useContext</code> 和 <code>useReducer</code> 等 Hook，可以将全局状态逻辑与具体组件解耦，从而提高代码的可读性和复用性。</li>
-<li>通过自定义 Hooks，开发者可以将可复用的逻辑抽取出来，并在多个组件中共享，而不需要重复代码。</li>
-</ul>
-<ol start="5">
-<li><strong>CSS Modules</strong></li>
-</ol>
-<ul>
-<li>CSS Modules 是 React 中另一种常用的样式解决方案，它允许开发者将样式分离成各个模块，并自动为每个模块生成唯一的类名，以避免样式冲突。</li>
-<li>使用 CSS Modules 时，样式文件仍然可以保持与组件分离，同时确保了样式的作用范围只限于当前组件。</li>
-</ul>
-<ol start="6">
-<li><strong>文件结构的分离</strong></li>
-</ol>
-<ul>
-<li>虽然 React 鼓励在组件内部进行组合，但开发者依然可以根据项目需求将组件、样式和逻辑代码分布在不同的文件中。</li>
-<li>例如，可以有一个 <code>components</code> 文件夹来存放组件，一个 <code>styles</code> 文件夹来存放样式文件，一个 <code>services</code> 文件夹来处理业务逻辑和 API 请求。</li>
-</ul>
-<p>React 中的“分离性”更多地体现在逻辑层次的分离，而非文件层次的分离。通过组件化开发、JSX、CSS-in-JS、Context、Hooks 等机制，React 保持了代码的模块化和可维护性，即使结构、样式和逻辑被合并在一起。这种方式更适合现代前端开发的需求，提供了更好的代码组织方式和开发体验。</p>
-<h3 id="四、重用组件的代码实例"><a href="#四、重用组件的代码实例" class="headerlink" title="四、重用组件的代码实例"></a>四、重用组件的代码实例</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Menu</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;menu&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Our menu<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;pizza&quot;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Pizza</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;Pizza Spinaci&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">ingredients</span>=<span class="hljs-string">&quot;Tomato, mozarella, spinach, and ricotta cheese&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">photoName</span>=<span class="hljs-string">&quot;pizzas\spinaci.jpg&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">price</span>=<span class="hljs-string">&#123;10&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        /&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Pizza</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;Pizza Funghi&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">ingredients</span>=<span class="hljs-string">&quot;Tomato, mozarella, mushrooms, and onion&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">price</span>=<span class="hljs-string">&#123;12&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">photoName</span>=<span class="hljs-string">&quot;pizzas/funghi.jpg&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Pizza</span>(<span class="hljs-params">props</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;props.photoName&#125;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&#123;props.name&#125;</span> /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>&#123;props.name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;props.ingredients&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;props.price&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useEffect, useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [amount, setAmount] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">const</span> [fromCur, setFromCur] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;EUR&quot;</span>);<br>  <span class="hljs-keyword">const</span> [toCur, setToCur] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;USD&quot;</span>);<br>  <span class="hljs-keyword">const</span> [converted, setConverted] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;&quot;</span>);<br>  <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);<br><br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">convert</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">true</span>);<br>        <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<br>          <span class="hljs-string">`https://api.frankfurter.app/latest?amount=<span class="hljs-subst">$&#123;amount&#125;</span>&amp;from=<span class="hljs-subst">$&#123;fromCur&#125;</span>&amp;to=<span class="hljs-subst">$&#123;toCur&#125;</span>`</span><br>        );<br>        <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>();<br>        <span class="hljs-title function_">setConverted</span>(data.<span class="hljs-property">rates</span>[toCur]);<br>        <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">false</span>);<br>      &#125;<br>      <span class="hljs-keyword">if</span> (fromCur === toCur) <span class="hljs-keyword">return</span> <span class="hljs-title function_">setConverted</span>(amount);<br>      <span class="hljs-title function_">convert</span>();<br>    &#125;,<br>    [amount, fromCur, toCur]<br>  );<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;amount&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> setAmount(Number(e.target.value))&#125;</span><br><span class="language-xml">        disabled=&#123;isLoading&#125;</span><br><span class="language-xml">      /&gt;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">select</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;fromCur&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> setFromCur(e.target.value)&#125;</span><br><span class="language-xml">        disabled=&#123;isLoading&#125;</span><br><span class="language-xml">      &gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;USD&quot;</span>&gt;</span>USD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;EUR&quot;</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;CAD&quot;</span>&gt;</span>CAD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;INR&quot;</span>&gt;</span>INR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">select</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;toCur&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> setToCur(e.target.value)&#125;</span><br><span class="language-xml">        disabled=&#123;isLoading&#125;</span><br><span class="language-xml">      &gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;USD&quot;</span>&gt;</span>USD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;EUR&quot;</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;CAD&quot;</span>&gt;</span>CAD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;INR&quot;</span>&gt;</span>INR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        &#123;converted&#125; &#123;toCur&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -476,8 +384,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>react课程2-kick off</div>
-      <div>http://example.com/2024/08/11/react课程2-kick-off/</div>
+      <div>react课程-challenge</div>
+      <div>http://example.com/2024/08/22/代码/</div>
     </div>
     <div class="license-meta">
       
@@ -489,7 +397,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 11, 2024</div>
+          <div>August 22, 2024</div>
         </div>
       
       
@@ -521,9 +429,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/13/react%E8%AF%BE%E7%A8%8B3-pizza_menu/" title="react课程3-pizza_menu">
+                      <a href="/2024/08/26/react%E8%AF%BE%E7%A8%8B10-ReactQuiz/" title="react课程10-ReactQuiz(useReducer学习)">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">react课程3-pizza_menu</span>
+                        <span class="hidden-mobile">react课程10-ReactQuiz(useReducer学习)</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -531,8 +439,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/08/react%E8%AF%BE%E7%A8%8B1-preparing/" title="react课程1-preparing">
-                        <span class="hidden-mobile">react课程1-preparing</span>
+                      <a href="/2024/08/19/react%E8%AF%BE%E7%A8%8B8-react%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="react课程8-react基础知识">
+                        <span class="hidden-mobile">react课程8-react基础知识</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="k">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程9-usepopcorn-2">
+<meta property="og:url" content="http://example.com/2024/08/28/react%E8%AF%BE%E7%A8%8B9-usepopcorn-2/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="k">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828110027563.png">
+<meta property="article:published_time" content="2024-08-28T03:25:17.348Z">
+<meta property="article:modified_time" content="2024-08-28T12:23:43.795Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828110027563.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程9-usepopcorn-2 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程9-usepopcorn-2"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-28 11:25" pubdate>
+          August 28, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程9-usepopcorn-2</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on August 28, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>k</p>
+<span id="more"></span>
+
+<h3 id="一、用户界面和主要功能"><a href="#一、用户界面和主要功能" class="headerlink" title="一、用户界面和主要功能"></a>一、用户界面和主要功能</h3><h4 id="（1）界面"><a href="#（1）界面" class="headerlink" title="（1）界面"></a>（1）界面</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828110027563.png" srcset="/img/loading.gif" lazyload alt="image-20240828110027563"></p>
+<h4 id="（2）功能"><a href="#（2）功能" class="headerlink" title="（2）功能"></a>（2）功能</h4><p>1、调用API可以导入电影数据，搜索到电影并显示出基本信息</p>
+<p>2、单击电影可以看到详细信息，并可以为它评分且加入已看电影的清单，也可以在清单中删除电影</p>
+<p>3、右上角统计一共看了多少部电影以及评分和平均电影时间</p>
+<p>4、离开界面再进去时数据不会丢失</p>
+<h3 id="二、代码"><a href="#二、代码" class="headerlink" title="二、代码"></a>二、代码</h3><h4 id="（1）App-js"><a href="#（1）App-js" class="headerlink" title="（1）App.js"></a>（1）App.js</h4><p>从网站<a target="_blank" rel="noopener" href="https://www.omdbapi.com/%E8%8E%B7%E5%8F%96%E5%85%8D%E8%B4%B9KEY%E5%90%8E%E8%8E%B7%E5%8F%96%E7%94%B5%E5%BD%B1%E8%B5%84%E6%BA%90%E6%95%B0%E6%8D%AE">https://www.omdbapi.com/获取免费KEY后获取电影资源数据</a></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useEffect, useRef, useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">StarRating</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./StarRating&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; useMovies &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./useMovies&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; useLocalStorageState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./useLocalStorageState&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; useKey &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./useKey&quot;</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">KEY</span> = <span class="hljs-string">&quot;c69cb565&quot;</span>;  <br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">average</span> = (<span class="hljs-params">arr</span>) =&gt;<br>  arr.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc, cur, i, arr</span>) =&gt;</span> acc + cur / arr.<span class="hljs-property">length</span>, <span class="hljs-number">0</span>);<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [query, setQuery] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;Flipped&quot;</span>);<br>  <span class="hljs-keyword">const</span> [selectedId, setSelectedId] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">null</span>);<br><br>  <span class="hljs-keyword">const</span> &#123; movies, isLoading, error &#125; = <span class="hljs-title function_">useMovies</span>(query, handleCloseMovie);<br>  <span class="hljs-keyword">const</span> [watched, setWatched] = <span class="hljs-title function_">useLocalStorageState</span>([], <span class="hljs-string">&quot;watched&quot;</span>);<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleSelectMovie</span>(<span class="hljs-params">id</span>) &#123;<br>    <span class="hljs-title function_">setSelectedId</span>(<span class="hljs-function">(<span class="hljs-params">selectedId</span>) =&gt;</span> (id === selectedId ? <span class="hljs-literal">null</span> : id));<br>  &#125;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleCloseMovie</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title function_">setSelectedId</span>(<span class="hljs-literal">null</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">hanleAddWatched</span>(<span class="hljs-params">movie</span>) &#123;<br>    <span class="hljs-title function_">setWatched</span>(<span class="hljs-function">(<span class="hljs-params">watched</span>) =&gt;</span> [...watched, movie]);<br>  &#125;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleDeleteWatched</span>(<span class="hljs-params">id</span>) &#123;<br>    <span class="hljs-title function_">setWatched</span>(<span class="hljs-function">(<span class="hljs-params">setWatched</span>) =&gt;</span> watched.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">movie</span>) =&gt;</span> movie.<span class="hljs-property">imdbID</span> !== id));<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">NavBar</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Search</span> <span class="hljs-attr">query</span>=<span class="hljs-string">&#123;query&#125;</span> <span class="hljs-attr">setQuery</span>=<span class="hljs-string">&#123;setQuery&#125;</span> /&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">NumResults</span> <span class="hljs-attr">movies</span>=<span class="hljs-string">&#123;movies&#125;</span> /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">NavBar</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Main</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Box</span>&gt;</span></span><br><span class="language-xml">          &#123;isLoading &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">Loader</span> /&gt;</span>&#125;</span><br><span class="language-xml">          &#123;!isLoading &amp;&amp; !error &amp;&amp; (</span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">MovieList</span> <span class="hljs-attr">movies</span>=<span class="hljs-string">&#123;movies&#125;</span> <span class="hljs-attr">onSelectMovie</span>=<span class="hljs-string">&#123;handleSelectMovie&#125;</span> /&gt;</span></span><br><span class="language-xml">          )&#125;</span><br><span class="language-xml">          &#123;error &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">ErrorMessage</span> <span class="hljs-attr">message</span>=<span class="hljs-string">&#123;error&#125;</span> /&gt;</span>&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Box</span>&gt;</span></span><br><span class="language-xml">          &#123;selectedId ? (</span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">MovieDetails</span></span></span><br><span class="hljs-tag"><span class="language-xml">              <span class="hljs-attr">selectedId</span>=<span class="hljs-string">&#123;selectedId&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">              <span class="hljs-attr">onCloseMovie</span>=<span class="hljs-string">&#123;handleCloseMovie&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">              <span class="hljs-attr">onAddWatched</span>=<span class="hljs-string">&#123;hanleAddWatched&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">              <span class="hljs-attr">watched</span>=<span class="hljs-string">&#123;watched&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            /&gt;</span></span><br><span class="language-xml">          ) : (</span><br><span class="language-xml">            <span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">WatchedSummary</span> <span class="hljs-attr">watched</span>=<span class="hljs-string">&#123;watched&#125;</span> /&gt;</span></span><br><span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">WatchedMovieList</span></span></span><br><span class="hljs-tag"><span class="language-xml">                <span class="hljs-attr">watched</span>=<span class="hljs-string">&#123;watched&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">                <span class="hljs-attr">onDeleteWatched</span>=<span class="hljs-string">&#123;handleDeleteWatched&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">              /&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;/&gt;</span></span><br><span class="language-xml">          )&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Main</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="Loader-js和Error-js"><a href="#Loader-js和Error-js" class="headerlink" title="Loader.js和Error.js"></a>Loader.js和Error.js</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Loader</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;loader&quot;</span>&gt;</span>Loading...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">ErrorMessage</span>(<span class="hljs-params">&#123; message &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;error&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>⚠️<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">      &#123;message&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="NavBar和Logo"><a href="#NavBar和Logo" class="headerlink" title="NavBar和Logo"></a>NavBar和Logo</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">NavBar</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;nav-bar&quot;</span>&gt;</span></span><br><span class="language-xml">      &#123;&quot; &quot;&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Logo</span> /&gt;</span></span><br><span class="language-xml">      &#123;children&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Logo</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;logo&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;img&quot;</span>&gt;</span>🍿<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>usePopcorn<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Search</span>(<span class="hljs-params">&#123; query, setQuery &#125;</span>) &#123;<br>  <span class="hljs-comment">// useEffect(function () &#123;</span><br>  <span class="hljs-comment">//   const el = document.querySelector(&quot;.search&quot;);</span><br>  <span class="hljs-comment">//   el.focus();</span><br>  <span class="hljs-comment">// &#125;, []);</span><br>  <span class="hljs-keyword">const</span> inputEl = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);<br><br>  <span class="hljs-title function_">useKey</span>(<span class="hljs-string">&quot;Enter&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">document</span>.<span class="hljs-property">activeElement</span> === inputEl.<span class="hljs-property">current</span>) <span class="hljs-keyword">return</span>;<br>    inputEl.<span class="hljs-property">current</span>.<span class="hljs-title function_">focus</span>();<br>    <span class="hljs-title function_">setQuery</span>(<span class="hljs-string">&quot;&quot;</span>);<br>  &#125;);<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;search&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Search movies...&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;query&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> setQuery(e.target.value)&#125;</span><br><span class="language-xml">      ref=&#123;inputEl&#125;</span><br><span class="language-xml">    /&gt;</span><br>  );<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">NumResults</span>(<span class="hljs-params">&#123; movies &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;num-results&quot;</span>&gt;</span></span><br><span class="language-xml">      Found <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>&#123;movies.length&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> results</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Main</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;main&quot;</span>&gt;</span>&#123;children&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span></span>;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Box</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> [isOpen, setIsOpen] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">true</span>);<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;btn-toggle&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> setIsOpen((open) =&gt; !open)&#125;&gt;</span><br><span class="language-xml">        &#123;isOpen ? &quot;–&quot; : &quot;+&quot;&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">      &#123;isOpen &amp;&amp; children&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">MovieList</span>(<span class="hljs-params">&#123; movies, onSelectMovie &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;list list-movies&quot;</span>&gt;</span></span><br><span class="language-xml">      &#123;movies?.map((movie) =&gt; (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Movie</span> <span class="hljs-attr">movie</span>=<span class="hljs-string">&#123;movie&#125;</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;movie.imdbID&#125;</span> <span class="hljs-attr">onSelectMovie</span>=<span class="hljs-string">&#123;onSelectMovie&#125;</span> /&gt;</span></span><br><span class="language-xml">      ))&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Movie</span>(<span class="hljs-params">&#123; movie, onSelectMovie &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;movie.imdbID&#125;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> onSelectMovie(movie.imdbID)&#125;&gt;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;movie.Poster&#125;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&#123;</span>`$&#123;<span class="hljs-attr">movie.Title</span>&#125; <span class="hljs-attr">poster</span>`&#125; /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>&#123;movie.Title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>🗓<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;movie.Year&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br>  );<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">MovieDetails</span>(<span class="hljs-params">&#123; selectedId, onCloseMovie, onAddWatched, watched &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> [movie, setMovie] = <span class="hljs-title function_">useState</span>(&#123;&#125;);<br>  <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">const</span> [userRating, setUserRating] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;&quot;</span>);<br><br>  <span class="hljs-keyword">const</span> countRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-number">0</span>);<br><br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">if</span> (userRating) countRef.<span class="hljs-property">current</span>++;<br>    &#125;,<br>    [userRating]<br>  );<br><br>  <span class="hljs-keyword">const</span> isWatched = watched.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">movie</span>) =&gt;</span> movie.<span class="hljs-property">imdbID</span>).<span class="hljs-title function_">includes</span>(selectedId);<br>  <span class="hljs-keyword">const</span> watchedUserRating = watched.<span class="hljs-title function_">find</span>(<br>    <span class="hljs-function">(<span class="hljs-params">movie</span>) =&gt;</span> movie.<span class="hljs-property">imdbID</span> === selectedId<br>  )?.<span class="hljs-property">userRating</span>;<br><br>  <span class="hljs-keyword">const</span> &#123;<br>    <span class="hljs-title class_">Title</span>: title,<br>    <span class="hljs-title class_">Poster</span>: poster,<br>    <span class="hljs-title class_">Runtime</span>: runtime,<br>    imdbRating,<br>    <span class="hljs-title class_">Plot</span>: plot,<br>    <span class="hljs-title class_">Released</span>: released,<br>    <span class="hljs-title class_">Actors</span>: actors,<br>    <span class="hljs-title class_">Director</span>: director,<br>    <span class="hljs-title class_">Genre</span>: genre,<br>  &#125; = movie;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleAdd</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> newWatchedMovie = &#123;<br>      <span class="hljs-attr">imdbID</span>: selectedId,<br>      title,<br>      poster,<br>      <span class="hljs-attr">imdbRating</span>: <span class="hljs-title class_">Number</span>(imdbRating),<br>      <span class="hljs-attr">runtime</span>: <span class="hljs-title class_">Number</span>(runtime.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot; &quot;</span>).<span class="hljs-title function_">at</span>(<span class="hljs-number">0</span>)),<br>      userRating,<br>      <span class="hljs-attr">countRatingDecisions</span>: countRef.<span class="hljs-property">current</span>,<br>    &#125;;<br>    <span class="hljs-title function_">onAddWatched</span>(newWatchedMovie);<br>    <span class="hljs-title function_">onCloseMovie</span>();<br>  &#125;<br><br>  <span class="hljs-title function_">useKey</span>(<span class="hljs-string">&quot;Escape&quot;</span>, onCloseMovie);<br><br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">true</span>);<br>      <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getMovieDetails</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<br>          <span class="hljs-string">`http://www.omdbapi.com/?apikey=<span class="hljs-subst">$&#123;KEY&#125;</span>&amp;i=<span class="hljs-subst">$&#123;selectedId&#125;</span>`</span><br>        );<br>        <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>();<br>        <span class="hljs-title function_">setMovie</span>(data);<br>        <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">false</span>);<br>      &#125;<br>      <span class="hljs-title function_">getMovieDetails</span>();<br>    &#125;,<br>    [selectedId]<br>  );<br><br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">if</span> (!title) <span class="hljs-keyword">return</span>;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-property">title</span> = <span class="hljs-string">`Movie|<span class="hljs-subst">$&#123;title&#125;</span>`</span>;<br><br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-variable language_">document</span>.<span class="hljs-property">title</span> = <span class="hljs-string">&quot;usePopcorn&quot;</span>;<br>      &#125;;<br>    &#125;,<br>    [title]<br>  );<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;details&quot;</span>&gt;</span></span><br><span class="language-xml">      &#123;isLoading ? (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Loader</span> /&gt;</span></span><br><span class="language-xml">      ) : (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;btn-back&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;onCloseMovie&#125;</span>&gt;</span></span><br><span class="language-xml">              <span class="hljs-symbol">&amp;larr;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;poster&#125;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&#123;</span>`<span class="hljs-attr">Poster</span> <span class="hljs-attr">of</span> $&#123;<span class="hljs-attr">movie</span>&#125;`&#125; /&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;details-overview&quot;</span>&gt;</span></span><br><span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br><span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">                &#123;released&#125; <span class="hljs-symbol">&amp;bull;</span> &#123;runtime&#125;</span><br><span class="language-xml">              <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;genre&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">                <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>🌟<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">                &#123;imdbRating&#125; IMDb rating</span><br><span class="language-xml">              <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;rating&quot;</span>&gt;</span></span><br><span class="language-xml">              &#123;!isWatched ? (</span><br><span class="language-xml">                <span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">                  <span class="hljs-tag">&lt;<span class="hljs-name">StarRating</span></span></span><br><span class="hljs-tag"><span class="language-xml">                    <span class="hljs-attr">maxRating</span>=<span class="hljs-string">&#123;10&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">                    <span class="hljs-attr">size</span>=<span class="hljs-string">&#123;36&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">                    <span class="hljs-attr">onSetRating</span>=<span class="hljs-string">&#123;setUserRating&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">                  /&gt;</span></span><br><span class="language-xml">                  &#123;userRating &gt; 0 &amp;&amp; (</span><br><span class="language-xml">                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;btn-add&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handleAdd&#125;</span>&gt;</span></span><br><span class="language-xml">                      + Add to list</span><br><span class="language-xml">                    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">                  )&#125;</span><br><span class="language-xml">                <span class="hljs-tag">&lt;/&gt;</span></span><br><span class="language-xml">              ) : (</span><br><span class="language-xml">                <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You rated with this movie &#123;watchedUserRating&#125;🌟<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">              )&#125;</span><br><span class="language-xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>&#123;plot&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Starring: &#123;actors&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Directed by: &#123;director&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span><br>        &lt;/&gt;<br>      )&#125;<br>    &lt;/div&gt;<br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">WatchedSummary</span>(<span class="hljs-params">&#123; watched &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> avgImdbRating = <span class="hljs-title function_">average</span>(watched.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">movie</span>) =&gt;</span> movie.<span class="hljs-property">imdbRating</span>));<br>  <span class="hljs-keyword">const</span> avgUserRating = <span class="hljs-title function_">average</span>(watched.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">movie</span>) =&gt;</span> movie.<span class="hljs-property">userRating</span>));<br>  <span class="hljs-keyword">const</span> avgRuntime = <span class="hljs-title function_">average</span>(watched.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">movie</span>) =&gt;</span> movie.<span class="hljs-property">runtime</span>));<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;summary&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Movies you watched<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>#️⃣<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;watched.length&#125; movies<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>⭐️<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;avgImdbRating.toFixed(2)&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>🌟<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;avgUserRating.toFixed(2)&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>⏳<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;avgRuntime&#125; min<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">WatchedMovieList</span>(<span class="hljs-params">&#123; watched, onDeleteWatched &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span></span><br><span class="language-xml">      &#123;watched.map((movie) =&gt; (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">WatchedMovie</span> <span class="hljs-attr">movie</span>=<span class="hljs-string">&#123;movie&#125;</span> <span class="hljs-attr">onDeleteWatched</span>=<span class="hljs-string">&#123;onDeleteWatched&#125;</span> /&gt;</span></span><br><span class="language-xml">      ))&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">WatchedMovie</span>(<span class="hljs-params">&#123; movie, onDeleteWatched &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;movie.imdbID&#125;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;movie.poster&#125;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&#123;</span>`$&#123;<span class="hljs-attr">movie.title</span>&#125; <span class="hljs-attr">poster</span>`&#125; /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>&#123;movie.title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>⭐️<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;movie.imdbRating&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>🌟<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;movie.userRating&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>⏳<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;movie.runtime&#125; min<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;btn-delete&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> onDeleteWatched(movie.imdbID)&#125;</span><br><span class="language-xml">        &gt;</span><br><span class="language-xml">          x</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br>  );<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useEffect, useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">KEY</span> = <span class="hljs-string">&quot;c69cb565&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">useMovies</span>(<span class="hljs-params">query, callback</span>) &#123;<br>  <span class="hljs-keyword">const</span> [movies, setMovies] = <span class="hljs-title function_">useState</span>([]);<br>  <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">const</span> [error, setError] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;&quot;</span>);<br><br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      callback?.();<br><br>      <span class="hljs-keyword">const</span> controller = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AbortController</span>();<br><br>      <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchMovies</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>          <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">true</span>);<br>          <span class="hljs-title function_">setError</span>(<span class="hljs-string">&quot;&quot;</span>);<br>          <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<br>            <span class="hljs-string">`http://www.omdbapi.com/?apikey=<span class="hljs-subst">$&#123;KEY&#125;</span>&amp;s=<span class="hljs-subst">$&#123;query&#125;</span>`</span>,<br>            &#123; <span class="hljs-attr">signal</span>: controller.<span class="hljs-property">signal</span> &#125;<br>          );<br>          <span class="hljs-comment">//处理服务器返回了非2xx的状态码的情况，如404</span><br>          <span class="hljs-keyword">if</span> (!res.<span class="hljs-property">ok</span>)<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Something went wrong with fetching movies&quot;</span>);<br><br>          <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>();<br>          <span class="hljs-keyword">if</span> (data.<span class="hljs-property">Response</span> === <span class="hljs-string">&quot;False&quot;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Movie not found&quot;</span>);<br>          <span class="hljs-title function_">setMovies</span>(data.<span class="hljs-property">Search</span>);<br>          <span class="hljs-title function_">setError</span>(<span class="hljs-string">&quot;&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (err) &#123;<br>          <span class="hljs-keyword">if</span> (err.<span class="hljs-property">name</span> !== <span class="hljs-string">&quot;AbortError&quot;</span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err.<span class="hljs-property">message</span>);<br>            <span class="hljs-title function_">setError</span>(err.<span class="hljs-property">message</span>);<br>          &#125;<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>          <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">false</span>);<br>        &#125;<br>        <span class="hljs-comment">//console.log(data.Search);</span><br>        <span class="hljs-comment">// .then((res) =&gt; res.json())</span><br>        <span class="hljs-comment">// .then((data) =&gt; setMovies(data.Search));</span><br>      &#125;<br>      <span class="hljs-keyword">if</span> (!query.<span class="hljs-property">length</span>) &#123;<br>        <span class="hljs-title function_">setMovies</span>([]);<br>        <span class="hljs-title function_">setError</span>(<span class="hljs-string">&quot;&quot;</span>);<br>        <span class="hljs-keyword">return</span>;<br>      &#125;<br><br>      <span class="hljs-comment">//handleCloseMovie();</span><br>      <span class="hljs-title function_">fetchMovies</span>();<br><br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        controller.<span class="hljs-title function_">abort</span>();<br>      &#125;;<br>    &#125;,<br>    [query]<br>  );<br>  <span class="hljs-keyword">return</span> &#123; movies, isLoading, error &#125;;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useEffect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">useKey</span>(<span class="hljs-params">key, action</span>) &#123;<br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">function</span> <span class="hljs-title function_">callback</span>(<span class="hljs-params">e</span>) &#123;<br>        <span class="hljs-keyword">if</span> (e.<span class="hljs-property">code</span>.<span class="hljs-title function_">toLowerCase</span>() === key.<span class="hljs-title function_">toLowerCase</span>()) <span class="hljs-title function_">action</span>();<br>      &#125;<br><br>      <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;keydown&quot;</span>, callback);<br><br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&quot;keydown&quot;</span>, callback);<br>      &#125;;<br>    &#125;,<br>    [action, key]<br>  );<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useState, useEffect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">useLocalStorageState</span>(<span class="hljs-params">initialState, key</span>) &#123;<br>  <span class="hljs-keyword">const</span> [value, setValue] = <span class="hljs-title function_">useState</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> storedValue = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(key);<br>    <span class="hljs-keyword">return</span> storedValue ? <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(storedValue) : initialState;<br>  &#125;);<br><br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(key, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(value));<br>    &#125;,<br>    [value, key]<br>  );<br><br>  <span class="hljs-keyword">return</span> [value, setValue];<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程9-usepopcorn-2</div>
+      <div>http://example.com/2024/08/28/react课程9-usepopcorn-2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 28, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/28/react%E8%AF%BE%E7%A8%8B-challenge/" title="react课程-challenge">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">react课程-challenge</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/26/react%E8%AF%BE%E7%A8%8B10-ReactQuiz/" title="react课程10-ReactQuiz(useReducer学习)">
+                        <span class="hidden-mobile">react课程10-ReactQuiz(useReducer学习)</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

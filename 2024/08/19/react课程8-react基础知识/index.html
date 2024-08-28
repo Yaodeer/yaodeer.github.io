@@ -1,0 +1,1056 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本节课补充了一些关于React框架的基础知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程8-react基础知识">
+<meta property="og:url" content="http://example.com/2024/08/19/react%E8%AF%BE%E7%A8%8B8-react%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="本节课补充了一些关于React框架的基础知识。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240826093436350.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828193923359.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828194014913.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828194040762.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828194112849.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828194149277.png">
+<meta property="article:published_time" content="2024-08-19T12:24:52.180Z">
+<meta property="article:modified_time" content="2024-08-28T12:21:08.656Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240826093436350.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程8-react基础知识 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程8-react基础知识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-19 20:24" pubdate>
+          August 19, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          46 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程8-react基础知识</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on August 28, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本节课补充了一些关于React框架的基础知识。</p>
+<span id="more"></span>
+
+<h4 id="一、DOM元素"><a href="#一、DOM元素" class="headerlink" title="一、DOM元素"></a>一、DOM元素</h4><p>文档对象模型（Document Object Model）元素是HTML或XML文档总的各个节点，这些节点代表文档的结构和内容。在浏览器中，DOM 提供了一种编程接口，使得开发者可以通过 JavaScript 动态地访问和操作页面内容。HTML 元素（如 <code>&lt;div&gt;</code>、<code>&lt;p&gt;</code>、<code>&lt;a&gt;</code> 等）在 DOM 中表示为元素节点。</p>
+<p>通过 JavaScript，开发者可以使用各种方法和属性来操作 DOM 元素，以动态修改页面内容和结构。例如：</p>
+<ul>
+<li><strong>选择 DOM 元素</strong>：可以使用 <code>document.getElementById()</code>、<code>document.querySelector()</code> 等方法选择特定的 DOM 元素。</li>
+<li><strong>修改内容或样式</strong>：可以通过修改 <code>innerHTML</code>、<code>textContent</code> 或 <code>style</code> 属性来更改元素的内容或样式。</li>
+<li><strong>添加或移除元素</strong>：可以使用 <code>appendChild()</code>、<code>removeChild()</code> 等方法向 DOM 中添加或移除元素。</li>
+<li><strong>事件处理</strong>：可以为 DOM 元素添加事件监听器来处理用户交互事件（如点击、输入等）。</li>
+</ul>
+<h4 id="二、Hook"><a href="#二、Hook" class="headerlink" title="二、Hook"></a>二、Hook</h4><p>React 中的 Hook 是一组特殊的函数，它们允许你在函数组件中使用 React 的状态和其他特性，而无需编写类组件。Hooks 是 React 16.8 版本引入的，目的是简化代码并使组件更容易理解和复用。</p>
+<p><strong>1、为什么使用 Hooks？</strong></p>
+<ul>
+<li><strong>函数组件的局限性</strong>：在 Hooks 引入之前，只有类组件可以使用状态和生命周期方法。而函数组件则只能处理简单的、无状态的逻辑。</li>
+<li><strong>Hooks 的优势</strong>：通过 Hooks，你可以在函数组件中使用状态、管理副作用、以及访问组件生命周期等功能。这使得函数组件可以替代类组件，并且更易于编写、复用和测试。</li>
+</ul>
+<p><strong>2、常见的 Hooks</strong></p>
+<ul>
+<li><p>**<code>useState</code>**：用于在函数组件中添加状态。</p>
+</li>
+<li><p>**<code>useEffect</code>**：用于在函数组件中处理副作用，比如数据获取、订阅或手动修改 DOM。它相当于类组件中的 <code>componentDidMount</code>、<code>componentDidUpdate</code> 和 <code>componentWillUnmount</code>。</p>
+</li>
+<li><p>**<code>useContext</code>**：允许你在函数组件中使用 React 的上下文（Context），从而避免通过组件树逐层传递数据。</p>
+</li>
+<li><p>**<code>useReducer</code>**：用于在函数组件中管理更复杂的状态逻辑，是 <code>useState</code> 的替代方案。它类似于 Redux 的 reducer 概念。</p>
+</li>
+</ul>
+<p><strong>3、Hooks 的规则</strong></p>
+<ul>
+<li><strong>只能在函数组件或自定义 Hook 中调用</strong>：不能在普通的 JavaScript 函数、类组件或循环、条件语句中调用 Hook。</li>
+<li><strong>必须在顶层调用</strong>：不能在嵌套的函数或代码块中调用 Hook。这是为了保证每次渲染时 Hook 的调用顺序一致，从而确保状态和副作用的正确性。</li>
+</ul>
+<h4 id="三、Reconciler"><a href="#三、Reconciler" class="headerlink" title="三、Reconciler"></a>三、Reconciler</h4><p>在 React 中，<strong>reconciler</strong> 是一个内部机制，负责比较和协调（reconcile）组件状态变化时的 UI 更新过程。它是 React 核心部分之一，帮助确定在每次渲染时需要更新哪些部分的 UI，以及如何最有效地进行这些更新。</p>
+<p><strong>1、Reconciler 的主要作用</strong></p>
+<ul>
+<li><strong>差异计算（Diffing）</strong>：当 React 组件的状态或属性发生变化时，Reconciler 负责比较新旧虚拟 DOM 树，找出两者之间的差异。这一过程称为“diffing”。</li>
+<li><strong>最小化更新</strong>：通过 diffing 计算，Reconciler 可以确定最小化的更新集，即需要修改的节点，而不是重新渲染整个 UI。这提升了性能，尤其是在大型复杂应用中。</li>
+<li><strong>触发渲染更新</strong>：根据 diffing 的结果，Reconciler 会告诉渲染器（renderer）哪些 DOM 操作需要执行，从而更新页面的 UI。对于 web 应用，渲染器通常是 React DOM。</li>
+</ul>
+<p><strong>2、工作原理</strong></p>
+<p>Reconciler 的核心在于如何有效地计算出旧的虚拟 DOM（virtual DOM）树与新的虚拟 DOM 树之间的差异，并生成需要对实际 DOM 进行的更新操作。主要包括以下几个步骤：</p>
+<ul>
+<li><strong>虚拟 DOM</strong>：React 使用虚拟 DOM 来表示用户界面的结构。虚拟 DOM 是一个轻量级的 JavaScript 对象树，描述了 UI 的当前状态。</li>
+<li><strong>比较（Comparing）</strong>：当组件状态或属性更新时，React 会创建一棵新的虚拟 DOM 树。Reconciler 然后会比较新旧两棵树，找出它们之间的差异。</li>
+<li><strong>差异计算（Diffing）</strong>：Reconciler 使用了一种高效的算法，称为“diffing”，来找出哪些节点改变了。这包括节点的增删改、属性变化等。</li>
+<li><strong>更新（Updating）</strong>：根据 diffing 的结果，Reconciler 会生成一系列操作指令（例如插入节点、删除节点、更新属性等），这些指令将被传递给渲染器，渲染器最终会将这些变化应用到实际的 DOM 中。</li>
+</ul>
+<p>3、协调过程</p>
+<p>Reconciler 主要负责协调虚拟 DOM 树的更新过程，确保 UI 的更新是高效且一致的。协调过程包括以下内容：</p>
+<ul>
+<li><strong>树比较</strong>：Reconciler 会递归地比较新旧虚拟 DOM 树，找出需要更新的部分。对于每一个不同的部分，它会生成一个更新指令。</li>
+<li><strong>键值（Key）优化</strong>：当渲染列表时（例如使用 <code>map()</code> 渲染多个元素），Reconciler 使用 <code>key</code> 属性来跟踪每个元素，从而更高效地更新列表项。这避免了不必要的节点重排和重渲染。</li>
+<li><strong>递归更新</strong>：Reconciler 递归地更新所有子节点，确保整个组件树都得到适当的更新。</li>
+</ul>
+<ol start="4">
+<li><strong>Fiber 架构</strong></li>
+</ol>
+<p>React 16 版本引入了新的 Fiber 架构，增强了 Reconciler 的功能，使其能够更好地处理大型更新任务，并支持中断任务、优先级处理等高级特性。Fiber Reconciler 的主要改进包括：</p>
+<ul>
+<li><strong>可中断渲染</strong>：Fiber 架构允许 React 将长时间运行的渲染任务分成多个小任务，从而在渲染过程中可以响应用户的交互。</li>
+<li><strong>任务优先级</strong>：Fiber 允许为不同的更新任务设置优先级，使得更重要的任务可以被优先处理。</li>
+</ul>
+<ol start="5">
+<li><strong>总结</strong></li>
+</ol>
+<p>在 React 中，Reconciler 是一个关键的内部机制，负责管理和优化组件更新的整个过程。它通过高效的 diffing 算法最小化 DOM 操作，确保页面更新既快速又高效。React 的 Fiber 架构进一步提升了 Reconciler 的性能和灵活性，使得 React 能够更好地处理复杂的应用场景。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240826093436350.png" srcset="/img/loading.gif" lazyload alt="image-20240826093436350"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828193923359.png" srcset="/img/loading.gif" lazyload alt="image-20240828193923359"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828194014913.png" srcset="/img/loading.gif" lazyload alt="image-20240828194014913"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828194040762.png" srcset="/img/loading.gif" lazyload alt="image-20240828194040762"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828194112849.png" srcset="/img/loading.gif" lazyload alt="image-20240828194112849"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240828194149277.png" srcset="/img/loading.gif" lazyload alt="image-20240828194149277"></p>
+<h4 id="四、side-effect"><a href="#四、side-effect" class="headerlink" title="四、side effect"></a>四、side effect</h4><p>在 React 中，“side effect”（副作用）通常指的是组件在渲染过程中执行的那些与渲染无关的操作。副作用包括但不限于以下情况：</p>
+<ol>
+<li><strong>数据获取（Data Fetching）</strong>： 例如，你在组件渲染后从 API 获取数据。</li>
+<li><strong>订阅（Subscriptions）</strong>： 例如，订阅某个事件或数据源，在组件卸载时取消订阅。</li>
+<li><strong>手动更改 DOM</strong>： 虽然 React 通常会管理 DOM 操作，但有时你可能需要手动更改 DOM，如操作第三方库或者直接使用 <code>document</code> 对象。</li>
+<li><strong>定时器（Timers）</strong>： 使用 <code>setTimeout</code> 或 <code>setInterval</code> 设置定时器。</li>
+</ol>
+<p>在 React 中，处理副作用最常用的方式是使用 <code>useEffect</code> 钩子。<code>useEffect</code> 钩子允许你在函数组件中执行副作用，并在必要时清除这些副作用。</p>
+<h4 id="五、依赖数组"><a href="#五、依赖数组" class="headerlink" title="五、依赖数组"></a>五、依赖数组</h4><p><code>useEffect</code> 是 React 中用于处理副作用的钩子，比如数据获取、订阅、手动更改 DOM 等。依赖项数组决定了 <code>useEffect</code> 中的回调函数何时执行。</p>
+<p><strong>空数组 <code>[]</code></strong>:</p>
+<ul>
+<li>如果依赖项数组为空，<code>useEffect</code> 中的回调函数只会在组件首次渲染后执行一次。</li>
+<li>相当于组件的 <code>componentDidMount</code> 生命周期钩子。</li>
+</ul>
+<p><strong>没有依赖项数组</strong>:</p>
+<ul>
+<li>如果不提供依赖项数组，<code>useEffect</code> 中的回调函数将在每次组件渲染后执行。</li>
+<li>相当于每次组件更新后的 <code>componentDidUpdate</code>。</li>
+</ul>
+<p><strong>带有依赖项的数组 <code>[dep1, dep2, ...]</code></strong>:</p>
+<ul>
+<li>如果依赖项数组中包含特定的变量，<code>useEffect</code> 中的回调函数只有在这些变量发生变化时才会执行。</li>
+<li>这可以优化性能，避免不必要的副作用执行。</li>
+</ul>
+<h4 id="六、stale-closure"><a href="#六、stale-closure" class="headerlink" title="六、stale closure"></a>六、stale closure</h4><p>“Stale closure” 是 React 开发中一个常见的术语，指的是在使用 React hooks（尤其是 <code>useEffect</code>、<code>useCallback</code>、<code>useMemo</code> 等）时，闭包（closure）中引用了过时的变量或状态值，导致逻辑错误。</p>
+<p>闭包是 JavaScript 中一个函数可以记住其创建时的上下文的特性。闭包使得内部函数可以访问外部函数的变量，即使外部函数已经执行完毕。这种特性在 React hooks 中可能会导致问题，尤其是在依赖项数组没有正确设置时。</p>
+<p>在 React 中，组件的每次渲染都会生成新的函数和新的闭包。闭包中捕获的变量值是函数创建时的那一刻的值，而不是当前渲染的最新值。如果你的组件多次渲染，而某个钩子函数内部的闭包引用了旧的变量或状态值，那么这个闭包就被称为“stale closure”（陈旧的闭包）。</p>
+<p><strong>解决方法：</strong></p>
+<p>​    <strong>函数式更新</strong>: 当使用 <code>setState</code> 时，使用函数式更新（即传递一个函数而不是直接传递新值）。这可以确保你总是基于最新的状态更新。</p>
+<p>​    <strong>正确设置依赖项数组</strong>: 在 <code>useEffect</code>、<code>useCallback</code> 和 <code>useMemo</code> 等 hooks 中，确保依赖项数组包含所有在闭包中引用的状态或 props。这样 React 就会在依赖项变化时重新执行函数，避免使用陈旧的闭包。</p>
+<p>​     <strong>使用 refs</strong>: 在一些场景下，你可以使用 <code>useRef</code> 来存储值，因为 <code>useRef</code> 中的值在渲染之间是持久的，并且更新时不会触发组件的重新渲染。</p>
+<h4 id="七、派生态"><a href="#七、派生态" class="headerlink" title="七、派生态"></a>七、派生态</h4><p>在React中，**”derived state”（派生状态）**通常是指通过计算或处理组件的已有状态或props得出的新数据，而不是直接存储在组件的state中的数据。派生状态不应该存储在state中，因为它可以在渲染时通过计算得出，从而避免冗余和潜在的数据不一致性。</p>
+<h4 id="八、useState初始化状态"><a href="#八、useState初始化状态" class="headerlink" title="八、useState初始化状态"></a>八、useState初始化状态</h4><p>方法一：使用函数初始化</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> [watched, setWatched] = <span class="hljs-title function_">useState</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> storedValue = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;watched&quot;</span>);<br>  <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(storedValue);<br>&#125;);<br><br></code></pre></td></tr></table></figure>
+
+<p>方法二：直接初始化</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> [watched, setWatched] = <span class="hljs-title function_">useState</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;watched&quot;</span>)));<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>惰性初始化（Lazy Initialization）</strong>：</p>
+<ul>
+<li><strong>方法一</strong>使用的是惰性初始化。<code>useState</code>接受一个函数作为参数时，React会在组件初次渲染时调用该函数，并将其返回值作为初始状态。这意味着函数只会在组件首次渲染时执行一次。</li>
+<li><strong>方法二</strong>中的<code>localStorage.getItem</code>和<code>JSON.parse</code>在组件每次渲染时都会执行，即使状态已经初始化，这在某些情况下可能会导致不必要的计算开销。</li>
+</ul>
+<p><strong>性能考虑</strong>：</p>
+<ul>
+<li><strong>方法一</strong>更适合在初始化过程中存在昂贵操作（例如复杂的计算或数据提取）时使用，因为这些操作只会在组件首次渲染时执行一次。</li>
+<li><strong>方法二</strong>的性能可能稍微差一些，尤其是在有复杂操作时，因为每次渲染组件都会执行状态初始化的表达式。</li>
+</ul>
+<p><strong>代码的可读性</strong>：</p>
+<ul>
+<li><strong>方法一</strong>可能更具可读性，特别是当初始化逻辑比较复杂时，使用函数形式可以让代码更清晰，容易理解逻辑分步处理的过程。</li>
+<li><strong>方法二</strong>在简单的初始化场景下代码更简洁。</li>
+</ul>
+<h4 id="九、useRef"><a href="#九、useRef" class="headerlink" title="九、useRef"></a>九、useRef</h4><p>特点：</p>
+<p><strong>保持跨渲染的可变值</strong>：</p>
+<ul>
+<li><code>useRef</code>返回的对象是 <code>&#123; current: value &#125;</code>。这个对象在组件的整个生命周期内是持久的，更新<code>current</code>属性不会触发重新渲染。这使得<code>useRef</code>非常适合存储跨渲染周期的数据，比如计时器ID、上一次的状态值或某个DOM节点的引用。</li>
+</ul>
+<p><strong>访问DOM元素</strong>：</p>
+<ul>
+<li><code>useRef</code>常用来直接访问DOM元素。在上面的例子中，我们使用<code>ref</code>属性将<code>myRef</code>对象赋给了一个输入框。<code>myRef.current</code>指向该DOM元素，可以在按钮点击时调用<code>focus()</code>方法来聚焦输入框。</li>
+</ul>
+<p><strong>保存组件间不变的数据</strong>：</p>
+<ul>
+<li><code>useRef</code>可以用来保存不需要触发重新渲染的变量。例如，你可以使用<code>useRef</code>保存计数器值或状态变量的前一个值，而无需通过<code>useState</code>来管理它们。</li>
+</ul>
+<h4 id="十、Custom-Hooks（自定义钩子）"><a href="#十、Custom-Hooks（自定义钩子）" class="headerlink" title="十、Custom Hooks（自定义钩子）"></a>十、Custom Hooks（自定义钩子）</h4><p>当多个组件需要共享相似的逻辑时，可以将这些逻辑提取到一个自定义Hook中，以避免重复代码。例如，处理表单输入的状态、处理数据获取（如API请求）的逻辑等。</p>
+<h4 id="十一、Fiber"><a href="#十一、Fiber" class="headerlink" title="十一、Fiber"></a>十一、Fiber</h4><p>React 的 Fiber 是 React 16 及其后续版本中的一种新架构，用于提升 UI 渲染的性能和灵活性。它重新设计了 React 的协调（reconciliation）算法，使得 React 能够更好地处理复杂的应用场景，尤其是在响应用户交互和更新大型组件树时。Fiber 是一种数据结构和执行机制，它使得 React 可以更细粒度地管理和调度组件的更新任务。与传统的同步渲染不同，Fiber 允许将更新任务拆分成多个小任务，并根据优先级有选择地执行，从而提高了应用的响应性。</p>
+<h5 id="（1）-Fiber-的设计目标"><a href="#（1）-Fiber-的设计目标" class="headerlink" title="（1） Fiber 的设计目标"></a>（1） <strong>Fiber 的设计目标</strong></h5><p>Fiber 架构的设计目标主要包括以下几个方面：</p>
+<ul>
+<li><strong>可中断渲染</strong>：传统的 React 采用的是同步递归算法，这意味着一旦开始渲染，就会阻塞主线程，直到整个渲染过程完成。Fiber 通过将渲染任务切割成多个小片段，使得渲染过程可以被中断，从而在必要时让出时间给其他更高优先级的任务。</li>
+<li><strong>任务优先级</strong>：Fiber 允许为不同的更新任务设置优先级。优先级较高的任务（例如用户交互）可以在低优先级任务（例如后台数据同步）之前执行，从而提升用户体验。</li>
+<li><strong>并发模式</strong>：Fiber 为 React 引入了并发模式，使得 React 能够在后台渲染任务时处理用户输入或其他高优先级任务，从而减少页面卡顿现象。</li>
+</ul>
+<h5 id="（2）-Fiber-的工作原理"><a href="#（2）-Fiber-的工作原理" class="headerlink" title="（2） Fiber 的工作原理"></a>（2） Fiber 的工作原理</h5><p>Fiber 将组件更新的工作分成两个主要阶段：<strong>渲染阶段（Render Phase）</strong> 和 <strong>提交阶段（Commit Phase）</strong>。</p>
+<ul>
+<li><strong>渲染阶段</strong>：<ul>
+<li>在这个阶段，React 会通过协调器（Reconciler）进行组件树的 diffing（比较），决定哪些部分需要更新。</li>
+<li>这个过程是“可中断的”，即 React 可以暂停渲染，以便处理其他更紧急的任务，然后再继续渲染未完成的部分。</li>
+</ul>
+</li>
+<li><strong>提交阶段</strong>：<ul>
+<li>一旦渲染阶段完成，React 会进入提交阶段，在这个阶段，所有的更改都会被应用到实际的 DOM 中。</li>
+<li>这个阶段是同步的，并且不可中断，因为它直接影响到用户界面的显示。</li>
+</ul>
+</li>
+</ul>
+<h5 id="（3）Fiber-数据结构"><a href="#（3）Fiber-数据结构" class="headerlink" title="（3）Fiber 数据结构"></a>（3）<strong>Fiber 数据结构</strong></h5><p>Fiber 是一种链表结构，每个组件实例对应一个 Fiber 节点。Fiber 节点包含了关于该组件的各种信息，例如：</p>
+<ul>
+<li><strong>类型（Type）</strong>：组件的类型，例如函数组件、类组件或原生 DOM 节点。</li>
+<li><strong>状态（State）</strong>：组件的本地状态和挂载点。</li>
+<li><strong>子节点、兄弟节点和父节点的引用</strong>：用来构建 Fiber 树。</li>
+<li><strong>更新队列（Update Queue）</strong>：保存该 Fiber 节点上的所有状态更新。</li>
+</ul>
+<h5 id="（4）优先级调度"><a href="#（4）优先级调度" class="headerlink" title="（4）优先级调度"></a>（4）<strong>优先级调度</strong></h5><p>Fiber 通过一个叫做 <code>scheduler</code> 的机制来管理不同更新任务的优先级。Scheduler 会根据任务的重要性为其分配优先级，并确保高优先级任务优先执行。</p>
+<ul>
+<li><strong>高优先级任务</strong>：例如用户的输入和动画，这些任务需要快速响应，因而具有较高优先级。</li>
+<li><strong>低优先级任务</strong>：例如网络请求或不紧急的状态更新，这些任务可以在空闲时间执行。</li>
+</ul>
+<h5 id="（5）可中断渲染和恢复"><a href="#（5）可中断渲染和恢复" class="headerlink" title="（5）可中断渲染和恢复"></a>（5）<strong>可中断渲染和恢复</strong></h5><p>Fiber 的核心优势在于其可中断性。当 React 在渲染某个组件时，如果遇到一个更高优先级的任务，它可以暂停当前任务，将控制权交给高优先级任务。在高优先级任务完成后，React 可以恢复之前的渲染，继续未完成的工作。</p>
+<h5 id="（6）Concurrent-Mode（并发模式）"><a href="#（6）Concurrent-Mode（并发模式）" class="headerlink" title="（6）Concurrent Mode（并发模式）"></a>（6）<strong>Concurrent Mode（并发模式）</strong></h5><p>Fiber 还为 React 引入了并发模式（Concurrent Mode）。并发模式下，React 可以在后台并发地处理多个渲染任务，并在处理任务的同时继续响应用户输入。这样可以显著提升应用的流畅性和响应速度。</p>
+<h5 id="（7）Fiber-的优缺点"><a href="#（7）Fiber-的优缺点" class="headerlink" title="（7）Fiber 的优缺点"></a>（7）<strong>Fiber 的优缺点</strong></h5><p>优点：</p>
+<ul>
+<li><strong>提高了渲染的灵活性</strong>：通过可中断和恢复渲染，React 可以更好地管理大型更新任务。</li>
+<li><strong>减少卡顿</strong>：通过任务优先级调度和并发模式，Fiber 减少了 UI 更新时的卡顿现象。</li>
+<li><strong>增强用户体验</strong>：Fiber 提供了更高效的用户界面更新机制，尤其是在处理大量状态变化时。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>复杂性增加</strong>：Fiber 引入了更多的内部机制，增加了 React 内部的复杂性。</li>
+<li><strong>需要适应新模式</strong>：开发者需要理解 Fiber 的工作原理，以便在复杂应用中更好地使用 React。</li>
+</ul>
+<h4 id="十二、Fiber-Tree"><a href="#十二、Fiber-Tree" class="headerlink" title="十二、Fiber Tree"></a>十二、Fiber Tree</h4><p>Fiber Tree 是由多个 Fiber 节点相互连接而形成的树形数据结构。与传统的 Virtual DOM 树不同，Fiber Tree 允许对渲染工作进行分片处理，支持中断、恢复、以及优先级调度等操作。这使得 React 能够更有效地处理复杂的 UI 更新场景。</p>
+<p>每个 Fiber 节点包含了一些描述组件的信息和状态，它们主要包括以下几个部分：</p>
+<ol>
+<li><strong>Type</strong>：<ul>
+<li>表示组件的类型，如函数组件、类组件或原生 DOM 元素。</li>
+</ul>
+</li>
+<li><strong>Key</strong>：<ul>
+<li>用于在同级组件中标识节点，以便在更新时可以高效地进行 diff 运算。</li>
+</ul>
+</li>
+<li><strong>StateNode</strong>：<ul>
+<li>指向与当前 Fiber 节点对应的组件实例或 DOM 元素。</li>
+</ul>
+</li>
+<li><strong>Return</strong>：<ul>
+<li>指向当前 Fiber 节点的父节点。</li>
+</ul>
+</li>
+<li><strong>Child</strong>：<ul>
+<li>指向当前 Fiber 节点的第一个子节点。</li>
+</ul>
+</li>
+<li><strong>Sibling</strong>：<ul>
+<li>指向当前 Fiber 节点的下一个兄弟节点。</li>
+</ul>
+</li>
+<li><strong>PendingProps 和 MemoizedProps</strong>：<ul>
+<li>分别表示当前更新的 props 和上一次渲染时的 props。</li>
+</ul>
+</li>
+<li><strong>UpdateQueue</strong>：<ul>
+<li>存储需要在当前节点上处理的状态更新或副作用。</li>
+</ul>
+</li>
+<li><strong>Alternate</strong>：<ul>
+<li>指向 Fiber 树中的另一个对应节点，这在双缓冲技术（double buffering）中用于管理更新时的 Fiber。</li>
+</ul>
+</li>
+</ol>
+<h5 id="Fiber-Tree-的工作原理"><a href="#Fiber-Tree-的工作原理" class="headerlink" title="Fiber Tree 的工作原理"></a>Fiber Tree 的工作原理</h5><p>在 React 中，Fiber Tree 主要用于以下几种场景：</p>
+<ol>
+<li>协调过程（Reconciliation）：<ul>
+<li>当组件状态或 props 发生变化时，React 会通过 Fiber Tree 来进行 diff 运算，以确定哪些部分需要更新。这个过程是可中断的，因此 React 可以优先处理高优先级任务。</li>
+</ul>
+</li>
+<li>任务调度：<ul>
+<li>Fiber Tree 通过 <code>scheduler</code> 管理不同任务的优先级，并决定哪些任务应该首先执行。</li>
+</ul>
+</li>
+<li>双缓冲技术：<ul>
+<li>Fiber Tree 通过 <code>current</code> 和 <code>workInProgress</code> 两棵树进行双缓冲。<code>current</code> 是当前屏幕上显示的 Fiber 树，而 <code>workInProgress</code> 则是正在构建的 Fiber 树。当新的更新完成时，React 会交换这两棵树。</li>
+</ul>
+</li>
+</ol>
+<h5 id="构建和更新-Fiber-Tree-的过程"><a href="#构建和更新-Fiber-Tree-的过程" class="headerlink" title="构建和更新 Fiber Tree 的过程"></a>构建和更新 Fiber Tree 的过程</h5><ol>
+<li>初次渲染：<ul>
+<li>React 会创建整个 Fiber Tree，并构建组件的实例以及它们对应的 DOM 元素。</li>
+</ul>
+</li>
+<li>更新过程：<ul>
+<li>当组件状态或 props 改变时，React 会创建一棵新的 Fiber Tree，并与旧的 Fiber Tree 进行对比。这种对比可以高效地找出需要更新的部分。</li>
+</ul>
+</li>
+<li>提交阶段：<ul>
+<li>在更新 Fiber Tree 后，React 会将变化应用到真实的 DOM 上。这是不可中断的阶段，确保用户界面与最新状态同步。</li>
+</ul>
+</li>
+</ol>
+<h5 id="Fiber-Tree-的优势"><a href="#Fiber-Tree-的优势" class="headerlink" title="Fiber Tree 的优势"></a>Fiber Tree 的优势</h5><ol>
+<li>性能优化：<ul>
+<li>Fiber Tree 允许对 UI 更新进行分片处理，避免了长时间的主线程阻塞，提升了页面的响应性。</li>
+</ul>
+</li>
+<li>优先级调度：<ul>
+<li>React 可以根据任务的优先级来决定执行顺序，从而确保用户的交互优先得到响应。</li>
+</ul>
+</li>
+<li>渐进渲染：<ul>
+<li>Fiber Tree 支持并发模式，使得 React 可以渐进式地渲染大型组件树。</li>
+</ul>
+</li>
+</ol>
+<h4 id="十三、Key的重要性"><a href="#十三、Key的重要性" class="headerlink" title="十三、Key的重要性"></a>十三、Key的重要性</h4><p>在 React 中，<code>key</code> 是一个特殊的属性，用于帮助 React 高效地更新和渲染列表中的元素。它在列表渲染和组件的重新排序中发挥了重要作用。以下是 <code>key</code> 的几个重要作用：</p>
+<ol>
+<li><strong>帮助 React 识别元素</strong></li>
+</ol>
+<p><code>key</code> 属性帮助 React 唯一标识列表中的每个元素。它用于区分每个元素，从而帮助 React 确定哪些元素已经改变、添加或删除。这使得 React 在更新界面时能够更高效地进行操作。</p>
+<ol start="2">
+<li><strong>提高渲染效率</strong></li>
+</ol>
+<p>当列表的内容发生变化时（如增加、删除或重新排序），React 依赖 <code>key</code> 来确定哪些元素需要重新渲染。如果没有 <code>key</code>，React 会重新渲染整个列表，这样会降低性能。使用 <code>key</code>，React 能够最小化 DOM 操作，仅更新实际变化的部分。</p>
+<ol start="3">
+<li><strong>稳定组件状态</strong></li>
+</ol>
+<p><code>key</code> 有助于确保组件的状态在渲染过程中保持稳定。例如，如果一个列表中的元素被重新排序，但它们的 <code>key</code> 不变，React 会保持这些元素的状态，而不是重新创建它们。这样可以避免组件状态的丢失或重置。</p>
+<ol start="4">
+<li><strong>唯一性要求</strong></li>
+</ol>
+<p><code>key</code> 属性的值必须在列表中唯一，但不必在整个应用中唯一。通常，<code>key</code> 是元素的唯一标识符（如 ID），或者基于元素内容生成的唯一值。使用不唯一的 <code>key</code> 会导致 React 无法正确识别和管理元素，从而可能导致性能问题或不一致的 UI。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程8-react基础知识</div>
+      <div>http://example.com/2024/08/19/react课程8-react基础知识/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 19, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/22/%E4%BB%A3%E7%A0%81/" title="react课程-challenge">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">react课程-challenge</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/17/react%E8%AF%BE%E7%A8%8B7-usepopcorn/" title="react课程7-usepopcorn-1">
+                        <span class="hidden-mobile">react课程7-usepopcorn-1</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

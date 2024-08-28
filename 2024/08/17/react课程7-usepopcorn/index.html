@@ -1,0 +1,860 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本次课程构建出一个电影清单界面，拥有更多的功能和更强的互动性🤓（NO这次先实现静态网页）。咱们就是争取这次不偷懒，不仅把代码打完把知识点也跟着记完吧。。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程7-usepopcorn-1">
+<meta property="og:url" content="http://example.com/2024/08/17/react%E8%AF%BE%E7%A8%8B7-usepopcorn/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="本次课程构建出一个电影清单界面，拥有更多的功能和更强的互动性🤓（NO这次先实现静态网页）。咱们就是争取这次不偷懒，不仅把代码打完把知识点也跟着记完吧。。。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240818164718523.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240817161437915.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240817161356298.png">
+<meta property="og:image" content="c:/Users/%E5%A7%9A%E5%A7%9A/AppData/Roaming/Typora/typora-user-images/image-20240818142751400.png">
+<meta property="article:published_time" content="2024-08-17T13:00:12.298Z">
+<meta property="article:modified_time" content="2024-08-28T01:43:33.907Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240818164718523.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程7-usepopcorn-1 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程7-usepopcorn-1"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-17 21:00" pubdate>
+          August 17, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程7-usepopcorn-1</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on August 28, 2024 am
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本次课程构建出一个电影清单界面，拥有更多的功能和更强的互动性🤓（NO这次先实现静态网页）。咱们就是争取这次不偷懒，不仅把代码打完把知识点也跟着记完吧。。。</p>
+<span id="more"></span>
+
+<p>一个小小的快捷键：鼠标悬停在某个组件，ctrl+左键&#x3D;&gt;直接去编辑这个组件（函数）</p>
+<p>另一个小小的快捷键：cl&#x3D;&gt;console.log()</p>
+<p>啊啊啊啊啊啊啊啊啊啊啊啊我为什么不早点切换到npm国内镜像!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>npm下载速度真的慢的我想刀人<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240818164718523.png" srcset="/img/loading.gif" lazyload alt="image-20240818164718178" style="zoom:67%;" /><br><code>npm config set registry=https://registry.npmmirror.com</code> 命令一键切换</p>
+<h3 id="一、知识点讲解"><a href="#一、知识点讲解" class="headerlink" title="一、知识点讲解"></a>一、知识点讲解</h3><h4 id="（1）组件（component）分解"><a href="#（1）组件（component）分解" class="headerlink" title="（1）组件（component）分解"></a>（1）组件（component）分解</h4><p>首先需要明确的是：不管使用一个很大的组件或者是拆分成很多很小的组件都会使代码变得糟糕。<strong>逻辑分离</strong>很重要，而且要注重<strong>代码重用！！！！！</strong>让代码变得高效易懂。</p>
+<h4 id="（2）组件分类"><a href="#（2）组件分类" class="headerlink" title="（2）组件分类"></a>（2）组件分类</h4><p>1、<strong>无状态&#x2F;展示组件（Stateless&#x2F;Presentational Components）</strong></p>
+<ul>
+<li><strong>定义</strong>: 主要负责展示 UI（用户界面），不处理应用的业务逻辑。</li>
+<li><strong>特点</strong>:<ul>
+<li>主要通过 <code>props</code> 接收数据。</li>
+<li>仅负责展示，不涉及业务逻辑或状态管理。</li>
+<li>由于没有业务逻辑，通常可以在多个地方复用。</li>
+<li>可以使用函数组件，也可以是无状态的类组件。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>Stateful Components（有状态组件）</strong></li>
+</ol>
+<ul>
+<li><p><strong>定义</strong>: 负责管理应用的状态和逻辑，并可能会将数据传递给展示组件。这些组件通常会使用 <code>state</code> 来管理其内部状态。</p>
+</li>
+<li><p><strong>特点</strong>:</p>
+<ul>
+<li><p>管理状态: 处理应用的状态（使用 <code>state</code>）。</p>
+</li>
+<li><p>处理业务逻辑: 负责应用的逻辑，例如处理用户输入、调用 API、计算数据等。</p>
+</li>
+<li><p>容器组件: 通常扮演容器组件的角色，将数据和逻辑传递给展示组件。</p>
+</li>
+<li><p>实现: 可以使用类组件（具有 <code>state</code> 和生命周期方法）或使用 React Hooks 的函数组件。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><strong>Structural Components（结构组件）</strong></li>
+</ol>
+<ul>
+<li><p><strong>定义</strong>: 主要负责应用的布局和结构，包括组织其他组件的方式。这些组件通常不关心具体的业务逻辑或数据展示，而是负责整体的界面布局和结构。</p>
+</li>
+<li><p><strong>特点</strong>:</p>
+<ul>
+<li><p>布局和结构: 负责定义组件的布局和结构，例如容器、网格、栅格系统等。</p>
+</li>
+<li><p>包含其他组件: 通常会包含其他展示组件或有状态组件。</p>
+</li>
+<li><p>不处理业务逻辑: 不直接处理应用的数据或业务逻辑，只负责组织和布局。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="（3）什么叫做使用Composition来解决Prop-Drilling的问题"><a href="#（3）什么叫做使用Composition来解决Prop-Drilling的问题" class="headerlink" title="（3）什么叫做使用Composition来解决Prop Drilling的问题"></a>（3）什么叫做使用Composition来解决Prop Drilling的问题</h4><p><strong>Composition</strong> 是一种用来解决 <strong>Prop Drilling</strong>（属性传递）问题的设计模式。<strong>Prop Drilling</strong> 指的是将数据从父组件逐层传递到深层嵌套的子组件，这样可能会导致组件树中的中间组件不必要地接收和传递数据，使得代码变得复杂且难以维护。<strong>Composition</strong> 是指将多个组件组合在一起，以实现更复杂的功能或布局。通过这种方式，组件可以专注于其自身的功能，而不是接收和传递大量的 <code>props</code>。</p>
+<h4 id="（4）default值的设置"><a href="#（4）default值的设置" class="headerlink" title="（4）default值的设置"></a>（4）default值的设置</h4><p>为了增强组件的可重用性，通常会使用 <code>props</code> 传递数据、回调函数和行为，而不是将数据硬编码在组件内部。这样，组件可以根据传入的 <code>props</code> 动态渲染不同的内容或执行不同的操作。<code>default</code> 值用于为组件参数、变量或属性提供默认值，当未提供相应值时，程序将使用这些默认值。通过合理使用默认值，可以简化代码、提高可读性，并减少错误。<strong>PS：可以用default值来初始化状态</strong></p>
+<h3 id="二、练习"><a href="#二、练习" class="headerlink" title="二、练习"></a>二、练习</h3><h4 id="（1）将下面的网页由一个巨大的组件分解成下图的组件树"><a href="#（1）将下面的网页由一个巨大的组件分解成下图的组件树" class="headerlink" title="（1）将下面的网页由一个巨大的组件分解成下图的组件树"></a>（1）将下面的网页由一个巨大的组件分解成下图的组件树</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240817161437915.png" srcset="/img/loading.gif" lazyload alt="image-20240817161437915"></p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240817161356298.png" srcset="/img/loading.gif" lazyload alt="image-20240817161356298" style="zoom: 67%;" />
+
+
+
+<h4 id="（2）构建一个评分组件"><a href="#（2）构建一个评分组件" class="headerlink" title="（2）构建一个评分组件"></a>（2）构建一个评分组件</h4><p><img src="C:/Users/姚姚/AppData/Roaming/Typora/typora-user-images/image-20240818142751400.png" srcset="/img/loading.gif" lazyload alt="image-20240818142751400"></p>
+<ul>
+<li><p>特点：鼠标悬停在星星上时会显示暂时星数，星星会随之被颜色填满或仍未空心。点击某颗星星会固定星数和满星的数量。</p>
+</li>
+<li><p>拓展：增强组件的可重用性。</p>
+<ul>
+<li><p>1、将星星的大小、颜色、字体的大小、颜色、最大星星数、默认星星数、显示的内容等等都通过<code>props</code>（参数）传递。（<strong>参数太多会增加代码的复杂性</strong>）</p>
+</li>
+<li><p>2、🌟🌟考虑到用户在想要使用这个组件的时候，想要拿到一个重要的参数：星数。因此我们在某个组件中应用这个组件时，需要设置一个状态（比如）：movieRating。然后把setMovieRating函数通过参数传递给评分组件。在组件中的设置星数的函数中将movieRating也设置为Rating。</p>
+</li>
+</ul>
+</li>
+<li><p>参数类型检查：</p>
+</li>
+<li><p>1、PropType：<code>PropTypes</code> 是 React 内置的一个库，用于在运行时检查组件接收到的 <code>props</code> 是否符合指定的类型。尽管在 React 17 之后，<code>PropTypes</code> 被移出了核心库，但它仍然是进行简单类型检查的常用工具。</p>
+</li>
+<li><p>2、TypeScript：在 TypeScript 中，类型检查是通过静态类型系统在编译时完成的，这比 <code>PropTypes</code> 更加严格和安全。</p>
+</li>
+</ul>
+<h3 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h3><h4 id="（1）usepopcorn"><a href="#（1）usepopcorn" class="headerlink" title="（1）usepopcorn"></a>（1）usepopcorn</h4><h5 id="App-js"><a href="#App-js" class="headerlink" title="App.js"></a>App.js</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">const</span> tempMovieData = [<br>  &#123;<br>    <span class="hljs-attr">imdbID</span>: <span class="hljs-string">&quot;tt1375666&quot;</span>,<br>    <span class="hljs-title class_">Title</span>: <span class="hljs-string">&quot;Inception&quot;</span>,<br>    <span class="hljs-title class_">Year</span>: <span class="hljs-string">&quot;2010&quot;</span>,<br>    <span class="hljs-title class_">Poster</span>:<br>      <span class="hljs-string">&quot;https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg&quot;</span>,<br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">imdbID</span>: <span class="hljs-string">&quot;tt0133093&quot;</span>,<br>    <span class="hljs-title class_">Title</span>: <span class="hljs-string">&quot;The Matrix&quot;</span>,<br>    <span class="hljs-title class_">Year</span>: <span class="hljs-string">&quot;1999&quot;</span>,<br>    <span class="hljs-title class_">Poster</span>:<br>      <span class="hljs-string">&quot;https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg&quot;</span>,<br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">imdbID</span>: <span class="hljs-string">&quot;tt6751668&quot;</span>,<br>    <span class="hljs-title class_">Title</span>: <span class="hljs-string">&quot;Parasite&quot;</span>,<br>    <span class="hljs-title class_">Year</span>: <span class="hljs-string">&quot;2019&quot;</span>,<br>    <span class="hljs-title class_">Poster</span>:<br>      <span class="hljs-string">&quot;https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg&quot;</span>,<br>  &#125;,<br>];<br><br><span class="hljs-keyword">const</span> tempWatchedData = [<br>  &#123;<br>    <span class="hljs-attr">imdbID</span>: <span class="hljs-string">&quot;tt1375666&quot;</span>,<br>    <span class="hljs-title class_">Title</span>: <span class="hljs-string">&quot;Inception&quot;</span>,<br>    <span class="hljs-title class_">Year</span>: <span class="hljs-string">&quot;2010&quot;</span>,<br>    <span class="hljs-title class_">Poster</span>:<br>      <span class="hljs-string">&quot;https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg&quot;</span>,<br>    <span class="hljs-attr">runtime</span>: <span class="hljs-number">148</span>,<br>    <span class="hljs-attr">imdbRating</span>: <span class="hljs-number">8.8</span>,<br>    <span class="hljs-attr">userRating</span>: <span class="hljs-number">10</span>,<br>  &#125;,<br>  &#123;<br>    <span class="hljs-attr">imdbID</span>: <span class="hljs-string">&quot;tt0088763&quot;</span>,<br>    <span class="hljs-title class_">Title</span>: <span class="hljs-string">&quot;Back to the Future&quot;</span>,<br>    <span class="hljs-title class_">Year</span>: <span class="hljs-string">&quot;1985&quot;</span>,<br>    <span class="hljs-title class_">Poster</span>:<br>      <span class="hljs-string">&quot;https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg&quot;</span>,<br>    <span class="hljs-attr">runtime</span>: <span class="hljs-number">116</span>,<br>    <span class="hljs-attr">imdbRating</span>: <span class="hljs-number">8.5</span>,<br>    <span class="hljs-attr">userRating</span>: <span class="hljs-number">9</span>,<br>  &#125;,<br>];<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">average</span> = (<span class="hljs-params">arr</span>) =&gt;<br>  arr.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc, cur, i, arr</span>) =&gt;</span> acc + cur / arr.<span class="hljs-property">length</span>, <span class="hljs-number">0</span>);<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [movies, setMovies] = <span class="hljs-title function_">useState</span>(tempMovieData);<br>  <span class="hljs-keyword">const</span> [watched, setWatched] = <span class="hljs-title function_">useState</span>(tempWatchedData);<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">NavBar</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Search</span> /&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">NumResults</span> <span class="hljs-attr">movies</span>=<span class="hljs-string">&#123;movies&#125;</span> /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">NavBar</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Main</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Box</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">MovieList</span> <span class="hljs-attr">movies</span>=<span class="hljs-string">&#123;movies&#125;</span> /&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Box</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">WatchedSummary</span> <span class="hljs-attr">watched</span>=<span class="hljs-string">&#123;watched&#125;</span> /&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">WatchedMovieList</span> <span class="hljs-attr">watched</span>=<span class="hljs-string">&#123;watched&#125;</span> /&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Main</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">NavBar</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;nav-bar&quot;</span>&gt;</span></span><br><span class="language-xml">      &#123;&quot; &quot;&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Logo</span> /&gt;</span></span><br><span class="language-xml">      &#123;children&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Logo</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;logo&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;img&quot;</span>&gt;</span>🍿<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>usePopcorn<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Search</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [query, setQuery] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;&quot;</span>);<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;search&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Search movies...&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;query&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> setQuery(e.target.value)&#125;</span><br><span class="language-xml">    /&gt;</span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">NumResults</span>(<span class="hljs-params">&#123; movies &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;num-results&quot;</span>&gt;</span></span><br><span class="language-xml">      Found <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>&#123;movies.length&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> results</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Main</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;main&quot;</span>&gt;</span>&#123;children&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span></span>;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Box</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> [isOpen, setIsOpen] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">true</span>);<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;btn-toggle&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> setIsOpen((open) =&gt; !open)&#125;&gt;</span><br><span class="language-xml">        &#123;isOpen ? &quot;–&quot; : &quot;+&quot;&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">      &#123;isOpen &amp;&amp; children&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">MovieList</span>(<span class="hljs-params">&#123; movies &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span></span><br><span class="language-xml">      &#123;movies?.map((movie) =&gt; (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Movie</span> <span class="hljs-attr">movie</span>=<span class="hljs-string">&#123;movie&#125;</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;movie.imdbID&#125;</span> /&gt;</span></span><br><span class="language-xml">      ))&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Movie</span>(<span class="hljs-params">&#123; movie &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;movie.imdbID&#125;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;movie.Poster&#125;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&#123;</span>`$&#123;<span class="hljs-attr">movie.Title</span>&#125; <span class="hljs-attr">poster</span>`&#125; /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>&#123;movie.Title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>🗓<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;movie.Year&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">WatchedSummary</span>(<span class="hljs-params">&#123; watched &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> avgImdbRating = <span class="hljs-title function_">average</span>(watched.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">movie</span>) =&gt;</span> movie.<span class="hljs-property">imdbRating</span>));<br>  <span class="hljs-keyword">const</span> avgUserRating = <span class="hljs-title function_">average</span>(watched.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">movie</span>) =&gt;</span> movie.<span class="hljs-property">userRating</span>));<br>  <span class="hljs-keyword">const</span> avgRuntime = <span class="hljs-title function_">average</span>(watched.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">movie</span>) =&gt;</span> movie.<span class="hljs-property">runtime</span>));<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;summary&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Movies you watched<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>#️⃣<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;watched.length&#125; movies<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>⭐️<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;avgImdbRating&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>🌟<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;avgUserRating&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>⏳<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;avgRuntime&#125; min<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">WatchedMovieList</span>(<span class="hljs-params">&#123; watched &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span></span><br><span class="language-xml">      &#123;watched.map((movie) =&gt; (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">WatchedMovie</span> <span class="hljs-attr">movie</span>=<span class="hljs-string">&#123;movie&#125;</span> /&gt;</span></span><br><span class="language-xml">      ))&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">WatchedMovie</span>(<span class="hljs-params">&#123; movie &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;movie.imdbID&#125;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;movie.Poster&#125;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&#123;</span>`$&#123;<span class="hljs-attr">movie.Title</span>&#125; <span class="hljs-attr">poster</span>`&#125; /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>&#123;movie.Title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>⭐️<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;movie.imdbRating&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>🌟<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;movie.userRating&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>⏳<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;movie.runtime&#125; min<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br>  );<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（2）StarRating-js"><a href="#（2）StarRating-js" class="headerlink" title="（2）StarRating.js"></a>（2）StarRating.js</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">const</span> containerStyle = &#123;<br>  <span class="hljs-attr">display</span>: <span class="hljs-string">&quot;flex&quot;</span>,<br>  <span class="hljs-attr">alignItems</span>: <span class="hljs-string">&quot;center&quot;</span>,<br>  <span class="hljs-attr">gap</span>: <span class="hljs-string">&quot;16px&quot;</span>,<br>&#125;;<br><br><span class="hljs-keyword">const</span> starContainerStyle = &#123;<br>  <span class="hljs-attr">display</span>: <span class="hljs-string">&quot;flex&quot;</span>,<br>  <span class="hljs-comment">//gap: &quot;4px&quot;,</span><br>&#125;;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">StarRating</span>(<span class="hljs-params">&#123;</span><br><span class="hljs-params">  maxRating = <span class="hljs-number">5</span>,</span><br><span class="hljs-params">  color = <span class="hljs-string">&quot;#e3af40&quot;</span>,</span><br><span class="hljs-params">  size = <span class="hljs-number">48</span>,</span><br><span class="hljs-params">  className = <span class="hljs-string">&quot;&quot;</span>,</span><br><span class="hljs-params">  messages = [],</span><br><span class="hljs-params">  defaultRating = <span class="hljs-number">0</span>,</span><br><span class="hljs-params">&#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> [rating, setRating] = <span class="hljs-title function_">useState</span>(defaultRating);<br>  <span class="hljs-keyword">const</span> [tempRating, setTempRating] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleRating</span>(<span class="hljs-params">rating</span>) &#123;<br>    <span class="hljs-title function_">setRating</span>(rating);<br>  &#125;<br><br>  <span class="hljs-keyword">const</span> textStyle = &#123;<br>    <span class="hljs-attr">lineHeight</span>: <span class="hljs-string">&quot;1&quot;</span>,<br>    <span class="hljs-attr">margin</span>: <span class="hljs-string">&quot;0&quot;</span>,<br>    color,<br>    <span class="hljs-attr">fontSize</span>: <span class="hljs-string">`<span class="hljs-subst">$&#123;size / <span class="hljs-number">2.5</span>&#125;</span>px`</span>,<br>  &#125;;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;containerStyle&#125;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&#123;className&#125;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;starContainerStyle&#125;</span>&gt;</span></span><br><span class="language-xml">        &#123;Array.from(&#123; length: maxRating &#125;, (_, i) =&gt; (</span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Star</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;i&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">onRate</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> handleRating(i + 1)&#125;</span><br><span class="language-xml">            full=&#123;tempRating ? tempRating &gt;= i + 1 : rating &gt;= i + 1&#125;</span><br><span class="language-xml">            onHoverIn=&#123;() =&gt; setTempRating(i + 1)&#125;</span><br><span class="language-xml">            onHoverOut=&#123;() =&gt; setTempRating(0)&#125;</span><br><span class="language-xml">            color=&#123;color&#125;</span><br><span class="language-xml">            size=&#123;size&#125;</span><br><span class="language-xml">          /&gt;</span><br><span class="language-xml">        ))&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;textStyle&#125;</span>&gt;</span></span><br><span class="language-xml">        &#123;maxRating === messages.length</span><br><span class="language-xml">          ? messages[tempRating ? tempRating - 1 : rating - 1]</span><br><span class="language-xml">          : tempRating || rating || &quot;&quot;&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Star</span>(<span class="hljs-params">&#123; onRate, full, onHoverIn, onHoverOut, color, size &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> starStyle = &#123;<br>    <span class="hljs-attr">width</span>: <span class="hljs-string">`<span class="hljs-subst">$&#123;size / <span class="hljs-number">1.5</span>&#125;</span>px`</span>,<br>    <span class="hljs-attr">height</span>: <span class="hljs-string">`<span class="hljs-subst">$&#123;size / <span class="hljs-number">1.5</span>&#125;</span>px`</span>,<br>    <span class="hljs-attr">display</span>: <span class="hljs-string">&quot;block&quot;</span>,<br>    <span class="hljs-attr">cursor</span>: <span class="hljs-string">&quot;pointer&quot;</span>,<br>  &#125;;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;button&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;starStyle&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;onRate&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">onMouseEnter</span>=<span class="hljs-string">&#123;onHoverIn&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">onMouseLeave</span>=<span class="hljs-string">&#123;onHoverOut&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">    &gt;</span></span><br><span class="language-xml">      &#123;full ? (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">svg</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.w3.org/2000/svg&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 20 20&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">fill</span>=<span class="hljs-string">&#123;color&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#123;color&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        &gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z&quot;</span> /&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span></span><br><span class="language-xml">      ) : (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">svg</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.w3.org/2000/svg&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;none&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#123;color&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        &gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">path</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">strokeLinecap</span>=<span class="hljs-string">&quot;round&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">strokeLinejoin</span>=<span class="hljs-string">&quot;round&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">strokeWidth</span>=<span class="hljs-string">&quot;&#123;2&#125;&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          /&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span></span><br><span class="language-xml">      )&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br>  );<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（3）可折叠会话（可重用小组件）"><a href="#（3）可折叠会话（可重用小组件）" class="headerlink" title="（3）可折叠会话（可重用小组件）"></a>（3）可折叠会话（可重用小组件）</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">ReactDOM</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-dom/client&quot;</span>;<br><span class="hljs-comment">//import &quot;./index.css&quot;;</span><br><span class="hljs-comment">//import App from &quot;./App&quot;;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">StarRating</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./StarRating&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./style.css&quot;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Text</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">StarRating</span> <span class="hljs-attr">color</span>=<span class="hljs-string">&quot;blue&quot;</span> /&gt;</span></span>;<br>&#125;<br><br><span class="hljs-keyword">const</span> root = <span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">createRoot</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;root&quot;</span>));<br>root.<span class="hljs-title function_">render</span>(<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">React.StrictMode</span>&gt;</span></span><br><span class="language-xml">    &#123;/* <span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span> */&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">StarRating</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">maxRating</span>=<span class="hljs-string">&#123;5&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">messages</span>=<span class="hljs-string">&#123;[</span>&quot;<span class="hljs-attr">Terrible</span>&quot;, &quot;<span class="hljs-attr">Bad</span>&quot;, &quot;<span class="hljs-attr">Okay</span>&quot;, &quot;<span class="hljs-attr">Good</span>&quot;, &quot;<span class="hljs-attr">Amazing</span>&quot;]&#125;</span></span><br><span class="hljs-tag"><span class="language-xml">    /&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">StarRating</span> <span class="hljs-attr">size</span>=<span class="hljs-string">&#123;35&#125;</span> <span class="hljs-attr">color</span>=<span class="hljs-string">&quot;red&quot;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;test&quot;</span> <span class="hljs-attr">defaultRating</span>=<span class="hljs-string">&#123;3&#125;</span> /&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> /&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">TextExpander</span>&gt;</span></span><br><span class="language-xml">      Space travel is the ultimate adventure! Imagine soaring past the stars and</span><br><span class="language-xml">      exploring new worlds. It&#x27;s the stuff of dreams and science fiction, but</span><br><span class="language-xml">      believe it or not, space travel is a real thing. Humans and robots are</span><br><span class="language-xml">      constantly venturing out into the cosmos to uncover its secrets and push</span><br><span class="language-xml">      the boundaries of what&#x27;s possible.</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">TextExpander</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">TextExpander</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">collapsedNumWords</span>=<span class="hljs-string">&#123;20&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">expandButtonText</span>=<span class="hljs-string">&quot;Show text&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">collapseButtonText</span>=<span class="hljs-string">&quot;Collapse text&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">buttonColor</span>=<span class="hljs-string">&quot;#ff6622&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">    &gt;</span></span><br><span class="language-xml">      Space travel requires some seriously amazing technology and collaboration</span><br><span class="language-xml">      between countries, private companies, and international space</span><br><span class="language-xml">      organizations. And while it&#x27;s not always easy (or cheap), the results are</span><br><span class="language-xml">      out of this world. Think about the first time humans stepped foot on the</span><br><span class="language-xml">      moon or when rovers were sent to roam around on Mars.</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">TextExpander</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">TextExpander</span> <span class="hljs-attr">expanded</span>=<span class="hljs-string">&#123;true&#125;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span></span><br><span class="language-xml">      Space missions have given us incredible insights into our universe and</span><br><span class="language-xml">      have inspired future generations to keep reaching for the stars. Space</span><br><span class="language-xml">      travel is a pretty cool thing to think about. Who knows what we&#x27;ll</span><br><span class="language-xml">      discover next!</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">TextExpander</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">React.StrictMode</span>&gt;</span></span><br>);<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">TextExpander</span>(<span class="hljs-params">&#123;</span><br><span class="hljs-params">  collapsedNumWords = <span class="hljs-number">10</span>,</span><br><span class="hljs-params">  expandButtonText = <span class="hljs-string">&quot;show more&quot;</span>,</span><br><span class="hljs-params">  collapseButtonText = <span class="hljs-string">&quot;show less&quot;</span>,</span><br><span class="hljs-params">  buttonColor = <span class="hljs-string">&quot;red&quot;</span>,</span><br><span class="hljs-params">  expanded = <span class="hljs-literal">false</span>,</span><br><span class="hljs-params">  className,</span><br><span class="hljs-params">  children,</span><br><span class="hljs-params">&#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> [isExpanded, setIsExpanded] = <span class="hljs-title function_">useState</span>(expanded);<br>  <span class="hljs-keyword">const</span> displayText = isExpanded<br>    ? children<br>    : children.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot; &quot;</span>).<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, collapsedNumWords).<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot; &quot;</span>) + <span class="hljs-string">&quot;...&quot;</span>;<br><br>  <span class="hljs-keyword">const</span> buttonStyle = &#123;<br>    <span class="hljs-attr">background</span>: <span class="hljs-string">&quot;none&quot;</span>,<br>    <span class="hljs-attr">border</span>: <span class="hljs-string">&quot;none&quot;</span>,<br>    <span class="hljs-attr">font</span>: <span class="hljs-string">&quot;inherit&quot;</span>,<br>    <span class="hljs-attr">cursor</span>: <span class="hljs-string">&quot;pointer&quot;</span>,<br>    <span class="hljs-attr">marginLeft</span>: <span class="hljs-string">&quot;6px&quot;</span>,<br>    <span class="hljs-attr">color</span>: buttonColor,<br>  &#125;;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&#123;className&#125;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;displayText&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> setIsExpanded((exp) =&gt; !exp)&#125; style=&#123;buttonStyle&#125;&gt;</span><br><span class="language-xml">        &#123;isExpanded ? collapseButtonText : expandButtonText&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程7-usepopcorn-1</div>
+      <div>http://example.com/2024/08/17/react课程7-usepopcorn/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 17, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/19/react%E8%AF%BE%E7%A8%8B8-react%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="react课程8-react基础知识">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">react课程8-react基础知识</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/16/react%E8%AF%BE%E7%A8%8B6-eat-n-split/" title="react课程6-eat-n-split">
+                        <span class="hidden-mobile">react课程6-eat-n-split</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
