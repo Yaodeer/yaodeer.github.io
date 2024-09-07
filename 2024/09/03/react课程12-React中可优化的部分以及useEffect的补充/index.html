@@ -16,24 +16,40 @@
   <meta name="author" content="Yaodeer">
   <meta name="keywords" content="">
   
-    <meta name="description" content="钱币转换小app">
+    <meta name="description" content="本节探讨如何优化React项目，以及对useEffect的用法做一个小小的补充">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react课程-challenge">
-<meta property="og:url" content="http://example.com/2024/08/28/react%E8%AF%BE%E7%A8%8B-challenge/index.html">
+<meta property="og:title" content="react课程12-React中可优化的部分以及useEffect的补充">
+<meta property="og:url" content="http://example.com/2024/09/03/react%E8%AF%BE%E7%A8%8B12-React%E4%B8%AD%E5%8F%AF%E4%BC%98%E5%8C%96%E7%9A%84%E9%83%A8%E5%88%86%E4%BB%A5%E5%8F%8AuseEffect%E7%9A%84%E8%A1%A5%E5%85%85/index.html">
 <meta property="og:site_name" content="Yaodeer">
-<meta property="og:description" content="钱币转换小app">
+<meta property="og:description" content="本节探讨如何优化React项目，以及对useEffect的用法做一个小小的补充">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-28T12:25:45.060Z">
-<meta property="article:modified_time" content="2024-08-28T12:25:45.179Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903184623448.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903191433311.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903191638380.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903192958326.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903201449887.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903201522483.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903201600349.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903202608079.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903203412445.png">
+<meta property="og:image" content="c:/Users/%E5%A7%9A%E5%A7%9A/AppData/Roaming/Typora/typora-user-images/image-20240906155020462.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240904100411303.png">
+<meta property="og:image" content="c:/Users/%E5%A7%9A%E5%A7%9A/AppData/Roaming/Typora/typora-user-images/image-20240904100339035.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240904102540533.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240906152320236.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240906152347059.png">
+<meta property="article:published_time" content="2024-09-03T10:53:41.683Z">
+<meta property="article:modified_time" content="2024-09-07T06:29:14.869Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903184623448.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>react课程-challenge - Yaodeer</title>
+  <title>react课程12-React中可优化的部分以及useEffect的补充 - Yaodeer</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -238,7 +254,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="react课程-challenge"></span>
+            <span id="subtitle" data-typed-text="react课程12-React中可优化的部分以及useEffect的补充"></span>
           
         </div>
 
@@ -249,8 +265,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-28 20:25" pubdate>
-          August 28, 2024 pm
+        <time datetime="2024-09-03 18:53" pubdate>
+          September 3, 2024 pm
         </time>
       </span>
     
@@ -261,7 +277,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          262 words
+          1.8k words
         
       </span>
     
@@ -272,7 +288,7 @@
         
         
         
-          3 mins
+          15 mins
         
       </span>
     
@@ -321,12 +337,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">react课程-challenge</h1>
+            <h1 id="seo-header">react课程12-React中可优化的部分以及useEffect的补充</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on August 28, 2024 pm
+                    Last updated on September 7, 2024 pm
                   
                 
               </p>
@@ -334,11 +350,104 @@
             
               <div class="markdown-body">
                 
-                <p>钱币转换小app</p>
+                <p>本节探讨如何优化React项目，以及对useEffect的用法做一个小小的补充</p>
 <span id="more"></span>
 
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useEffect, useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [amount, setAmount] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">const</span> [fromCur, setFromCur] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;EUR&quot;</span>);<br>  <span class="hljs-keyword">const</span> [toCur, setToCur] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;USD&quot;</span>);<br>  <span class="hljs-keyword">const</span> [converted, setConverted] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;&quot;</span>);<br>  <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);<br><br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">convert</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">true</span>);<br>        <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<br>          <span class="hljs-string">`https://api.frankfurter.app/latest?amount=<span class="hljs-subst">$&#123;amount&#125;</span>&amp;from=<span class="hljs-subst">$&#123;fromCur&#125;</span>&amp;to=<span class="hljs-subst">$&#123;toCur&#125;</span>`</span><br>        );<br>        <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>();<br>        <span class="hljs-title function_">setConverted</span>(data.<span class="hljs-property">rates</span>[toCur]);<br>        <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">false</span>);<br>      &#125;<br>      <span class="hljs-keyword">if</span> (fromCur === toCur) <span class="hljs-keyword">return</span> <span class="hljs-title function_">setConverted</span>(amount);<br>      <span class="hljs-title function_">convert</span>();<br>    &#125;,<br>    [amount, fromCur, toCur]<br>  );<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;amount&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> setAmount(Number(e.target.value))&#125;</span><br><span class="language-xml">        disabled=&#123;isLoading&#125;</span><br><span class="language-xml">      /&gt;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">select</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;fromCur&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> setFromCur(e.target.value)&#125;</span><br><span class="language-xml">        disabled=&#123;isLoading&#125;</span><br><span class="language-xml">      &gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;USD&quot;</span>&gt;</span>USD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;EUR&quot;</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;CAD&quot;</span>&gt;</span>CAD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;INR&quot;</span>&gt;</span>INR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">select</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;toCur&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> setToCur(e.target.value)&#125;</span><br><span class="language-xml">        disabled=&#123;isLoading&#125;</span><br><span class="language-xml">      &gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;USD&quot;</span>&gt;</span>USD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;EUR&quot;</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;CAD&quot;</span>&gt;</span>CAD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;INR&quot;</span>&gt;</span>INR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        &#123;converted&#125; &#123;toCur&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="一、避免不必要的渲染"><a href="#一、避免不必要的渲染" class="headerlink" title="一、避免不必要的渲染"></a>一、避免不必要的渲染</h3><p>方法：memo、useMemo、useCallback、将元素传递到其他元素中作为children或其他道具</p>
+<p>组件实例只能在三种不同的情况下重新呈现：</p>
+<p>​	状态改变、context改变、父组件重新渲染</p>
+<p>wasted render： 没有在DOM产生任何变化的渲染</p>
+<p>（使程序停滞或无响应）</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903184623448.png" srcset="/img/loading.gif" lazyload alt="image-20240903184623448" style="zoom:80%;" />
 
+<p>选择设置激活记录渲染的原因，然后点击开始录制和结束录制就可以获取每次渲染的信息</p>
+<p>使用TEST应用“将元素传递到其他元素中作为children或其他道具”这个方法：</p>
+<p>​	当一个组件中包含了一个渲染时间很长的组件，每当大组件重新渲染的时候都会重新渲染这个组件。但是把组件当作children传入的时候，就不会将它重新渲染了。</p>
+<p>​	why？作为children，它最先被渲染，每次组件渲染时，直接将children移交，不会受到状态更新的影响。</p>
+<p>添加工具咯：</p>
+<p>Memoization</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903191433311.png" srcset="/img/loading.gif" lazyload alt="image-20240903191433311" style="zoom: 33%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903191638380.png" srcset="/img/loading.gif" lazyload alt="image-20240903191638380" style="zoom: 33%;" />
+
+<p>父组件中的状态改变会重新渲染所有子组件，所以当一个子组件渲染速度过慢时，会使其他组件也受到影响。（经常更新，heavy，收到的道具经常不变）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903192958326.png" srcset="/img/loading.gif" lazyload alt="image-20240903192958326"></p>
+<p>这样包装起来就OK了。</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903201449887.png" srcset="/img/loading.gif" lazyload alt="image-20240903201449887" style="zoom: 33%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903201522483.png" srcset="/img/loading.gif" lazyload alt="image-20240903201522483" style="zoom: 33%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903201600349.png" srcset="/img/loading.gif" lazyload alt="image-20240903201600349" style="zoom: 33%;" />
+
+<p>解决object：useMemo</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903202608079.png" srcset="/img/loading.gif" lazyload alt="image-20240903202608079"></p>
+<p>useCallback（记忆函数），解决function  （setState函数是自动记忆的）</p>
+<p>​	<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240903203412445.png" srcset="/img/loading.gif" lazyload alt="image-20240903203412445"></p>
+<p>减少与context相关的渲染浪费</p>
+<p>​	当provider是App的子组件而App重新渲染，则provider中的context的value作为对象会重新渲染。因此所有接收context的对象的组件也都会被重新渲染。（使用useMemo来创建对象）</p>
+<p>当想要记住的组件是要被export的，就可以直接<img src="C:/Users/姚姚/AppData/Roaming/Typora/typora-user-images/image-20240906155020462.png" srcset="/img/loading.gif" lazyload alt="image-20240906155020462"></p>
+<h3 id="二、提高应用的速度和相应能力（无延迟）"><a href="#二、提高应用的速度和相应能力（无延迟）" class="headerlink" title="二、提高应用的速度和相应能力（无延迟）"></a>二、提高应用的速度和相应能力（无延迟）</h3><p>useMemo、useCallback、useTransition</p>
+<h3 id="三、减少Bundle的大小"><a href="#三、减少Bundle的大小" class="headerlink" title="三、减少Bundle的大小"></a>三、减少Bundle的大小</h3><p>方法：减少第三方包的使用，实现代码拆分和延迟加载</p>
+<h4 id="什么是bundle？"><a href="#什么是bundle？" class="headerlink" title="什么是bundle？"></a><strong>什么是bundle？</strong></h4><hr>
+<p>在前端开发中，“bundle”指的是将多个资源文件（如JavaScript、CSS、图像、字体等）打包成一个或多个文件的过程。这个打包的过程通常通过工具如Webpack、Parcel或Vite来完成。</p>
+<p>为什么要进行打包？</p>
+<ol>
+<li><strong>减少HTTP请求</strong>：将多个文件打包成一个文件，可以减少浏览器发送的HTTP请求数量，从而加快页面的加载速度。</li>
+<li><strong>代码压缩和优化</strong>：打包过程中，工具可以对代码进行压缩和优化，如去除无用代码（tree-shaking）、压缩代码大小、混淆代码以提高安全性等。</li>
+<li><strong>模块化管理</strong>：通过打包工具，可以更好地管理项目中的模块和依赖，解决不同模块之间的依赖关系。</li>
+<li><strong>跨浏览器兼容性</strong>：打包工具通常还可以处理不同浏览器对JavaScript或CSS特性的支持情况，生成兼容性的代码。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240904100411303.png" srcset="/img/loading.gif" lazyload alt="image-20240904100411303"></p>
+<h4 id="懒加载："><a href="#懒加载：" class="headerlink" title="懒加载："></a><strong>懒加载：</strong></h4><hr>
+<img src="C:/Users/姚姚/AppData/Roaming/Typora/typora-user-images/image-20240904100339035.png" srcset="/img/loading.gif" lazyload alt="image-20240904100339035" style="zoom:50%;" />
+
+<p>懒加载（Lazy Loading）是一种优化技术，主要用于延迟加载页面中的资源或内容，直到它们真正需要被显示或使用时才进行加载。这种技术可以显著提高页面初始加载的速度，并减少不必要的资源消耗。</p>
+<p><strong>提升页面加载速度</strong>：通过减少初始加载的资源数量，可以加快页面的显示速度，提升用户体验。</p>
+<p><strong>减少带宽消耗</strong>：用户只会加载他们实际需要的资源，从而节省带宽，尤其对于移动设备用户更加友好。</p>
+<p><strong>提升性能</strong>：对于复杂的Web应用，懒加载可以减少内存占用和CPU消耗，因为不需要一次性加载和渲染所有内容。</p>
+<p><code>const Homepage = lazy(() =&gt; import(&quot;./pages/Homepage&quot;));</code></p>
+<h4 id="suspense"><a href="#suspense" class="headerlink" title="suspense"></a><strong>suspense</strong></h4><hr>
+<p>是React库中的一个组件，用于处理异步加载组件或数据时的渲染过渡。<code>Suspense</code>可以让您在等待异步操作完成之前显示一个备用内容（例如加载指示器），从而提升用户体验。</p>
+<p><strong>组件懒加载（代码分割）</strong>：与<code>React.lazy()</code>一起使用，延迟加载组件，减少初始加载体积。</p>
+<p><strong>数据获取（未来特性）</strong>：React团队也在扩展<code>Suspense</code>用于处理数据获取，但目前需要配合一些第三方库，如<code>relay</code>或<code>react-query</code>。</p>
+<p><strong>步骤：</strong></p>
+<ol>
+<li>使用<code>React.lazy()</code>函数懒加载组件。</li>
+<li>使用<code>&lt;Suspense&gt;</code>组件包裹懒加载的组件，并提供一个<code>fallback</code>属性来指定加载期间显示的UI。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240904102540533.png" srcset="/img/loading.gif" lazyload alt="image-20240904102540533"></p>
+<h3 id="四、Don’t-Optimize-Prematurely"><a href="#四、Don’t-Optimize-Prematurely" class="headerlink" title="四、Don’t Optimize Prematurely"></a>四、Don’t Optimize Prematurely</h3><p>引用自计算机科学家Donald Knuth的名言：“Premature optimization is the root of all evil” （过早优化是万恶之源）。这条原则强调在程序开发的早期阶段，不应该花费过多时间在微小的性能优化上</p>
+<ol>
+<li><strong>浪费时间和资源</strong></li>
+</ol>
+<p>在开发初期，程序的结构和需求可能尚未完全明确。如果过早地进行优化，可能会导致大量的时间和资源浪费在处理非关键的性能问题上，而这些问题可能在后续的开发中根本不会出现。</p>
+<ol start="2">
+<li><strong>降低代码可读性和可维护性</strong></li>
+</ol>
+<p>许多优化措施可能会使代码变得复杂难懂。这不仅增加了代码的维护难度，还可能导致后续的开发和调试变得更加困难。简洁、清晰的代码通常比复杂的、高度优化的代码更容易维护。</p>
+<ol start="3">
+<li><strong>难以预测的性能瓶颈</strong></li>
+</ol>
+<p>在程序开发的早期，真正的性能瓶颈可能尚不明确。过早优化可能会针对一些并不是实际瓶颈的部分进行，而忽略了更为重要的性能问题。只有在程序的主要功能基本完成并经过性能测试后，才能更准确地识别和解决实际的瓶颈。</p>
+<ol start="4">
+<li><strong>延迟项目进度</strong></li>
+</ol>
+<p>过早的优化可能会分散开发人员的注意力，使他们无法专注于实现核心功能。这样会导致项目的整体进度被延迟，影响最终的交付时间。</p>
+<ol start="5">
+<li><strong>优化的效果有限</strong></li>
+</ol>
+<p>在没有明确需求和数据支持的情况下，进行优化往往难以显著提升性能。相反，通过后期的分析和针对性优化，往往可以在关键部分取得更大的性能提升。</p>
+<h3 id="五、useEffect"><a href="#五、useEffect" class="headerlink" title="五、useEffect"></a>五、useEffect</h3><p><strong>依赖数组：</strong></p>
+<p>​	✅state variable(状态变量)、prop、context value、reactive value(反应值：与状态有关的变量或函数）</p>
+<p>​    ❌objects、arrays（他们在每次渲染都会被重新创建，react会判定为旧的和新的不同）</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240906152320236.png" srcset="/img/loading.gif" lazyload alt="image-20240906152320236" style="zoom: 33%;" />
+
+<p>Effect最好是作为最后的选择来使用！！！以下是它被过度使用的用例（然鹅前面的项目一直在使用。。）</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240906152347059.png" srcset="/img/loading.gif" lazyload alt="image-20240906152347059" style="zoom: 33%;" />
+
+
+
+<h5 id="stale-closures"><a href="#stale-closures" class="headerlink" title="stale closures:"></a><strong>stale closures</strong>:</h5><p>“<strong>Stale closure</strong>”是一个与闭包（closure）相关的编程问题，通常在处理异步操作或回调时容易出现。它指的是闭包内部引用了外部作用域的变量，但在闭包执行时，这些变量的值已经发生了变化，导致闭包内部使用了过时（stale）的值。</p>
 
                 
               </div>
@@ -384,8 +493,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>react课程-challenge</div>
-      <div>http://example.com/2024/08/28/react课程-challenge/</div>
+      <div>react课程12-React中可优化的部分以及useEffect的补充</div>
+      <div>http://example.com/2024/09/03/react课程12-React中可优化的部分以及useEffect的补充/</div>
     </div>
     <div class="license-meta">
       
@@ -397,7 +506,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 28, 2024</div>
+          <div>September 3, 2024</div>
         </div>
       
       
@@ -429,9 +538,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/29/react%E8%AF%BE%E7%A8%8B11-Worldwise/" title="react课程11-Worldwise">
+                      <a href="/2024/09/07/react%E8%AF%BE%E7%A8%8B13-Redux%E5%85%A5%E9%97%A8/" title="react课程13-Redux入门">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">react课程11-Worldwise</span>
+                        <span class="hidden-mobile">react课程13-Redux入门</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -439,8 +548,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/28/react%E8%AF%BE%E7%A8%8B9-usepopcorn-2/" title="react课程9-usepopcorn-2">
-                        <span class="hidden-mobile">react课程9-usepopcorn-2</span>
+                      <a href="/2024/08/29/react%E8%AF%BE%E7%A8%8B11-Worldwise/" title="react课程11-Worldwise">
+                        <span class="hidden-mobile">react课程11-Worldwise</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

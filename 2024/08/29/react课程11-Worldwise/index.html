@@ -16,24 +16,28 @@
   <meta name="author" content="Yaodeer">
   <meta name="keywords" content="">
   
-    <meta name="description" content="钱币转换小app">
+    <meta name="description" content="本次课建立了更贴近现实的单页app（但是仍然是调用了虚假的API），第一次使用到Routing（路由）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react课程-challenge">
-<meta property="og:url" content="http://example.com/2024/08/28/react%E8%AF%BE%E7%A8%8B-challenge/index.html">
+<meta property="og:title" content="react课程11-Worldwise">
+<meta property="og:url" content="http://example.com/2024/08/29/react%E8%AF%BE%E7%A8%8B11-Worldwise/index.html">
 <meta property="og:site_name" content="Yaodeer">
-<meta property="og:description" content="钱币转换小app">
+<meta property="og:description" content="本次课建立了更贴近现实的单页app（但是仍然是调用了虚假的API），第一次使用到Routing（路由）。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-28T12:25:45.060Z">
-<meta property="article:modified_time" content="2024-08-28T12:25:45.179Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240829105931940.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240830165915719.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240830170233284.png">
+<meta property="article:published_time" content="2024-08-29T03:33:06.593Z">
+<meta property="article:modified_time" content="2024-09-02T08:12:22.047Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240829105931940.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>react课程-challenge - Yaodeer</title>
+  <title>react课程11-Worldwise - Yaodeer</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -238,7 +242,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="react课程-challenge"></span>
+            <span id="subtitle" data-typed-text="react课程11-Worldwise"></span>
           
         </div>
 
@@ -249,8 +253,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-28 20:25" pubdate>
-          August 28, 2024 pm
+        <time datetime="2024-08-29 11:33" pubdate>
+          August 29, 2024 am
         </time>
       </span>
     
@@ -261,7 +265,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          262 words
+          2.7k words
         
       </span>
     
@@ -272,7 +276,7 @@
         
         
         
-          3 mins
+          23 mins
         
       </span>
     
@@ -321,12 +325,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">react课程-challenge</h1>
+            <h1 id="seo-header">react课程11-Worldwise</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on August 28, 2024 pm
+                    Last updated on September 2, 2024 pm
                   
                 
               </p>
@@ -334,11 +338,193 @@
             
               <div class="markdown-body">
                 
-                <p>钱币转换小app</p>
+                <p>本次课建立了更贴近现实的单页app（但是仍然是调用了虚假的API），第一次使用到Routing（路由）。</p>
 <span id="more"></span>
 
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useEffect, useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [amount, setAmount] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">const</span> [fromCur, setFromCur] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;EUR&quot;</span>);<br>  <span class="hljs-keyword">const</span> [toCur, setToCur] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;USD&quot;</span>);<br>  <span class="hljs-keyword">const</span> [converted, setConverted] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;&quot;</span>);<br>  <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);<br><br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">convert</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">true</span>);<br>        <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<br>          <span class="hljs-string">`https://api.frankfurter.app/latest?amount=<span class="hljs-subst">$&#123;amount&#125;</span>&amp;from=<span class="hljs-subst">$&#123;fromCur&#125;</span>&amp;to=<span class="hljs-subst">$&#123;toCur&#125;</span>`</span><br>        );<br>        <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>();<br>        <span class="hljs-title function_">setConverted</span>(data.<span class="hljs-property">rates</span>[toCur]);<br>        <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">false</span>);<br>      &#125;<br>      <span class="hljs-keyword">if</span> (fromCur === toCur) <span class="hljs-keyword">return</span> <span class="hljs-title function_">setConverted</span>(amount);<br>      <span class="hljs-title function_">convert</span>();<br>    &#125;,<br>    [amount, fromCur, toCur]<br>  );<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;amount&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> setAmount(Number(e.target.value))&#125;</span><br><span class="language-xml">        disabled=&#123;isLoading&#125;</span><br><span class="language-xml">      /&gt;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">select</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;fromCur&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> setFromCur(e.target.value)&#125;</span><br><span class="language-xml">        disabled=&#123;isLoading&#125;</span><br><span class="language-xml">      &gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;USD&quot;</span>&gt;</span>USD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;EUR&quot;</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;CAD&quot;</span>&gt;</span>CAD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;INR&quot;</span>&gt;</span>INR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">select</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;toCur&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;(e)</span> =&gt;</span> setToCur(e.target.value)&#125;</span><br><span class="language-xml">        disabled=&#123;isLoading&#125;</span><br><span class="language-xml">      &gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;USD&quot;</span>&gt;</span>USD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;EUR&quot;</span>&gt;</span>EUR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;CAD&quot;</span>&gt;</span>CAD<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;INR&quot;</span>&gt;</span>INR<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">        &#123;converted&#125; &#123;toCur&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>通过代码段可以用csm直接导入相应css module，很方便呀</p>
+<h3 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a>一、基础知识</h3><h4 id="（1）Routing"><a href="#（1）Routing" class="headerlink" title="（1）Routing"></a>（1）Routing</h4><p>在React应用中，<strong>路由（Routing）</strong> 是管理不同页面或视图导航的关键机制。它允许用户通过更改URL来访问应用中的不同部分，而无需重新加载整个页面，这在构建单页应用（SPA）时尤为重要。此外，<strong>Router</strong> 通常指的是实现路由功能的具体组件或工具，两者虽相关但有所区别。</p>
+<h5 id="1、Routing的作用"><a href="#1、Routing的作用" class="headerlink" title="1、Routing的作用"></a>1、Routing的作用</h5><hr>
+<ol>
+<li><p><strong>页面导航管理</strong></p>
+<ul>
+<li><p>多视图管理：在一个应用中，不同的URL对应不同的组件或页面。例如，<code>/home</code> 显示主页，<code>/about</code> 显示关于页面。</p>
+</li>
+<li><p>用户体验优化：通过路由，用户可以在应用内流畅地导航，而无需页面刷新，提升响应速度和用户体验。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>单页应用（SPA）的核心</strong></p>
+<ul>
+<li><p>无需刷新页面：SPA通过路由实现不同视图的切换，避免了传统多页应用频繁的页面刷新。</p>
+</li>
+<li><p>状态保持：在SPA中，应用的状态（如用户登录信息）可以在不同路由间保持，不会因页面刷新而丢失。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>动态内容加载</strong></p>
+<ul>
+<li>参数化路由：允许在URL中包含动态参数，如 <code>/user/:id</code>，根据不同的<code>id</code>加载不同的用户信息。</li>
+<li>嵌套路由：支持在一个路由内嵌套其他路由，实现复杂的页面布局和导航结构。</li>
+</ul>
+</li>
+<li><p><strong>路由守卫与权限控制</strong></p>
+<ul>
+<li><p>保护路由：根据用户的认证状态或权限，控制用户是否可以访问某些路由。</p>
+</li>
+<li><p>重定向：在特定条件下，将用户重定向到其他页面，例如未登录用户重定向到登录页。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>SEO优化</strong></p>
+<ul>
+<li>服务器端渲染（SSR）：结合路由，能够实现更好的SEO优化，使搜索引擎能够正确抓取页面内容。</li>
+</ul>
+</li>
+</ol>
+<h5 id="2、Routing与Router的区别"><a href="#2、Routing与Router的区别" class="headerlink" title="2、Routing与Router的区别"></a>2、Routing与Router的区别</h5><hr>
+<p>1.<strong>Routing（路由）</strong></p>
+<ul>
+<li>概念层面：指的是应用中不同路径与组件之间的映射关系，以及导航和页面切换的整体机制。</li>
+<li>功能层面：包括定义路径、管理导航、处理动态参数、嵌套结构等。</li>
+</ul>
+<p>2.<strong>Router（路由器）</strong></p>
+<ul>
+<li>实现层面：是具体实现Routing功能的组件或工具。在React中，通常指的是像<code>BrowserRouter</code>、<code>HashRouter</code>这样的组件。</li>
+<li>职责：监听URL的变化，匹配路由配置，并渲染对应的组件。</li>
+</ul>
+<h4 id="（2）SPA（单页应用）"><a href="#（2）SPA（单页应用）" class="headerlink" title="（2）SPA（单页应用）"></a>（2）SPA（单页应用）</h4><p><strong>SPA（Single Page Application，单页应用）</strong> 是一种现代Web应用程序的开发模式，特点是整个应用只包含一个主页面，通过动态加载内容来更新页面部分内容，而不需要完全刷新页面。这种方式为用户提供了更加流畅和接近桌面应用的用户体验。SPA应用在用户访问时只加载一次完整的HTML、CSS、JavaScript等资源，之后的页面更新通过AJAX请求或其他手段异步加载数据，然后动态更新页面内容。这种方式避免了传统多页应用程序（MPA）每次导航时都会重新加载整个页面的过程。</p>
+<h5 id="1、SPA的特点"><a href="#1、SPA的特点" class="headerlink" title="1、SPA的特点"></a>1、SPA的特点</h5><hr>
+<p>1）<strong>单个HTML页面</strong></p>
+<ul>
+<li>单一入口：整个应用只有一个HTML文件，所有的视图和页面都通过JavaScript动态渲染。</li>
+<li>动态内容更新：页面的切换和内容更新不会重新加载整个页面，而是通过局部更新实现。</li>
+</ul>
+<p>2）<strong>流畅的用户体验</strong></p>
+<ul>
+<li>无刷新页面切换：用户点击链接后，不会看到传统页面刷新带来的白屏或加载等待，而是立即呈现新的内容。</li>
+<li>更快的响应速度：由于不需要重新加载整个页面，页面切换速度更快，用户体验更佳。</li>
+</ul>
+<p>3）<strong>客户端路由</strong></p>
+<ul>
+<li>前端管理路由：使用前端路由库（如React Router、Vue Router等）来管理不同URL与组件之间的映射关系。</li>
+<li>动态路径映射：客户端路由可以根据URL动态加载不同的页面或组件内容。</li>
+</ul>
+<p>4）<strong>丰富的交互</strong></p>
+<ul>
+<li>接近桌面应用的体验：由于页面不需要频繁刷新，SPA可以实现更复杂的交互和动画效果，使其更接近桌面应用的使用体验。</li>
+<li>即时反馈：用户操作的结果可以即时在页面上显示，无需等待页面重新加载。</li>
+</ul>
+<p>5）<strong>数据交互和状态管理</strong></p>
+<ul>
+<li>AJAX请求：使用AJAX或Fetch API来与服务器进行数据交互，动态加载数据并更新视图。</li>
+<li>前端状态管理：通过Redux、Vuex等状态管理工具来管理应用中的全局状态，保持数据的一致性和同步性。</li>
+</ul>
+<p>6）<strong>SEO挑战</strong></p>
+<ul>
+<li>默认对搜索引擎不友好：由于内容是通过JavaScript动态加载的，搜索引擎爬虫可能无法抓取到页面内容，影响SEO。</li>
+<li>解决方案：使用服务器端渲染（SSR）或预渲染技术，如Next.js（用于React）和Nuxt.js（用于Vue）等来改善SEO问题。</li>
+</ul>
+<p>7）<strong>更高的初次加载时间</strong></p>
+<ul>
+<li>初次加载资源较多：由于整个应用所需的资源（包括所有页面的JavaScript和CSS）都在第一次访问时加载，可能导致初次加载时间较长。</li>
+<li>优化手段：使用代码分割（Code Splitting）、懒加载（Lazy Loading）和缓存（Caching）等技术来优化加载性能。</li>
+</ul>
+<h5 id="2、SPA的工作原理"><a href="#2、SPA的工作原理" class="headerlink" title="2、SPA的工作原理"></a>2、SPA的工作原理</h5><hr>
+<p>1）<strong>初次加载</strong></p>
+<ul>
+<li>用户访问SPA时，服务器会返回一个完整的HTML页面，该页面中包含了所有必要的CSS和JavaScript文件。</li>
+</ul>
+<p>2）<strong>路由管理</strong></p>
+<ul>
+<li>SPA的客户端路由会监听URL变化，并根据路由规则决定加载和渲染哪个组件或页面，而不是重新请求服务器的HTML页面。</li>
+</ul>
+<p>3）<strong>数据请求</strong></p>
+<ul>
+<li>页面内容的更新通常通过AJAX请求从服务器获取数据，然后通过JavaScript在前端更新页面部分内容。</li>
+</ul>
+<p>4）<strong>状态管理</strong></p>
+<ul>
+<li>使用前端的状态管理工具（如Redux、Vuex）来管理应用的全局状态，确保页面间的数据同步。</li>
+</ul>
+<h5 id="3、SPA的优缺点"><a href="#3、SPA的优缺点" class="headerlink" title="3、SPA的优缺点"></a>3、SPA的优缺点</h5><hr>
+<p><strong>优点：</strong></p>
+<ul>
+<li><strong>用户体验流畅</strong>：无刷新页面切换，体验接近桌面应用。</li>
+<li><strong>性能优势</strong>：通过局部更新页面内容，减少了不必要的资源加载和页面刷新。</li>
+<li><strong>更易维护</strong>：前后端分离，前端代码更模块化、更容易维护。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li><strong>SEO问题</strong>：默认情况下，搜索引擎可能无法索引SPA的动态内容。</li>
+<li><strong>首屏加载慢</strong>：初次加载时需要加载较多资源，可能导致页面加载时间较长。</li>
+<li><strong>开发复杂度高</strong>：前端需要处理更多逻辑，开发过程中需要考虑路由、状态管理、性能优化等多个方面。</li>
+</ul>
+<h5 id="4、SPA的常见应用场景"><a href="#4、SPA的常见应用场景" class="headerlink" title="4、SPA的常见应用场景"></a>4、SPA的常见应用场景</h5><hr>
+<p>SPA适用于需要提供丰富交互、流畅用户体验的应用，例如：</p>
+<ul>
+<li><strong>社交媒体平台</strong>：如Facebook、Twitter等，用户频繁切换页面，但不希望看到页面刷新。</li>
+<li><strong>管理后台系统</strong>：如数据管理系统、仪表盘等，用户需要频繁操作和查看不同的数据视图。</li>
+<li><strong>在线文档编辑</strong>：如Google Docs，用户需要实时编辑文档，且希望操作体验流畅。</li>
+<li><strong>电子商务平台</strong>：如亚马逊的商品浏览和购物体验，需在不同商品页面间快速切换。</li>
+</ul>
+<h4 id="（3）CSS-Modules"><a href="#（3）CSS-Modules" class="headerlink" title="（3）CSS Modules"></a>（3）CSS Modules</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240829105931940.png" srcset="/img/loading.gif" lazyload alt="image-20240829105931940"></p>
+<p>vite已预先下载了这个包不用自己下载哈哈哈开心。</p>
+<h5 id="1、如何解决命名冲突？"><a href="#1、如何解决命名冲突？" class="headerlink" title="1、如何解决命名冲突？"></a>1、如何解决命名冲突？</h5><hr>
+<p>在使用CSS Module时，CSS类名的作用域被限制在引入该CSS文件的组件内部。这样，定义在不同组件中的相同类名不会互相干扰。</p>
+<p>CSS Module会根据类名、文件路径、文件名等信息生成一个唯一的类名，这个类名在全局范围内是唯一的，从而避免了命名冲突。</p>
+<h5 id="2、使用步骤？"><a href="#2、使用步骤？" class="headerlink" title="2、使用步骤？"></a>2、使用步骤？</h5><hr>
+<p><strong>创建 CSS 文件</strong>： 创建一个带有模块化命名的CSS文件，通常命名为<code>ComponentName.module.css</code>。</p>
+<p><strong>导入 CSS Module</strong>： 在对应的组件文件中导入这个CSS文件，并使用它提供的类名。例如<code>import styles from &#39;./Button.module.css&#39;;</code></p>
+<p><strong>生成唯一类名</strong>： 使用 <code>styles.button</code> 时，编译器会将 <code>.button</code> 类名转换为一个全局唯一的类名，如 <code>.Button_button__3d2s4</code>，从而避免冲突。</p>
+<h5 id="3、优点？"><a href="#3、优点？" class="headerlink" title="3、优点？"></a>3、优点？</h5><hr>
+<p><strong>防止类名冲突</strong>：不同组件的相同类名在使用CSS Module后会生成不同的全局类名，完全避免冲突问题。</p>
+<p><strong>提高代码可维护性</strong>：开发者不需要担心类名命名冲突，能够专注于组件的开发。</p>
+<p><strong>简化CSS管理</strong>：由于CSS Module的局部作用域，开发者可以使用简短且易读的类名，而不用担心全局命名问题。</p>
+<h3 id="二、代码构建过程"><a href="#二、代码构建过程" class="headerlink" title="二、代码构建过程"></a>二、代码构建过程</h3><h4 id="（1）实现单页连接😡😡😡😡"><a href="#（1）实现单页连接😡😡😡😡" class="headerlink" title="（1）实现单页连接😡😡😡😡"></a>（1）实现单页连接😡😡😡😡</h4><ul>
+<li>新建一个pages文件夹存储不同界面的jsx，使用以下结构代码导入APP.jsx</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">BrowserRouter</span>&gt;<br>      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Routes</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Homepage</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Routes</span>&gt;</span></span><br>&lt;/<span class="hljs-title class_">BrowserRouter</span>&gt;<br></code></pre></td></tr></table></figure>
 
+<ul>
+<li>建立连接，不使用<code>&lt;a href=&quot;/pricing&quot;&gt;Pricing&lt;/a&gt;</code>（会重新加载界面）而是<code>&lt;NavLink to=&quot;/pricing&quot;&gt;Pricing&lt;/NavLink&gt;</code>（记得导入NavLink，它相较于Link来说好处是会重点突出选中的连接）</li>
+<li>建立一个PageNav放置连接，可以重用到其他界面中</li>
+</ul>
+<p>😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡快气晕了，我的eslint真的很不听话，啥都报错，明明是无伤大雅的warn都让我跑不了程序。改了好久的设置终于，在我将settings.json中添加</p>
+<p><code>&quot;eslint.rules.customizations&quot;: [</code></p>
+<p>  <code>&#123; &quot;rule&quot;: &quot;no-unused-vars&quot;, &quot;severity&quot;: &quot;warn&quot; &#125;,</code></p>
+<p>  <code>&#123; &quot;rule&quot;: &quot;react/prop-types&quot;, &quot;severity&quot;: &quot;off&quot; &#125;</code></p>
+<p> <code>]</code></p>
+<p>然后在vite.config.js改成</p>
+<p><code>export default defineConfig(&#123;</code></p>
+<p> <code>plugins: [react(),  eslint(&#123;</code></p>
+<p>​      <code>overrideConfig: &#123;</code></p>
+<p>​          <code>rules: &#123;</code></p>
+<p>​                    <code>&quot;no-unused-vars&quot;: &quot;warn&quot;,</code></p>
+<p>​                     <code>&quot;react/prop-types&quot;: &quot;off&quot;,</code></p>
+<p>​    <code>&#125;, &#125;,  &#125;), ],&#125;);</code></p>
+<p>它终于不会仅仅因为我定义了prop未使用就不让我跑程序了。。😡😡😡😡</p>
+<p>顺便</p>
+<h4 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h4><p>使用element而不是组件的好处是？</p>
+<p>使用URL存储状态（param）（query）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240830165915719.png" srcset="/img/loading.gif" lazyload alt="image-20240830165915719"></p>
+<p>useNavigate、useParams、useSearchParams的强大作用</p>
+<Navigate replace to="cities" />     
+
+<p>onClick&#x3D;{(<em>e</em>) &#x3D;&gt; {</p>
+<p>​      e.preventDefault();</p>
+<p>​      navigate(-1);</p>
+<p>​     }}这两段代码的要点</p>
+<p>自己阅读了一段代码并分析功能、组件以及状态（比较简单比较好分析）</p>
+<h4 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h4><p>（进入下一节了欸）</p>
+<p>context API</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240830170233284.png" srcset="/img/loading.gif" lazyload alt="image-20240830170233284"></p>
+<p>（之前是用children来解决prop drilling的）</p>
+<p>使用一个小app来练习context API，并且组合成一个函数，再用costom来简化代码</p>
+<p>leaflet（地图库）</p>
+<p>啊啊啊啊啊啊来不及整理，脑瓜子嗡嗡的。。</p>
+<p>npm i react-datepicker  官网：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/react-datepicker">https://www.npmjs.com/package/react-datepicker</a></p>
+<p>导入、调整格式</p>
+<p>Advanced state management&#x3D;&gt;<strong>syetem context</strong> + <strong>useReducer</strong></p>
 
                 
               </div>
@@ -384,8 +570,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>react课程-challenge</div>
-      <div>http://example.com/2024/08/28/react课程-challenge/</div>
+      <div>react课程11-Worldwise</div>
+      <div>http://example.com/2024/08/29/react课程11-Worldwise/</div>
     </div>
     <div class="license-meta">
       
@@ -397,7 +583,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 28, 2024</div>
+          <div>August 29, 2024</div>
         </div>
       
       
@@ -429,9 +615,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/29/react%E8%AF%BE%E7%A8%8B11-Worldwise/" title="react课程11-Worldwise">
+                      <a href="/2024/09/03/react%E8%AF%BE%E7%A8%8B12-React%E4%B8%AD%E5%8F%AF%E4%BC%98%E5%8C%96%E7%9A%84%E9%83%A8%E5%88%86%E4%BB%A5%E5%8F%8AuseEffect%E7%9A%84%E8%A1%A5%E5%85%85/" title="react课程12-React中可优化的部分以及useEffect的补充">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">react课程11-Worldwise</span>
+                        <span class="hidden-mobile">react课程12-React中可优化的部分以及useEffect的补充</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -439,8 +625,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/28/react%E8%AF%BE%E7%A8%8B9-usepopcorn-2/" title="react课程9-usepopcorn-2">
-                        <span class="hidden-mobile">react课程9-usepopcorn-2</span>
+                      <a href="/2024/08/28/react%E8%AF%BE%E7%A8%8B-challenge/" title="react课程-challenge">
+                        <span class="hidden-mobile">react课程-challenge</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
