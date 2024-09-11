@@ -32,8 +32,10 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240908143934918.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240908144145452.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240908152201707.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240909101414957.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240909101339231.png">
 <meta property="article:published_time" content="2024-09-07T06:41:00.876Z">
-<meta property="article:modified_time" content="2024-09-08T09:40:40.727Z">
+<meta property="article:modified_time" content="2024-09-09T02:41:07.955Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
@@ -271,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.9k words
+          4.1k words
         
       </span>
     
@@ -282,7 +284,7 @@
         
         
         
-          33 mins
+          35 mins
         
       </span>
     
@@ -336,7 +338,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on September 8, 2024 pm
+                    Last updated on September 9, 2024 am
                   
                 
               </p>
@@ -555,6 +557,24 @@
 </ul>
 </li>
 </ul>
+<h3 id="三、contextAPI-useReducer和Redux的区别"><a href="#三、contextAPI-useReducer和Redux的区别" class="headerlink" title="三、contextAPI+useReducer和Redux的区别"></a>三、<code>contextAPI</code>+<code>useReducer</code>和<code>Redux</code>的区别</h3><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240909101414957.png" srcset="/img/loading.gif" lazyload alt="image-20240909101414957"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240909101339231.png" srcset="/img/loading.gif" lazyload alt="image-20240909101339231"></p>
+<h4 id="1、中间件和插件支持"><a href="#1、中间件和插件支持" class="headerlink" title="1、中间件和插件支持"></a><strong>1、中间件和插件支持</strong></h4><ul>
+<li><strong>Context API + useReducer</strong>：没有 Redux 那种丰富的中间件和插件生态系统，例如 <code>redux-thunk</code>、<code>redux-saga</code> 之类的异步操作工具。通常需要手动处理复杂的异步逻辑。</li>
+<li><strong>Redux</strong>：拥有大量中间件和开发工具（如 Redux DevTools和Middleware），可以很方便地<strong>调试和处理异步操作</strong>。</li>
+</ul>
+<h4 id="2、状态存储方式"><a href="#2、状态存储方式" class="headerlink" title="2、状态存储方式"></a><strong>2、状态存储方式</strong></h4><ul>
+<li><strong>Context API + useReducer</strong>：没有全局的单一状态树。通过 <code>useReducer</code> 来管理本地状态，并通过 <code>Context API</code> 提供状态共享的功能。不容易新增状态（要添加新的Provider和Reducer）</li>
+<li><strong>Redux</strong>：有一个全局的单一状态树（store），所有的应用状态都存储在这一个 store 中。这使得状态管理更加集中。创建新的状态slice较为方便</li>
+</ul>
+<h4 id="3、起步"><a href="#3、起步" class="headerlink" title="3、起步"></a>3、起步</h4><ul>
+<li><strong>Context API + useReducer</strong>：由React直接提供，很容易建立</li>
+<li><strong>Redux</strong>：需要提供插件支持，在初始建立的时候较为复杂</li>
+</ul>
+<h4 id="4、优化（具体见上一节）"><a href="#4、优化（具体见上一节）" class="headerlink" title="4、优化（具体见上一节）"></a>4、优化（具体见上一节）</h4><ul>
+<li><strong>Context API + useReducer</strong>：优化较为复杂</li>
+<li><strong>Redux</strong>：提供了很多开箱即用的优化</li>
+</ul>
 
                 
               </div>
@@ -644,6 +664,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/09/09/react%E8%AF%BE%E7%A8%8B14-%E4%BD%BF%E7%94%A8Vite%E6%9E%84%E5%BB%BA%E9%AB%98%E7%BA%A7ReactProjiect/" title="react课程14-使用Vite构建高级ReactProjiect">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">react课程14-使用Vite构建高级ReactProjiect</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
