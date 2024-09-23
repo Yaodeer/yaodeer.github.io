@@ -16,15 +16,15 @@
   <meta name="author" content="Yaodeer">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本篇文章重重整理一下React Router的工具和用法集合。">
+    <meta name="description" content="由于这部分内容比较简单，就简略记录一下重点叭（Redux快被我忘得一干二净了🥲🥲）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react课程14.1-React-Router专题">
-<meta property="og:url" content="http://example.com/2024/09/11/react%E8%AF%BE%E7%A8%8B14.1-React-Router%E4%B8%93%E9%A2%98/index.html">
+<meta property="og:title" content="react课程16-继续使用Redux构建pizza项目">
+<meta property="og:url" content="http://example.com/2024/09/19/react%E8%AF%BE%E7%A8%8B16-%E7%BB%A7%E7%BB%AD%E4%BD%BF%E7%94%A8Redux%E6%9E%84%E5%BB%BApizza%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="Yaodeer">
-<meta property="og:description" content="本篇文章重重整理一下React Router的工具和用法集合。">
+<meta property="og:description" content="由于这部分内容比较简单，就简略记录一下重点叭（Redux快被我忘得一干二净了🥲🥲）">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-09-11T07:14:15.949Z">
-<meta property="article:modified_time" content="2024-09-11T12:42:25.999Z">
+<meta property="article:published_time" content="2024-09-19T11:31:05.824Z">
+<meta property="article:modified_time" content="2024-09-20T08:01:26.702Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>react课程14.1-React-Router专题 - Yaodeer</title>
+  <title>react课程16-继续使用Redux构建pizza项目 - Yaodeer</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -238,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="react课程14.1-React-Router专题"></span>
+            <span id="subtitle" data-typed-text="react课程16-继续使用Redux构建pizza项目"></span>
           
         </div>
 
@@ -249,8 +249,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-11 15:14" pubdate>
-          September 11, 2024 pm
+        <time datetime="2024-09-19 19:31" pubdate>
+          September 19, 2024 pm
         </time>
       </span>
     
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k words
+          1.2k words
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          17 mins
+          11 mins
         
       </span>
     
@@ -321,12 +321,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">react课程14.1-React-Router专题</h1>
+            <h1 id="seo-header">react课程16-继续使用Redux构建pizza项目</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on September 11, 2024 pm
+                    Last updated on September 20, 2024 pm
                   
                 
               </p>
@@ -334,78 +334,59 @@
             
               <div class="markdown-body">
                 
-                <p>本篇文章重重整理一下React Router的工具和用法集合。</p>
+                <p>由于这部分内容比较简单，就简略记录一下重点叭（Redux快被我忘得一干二净了🥲🥲）</p>
 <span id="more"></span>
 
-<h3 id="一、useNavigate"><a href="#一、useNavigate" class="headerlink" title="一、useNavigate"></a>一、useNavigate</h3><p>用于通过编程方式在 React 应用中进行导航（页面跳转）。相比于传统的 <code>&lt;a&gt;</code> 标签或者 <code>Link</code> 组件，<code>useNavigate</code> 提供了更灵活的方式来实现跳转，例如基于用户交互或某些条件时自动跳转。</p>
-<h4 id="（1）基本用法"><a href="#（1）基本用法" class="headerlink" title="（1）基本用法"></a>（1）基本用法</h4><p><code>useNavigate</code> 返回一个 <code>navigate</code> 函数，可以调用该函数并传入路径，实现导航。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> navigate = <span class="hljs-title function_">useNavigate</span>(); <span class="hljs-comment">// 使用 useNavigate 钩子</span><br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">goToAboutPage</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-title function_">navigate</span>(<span class="hljs-string">&quot;/about&quot;</span>); <span class="hljs-comment">// 编程式导航到 &quot;/about&quot; 路由</span><br>  &#125;;<br></code></pre></td></tr></table></figure>
-
-<p>跳转类型</p>
-<ul>
-<li><strong>绝对路径</strong>：从根路径开始，如 <code>navigate(&quot;/about&quot;)</code>。</li>
-<li><strong>相对路径</strong>：相对于当前路径，如 <code>navigate(&quot;profile&quot;)</code>。</li>
-</ul>
-<h4 id="（2）replace替换历史记录"><a href="#（2）replace替换历史记录" class="headerlink" title="（2）replace替换历史记录"></a>（2）replace替换历史记录</h4><p>默认情况下，<code>navigate</code> 会在浏览器的历史记录中添加一个新条目，这样用户可以通过浏览器的“后退”按钮回到之前的页面。如果不想让用户通过后退按钮返回，可以使用 <code>replace</code> 选项。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">navigate</span>(<span class="hljs-string">&quot;/dashboard&quot;</span>, &#123; <span class="hljs-attr">replace</span>: <span class="hljs-literal">true</span> &#125;);<br></code></pre></td></tr></table></figure>
-
-<p>这样跳转后，<code>/dashboard</code> 会替换当前的页面，用户不能通过“后退”按钮返回到原页面。</p>
-<h4 id="（3）前进和后退"><a href="#（3）前进和后退" class="headerlink" title="（3）前进和后退"></a>（3）前进和后退</h4><p><code>useNavigate</code> 还可以像浏览器的前进和后退按钮一样，基于历史记录进行导航。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 后退到上一个页面</span><br><span class="hljs-title function_">navigate</span>(-<span class="hljs-number">1</span>);<br><br><span class="hljs-comment">// 前进到下一个页面</span><br><span class="hljs-title function_">navigate</span>(<span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure>
 
 
+<h4 id="（1）useSelector"><a href="#（1）useSelector" class="headerlink" title="（1）useSelector"></a>（1）useSelector</h4><p>在前面如果我们想要获取store里的状态，都是用useSelector在相应的组件函数里直接获取。但是现在发现其实更推荐在Slice文件中集中地写入selector函数，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">getCart</span> = (<span class="hljs-params">state</span>) =&gt; state.<span class="hljs-property">cart</span>.<span class="hljs-property">cart</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">getTotalCartQuantity</span> = (<span class="hljs-params">state</span>) =&gt;<br>  state.<span class="hljs-property">cart</span>.<span class="hljs-property">cart</span>.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">sum, item</span>) =&gt;</span> sum + item.<span class="hljs-property">quantity</span>, <span class="hljs-number">0</span>);<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">getTotalCartPrice</span> = (<span class="hljs-params">state</span>) =&gt;<br>  state.<span class="hljs-property">cart</span>.<span class="hljs-property">cart</span>.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">sum, item</span>) =&gt;</span> sum + item.<span class="hljs-property">totalPrice</span>, <span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure>
 
-<h4 id="（4）传递状态"><a href="#（4）传递状态" class="headerlink" title="（4）传递状态"></a>（4）传递状态</h4><p>可以通过 <code>navigate</code> 传递一些状态信息到目标页面，这些状态信息不会显示在 URL 中，但可以在目标页面中通过 <code>useLocation</code> 钩子来读取。</p>
-<h4 id="（5）阻止导航"><a href="#（5）阻止导航" class="headerlink" title="（5）阻止导航"></a>（5）阻止导航</h4><p>在某些情况下，你可能需要阻止导航（例如用户没有保存表单数据时）。React Router 提供了 <code>usePrompt</code> 来处理这个需求。</p>
-<h3 id="二、useNavigation"><a href="#二、useNavigation" class="headerlink" title="二、useNavigation"></a>二、useNavigation</h3><p><code>useNavigation</code> 是 React Router v6 提供的一个钩子，用于获取当前导航（页面跳转）的状态。它可以帮助你在组件中监控导航的进展，尤其是用于处理页面加载状态、异步数据请求等情况。</p>
-<h4 id="（1）useNavigation-的主要用途"><a href="#（1）useNavigation-的主要用途" class="headerlink" title="（1）useNavigation 的主要用途"></a>（1）<code>useNavigation</code> 的主要用途</h4><ol>
-<li><strong>监控导航状态</strong>：你可以检查当前的导航状态，例如是否处于加载、提交状态。</li>
-<li><strong>显示加载指示器</strong>：可以根据导航状态显示一个“加载中”的提示，以提升用户体验。</li>
-</ol>
-<h4 id="（2）导航状态"><a href="#（2）导航状态" class="headerlink" title="（2）导航状态"></a>（2）导航状态</h4><p>**<code>idle</code>**：空闲状态，没有进行导航操作。</p>
-<p>**<code>loading</code>**：正在加载新的页面或资源。</p>
-<p>**<code>submitting</code>**：当前正在提交数据（例如表单提交）。</p>
-<h3 id="三、Navigate"><a href="#三、Navigate" class="headerlink" title="三、Navigate"></a>三、Navigate</h3><p><code>&lt;Navigate&gt;</code> 组件用于重定向用户到指定的路由。它允许你在特定条件下从一个页面自动跳转到另一个页面，而无需用户手动点击。</p>
-<p><code>&lt;Navigate&gt;</code> 组件的基本用法是将用户从一个路由重定向到另一个路由。你只需要指定 <code>to</code> 属性为目标路径即可。</p>
-<h4 id="replace-属性"><a href="#replace-属性" class="headerlink" title="replace 属性"></a><code>replace</code> 属性</h4><p><code>&lt;Navigate&gt;</code> 组件中的 <code>replace</code> 属性控制是否用新页面替换当前页面在浏览器历史记录中的位置。如果不使用 <code>replace</code>，则默认会将新页面加入浏览器历史记录中，用户可以通过“后退”按钮返回原页面。</p>
-<p>EG：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Route</span> index element=&#123;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Navigate</span> <span class="hljs-attr">replace</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;cities&quot;</span> /&gt;</span></span>&#125; /&gt;<br></code></pre></td></tr></table></figure>
+<p>这样的话如果将来需要改变某个状态名字，就可以只在这里修改一次了。</p>
+<h4 id="（2）？？运算符"><a href="#（2）？？运算符" class="headerlink" title="（2）？？运算符"></a>（2）？？运算符</h4><p>例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">getCurrentQuantityById</span> = (<span class="hljs-params">id</span>) =&gt; <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span><br>  state.<span class="hljs-property">cart</span>.<span class="hljs-property">cart</span>.<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.<span class="hljs-property">pizzaId</span> === id)?.<span class="hljs-property">quantity</span> ?? <span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure>
 
-<p><strong>不加 <code>replace</code></strong> 时，浏览器的历史记录中会保存 <code>Navigate</code> 重定向的路径（<code>/</code> -&gt; <code>/cities</code>），导致点击“返回”按钮时，路由会重新从 <code>/</code> 重定向到 <code>/cities</code>，使用户看起来无法退出 <code>CityList</code> 页面。</p>
-<p><strong>加上 <code>replace</code></strong> 后，<code>Navigate</code> 的行为是替换 <code>/</code> 路由，不再保留 <code>/</code> 在历史记录中，这样浏览器返回按钮就不会触发从 <code>/</code> 重定向到 <code>/cities</code> 的循环。</p>
-<h3 id="四、NavLink-和Link"><a href="#四、NavLink-和Link" class="headerlink" title="四、NavLink 和Link"></a>四、NavLink 和Link</h3><p><code>&lt;Link&gt;</code> 是 React Router 中的基础组件，用来创建页面之间的导航链接。它的功能类似于传统的 HTML <code>&lt;a&gt;</code> 标签，但不会引起页面的完整刷新，而是使用 React Router 的路由机制进行无刷新跳转。</p>
-<p><code>&lt;NavLink&gt;</code> 是继承自 <code>&lt;Link&gt;</code> 的组件，除了拥有 <code>&lt;Link&gt;</code> 的所有功能外，还可以动态添加样式和类名来表明当前链接是否处于“选中”状态。它的主要作用是为导航链接添加激活状态，例如当前页面对应的导航项可以显示为高亮。</p>
-<h3 id="五、params参数"><a href="#五、params参数" class="headerlink" title="五、params参数"></a>五、params参数</h3><p><code>params</code> 是 React Router 中路由参数的一个对象，通常用于获取 URL 中的动态部分（路径参数）。在示例代码中，<code>params</code> 是通过 <code>loader</code> 函数的参数对象解构出来的，用来获取 URL 路径中的动态数据，比如 <code>orderId</code>。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">loader</span>(<span class="hljs-params">&#123; params &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> order = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getOrder</span>(params.<span class="hljs-property">orderId</span>);<br>  <span class="hljs-keyword">return</span> order;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><code>params</code> 对象包含当前路由路径中定义的动态路径参数。在路由配置中使用了类似 <code>/order/:orderId</code> 的路径时，React Router 会将 URL 中对应的 <code>orderId</code> 提取出来，并将其放入 <code>params</code> 对象中。</p>
-<h3 id="六、React-Router-Actions"><a href="#六、React-Router-Actions" class="headerlink" title="六、React Router Actions"></a>六、React Router Actions</h3><p>在 React Router v6 中，<code>Actions</code> 是处理表单提交或其他事件时发送数据到服务器的机制，通常和路由中的 <code>action</code> 函数结合使用。<code>action</code> 用于在特定路由下处理非 GET 请求（例如 POST、PUT、DELETE），在表单提交时或通过 JavaScript 发起的请求中使用。</p>
-<h4 id="（1）基本概念"><a href="#（1）基本概念" class="headerlink" title="（1）基本概念"></a>（1）基本概念</h4><p><strong><code>action</code> 函数</strong>: 用于处理表单提交或其他需要更改数据的请求。它类似于 <code>loader</code> 函数，但专注于处理提交的数据并更新服务器端的状态。<code>action</code> 函数会接收到一些上下文信息（如表单数据和请求参数），并可以返回结果或错误。</p>
-<p><strong><code>useSubmit()</code></strong>: React Router 提供的一个钩子，用来在表单提交时使用 JavaScript 来处理提交操作，避免刷新页面。</p>
-<h4 id="（2）action的基本用法"><a href="#（2）action的基本用法" class="headerlink" title="（2）action的基本用法"></a>（2）action的基本用法</h4><blockquote>
-<p>详细例子请见14节第九模块</p>
-</blockquote>
-<p><strong><code>action</code> 函数</strong>:</p>
-<ul>
-<li><strong>参数 <code>request</code></strong>: <code>action</code> 函数会接收到请求对象 <code>request</code>，包含提交表单的数据、请求类型（如 POST、PUT 等）和其他信息。</li>
-<li><strong><code>request.formData()</code></strong>: 通过 <code>request.formData()</code> 可以获取表单中的数据。</li>
-<li><strong><code>saveOrder(order)</code></strong>: 你可以在 <code>action</code> 中进行服务器端操作，比如保存数据或发送 API 请求。</li>
-<li><strong>返回结果</strong>: <code>action</code> 函数可以返回处理结果，这些结果可以传递给组件进行渲染。</li>
-</ul>
-<h4 id="（3）使用表单与-action"><a href="#（3）使用表单与-action" class="headerlink" title="（3）使用表单与 action"></a>（3）使用表单与 <code>action</code></h4><p>React Router v6 提供了 <code>Form</code> 组件，它会自动与 <code>action</code> 函数配合，提交表单数据而不触发页面刷新。</p>
-<p> <code>&lt; Form method=&quot;POST&quot; action=&quot;/order/new&quot; &gt;</code></p>
-<p><code>action</code>指定提交到哪里，默认是最近路由</p>
-<h4 id="（4）传统表单提交-vs-编程方式提交"><a href="#（4）传统表单提交-vs-编程方式提交" class="headerlink" title="（4）传统表单提交 vs. 编程方式提交"></a>（4）传统表单提交 vs. 编程方式提交</h4><p>在传统表单提交中，用户必须填写表单并点击“提交”按钮来触发提交操作。</p>
-<p>通过编程方式提交表单，表单可以在不需要用户点击提交按钮的情况下被自动提交。可以在其他操作或事件触发时提交表单。通过编程方式提交表单意味着可以使用代码来触发表单提交操作，而不是让用户点击提交按钮。这种灵活性允许用户根据应用逻辑自动执行表单提交，提升用户体验和交互性。</p>
-<p>使用场景：</p>
+<p><code>??</code> 是<strong>空值合并运算符</strong>（Nullish Coalescing Operator）。它用于在左侧表达式为 <code>null</code> 或 <code>undefined</code> 时，返回右侧的值。</p>
+<h4 id="（3）caseReducers"><a href="#（3）caseReducers" class="headerlink" title="（3）caseReducers"></a>（3）caseReducers</h4><p>在购物车中实现增加和减少pizza数量的时候遇到了老问题，就是pizza的数量会变成负值。我试图解决这个问题，于是写了一行代码：<code>if (!quantity) return;</code>这样如果pizza的数量减到0之后就不会呈现这个pizza，也就无法再使它的数量减下去了。然而随后又遇到了另一个问题，就是把所有pizza数量减为0的时候，没有展示预设的空购物车界面，也就是说cart的长度不为0，于是我得到cartprice，用它来决定是否展示空购物车界面。</p>
+<p>但是很明显不是正确的方法，因为在store里，这时候仍旧有这些quantity为0的pizza的元素，只是个数为0而已，最好的办法是删除这些元素。于是可以在slice里的dcrease函数中添加代码：</p>
+<p><code>if (item.quantity === 0) cartSlice.caseReducers.deleteItem(state, action);</code></p>
+<h4 id="（4）creatAsyncThunk"><a href="#（4）creatAsyncThunk" class="headerlink" title="（4）creatAsyncThunk"></a>（4）creatAsyncThunk</h4><p><code>createAsyncThunk</code> 是 Redux Toolkit 提供的一个功能，用来简化在 Redux 中处理异步逻辑的操作。它自动生成相应的 action 类型并管理异步请求的生命周期，如 <code>pending</code>、<code>fulfilled</code> 和 <code>rejected</code> 状态，减少了手动书写异步逻辑的工作量。</p>
+<p><code>createAsyncThunk</code> 的优点：</p>
 <ol>
-<li><strong>自动保存</strong>：当用户修改某个输入字段时，表单可以立即通过编程方式提交并保存数据，而无需点击“保存”按钮。</li>
-<li><strong>异步数据提交</strong>：你可以在某个事件（如点击、鼠标移开、定时器）发生时，自动提交表单数据进行验证或保存。</li>
-<li><strong>根据条件自动提交</strong>：表单可以在某个后台逻辑验证通过或某个条件满足后自动提交，而不让用户手动提交。</li>
+<li><strong>自动生成 action</strong>：无需手动编写 <code>pending</code>、<code>fulfilled</code> 和 <code>rejected</code> action，简化了代码。</li>
+<li><strong>内置的错误处理机制</strong>：可以使用 <code>rejectWithValue</code> 返回自定义的错误信息。</li>
+<li><strong>统一的异步逻辑管理</strong>：通过 <code>extraReducers</code> 来处理不同状态的逻辑，使代码更加可读。</li>
 </ol>
-<h3 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">useEffect</span>(<br>  <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">if</span> (isAuthenticated) <span class="hljs-title function_">navigate</span>(<span class="hljs-string">&quot;/app&quot;</span>, &#123; <span class="hljs-attr">replace</span>: <span class="hljs-literal">true</span> &#125;);<br>  &#125;,<br>  [isAuthenticated, navigate]<br>);<br></code></pre></td></tr></table></figure>
+<p>下列这段代码可以和课程13中的Thunk做对比。</p>
+<p>首先，传入动作类型和需要执行的异步函数，一旦action被派遣，这里的函数就会被执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fetchAddress = <span class="hljs-title function_">createAsyncThunk</span>(<br>  <span class="hljs-string">&#x27;user/fetchAddress&#x27;</span>,<br>  <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 1) We get the user&#x27;s geolocation position</span><br>    <span class="hljs-keyword">const</span> positionObj = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getPosition</span>();<br>    <span class="hljs-keyword">const</span> position = &#123;<br>      <span class="hljs-attr">latitude</span>: positionObj.<span class="hljs-property">coords</span>.<span class="hljs-property">latitude</span>,<br>      <span class="hljs-attr">longitude</span>: positionObj.<span class="hljs-property">coords</span>.<span class="hljs-property">longitude</span>,<br>    &#125;;<br><br>    <span class="hljs-comment">// 2) Then we use a reverse geocoding API to get a description of the user&#x27;s address, so we can display it the order form, so that the user can correct it if wrong</span><br>    <span class="hljs-keyword">const</span> addressObj = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getAddress</span>(position);<br>    <span class="hljs-keyword">const</span> address = <span class="hljs-string">`<span class="hljs-subst">$&#123;addressObj?.locality&#125;</span>, <span class="hljs-subst">$&#123;addressObj?.city&#125;</span> <span class="hljs-subst">$&#123;addressObj?.postcode&#125;</span>, <span class="hljs-subst">$&#123;addressObj?.countryName&#125;</span>`</span>;<br><br>    <span class="hljs-comment">// 3) Then we return an object with the data that we are interested in</span><br>    <span class="hljs-keyword">return</span> &#123; position, address &#125;;<br>  &#125;,<br>);<br></code></pre></td></tr></table></figure>
 
-<p>代码段实现了当网页刷新或者断线导致状态变为未登录时，会自动跳转到app主界面的功能</p>
+
+
+<h4 id="（5）value和defaultValue"><a href="#（5）value和defaultValue" class="headerlink" title="（5）value和defaultValue"></a>（5）value和defaultValue</h4><p><code>value</code></p>
+<ul>
+<li><strong>受控组件</strong>：当使用 <code>value</code> 属性时，表单元素的值完全由 React 组件的状态控制。这种方式称为“受控组件”（controlled component）。</li>
+<li><strong>实时同步</strong>：<code>value</code> 需要与组件的状态保持同步，当输入发生变化时，必须通过状态更新来改变值。通常搭配 <code>onChange</code> 事件来更新状态。</li>
+</ul>
+<p><code>defaultValue</code></p>
+<ul>
+<li><strong>非受控组件</strong>：使用 <code>defaultValue</code> 时，表单元素的初始值仅在组件首次渲染时设置，之后它的值不再由 React 控制。这种方式称为“非受控组件”（uncontrolled component）。</li>
+<li><strong>仅初始化</strong>：<code>defaultValue</code> 仅用于设置元素的初始值，表单控件在用户输入后会自己管理其值，React 不再负责后续的变化。</li>
+</ul>
+<h4 id="（6）fetcher"><a href="#（6）fetcher" class="headerlink" title="（6）fetcher"></a>（6）fetcher</h4><p>使用 <code>useFetcher</code> 钩子来处理非导航相关的表单提交，适合需要局部更新或是处理背景请求的场景。<code>fetcher.Form</code> 创建了一个 <code>&lt;form&gt;</code>，并且使用 <code>PATCH</code> 方法提交数据。这种方式让 <code>react-router</code> 能够在不刷新整个页面的情况下局部提交数据。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useFetcher &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Button</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../../ui/Button&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; updateOrder &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../../services/apiRestaurant&#x27;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">UpdateOrder</span>(<span class="hljs-params">&#123; order &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> fetcher = <span class="hljs-title function_">useFetcher</span>();<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">fetcher.Form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;PATCH&quot;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;text-right&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;primary&quot;</span>&gt;</span>Make priority<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">fetcher.Form</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">UpdateOrder</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">action</span>(<span class="hljs-params">&#123; request, params &#125;</span>) &#123;<br>  <span class="hljs-comment">// console.log(&#x27;update&#x27;);</span><br>  <span class="hljs-keyword">const</span> data = &#123; <span class="hljs-attr">priority</span>: <span class="hljs-literal">true</span> &#125;;<br>  <span class="hljs-keyword">await</span> <span class="hljs-title function_">updateOrder</span>(params.<span class="hljs-property">orderId</span>, data);<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>在没有数据并且 <code>fetcher</code> 处于空闲 (<code>idle</code>) 状态时，通过 <code>fetcher.load(&#39;/menu&#39;)</code> 来发起请求加载菜单数据。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">useEffect</span>(<br>  <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">if</span> (!fetcher.<span class="hljs-property">data</span> &amp;&amp; fetcher.<span class="hljs-property">state</span> === <span class="hljs-string">&#x27;idle&#x27;</span>) fetcher.<span class="hljs-title function_">load</span>(<span class="hljs-string">&#x27;/menu&#x27;</span>);<br>  &#125;,<br>  [fetcher.<span class="hljs-property">state</span>, fetcher.<span class="hljs-property">data</span>],<br>);<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（7）join"><a href="#（7）join" class="headerlink" title="（7）join"></a>（7）join</h4><p><code>join()</code> 函数主要用于将一个列表或数组中的元素连接成一个字符串。它通常用于将多个字符串拼接在一起，中间插入指定的分隔符。</p>
+<p><code>array.join(separator);</code></p>
+<ul>
+<li>**<code>separator</code>**：可选参数。指定分隔数组元素的字符。如果未指定，默认使用逗号 <code>,</code> 作为分隔符。</li>
+<li>在没有指定 <code>separator</code> 时，默认使用逗号 <code>,</code> 分隔。</li>
+</ul>
 
                 
               </div>
@@ -451,8 +432,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>react课程14.1-React-Router专题</div>
-      <div>http://example.com/2024/09/11/react课程14.1-React-Router专题/</div>
+      <div>react课程16-继续使用Redux构建pizza项目</div>
+      <div>http://example.com/2024/09/19/react课程16-继续使用Redux构建pizza项目/</div>
     </div>
     <div class="license-meta">
       
@@ -464,7 +445,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>September 11, 2024</div>
+          <div>September 19, 2024</div>
         </div>
       
       
@@ -496,9 +477,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/13/react%E8%AF%BE%E7%A8%8B15-%E4%BD%BF%E7%94%A8Tailwind%E8%AE%BE%E8%AE%A1%E9%A1%B9%E7%9B%AE%E7%95%8C%E9%9D%A2/" title="react课程15-使用Tailwind设计项目界面">
+                      <a href="/2024/09/20/react%E8%AF%BE%E7%A8%8B17-Thewildoasis%E9%A1%B9%E7%9B%AE%E8%B5%B7%E6%AD%A5/" title="react课程17-Thewildoasis项目起步">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">react课程15-使用Tailwind设计项目界面</span>
+                        <span class="hidden-mobile">react课程17-Thewildoasis项目起步</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -506,8 +487,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/11/react%E8%AF%BE%E7%A8%8B0-%E5%85%AB%E8%82%A1%E9%9B%86%E5%90%88%EF%BC%88bushi%EF%BC%89/" title="react课程0-八股集合（bushi）">
-                        <span class="hidden-mobile">react课程0-八股集合（bushi）</span>
+                      <a href="/2024/09/13/react%E8%AF%BE%E7%A8%8B15-%E4%BD%BF%E7%94%A8Tailwind%E8%AE%BE%E8%AE%A1%E9%A1%B9%E7%9B%AE%E7%95%8C%E9%9D%A2/" title="react课程15-使用Tailwind设计项目界面">
+                        <span class="hidden-mobile">react课程15-使用Tailwind设计项目界面</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

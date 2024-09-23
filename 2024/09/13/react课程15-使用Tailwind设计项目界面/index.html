@@ -1,0 +1,846 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本次课程学习Tailwind，并使用它来设计fast pizza的界面🫡。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程15-使用Tailwind设计项目界面">
+<meta property="og:url" content="http://example.com/2024/09/13/react%E8%AF%BE%E7%A8%8B15-%E4%BD%BF%E7%94%A8Tailwind%E8%AE%BE%E8%AE%A1%E9%A1%B9%E7%9B%AE%E7%95%8C%E9%9D%A2/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="本次课程学习Tailwind，并使用它来设计fast pizza的界面🫡。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240913103504395.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240918155917608.png">
+<meta property="article:published_time" content="2024-09-13T06:20:11.795Z">
+<meta property="article:modified_time" content="2024-09-18T13:01:55.661Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240913103504395.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程15-使用Tailwind设计项目界面 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程15-使用Tailwind设计项目界面"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-13 14:20" pubdate>
+          September 13, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程15-使用Tailwind设计项目界面</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on September 18, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本次课程学习Tailwind，并使用它来设计fast pizza的界面🫡。</p>
+<span id="more"></span>
+
+<p>⭕<a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/installation">https://tailwindcss.com/docs/installation</a>（官网）</p>
+<p>⭕<a target="_blank" rel="noopener" href="https://tailwind.org.cn/docs/installation%EF%BC%88%E4%B8%AD%E6%96%87%E7%BD%91%E5%9D%80%EF%BC%89">https://tailwind.org.cn/docs/installation（中文网址）</a></p>
+<p>按照步骤去使用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240913103504395.png" srcset="/img/loading.gif" lazyload alt="image-20240913103504395"></p>
+<p>但是在css文件中会报错：<code>Unknown at rule @tailwindcss(unknownAtRules)</code></p>
+<p>解决方法是打开setting.json文件，在里面添加：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;files.associations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br><br> <span class="hljs-attr">&quot;*.css&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;tailwindcss&quot;</span><br><br><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
+
+<p>（思考了一个小时的问题😇，世界上还是聪明的人多哈）</p>
+<p>⭕安装Tailwind CSS拓展</p>
+<p>⭕<a target="_blank" rel="noopener" href="https://github.com/tailwindlabs/prettier-plugin-tailwindcss?tab=readme-ov-file">https://github.com/tailwindlabs/prettier-plugin-tailwindcss?tab=readme-ov-file</a></p>
+<p>安装prettier-plugin-tailwindcss插件：</p>
+<p><code>npm install -D prettier prettier-plugin-tailwindcss</code></p>
+<p>然后进行配置，新建prettier.config.cjs文件，在里面配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json">module.exports = <span class="hljs-punctuation">&#123;</span><br>  plugins<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;prettier-plugin-tailwindcss&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br> <span class="hljs-comment">// singleQuote: true,</span><br><span class="hljs-punctuation">&#125;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>这样可以自动排序类名</p>
+<p>（我怎么配置了两个小时……我真的流泪了。。。。）</p>
+<p>🆒<a target="_blank" rel="noopener" href="https://css-tricks.com/emoji-as-a-favicon/">https://css-tricks.com/emoji-as-a-favicon/</a></p>
+<h3 id="一、学习初步使用"><a href="#一、学习初步使用" class="headerlink" title="一、学习初步使用"></a>一、学习初步使用</h3><h4 id="（1）color"><a href="#（1）color" class="headerlink" title="（1）color"></a>（1）color</h4><p>在tailwind的官网中搜索text color、background color查找具体配置说明</p>
+<p>index.html中也可以进行配置，来设置全局style</p>
+<h4 id="（2）Text"><a href="#（2）Text" class="headerlink" title="（2）Text"></a>（2）Text</h4><p>font size（大小）、font weight（加粗）、uppercase（大写）、letter spacing（间距）</p>
+<h4 id="（3）space"><a href="#（3）space" class="headerlink" title="（3）space"></a>（3）space</h4><p>margin（外边距）、padding（内边距）、border（边框）</p>
+<p><strong><code>space</code><strong>：主要用于 Tailwind CSS 中，用于设置</strong>多个子元素</strong>之间的间距，不改变第一个和最后一个子元素的外边距。例如，<code>space-x-4</code> 会在每个子元素之间增加 4 的水平间距，但不会影响最外层的左右间距。</p>
+<p>display：</p>
+<ul>
+<li>**<code>block</code>**：用来定义内容需要占满一整行的元素（如段落、容器等）。</li>
+<li>**<code>inline</code>**：适合内容较短、需要与其他元素同一行显示的情况（如文字、链接等）。</li>
+<li>**<code>inline-block</code>**：用于需要水平排列的元素，并且每个元素有独立的宽高控制（如导航栏中的按钮）。</li>
+<li>**<code>flex</code>**：用来创建灵活的、响应式的布局，子元素可以自动调整排列。</li>
+<li>**<code>grid</code>**：适合构建复杂的、结构化的页面布局，子元素可以按照网格规则自动排布。</li>
+<li>**<code>none</code>**：用于隐藏不需要显示的元素。</li>
+</ul>
+<h4 id="（4）断点"><a href="#（4）断点" class="headerlink" title="（4）断点"></a>（4）断点</h4><p><code>breakpoints</code>（断点）用于实现响应式设计。断点定义了在不同的屏幕宽度范围内，如何应用不同的样式规则。这使得可以根据设备的屏幕大小调整页面布局和样式，以提供更好的用户体验。</p>
+<ul>
+<li><strong><code>sm</code></strong>: 小屏幕（手机，最小宽度 640px）</li>
+<li><strong><code>md</code></strong>: 中等屏幕（平板，最小宽度 768px）</li>
+<li><strong><code>lg</code></strong>: 大屏幕（桌面，最小宽度 1024px）</li>
+<li><strong><code>xl</code></strong>: 超大屏幕（大桌面，最小宽度 1280px）</li>
+<li><strong><code>2xl</code></strong>: 超超大屏幕（超大桌面，最小宽度 1536px）</li>
+</ul>
+<p>eg：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;!-- 默认字体大小，当屏幕宽度达到或超过 768px 时字体变大 --&gt;<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-base md:text-lg&quot;</span>&gt;</span>响应式字体大小<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>如果 Tailwind 的默认断点不符合你的需求，可以在 <code>tailwind.config.js</code> 文件中进行自定义配置。例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">// 添加一个新的断点 3xl，用于在屏幕宽度达到或超过 1600px 时应用样式。</span><br>module.exports = <span class="hljs-punctuation">&#123;</span><br>  theme<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    extend<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      screens<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        &#x27;<span class="hljs-number">3</span>xl&#x27;<span class="hljs-punctuation">:</span> &#x27;<span class="hljs-number">1600</span>px&#x27;<span class="hljs-punctuation">,</span><br><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span> <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span> <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#125;</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（5）Flexbox"><a href="#（5）Flexbox" class="headerlink" title="（5）Flexbox"></a>（5）Flexbox</h4><p>items-center : 用于在 Flexbox 容器的交叉轴（垂直轴）上将所有子元素居中对齐。</p>
+<p>justify-between :用于在 Flexbox 容器的主轴（水平轴）上，将所有子元素之间的空间均匀分配。</p>
+<h4 id="（6）Grid"><a href="#（6）Grid" class="headerlink" title="（6）Grid"></a>（6）Grid</h4><p><code>grid h-screen grid-rows-[auto_1fr_auto]</code></p>
+<h4 id="（7）Form-element"><a href="#（7）Form-element" class="headerlink" title="（7）Form element"></a>（7）Form element</h4><p>​    <code>className=&quot;w-28 rounded-full bg-yellow-100 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-yellow-600 focus:ring-opacity-50 sm:w-64 sm:focus:w-72&quot;</code></p>
+<h4 id="（8）重用"><a href="#（8）重用" class="headerlink" title="（8）重用"></a>（8）重用</h4><h5 id="1、在css中编写类名"><a href="#1、在css中编写类名" class="headerlink" title="1、在css中编写类名"></a>1、在css中编写类名</h5><p>此时在className&#x3D;“input”就可以运用这个类名</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@layer</span> components &#123;<br>  <span class="hljs-selector-class">.input</span> &#123;<br>    <span class="hljs-keyword">@apply</span> w-full rounded-full border border-stone-<span class="hljs-number">200</span> px-<span class="hljs-number">4</span> py-<span class="hljs-number">2</span> text-sm <span class="hljs-attribute">placeholder</span>:text-stone-<span class="hljs-number">400</span> <span class="hljs-attribute">focus</span>:outline-none <span class="hljs-attribute">focus</span>:ring <span class="hljs-attribute">focus</span>:ring-yellow-<span class="hljs-number">300</span> <span class="hljs-attribute">md</span>:px-<span class="hljs-number">6</span> <span class="hljs-attribute">md</span>:py-<span class="hljs-number">3</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、在React中新建组件"><a href="#2、在React中新建组件" class="headerlink" title="2、在React中新建组件"></a>2、在React中新建组件</h5><p>eg：这里创建了一个既可以被当作button又可以被当作Link的可重用组件</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Link</span>, useNavigate &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">LinkButton</span>(<span class="hljs-params">&#123; children, to &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> navigate = <span class="hljs-title function_">useNavigate</span>();<br>  <span class="hljs-keyword">const</span> className = <span class="hljs-string">&#x27;text-sm text-blue-300 hover:text-blue-600 hover:underline&#x27;</span>;<br><br>  <span class="hljs-keyword">if</span> (to === <span class="hljs-string">&#x27;-1&#x27;</span>)<br>    <span class="hljs-keyword">return</span> (<br>      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> navigate(-1)&#125; className=&#123;className&#125;&gt;</span><br><span class="language-xml">        <span class="hljs-symbol">&amp;larr;</span> Go back</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br>    );<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#123;to&#125;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&#123;className&#125;</span>&gt;</span></span><br><span class="language-xml">      &#123;children&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">LinkButton</span>;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（9）配置"><a href="#（9）配置" class="headerlink" title="（9）配置"></a>（9）配置</h4><p>可以查看默认配置</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240918155917608.png" srcset="/img/loading.gif" lazyload alt="image-20240918155917608" style="zoom:50%;" />
+
+<p>修改默认配置：在<code>tailwind.config.js</code>中：</p>
+<p>（按照默认配置文件的格式）</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">/** @type &#123;import(&#x27;tailwindcss&#x27;).Config&#125; */</span><br><span class="hljs-comment">//eslint-disable-next-line  </span><br>export default <span class="hljs-punctuation">&#123;</span><br>  content<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>&#x27;./index.html&#x27;<span class="hljs-punctuation">,</span> &#x27;./src<span class="hljs-comment">/**/</span>*.<span class="hljs-punctuation">&#123;</span>js<span class="hljs-punctuation">,</span>ts<span class="hljs-punctuation">,</span>jsx<span class="hljs-punctuation">,</span>tsx<span class="hljs-punctuation">&#125;</span>&#x27;<span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  theme<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    fontFamily<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      sans<span class="hljs-punctuation">:</span> &#x27;Roboto Mono<span class="hljs-punctuation">,</span> monospace&#x27;<span class="hljs-punctuation">,</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    extend<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  plugins<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br><span class="hljs-punctuation">&#125;</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（10）type"><a href="#（10）type" class="headerlink" title="（10）type"></a>（10）type</h4><p>Button组件：</p>
+<p>接收type props，并使用styles来应用不同类名</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Link</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Button</span>(<span class="hljs-params">&#123; children, disabled, to, type &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> base =<br>    <span class="hljs-string">&#x27;inline-block rounded-full bg-yellow-500 uppercase tracking-wide text-stone-800 transition-colors duration-300 hover:bg-yellow-300 focus:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed&#x27;</span>;<br><br>  <span class="hljs-keyword">const</span> styles = &#123;<br>    <span class="hljs-attr">primary</span>: base + <span class="hljs-string">&#x27; px-4 py-3 md:px-6 md:py-4&#x27;</span>,<br>    <span class="hljs-attr">small</span>: base + <span class="hljs-string">&#x27; px-4 py-2 md:px-5 md:py-2.5 text-xs&#x27;</span>,<br>  &#125;;<br><br>  <span class="hljs-keyword">if</span> (to)<br>    <span class="hljs-keyword">return</span> (<br>      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&#123;styles[type]&#125;</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#123;to&#125;</span>&gt;</span></span><br><span class="language-xml">        &#123;children&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span></span><br>    );<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">disabled</span>=<span class="hljs-string">&#123;disabled&#125;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&#123;styles[type]&#125;</span>&gt;</span></span><br><span class="language-xml">      &#123;children&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">Button</span>;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程15-使用Tailwind设计项目界面</div>
+      <div>http://example.com/2024/09/13/react课程15-使用Tailwind设计项目界面/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 13, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/19/react%E8%AF%BE%E7%A8%8B16-%E7%BB%A7%E7%BB%AD%E4%BD%BF%E7%94%A8Redux%E6%9E%84%E5%BB%BApizza%E9%A1%B9%E7%9B%AE/" title="react课程16-继续使用Redux构建pizza项目">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">react课程16-继续使用Redux构建pizza项目</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/11/react%E8%AF%BE%E7%A8%8B14.1-React-Router%E4%B8%93%E9%A2%98/" title="react课程14.1-React-Router专题">
+                        <span class="hidden-mobile">react课程14.1-React-Router专题</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

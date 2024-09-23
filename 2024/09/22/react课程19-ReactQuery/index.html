@@ -1,0 +1,996 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本节课学习能够远程管理supabase的React Query🤓">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程19-ReactQuery">
+<meta property="og:url" content="http://example.com/2024/09/22/react%E8%AF%BE%E7%A8%8B19-ReactQuery/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="本节课学习能够远程管理supabase的React Query🤓">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240922103715683.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240922103801784.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240922164720981.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240922164746787.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240922182919583.png">
+<meta property="article:published_time" content="2024-09-22T02:42:40.342Z">
+<meta property="article:modified_time" content="2024-09-23T14:46:03.953Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240922103715683.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程19-ReactQuery - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程19-ReactQuery"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-22 10:42" pubdate>
+          September 22, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程19-ReactQuery</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on September 23, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本节课学习能够远程管理supabase的React Query🤓</p>
+<span id="more"></span>
+
+<p>（Jonas终于能教他最爱的库了，他很激动🙉）</p>
+<h3 id="一·、什么是React-Query"><a href="#一·、什么是React-Query" class="headerlink" title="一·、什么是React Query"></a>一·、什么是React Query</h3><h4 id="（1）特点"><a href="#（1）特点" class="headerlink" title="（1）特点"></a>（1）特点</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240922103715683.png" srcset="/img/loading.gif" lazyload alt="image-20240922103715683" style="zoom: 33%;" /><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240922103801784.png" srcset="/img/loading.gif" lazyload alt="image-20240922103801784" style="zoom: 33%;" /></p>
+<p><strong>✅数据获取</strong>：提供简洁的 API 来发起异步请求，支持 REST API、GraphQL 等数据源。</p>
+<p>✅<strong>缓存管理</strong>：自动缓存数据，避免不必要的网络请求，提高性能。</p>
+<p>✅<strong>实时更新</strong>：支持实时数据更新，通过轮询、WebSocket 或后台刷新机制来保持数据的新鲜度。</p>
+<p><strong>✅自动重试</strong>：当请求失败时，可以自动重试请求，增强应用的稳定性。</p>
+<p><strong>✅查询和变更</strong>：使用 <code>useQuery</code> 来获取数据，使用 <code>useMutation</code> 来处理数据的增删改操作。</p>
+<p>✅<strong>状态管理</strong>：提供丰富的状态管理，允许开发者轻松处理加载、错误和成功状态。</p>
+<p><strong>✅易于集成</strong>：可以与现有的 React 应用轻松集成，无需重构代码。</p>
+<h4 id="（2）与其他类似的库相比的优点"><a href="#（2）与其他类似的库相比的优点" class="headerlink" title="（2）与其他类似的库相比的优点"></a>（2）与其他类似的库相比的优点</h4><p>React Query 相对于其他类似库（如 Redux、Apollo Client、SWR 等）有几个独特的优势和特点：</p>
+<ol>
+<li><strong>数据获取与缓存分离</strong></li>
+</ol>
+<p>React Query 专注于数据获取和缓存管理，而不是全局状态管理。这使得它更加简洁和高效，专注于异步数据的流动，而不需要管理其他状态。</p>
+<ol start="2">
+<li><strong>自动缓存和无缝更新</strong></li>
+</ol>
+<p>React Query 会自动缓存请求的数据，并在数据过期时自动重新获取。它提供了强大的数据同步机制，允许实时更新和后台刷新，保持数据的新鲜度。</p>
+<ol start="3">
+<li><strong>轻量级的 API</strong></li>
+</ol>
+<p>与 Redux 等库相比，React Query 提供了更简单的 API。使用 <code>useQuery</code> 和 <code>useMutation</code> 进行数据操作，无需编写复杂的 reducer 和 action。</p>
+<ol start="4">
+<li><strong>内置的状态管理</strong></li>
+</ol>
+<p>React Query 内置了加载、错误和成功等状态管理，无需额外处理。开发者可以轻松获取请求状态，从而更好地处理 UI 渲染。</p>
+<ol start="5">
+<li><strong>自动重试和错误处理</strong></li>
+</ol>
+<p>它可以自动重试失败的请求，并允许开发者自定义重试逻辑。这种机制提高了应用的鲁棒性。</p>
+<ol start="6">
+<li><strong>无缝集成</strong></li>
+</ol>
+<p>React Query 可以与任何后端 API（REST、GraphQL 等）无缝集成，无需特定的配置。这种灵活性使得它适用于各种项目。</p>
+<ol start="7">
+<li><strong>支持服务端渲染（SSR）</strong></li>
+</ol>
+<p>React Query 提供了服务端渲染支持，允许在服务器端预取数据，并在客户端使用，提升页面加载性能。</p>
+<ol start="8">
+<li><strong>开箱即用的 DevTools</strong></li>
+</ol>
+<p>React Query 提供了开发者工具，方便查看当前的查询状态、缓存和数据。这对于调试和优化应用非常有帮助。</p>
+<h3 id="二、set-up-React-Query✅"><a href="#二、set-up-React-Query✅" class="headerlink" title="二、set up React Query✅"></a>二、set up React Query✅</h3><blockquote>
+<p><code>npm i date-fns</code>  日期功能（跟视频不一样了，导入方式，问GPT吧）</p>
+</blockquote>
+<h4 id="（1）安装配置"><a href="#（1）安装配置" class="headerlink" title="（1）安装配置"></a>（1）安装配置</h4><p>⭕<code>npm i @tanstack/react-query@4</code>       <a target="_blank" rel="noopener" href="https://tanstack.com/query/v3">https://tanstack.com/query/v3</a></p>
+<p>（23年是v4，现在已经是v5了🙉）</p>
+<p> ⭕<code>npm i @tanstack/react-query-devtools@4</code>安装Dev Tool（这次不用浏览器内安装）</p>
+<h4 id="（2）初步使用"><a href="#（2）初步使用" class="headerlink" title="（2）初步使用"></a>（2）初步使用</h4><p>在App.js中写入<code>const queryClient = new QueryClient(&#123;（可选项）&#125;）</code></p>
+<p>用<code>&lt;QueryClientProvider client=&#123;queryClient&#125;&gt;</code>包裹整个App</p>
+<p>子组件中写入<code>&lt;ReactQueryDevtools initialIsOpen=&#123;false&#125; /&gt;</code></p>
+<h4 id="（3）示例"><a href="#（3）示例" class="headerlink" title="（3）示例"></a>（3）示例</h4><p>获取数据的方式：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> &#123;<br>  isLoading,<br>  <span class="hljs-attr">data</span>: cabins,<br>  error,<br>&#125; = <span class="hljs-title function_">useQuery</span>(&#123;<br>  <span class="hljs-attr">queryKey</span>: [<span class="hljs-string">&#x27;cabins&#x27;</span>],<br>  <span class="hljs-attr">queryFn</span>: getCabins,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>设置数据由fresh到stale的时间：（在App.js）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> queryClient = <span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryClient</span>(&#123;<br>  <span class="hljs-attr">defaultOptions</span>: &#123;<br>    <span class="hljs-attr">queries</span>: &#123;<br>      <span class="hljs-attr">staleTime</span>: <span class="hljs-number">0</span>,<br>    &#125;,<br>  &#125;,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><code>getCabins:</code>（从API Docs中查看相应代码）（记得修改相应Policy权限）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getCabins</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-keyword">await</span> supabase.<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;cabins&#x27;</span>).<span class="hljs-title function_">select</span>(<span class="hljs-string">&#x27;*&#x27;</span>);<br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;cabins could not be loaded&#x27;</span>);<br>  &#125;<br>  <span class="hljs-keyword">return</span> data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、mutating（变异）数据"><a href="#三、mutating（变异）数据" class="headerlink" title="三、mutating（变异）数据"></a>三、mutating（变异）数据</h3><p>当在supabase中修改数据后，网站上加载出的表单会跟随staleTime改变。</p>
+<p>但是如果是远程修改数据呢？（比如删除，如下所示）</p>
+<h4 id="（1）删除方程（放置在apiCabins中）"><a href="#（1）删除方程（放置在apiCabins中）" class="headerlink" title="（1）删除方程（放置在apiCabins中）"></a>（1）删除方程（放置在apiCabins中）</h4><p>修改了eq（）中的内容，可以和Docs中的代码做照应</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">deleteCabin</span>(<span class="hljs-params">&#123; id &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-keyword">await</span> supabase.<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;cabins&#x27;</span>).<span class="hljs-title function_">delete</span>().<span class="hljs-title function_">eq</span>(<span class="hljs-string">&#x27;id&#x27;</span>, id);<br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;cabins could not be deleted&#x27;</span>);<br>  &#125;<br>  <span class="hljs-keyword">return</span> data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>第一个值</strong> <code>&#39;id&#39;</code>：</p>
+<ul>
+<li>这个值是数据库表中的列名，表示你要匹配的字段。在这里，它指的是小屋表中的 <code>id</code> 列。</li>
+</ul>
+<p><strong>第二个值</strong> <code>id</code>：</p>
+<ul>
+<li>这个值是你想删除的具体记录的唯一标识符。它是从传入的对象中解构出来的 <code>id</code> 值，代表要删除的小屋的 ID。</li>
+</ul>
+<h4 id="（2）连接删除组件"><a href="#（2）连接删除组件" class="headerlink" title="（2）连接删除组件"></a>（2）连接删除组件</h4><p>要点解析在代码注释中：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">CabinRow</span>(<span class="hljs-params">&#123; cabin &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123;<br>    <span class="hljs-attr">id</span>: cabinId,  <span class="hljs-comment">//这里重构了名称，因此在onClick函数中不能只传递一个参数而是需要传递对象</span><br>    name,<br>    maxCapacity,<br>    regularPrice,<br>    discount,<br>    image,<br>  &#125; = cabin;<br><br>  <span class="hljs-keyword">const</span> queryClient = <span class="hljs-title function_">useQueryClient</span>(); <span class="hljs-comment">//通过这个自定义hook来获取App.Js中建立的Client</span><br><br>  <span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">isLoading</span>: isDeleting, mutate &#125; = <span class="hljs-title function_">useMutation</span>(&#123;  <span class="hljs-comment">//看这个hook！！！！</span><br>    <span class="hljs-attr">mutationFn</span>: deleteCabin,  <span class="hljs-comment">//这是变异数据的方程</span><br>    <span class="hljs-attr">onSuccess</span>: <span class="hljs-function">() =&gt;</span> &#123;       <span class="hljs-comment">//这是编译成功的回调函数</span><br>      <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;Cabin successfully deleted&#x27;</span>);<br>      queryClient.<span class="hljs-title function_">invalidateQueries</span>(&#123;<br>        <span class="hljs-attr">queryKey</span>: [<span class="hljs-string">&#x27;cabins&#x27;</span>],<br>      &#125;);   <span class="hljs-comment">//这里的目的是强制触发重新获取数据以更新界面，invalidate的意思就是更新</span><br>    &#125;,<br>    <span class="hljs-attr">onError</span>: <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-title function_">alert</span>(err.<span class="hljs-property">message</span>),  <span class="hljs-comment">//这里是失败后的回调函数，显示错误</span><br>  &#125;);<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">TableRow</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;image&#125;</span> /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Cabin</span>&gt;</span>&#123;name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">Cabin</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Fits up to &#123;maxCapacity&#125; guests<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Price</span>&gt;</span>&#123;formatCurrency(regularPrice)&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">Price</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Discount</span>&gt;</span>&#123;formatCurrency(discount)&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">Discount</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> mutate(&#123; id: cabinId &#125;)&#125; disabled=&#123;isDeleting&#125;&gt;</span><br><span class="language-xml">        delete         &#123;/*就是这里的函数，参数使用&#123;id：cabinId&#125;而不是直接是cabinId*/&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">TableRow</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（3）装饰通知（React-Toast）"><a href="#（3）装饰通知（React-Toast）" class="headerlink" title="（3）装饰通知（React Toast）"></a>（3）装饰通知（React Toast）</h4><p>⭕<code>npm i react-hot-toast</code>     <a target="_blank" rel="noopener" href="https://react-hot-toast.com/%EF%BC%88%E5%A5%BD%E5%8F%AF%E7%88%B1%E7%9A%84%E7%95%8C%E9%9D%A2hhh%EF%BC%89">https://react-hot-toast.com/（好可爱的界面hhh）</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240922164720981.png" srcset="/img/loading.gif" lazyload alt="image-20240922164720981"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240922164746787.png" srcset="/img/loading.gif" lazyload alt="image-20240922164746787"></p>
+<h5 id="1、首先：（先去查看官方文档）在App-js的架构中，在子组件的最后写上："><a href="#1、首先：（先去查看官方文档）在App-js的架构中，在子组件的最后写上：" class="headerlink" title="1、首先：（先去查看官方文档）在App.js的架构中，在子组件的最后写上："></a>1、首先：（先去查看官方文档）在App.js的架构中，在子组件的最后写上：</h5><p>（烤面包机当通知也太好笑了吧hhhh）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Toaster</span><br>        position=<span class="hljs-string">&quot;top-center&quot;</span>  <span class="hljs-comment">//位置</span><br>        gutter=&#123;<span class="hljs-number">12</span>&#125;          <span class="hljs-comment">//各个toast的间距</span><br>        containerStyle=&#123;&#123; <span class="hljs-attr">margin</span>: <span class="hljs-string">&#x27;8px&#x27;</span> &#125;&#125;    <span class="hljs-comment">//外边距</span><br>        toastOptions=&#123;&#123;   <span class="hljs-comment">//定义了不同类型 toast 的显示选项。</span><br>          <span class="hljs-attr">success</span>: &#123; <br>            <span class="hljs-attr">duration</span>: <span class="hljs-number">3000</span>，    <span class="hljs-comment">//持续时间</span><br>          &#125;,<br>          <span class="hljs-attr">error</span>: &#123;<br>            <span class="hljs-attr">duration</span>: <span class="hljs-number">5000</span>,<br>          &#125;,<br>          <span class="hljs-attr">style</span>: &#123;<br>            <span class="hljs-attr">fontSize</span>: <span class="hljs-string">&#x27;16px&#x27;</span>,<br>            <span class="hljs-attr">maxWidth</span>: <span class="hljs-string">&#x27;500px&#x27;</span>,<br>            <span class="hljs-attr">padding</span>: <span class="hljs-string">&#x27;16px 24px&#x27;</span>,<br>            <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&#x27;var(--color-grey-0)&#x27;</span>,<br>            <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;var(--color-grey-700)&#x27;</span>,<br>          &#125;,<br>        &#125;&#125;<br>      /&gt;<br></code></pre></td></tr></table></figure>
+
+<h5 id="2、使用"><a href="#2、使用" class="headerlink" title="2、使用"></a>2、使用</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">toast.<span class="hljs-title function_">success</span>(<span class="hljs-string">&#x27;Cabin successfully deleted&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、React-Hook-Form"><a href="#四、React-Hook-Form" class="headerlink" title="四、React Hook Form"></a>四、React Hook Form</h3><p>⭕<code>npm i react-hook-form@7</code></p>
+<h4 id="（1）入门"><a href="#（1）入门" class="headerlink" title="（1）入门"></a>（1）入门</h4><p>非常好的库，使提交表格方便。</p>
+<h5 id="1、const-register-handleSubmit-useForm"><a href="#1、const-register-handleSubmit-useForm" class="headerlink" title="1、const { register, handleSubmit } = useForm();"></a>1、<code>const &#123; register, handleSubmit &#125; = useForm();</code></h5><ul>
+<li>**<code>register</code>**：这是一个函数，用于将表单字段注册到 React Hook Form 中，以便它能够跟踪其状态和验证。</li>
+<li>**<code>handleSubmit</code>**：这是一个函数，用于处理表单提交事件。当用户提交表单时，它会调用你提供的提交处理函数。</li>
+</ul>
+<h5 id="2、在input字段中加入register："><a href="#2、在input字段中加入register：" class="headerlink" title="2、在input字段中加入register："></a>2、在input字段中加入register：</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Input</span> type=<span class="hljs-string">&quot;text&quot;</span> id=<span class="hljs-string">&quot;name&quot;</span> &#123;...<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;name&#x27;</span>)&#125; /&gt;<br></code></pre></td></tr></table></figure>
+
+<h5 id="3、添加提交函数"><a href="#3、添加提交函数" class="headerlink" title="3、添加提交函数"></a>3、添加提交函数</h5><p>这是我们自己创建的Form组件，添加onSubmit函数：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Form</span> onSubmit=&#123;<span class="hljs-title function_">handleSubmit</span>(onSubmit)&#125;&gt;  <br></code></pre></td></tr></table></figure>
+
+<p>这里是onSubmit函数：（然后表格里的数据就完美出现了）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">onSubmit</span>(<span class="hljs-params">data</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);<br> &#125;<br></code></pre></td></tr></table></figure>
+
+<p>下面是被register后的input字段的prop，多了不一样的东西。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240922182919583.png" srcset="/img/loading.gif" lazyload alt="image-20240922182919583"></p>
+<h5 id="4、使用Form创建新的Cabin"><a href="#4、使用Form创建新的Cabin" class="headerlink" title="4、使用Form创建新的Cabin"></a>4、使用Form创建新的Cabin</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">createCabin</span>(<span class="hljs-params">newCabin</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-keyword">await</span> supabase<br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;cabins&#x27;</span>)<br>    .<span class="hljs-title function_">insert</span>([newCabin])<br>    .<span class="hljs-title function_">select</span>();<br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;cabins could not be created&#x27;</span>);<br>  &#125;<br>  <span class="hljs-keyword">return</span> data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>其实没啥特别的，注意表单的内容和cabin的结构一致就行。</p>
+<h4 id="（2）表单的错误处理"><a href="#（2）表单的错误处理" class="headerlink" title="（2）表单的错误处理"></a>（2）表单的错误处理</h4><blockquote>
+<p>”React Hook Form最闪亮耀眼的地方是表单错误验证“</p>
+</blockquote>
+<h5 id="1、"><a href="#1、" class="headerlink" title="1、"></a>1、</h5><p>先看看我们通过useForm获得了什么：</p>
+<p>⭐<code>const &#123; register, handleSubmit, reset, getValues, formState &#125; = useForm();</code></p>
+<ul>
+<li>**<code>reset</code>**：用于重置表单的值到初始状态，通常在提交成功后调用。</li>
+<li>**<code>getValues</code>**：获取当前表单字段的值，可以在需要时获取字段的最新值。</li>
+<li>**<code>formState</code>**：包含表单的状态信息，如 <code>isSubmitting</code>、<code>isValid</code> 和 <code>errors</code> 等，方便进行表单状态的管理和展示。</li>
+</ul>
+<p>于是……</p>
+<ul>
+<li>可以在onSuccess的回调函数中添加 reset()，清空表单</li>
+<li>const { errors } &#x3D; formState;来获得错误信息以显示在ui界面，Form的onSubmit函数中添加onError： <code>&lt;Form onSubmit=&#123;handleSubmit(onSubmit, onError)&#125;&gt;</code>，如果表单提交不成功就会调用onError函数，它的参数是errors</li>
+</ul>
+<h5 id="2、表单验证"><a href="#2、表单验证" class="headerlink" title="2、表单验证"></a>2、表单验证</h5><p>验证内容在register中添加，例如</p>
+<ul>
+<li>maxCapacity表单：</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&#123;...<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;maxCapacity&#x27;</span>, &#123;<br>   <span class="hljs-attr">required</span>: <span class="hljs-string">&#x27;This field is requied&#x27;</span>,<br>   <span class="hljs-attr">min</span>: &#123;<br>     <span class="hljs-attr">value</span>: <span class="hljs-number">1</span>,<br>     <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;Capacity should be at least 1&#x27;</span>,<br>     &#125;,<br>&#125;)&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>discount表单：（validate关键字：自定义验证）✅应用getValues函数访问表内数据</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&#123;...<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;discount&#x27;</span>, &#123;<br>   <span class="hljs-attr">required</span>: <span class="hljs-string">&#x27;This field is requied&#x27;</span>,<br>   <span class="hljs-attr">validate</span>: <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span><br>      value &lt;= <span class="hljs-title function_">getValues</span>().<span class="hljs-property">regularPrice</span> ||<br>      <span class="hljs-string">&#x27;DisCount should be less than regular price &#x27;</span>,<br>&#125;)&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="五、上传图片到supabase"><a href="#五、上传图片到supabase" class="headerlink" title="五、上传图片到supabase"></a>五、上传图片到supabase</h3><p>⭕<a target="_blank" rel="noopener" href="https://supabase.com/docs/reference/javascript/storage-from-upload%E8%AE%BF%E9%97%AE%E6%AD%A4%E7%BD%91%E7%AB%99%E6%89%BE%E5%AF%BB%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF">https://supabase.com/docs/reference/javascript/storage-from-upload访问此网站找寻详细信息</a></p>
+<p>首先需要设置rlp（Policy）</p>
+<h4 id="（1）建立函数"><a href="#（1）建立函数" class="headerlink" title="（1）建立函数"></a>（1）建立函数</h4><h5 id="1、得到图片名和图片路径"><a href="#1、得到图片名和图片路径" class="headerlink" title="1、得到图片名和图片路径"></a>1、得到图片名和图片路径</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> imageName = <span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">Math</span>.random()&#125;</span>-<span class="hljs-subst">$&#123;newCabin.image.name&#125;</span>`</span>.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>使用 <code>Math.random()</code> 生成随机数，以防止图片名称冲突，并将其与原图片名称拼接。<code>replaceAll</code> 用于去除 <code>/</code> 字符。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> imagePath = <span class="hljs-string">`<span class="hljs-subst">$&#123;supabaseUrl&#125;</span>/storage/v1/object/public/cabin-images/<span class="hljs-subst">$&#123;imageName&#125;</span>`</span>;<br></code></pre></td></tr></table></figure>
+
+<p><code>supabaseUrl</code>是在<code>supabase.js</code>中定义的。至于路径，我们在前面创建了两个Buket，其中一个是cabin-images，存储cabin图像，从那里复制而来。</p>
+<h5 id="2、create-cabin"><a href="#2、create-cabin" class="headerlink" title="2、create cabin"></a>2、create cabin</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-keyword">await</span> supabase<br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;cabins&#x27;</span>)<br>    .<span class="hljs-title function_">insert</span>([&#123; ...newCabin, <span class="hljs-attr">image</span>: imagePath &#125;]);<br><br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Cabin could not be created&#x27;</span>);<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p>❓❓在这段代码中，将 <code>image</code> 单独列出来的原因主要有以下几点：</p>
+<ol>
+<li><p><strong>存储路径的动态性</strong>：</p>
+<ul>
+<li>图片的路径是通过生成随机名称和构造完整 URL 动态创建的。在插入到数据库之前，路径需要先确定。因此，在插入数据时，使用生成的 <code>imagePath</code> 作为字段的一部分。</li>
+</ul>
+</li>
+<li><p><strong>解耦数据逻辑</strong>：</p>
+<ul>
+<li>将 <code>image</code> 单独列出可以清晰地分隔小屋的基本信息和图片信息，使数据结构更清晰。在数据表中，通常不直接存储文件的内容，而是存储文件的 URL 或路径。</li>
+</ul>
+</li>
+<li><p><strong>确保数据完整性</strong>：</p>
+<ul>
+<li>在创建小屋的过程中，首先插入小屋信息，再上传图片。如果上传失败，可以根据存储的 <code>id</code> 删除对应的小屋记录。这种分步骤处理的方式使得在发生错误时能够更容易地回滚操作。</li>
+</ul>
+</li>
+<li><p><strong>方便后续处理</strong>：</p>
+<ul>
+<li>如果将 <code>image</code> 与其他小屋信息合并在一起，后续处理时可能会变得复杂。例如，如果需要仅更新或删除图片，单独存储可以更加方便。</li>
+</ul>
+</li>
+</ol>
+<h5 id="3、upload-image"><a href="#3、upload-image" class="headerlink" title="3、upload image"></a>3、upload image</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">error</span>: storageError &#125; = <span class="hljs-keyword">await</span> supabase.<span class="hljs-property">storage</span><br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;cabin-images&#x27;</span>)  <span class="hljs-comment">//这里写buket的名字</span><br>    .<span class="hljs-title function_">upload</span>(imageName, newCabin.<span class="hljs-property">image</span>);   <span class="hljs-comment">//括号前面写文件名，后面是上传的文件本身</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="4、Delete-the-cabin-if-there-was-an-error-uploading-image"><a href="#4、Delete-the-cabin-if-there-was-an-error-uploading-image" class="headerlink" title="4、Delete the cabin if there was an error uploading image"></a>4、Delete the cabin if there was an error uploading image</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">if</span> (storageError) &#123;<br>    <span class="hljs-keyword">await</span> supabase.<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;cabins&#x27;</span>).<span class="hljs-title function_">delete</span>().<span class="hljs-title function_">eq</span>(<span class="hljs-string">&#x27;id&#x27;</span>, data.<span class="hljs-property">id</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(storageError);<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<br>      <span class="hljs-string">&#x27;Cabin image could not be uploaded and the cabin was not created&#x27;</span><br>    );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="（2）修改submit函数"><a href="#（2）修改submit函数" class="headerlink" title="（2）修改submit函数"></a>（2）修改submit函数</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">onSubmit</span>(<span class="hljs-params">data</span>) &#123;<br>  <span class="hljs-title function_">mutate</span>(&#123; ...data, <span class="hljs-attr">image</span>: data.<span class="hljs-property">image</span>[<span class="hljs-number">0</span>] &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="六、修改cabin信息"><a href="#六、修改cabin信息" class="headerlink" title="六、修改cabin信息"></a>六、修改cabin信息</h3><p>改bug改的想鼠。。。💀💀💀💀💀💀（把Jonas没找到的bug找出来了，我真棒）</p>
+<p>这一部分有点儿难理解，让我仔细地捋一下。</p>
+<h4 id="（1）传递表单原有信息"><a href="#（1）传递表单原有信息" class="headerlink" title="（1）传递表单原有信息"></a>（1）传递表单原有信息</h4><p>在修改信息的时候，很明显我们是需要原有的信息的，然后在此基础上加以修改。由于这个修改信息的表单应该和创建信息的表单一样，所以我们可以偷懒直接借用。于是在CabinRow这个组件里，我们可以添加一个按钮：<code>edit</code>，onClick函数控制showForm状态变量，然后就可以在cabinRow的要修改的那一行下面显示CreateCabinForm组件了。（传递给它cabin的所有信息）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&#123;showForm &amp;&amp; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">CreateCabinForm</span> <span class="hljs-attr">cabinToEdit</span>=<span class="hljs-string">&#123;cabin&#125;</span> /&gt;</span></span>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（2）改变CreateCabinForm"><a href="#（2）改变CreateCabinForm" class="headerlink" title="（2）改变CreateCabinForm"></a>（2）改变CreateCabinForm</h4><h5 id="1、接收原有的cabin信息"><a href="#1、接收原有的cabin信息" class="headerlink" title="1、接收原有的cabin信息"></a>1、接收原有的cabin信息</h5><p>组件函数接收object prop：<code>&#123; cabinToEdit = &#123;&#125; &#125;</code></p>
+<p><code>=&#123;&#125;</code>是给它一个default值，因为创建cabin的时候没有传递cabinToEdit，所以就是空。</p>
+<h5 id="2、运用原有的cabin信息"><a href="#2、运用原有的cabin信息" class="headerlink" title="2、运用原有的cabin信息"></a>2、运用原有的cabin信息</h5><ul>
+<li>首先进行拆解：<code>const &#123; id: editId, ...editValues &#125; = cabinToEdit;</code></li>
+</ul>
+<p>这里把id重命名为editId是为了下面传递参数更加方便。</p>
+<ul>
+<li>然后定义变量：<code>const isEditSession = Boolean(editId);</code></li>
+</ul>
+<p>没有editId说明是创建cabin，这个变量决定了在mutate数据的时候究竟是创建cabin还是修改cabin，因为两个动作接受的参数也不愿意。</p>
+<ul>
+<li>接着给予表单defaultValues：<code>const &#123; register, handleSubmit, reset, getValues, formState &#125; = useForm(&#123;defaultValues: isEditSession ? editValues : &#123;&#125;, &#125;);</code></li>
+</ul>
+<p>这里也比较好理解，如果不是编辑默认值就为空。</p>
+<h5 id="3、创建mutate"><a href="#3、创建mutate" class="headerlink" title="3、创建mutate"></a>3、创建mutate</h5><p>这里跟createCabin的逻辑很像，只是改变了名字和接收的参数而已。</p>
+<p><code>mutationFn: (&#123; newCabinData, id &#125;) =&gt; createEditCabin(newCabinData, id)</code>其中这一行着重看。</p>
+<p>⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️请注意请注意这里onSuccess后不能reset（）！！！否则image就变成空（undefined）的了，不知道为什么，其他数据都没问题。。。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">mutate</span>: editCabin, <span class="hljs-attr">isLoading</span>: isEditing &#125; = <span class="hljs-title function_">useMutation</span>(&#123;<br>  <span class="hljs-attr">mutationFn</span>: <span class="hljs-function">(<span class="hljs-params">&#123; newCabinData, id &#125;</span>) =&gt;</span> <span class="hljs-title function_">createEditCabin</span>(newCabinData, id),<br>  <span class="hljs-attr">onSuccess</span>: <span class="hljs-function">() =&gt;</span> &#123;<br>    toast.<span class="hljs-title function_">success</span>(<span class="hljs-string">&#x27;Cabin successfully edited&#x27;</span>);<br>    queryClient.<span class="hljs-title function_">invalidateQueries</span>(&#123;<br>      <span class="hljs-attr">queryKey</span>: [<span class="hljs-string">&#x27;cabins&#x27;</span>],<br>    &#125;);<br>  &#125;,<br>  <span class="hljs-attr">onError</span>: <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> toast.<span class="hljs-title function_">error</span>(err.<span class="hljs-property">message</span>),<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h5 id="4、修改表单disabled逻辑"><a href="#4、修改表单disabled逻辑" class="headerlink" title="4、修改表单disabled逻辑"></a>4、修改表单disabled逻辑</h5><p><code>const isWorking = isCreating || isEditing;</code>用新变量处理</p>
+<h5 id="5、修改onSubmit函数"><a href="#5、修改onSubmit函数" class="headerlink" title="5、修改onSubmit函数"></a>5、修改onSubmit函数</h5><p>如果图片是新上传的，那么它应该是一个对象，我们需要得到得到的是它的名字来给它建立url，如果是旧的信息，那么它应该是string，直接返回它本身就好。</p>
+<p>这里两个函数的参数不太一样，可以观察一下。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">onSubmit</span>(<span class="hljs-params">data</span>) &#123;<br>    <span class="hljs-comment">// console.log(data);</span><br>    <span class="hljs-keyword">const</span> image = <span class="hljs-keyword">typeof</span> data.<span class="hljs-property">image</span> === <span class="hljs-string">&#x27;string&#x27;</span> ? data.<span class="hljs-property">image</span> : data.<span class="hljs-property">image</span>[<span class="hljs-number">0</span>];<br>    <span class="hljs-comment">// console.log(image);</span><br><br>    <span class="hljs-keyword">if</span> (isEditSession)<br>      <span class="hljs-title function_">editCabin</span>(&#123; <span class="hljs-attr">newCabinData</span>: &#123; ...data, image &#125;, <span class="hljs-attr">id</span>: editId &#125;);<br>    <span class="hljs-keyword">else</span> <span class="hljs-title function_">createCabin</span>(&#123; ...data, <span class="hljs-attr">image</span>: image &#125;);<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（3）创建、修改Cabin函数合二为一"><a href="#（3）创建、修改Cabin函数合二为一" class="headerlink" title="（3）创建、修改Cabin函数合二为一"></a>（3）创建、修改Cabin函数合二为一</h4><p>从上到下讲一下要点：</p>
+<h5 id="1、通过一个很巧妙的函数来判定图片需不需要重新创建Url"><a href="#1、通过一个很巧妙的函数来判定图片需不需要重新创建Url" class="headerlink" title="1、通过一个很巧妙的函数来判定图片需不需要重新创建Url"></a>1、通过一个很巧妙的函数来判定图片需不需要重新创建Url</h5><p>接收到传过来的数据时，如果image是旧的，那么它的开头应该是supabaseUrl，所以通过这个来判断是沿用这个image还是通过它新建Url。</p>
+<h5 id="2、if（）条件语句下，需要换一种方式接收数据"><a href="#2、if（）条件语句下，需要换一种方式接收数据" class="headerlink" title="2、if（）条件语句下，需要换一种方式接收数据"></a>2、if（）条件语句下，需要换一种方式接收数据</h5><p><code>await supabase.from(&#39;cabins&#39;)</code> 本身是一个查询操作，返回的是一个查询对象。如果直接在 <code>if</code> 语句中使用它，可能导致控制流不清晰。你需要先构建查询，再执行它。所以我们在这里先创建了query来接收数据</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">createEditCabin</span>(<span class="hljs-params">newCabin, id</span>) &#123;<br> <span class="hljs-comment">// console.log(newCabin, id);</span><br>  <span class="hljs-keyword">const</span> hasImagePath = newCabin.<span class="hljs-property">image</span>?.<span class="hljs-property">startWith</span>?.(supabaseUrl);<br><br>  <span class="hljs-keyword">const</span> imageName = <span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">Math</span>.random()&#125;</span>-<span class="hljs-subst">$&#123;newCabin.image.name&#125;</span>`</span>.<span class="hljs-title function_">replaceAll</span>(<br>    <span class="hljs-string">&#x27;/&#x27;</span>,<br>    <span class="hljs-string">&#x27;&#x27;</span><br>  );<br>  <span class="hljs-keyword">const</span> imagePath = hasImagePath<br>    ? newCabin.<span class="hljs-property">image</span><br>    : <span class="hljs-string">`<span class="hljs-subst">$&#123;supabaseUrl&#125;</span>/storage/v1/object/public/cabin-images/<span class="hljs-subst">$&#123;imageName&#125;</span>`</span>;<br><br>  <span class="hljs-comment">//1.create/edit cabin</span><br>  <span class="hljs-keyword">let</span> query = supabase.<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;cabins&#x27;</span>);<br><br>  <span class="hljs-comment">//a)create</span><br>  <span class="hljs-keyword">if</span> (!id) query = query.<span class="hljs-title function_">insert</span>([&#123; ...newCabin, <span class="hljs-attr">image</span>: imagePath &#125;]);<br><br>  <span class="hljs-comment">//b)edit</span><br>  <span class="hljs-keyword">if</span> (id) query = query.<span class="hljs-title function_">update</span>(&#123; ...newCabin, <span class="hljs-attr">image</span>: imagePath &#125;).<span class="hljs-title function_">eq</span>(<span class="hljs-string">&#x27;id&#x27;</span>, id);<br><br>  <span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-keyword">await</span> query.<span class="hljs-title function_">select</span>().<span class="hljs-title function_">single</span>();<br><br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Cabin could not be created&#x27;</span>);<br>  &#125;<br><br>  <span class="hljs-comment">//2.upload image</span><br>  <span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">error</span>: storageError &#125; = <span class="hljs-keyword">await</span> supabase.<span class="hljs-property">storage</span><br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;cabin-images&#x27;</span>)<br>    .<span class="hljs-title function_">upload</span>(imageName, newCabin.<span class="hljs-property">image</span>);<br><br>  <span class="hljs-comment">//3.Delete the cabin if there was an error uploading image</span><br>  <span class="hljs-keyword">if</span> (storageError) &#123;<br>    <span class="hljs-keyword">await</span> supabase.<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;cabins&#x27;</span>).<span class="hljs-title function_">delete</span>().<span class="hljs-title function_">eq</span>(<span class="hljs-string">&#x27;id&#x27;</span>, data.<span class="hljs-property">id</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(storageError);<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<br>      <span class="hljs-string">&#x27;Cabin image could not be uploaded and the cabin was not created&#x27;</span><br>    );<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="十、零碎"><a href="#十、零碎" class="headerlink" title="十、零碎"></a>十、零碎</h3><h4 id="（1）滚动条"><a href="#（1）滚动条" class="headerlink" title="（1）滚动条"></a>（1）滚动条</h4><h5 id="1、使得sidebar固定，只有main的部分滑动"><a href="#1、使得sidebar固定，只有main的部分滑动" class="headerlink" title="1、使得sidebar固定，只有main的部分滑动"></a>1、使得sidebar固定，只有main的部分滑动</h5><p>在Main的样式中加入： <code>overflow: scroll;</code></p>
+<h5 id="2、隐藏全局滚动条（真的很丑）"><a href="#2、隐藏全局滚动条（真的很丑）" class="headerlink" title="2、隐藏全局滚动条（真的很丑）"></a>2、隐藏全局滚动条（真的很丑）</h5><p>在<code>GlobalStyles.js</code>中找到&#x2F;新建一个body元素，写入： <code>overflow: hidden;</code></p>
+<h4 id="（2）children的prop也可以访问"><a href="#（2）children的prop也可以访问" class="headerlink" title="（2）children的prop也可以访问"></a>（2）children的prop也可以访问</h4><p>例如我们会创建cabin表新建的可重用组件：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">FormRow</span>(<span class="hljs-params">&#123; label, error, children &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">StyledFormRow</span>&gt;</span></span><br><span class="language-xml">      &#123;label &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">htmlFor</span>=<span class="hljs-string">&#123;children.props.id&#125;</span>&gt;</span>&#123;label&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>&#125;</span><br><span class="language-xml">      &#123;children&#125;</span><br><span class="language-xml">      &#123;error &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">Error</span>&gt;</span>&#123;error&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">Error</span>&gt;</span>&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">StyledFormRow</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（3）连接起来的两个表单不能直接删除元素哦"><a href="#（3）连接起来的两个表单不能直接删除元素哦" class="headerlink" title="（3）连接起来的两个表单不能直接删除元素哦"></a>（3）连接起来的两个表单不能直接删除元素哦</h4><p>{    “code”: “23503”,    “details”: “Key is still referenced from table &quot;booking&quot;.”,    “hint”: null,    “message”: “update or delete on table &quot;cabins&quot; violates foreign key constraint &quot;booking_cabinId_fkey&quot; on table &quot;booking&quot;“ }</p>
+<p>想要删除一个cabin的时候报错了，因为它和另一张表单（booking）的内容连接起来了。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程19-ReactQuery</div>
+      <div>http://example.com/2024/09/22/react课程19-ReactQuery/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 22, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/21/react%E8%AF%BE%E7%A8%8B18-Supabase/" title="react课程18-Supabase">
+                        <span class="hidden-mobile">react课程18-Supabase</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

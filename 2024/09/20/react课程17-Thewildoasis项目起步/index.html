@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="全新的项目😼😼😼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程17-Thewildoasis项目起步">
+<meta property="og:url" content="http://example.com/2024/09/20/react%E8%AF%BE%E7%A8%8B17-Thewildoasis%E9%A1%B9%E7%9B%AE%E8%B5%B7%E6%AD%A5/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="全新的项目😼😼😼">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165341339.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165419677.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165504593.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165522320.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165545636.png">
+<meta property="article:published_time" content="2024-09-20T12:29:47.007Z">
+<meta property="article:modified_time" content="2024-09-21T08:50:28.581Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165341339.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程17-Thewildoasis项目起步 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程17-Thewildoasis项目起步"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-20 20:29" pubdate>
+          September 20, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          738 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程17-Thewildoasis项目起步</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on September 21, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>全新的项目😼😼😼</p>
+<span id="more"></span>
+
+<h3 id="一、项目分析（懒得打字版）"><a href="#一、项目分析（懒得打字版）" class="headerlink" title="一、项目分析（懒得打字版）"></a>一、项目分析（懒得打字版）</h3><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165341339.png" srcset="/img/loading.gif" lazyload alt="image-20240920165341339"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165419677.png" srcset="/img/loading.gif" lazyload alt="image-20240920165419677"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165504593.png" srcset="/img/loading.gif" lazyload alt="image-20240920165504593"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165522320.png" srcset="/img/loading.gif" lazyload alt="image-20240920165522320"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165545636.png" srcset="/img/loading.gif" lazyload alt="image-20240920165545636"></p>
+<p>✅安装eslint和router见课程十四</p>
+<h3 id="二、Styled-Components"><a href="#二、Styled-Components" class="headerlink" title="二、Styled Components"></a>二、Styled Components</h3><blockquote>
+<p>怎么prettier需要自己配置文件了呀，不然就不能用，解决了半天，栓Q……</p>
+<p>要先在根目录创建一个.prettierrc并提供基本配置:{  “singleQuote”: true,  “trailingComma”: “es5” }</p>
+</blockquote>
+<p>⭕ <code>npm i styled-components</code></p>
+<p>⭕安装<code>vscode-styled-components</code>拓展使得css代码高亮</p>
+<p>⭕<a target="_blank" rel="noopener" href="https://styled-components.com/">https://styled-components.com/</a></p>
+<h4 id="（1）基本用法"><a href="#（1）基本用法" class="headerlink" title="（1）基本用法"></a>（1）基本用法</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Main</span> = styled.<span class="hljs-property">main</span><span class="hljs-string">`</span><br><span class="hljs-string">  background-color: var(--color-grey-200);</span><br><span class="hljs-string">  padding: 4rem 4.8rem 6.4rem;</span><br><span class="hljs-string">`</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（2）as属性"><a href="#（2）as属性" class="headerlink" title="（2）as属性"></a>（2）as属性</h4><p>在使用 styled-components 时，<code>as</code> 属性和 <code>type</code> 属性的作用有所不同，主要体现在以下几个方面：</p>
+<p><strong><code>as</code> 属性</strong>：</p>
+<ul>
+<li><code>as</code> 属性允许你更改组件的根元素。例如，如果你有一个 <code>styled.button</code>，你可以使用 <code>as=&quot;a&quot;</code> 将其渲染为一个链接，而不是按钮。</li>
+<li><code>as</code> 可以动态地根据需要更改渲染的 HTML 元素，非常灵活。</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">StyledButton</span> = styled.<span class="hljs-property">button</span><span class="hljs-string">`</span><br><span class="hljs-string">  background-color: blue;</span><br><span class="hljs-string">  color: white;</span><br><span class="hljs-string">`</span>;<br><br><span class="hljs-comment">// 使用 as 属性</span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">StyledButton</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;a&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/home&quot;</span>&gt;</span>Go Home<span class="hljs-tag">&lt;/<span class="hljs-name">StyledButton</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p><strong><code>type</code> 属性</strong>：</p>
+<ul>
+<li><code>type</code> 属性通常用于原生 HTML 元素（如 <code>&lt;input&gt;</code> 或 <code>&lt;button&gt;</code>），指定元素的类型。例如，按钮的类型可以是 <code>button</code>、<code>submit</code> 或 <code>reset</code>。</li>
+<li><code>type</code> 属性是一个 HTML 属性，并不涉及 styled-components 的样式处理。</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">StyledButton</span> type=<span class="hljs-string">&quot;submit&quot;</span>&gt;<span class="hljs-title class_">Submit</span>&lt;/<span class="hljs-title class_">StyledButton</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>使用场景</strong>：</p>
+<ol>
+<li>使用 <code>as</code> 可以在同一个 styled 组件上进行多种表现形式的渲染，增加了组件的复用性。</li>
+<li><code>type</code> 用于控制元素的行为，通常在表单相关组件中使用。</li>
+</ol>
+<p>总的来说，<code>as</code> 提供了更大的灵活性和复用性，而 <code>type</code> 则是与元素行为相关的标准 HTML 属性。选择使用 <code>as</code> 而不是 <code>type</code> 主要是因为它与 styled-components 的设计理念相契合，允许更好地控制组件的呈现形式。</p>
+<h4 id="（3）默认props"><a href="#（3）默认props" class="headerlink" title="（3）默认props"></a>（3）默认props</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title class_">Row</span>.<span class="hljs-property">defaultProps</span> = &#123;<br>  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;vertical&#x27;</span>,<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（4）装饰第三方包内组件"><a href="#（4）装饰第三方包内组件" class="headerlink" title="（4）装饰第三方包内组件"></a>（4）装饰第三方包内组件</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">StyledNavLink</span> = <span class="hljs-title function_">styled</span>(<span class="hljs-title class_">NavLink</span>)<br></code></pre></td></tr></table></figure>
+
+<p>使用括号链接第三方包内组件</p>
+<h4 id="（5）数组props"><a href="#（5）数组props" class="headerlink" title="（5）数组props"></a>（5）数组props</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> styled, &#123; css &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;styled-components&#x27;</span>;<br><br><span class="hljs-keyword">const</span> sizes = &#123;<br>  <span class="hljs-attr">small</span>: css`<span class="language-css"></span><br><span class="language-css">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.2rem</span>;</span><br><span class="language-css">    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0.4rem</span> <span class="hljs-number">0.8rem</span>;</span><br><span class="language-css">    <span class="hljs-attribute">text-transform</span>: uppercase;</span><br><span class="language-css">    <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">600</span>;</span><br><span class="language-css">    <span class="hljs-attribute">text-align</span>: center;</span><br><span class="language-css">  `</span>,<br>  <span class="hljs-attr">medium</span>: css`<span class="language-css"></span><br><span class="language-css">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.4rem</span>;</span><br><span class="language-css">    <span class="hljs-attribute">padding</span>: <span class="hljs-number">1.2rem</span> <span class="hljs-number">1.6rem</span>;</span><br><span class="language-css">    <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">500</span>;</span><br><span class="language-css">  `</span>,<br>  <span class="hljs-attr">large</span>: css`<span class="language-css"></span><br><span class="language-css">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.6rem</span>;</span><br><span class="language-css">    <span class="hljs-attribute">padding</span>: <span class="hljs-number">1.2rem</span> <span class="hljs-number">2.4rem</span>;</span><br><span class="language-css">    <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">500</span>;</span><br><span class="language-css">  `</span>,<br>&#125;;<br><br><span class="hljs-keyword">const</span> variations = &#123;<br>  <span class="hljs-attr">primary</span>: css`<span class="language-css"></span><br><span class="language-css">    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--color-brand-<span class="hljs-number">50</span>);</span><br><span class="language-css">    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--color-brand-<span class="hljs-number">600</span>);</span><br><span class="language-css"></span><br><span class="language-css">    &amp;<span class="hljs-selector-pseudo">:hover</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--color-brand-<span class="hljs-number">700</span>);</span><br><span class="language-css">    &#125;</span><br><span class="language-css">  `</span>,<br>  <span class="hljs-attr">secondary</span>: css`<span class="language-css"></span><br><span class="language-css">    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--color-grey-<span class="hljs-number">600</span>);</span><br><span class="language-css">    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">var</span>(--color-grey-<span class="hljs-number">0</span>);</span><br><span class="language-css">    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--color-grey-<span class="hljs-number">200</span>);</span><br><span class="language-css"></span><br><span class="language-css">    &amp;<span class="hljs-selector-pseudo">:hover</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--color-grey-<span class="hljs-number">50</span>);</span><br><span class="language-css">    &#125;</span><br><span class="language-css">  `</span>,<br>  <span class="hljs-attr">danger</span>: css`<span class="language-css"></span><br><span class="language-css">    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--color-red-<span class="hljs-number">100</span>);</span><br><span class="language-css">    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--color-red-<span class="hljs-number">700</span>);</span><br><span class="language-css"></span><br><span class="language-css">    &amp;<span class="hljs-selector-pseudo">:hover</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--color-red-<span class="hljs-number">800</span>);</span><br><span class="language-css">    &#125;</span><br><span class="language-css">  `</span>,<br>&#125;;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Button</span> = styled.<span class="hljs-property">button</span><span class="hljs-string">`</span><br><span class="hljs-string">  border: none;</span><br><span class="hljs-string">  border-radius: var(--border-radius-sm);</span><br><span class="hljs-string">  box-shadow: var(--shadow-sm);</span><br><span class="hljs-string"></span><br><span class="hljs-string">  <span class="hljs-subst">$&#123;(props) =&gt; sizes[props.size]&#125;</span></span><br><span class="hljs-string">  <span class="hljs-subst">$&#123;(props) =&gt; variations[props.variation]&#125;</span></span><br><span class="hljs-string">`</span>;<br><br><span class="hljs-title class_">Button</span>.<span class="hljs-property">defaultProps</span> = &#123;<br>  <span class="hljs-attr">variation</span>: <span class="hljs-string">&#x27;primary&#x27;</span>,<br>  <span class="hljs-attr">size</span>: <span class="hljs-string">&#x27;medium&#x27;</span>,<br>&#125;;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">Button</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、零碎"><a href="#三、零碎" class="headerlink" title="三、零碎"></a>三、零碎</h3><h4 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a>（1）</h4><p>⭕<code>npm i react-icons</code>  图标集： <a target="_blank" rel="noopener" href="https://react-icons.github.io/react-icons/">https://react-icons.github.io/react-icons/</a></p>
+<h4 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">AppLayout</span> /&gt;</span>&#125;&gt;<br>    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">index</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Navigate</span> <span class="hljs-attr">replace</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;dashboard&quot;</span> /&gt;</span>&#125; /&gt;<br><span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>将layout组件包裹住其他的Route，使用<Outlet />组件承接其他组件内容</p>
+<p>index关键字认证主页面，replace关键字替代历史url</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程17-Thewildoasis项目起步</div>
+      <div>http://example.com/2024/09/20/react课程17-Thewildoasis项目起步/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 20, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/21/react%E8%AF%BE%E7%A8%8B18-Supabase/" title="react课程18-Supabase">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">react课程18-Supabase</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/19/react%E8%AF%BE%E7%A8%8B16-%E7%BB%A7%E7%BB%AD%E4%BD%BF%E7%94%A8Redux%E6%9E%84%E5%BB%BApizza%E9%A1%B9%E7%9B%AE/" title="react课程16-继续使用Redux构建pizza项目">
+                        <span class="hidden-mobile">react课程16-继续使用Redux构建pizza项目</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
