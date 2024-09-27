@@ -1,0 +1,921 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本节实现：DarkMode、DashBoard建立、Error Bundary、项目部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程23-项目收尾">
+<meta property="og:url" content="http://example.com/2024/09/27/react%E8%AF%BE%E7%A8%8B23-%E9%A1%B9%E7%9B%AE%E6%94%B6%E5%B0%BE/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="本节实现：DarkMode、DashBoard建立、Error Bundary、项目部署">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927155756049.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927164947789.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927192105306.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927192152464.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927195221035.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927200325930.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927204130502.png">
+<meta property="og:image" content="c:/Users/%E5%A7%9A%E5%A7%9A/AppData/Roaming/Typora/typora-user-images/image-20240927204432552.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927204716005.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927210019652.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927213206860.png">
+<meta property="article:published_time" content="2024-09-27T04:49:51.063Z">
+<meta property="article:modified_time" content="2024-09-27T13:47:17.584Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927155756049.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程23-项目收尾 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程23-项目收尾"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-27 12:49" pubdate>
+          September 27, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程23-项目收尾</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on September 27, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本节实现：DarkMode、DashBoard建立、Error Bundary、项目部署</p>
+<span id="more"></span>
+
+<h3 id="一、实现Dark-Mode"><a href="#一、实现Dark-Mode" class="headerlink" title="一、实现Dark Mode"></a>一、实现Dark Mode</h3><h4 id="（1）useLocalStorage"><a href="#（1）useLocalStorage" class="headerlink" title="（1）useLocalStorage"></a>（1）useLocalStorage</h4><p>这个自定义钩子类似useState的效果，不同的是它是从LocalStorage中来读取值。首先value从LocalStorage通过key值读取，如果没有就返回初始状态。每次value或者key改变，<code>useEffect</code> 会被触发，将当前的 <code>value</code> 保存到 <code>localStorage</code> 中。这确保了状态的任何更新都会同步到 <code>localStorage</code>。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useState, useEffect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">useLocalStorageState</span>(<span class="hljs-params">initialState, key</span>) &#123;<br>  <span class="hljs-keyword">const</span> [value, setValue] = <span class="hljs-title function_">useState</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> storedValue = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(key);<br>    <span class="hljs-keyword">return</span> storedValue ? <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(storedValue) : initialState;<br>  &#125;);<br><br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(key, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(value));<br>    &#125;,<br>    [value, key]<br>  );<br><br>  <span class="hljs-keyword">return</span> [value, setValue];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用 <code>useLocalStorageState</code> 的优势</p>
+<ul>
+<li><strong>持久化存储</strong>：通过 <code>localStorage</code>，状态在用户刷新页面或关闭浏览器后仍然保留。</li>
+<li><strong>用户偏好</strong>：能够保存用户的界面偏好设置（如 <code>dark mode</code> 或 <code>light mode</code>），提升用户体验。</li>
+<li><strong>易于管理</strong>：与 <code>localStorage</code> 同步的状态，使得跨页面的状态管理变得简单。</li>
+</ul>
+<h4 id="（2）contextAPI"><a href="#（2）contextAPI" class="headerlink" title="（2）contextAPI"></a>（2）contextAPI</h4><p>darkmode的状态被设置为全球状态，以加强页面的一致性。因此用到了contextAPI，复习。</p>
+<ol>
+<li>使用createContext新建context</li>
+<li>建立Provider函数，返回context.provider，传递value</li>
+<li>建立useContext()钩子，方便读取context内容。</li>
+<li>导出provider和useContext</li>
+<li>用Provider整个包裹住Appdark</li>
+</ol>
+<p>这里的Provider放置一个useEffect钩子，使得每次isDarkMode切换的时候，都相应地添加或者移除light或者dark类，实现改变亮暗风格的效果。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">DarkModeContext</span> = <span class="hljs-title function_">createContext</span>();<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">DarkModeProvider</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> [isDarkMode, setIsDarkMode] = <span class="hljs-title function_">useLocalStorageState</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&#x27;isDarkMode&#x27;</span>);<br><br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">if</span> (isDarkMode) &#123;<br>        <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;dark-mode&#x27;</span>);<br>        <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&#x27;light-mode&#x27;</span>);<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;light-mode&#x27;</span>);<br>        <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&#x27;dark-mode&#x27;</span>);<br>      &#125;<br>    &#125;,<br>    [isDarkMode]<br>  );<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">toggleDarkMode</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title function_">setIsDarkMode</span>(<span class="hljs-function">(<span class="hljs-params">isDark</span>) =&gt;</span> !isDark);<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">DarkModeContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">isDarkMode</span>, <span class="hljs-attr">toggleDarkMode</span> &#125;&#125;&gt;</span></span><br><span class="language-xml">      &#123;children&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">DarkModeContext.Provider</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">useDarkMode</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> context = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">DarkModeContext</span>);<br>  <span class="hljs-keyword">if</span> (context === <span class="hljs-literal">undefined</span>)<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;DarkModeContext was used outside of DarkModeProvider&#x27;</span>);<br>  <span class="hljs-keyword">return</span> context;<br>&#125;<br><br><span class="hljs-keyword">export</span> &#123; <span class="hljs-title class_">DarkModeProvider</span>, useDarkMode &#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="二、构建Dashboard"><a href="#二、构建Dashboard" class="headerlink" title="二、构建Dashboard"></a>二、构建Dashboard</h3><h4 id="（1）apiBooking"><a href="#（1）apiBooking" class="headerlink" title="（1）apiBooking"></a>（1）apiBooking</h4><h5 id="1、获得指定日期后的预定数"><a href="#1、获得指定日期后的预定数" class="headerlink" title="1、获得指定日期后的预定数"></a>1、获得指定日期后的预定数</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getBookingsAfterDate</span>(<span class="hljs-params">date</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-keyword">await</span> supabase<br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;bookings&#x27;</span>)<br>    .<span class="hljs-title function_">select</span>(<span class="hljs-string">&#x27;created_at, totalPrice, extrasPrice&#x27;</span>)<br>    .<span class="hljs-title function_">gte</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, date)<br>    .<span class="hljs-title function_">lte</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>, <span class="hljs-title function_">getToday</span>(&#123; <span class="hljs-attr">end</span>: <span class="hljs-literal">true</span> &#125;));<br><br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Bookings could not get loaded&#x27;</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、获得指定日期后的入住数"><a href="#2、获得指定日期后的入住数" class="headerlink" title="2、获得指定日期后的入住数"></a>2、获得指定日期后的入住数</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getStaysAfterDate</span>(<span class="hljs-params">date</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-keyword">await</span> supabase<br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;bookings&#x27;</span>)<br>    <span class="hljs-comment">// .select(&#x27;*&#x27;)</span><br>    .<span class="hljs-title function_">select</span>(<span class="hljs-string">&#x27;*, guests(fullName)&#x27;</span>)<br>    .<span class="hljs-title function_">gte</span>(<span class="hljs-string">&#x27;startDate&#x27;</span>, date)<br>    .<span class="hljs-title function_">lte</span>(<span class="hljs-string">&#x27;startDate&#x27;</span>, <span class="hljs-title function_">getToday</span>());<br><br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Bookings could not get loaded&#x27;</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="3、获取当天的活动"><a href="#3、获取当天的活动" class="headerlink" title="3、获取当天的活动"></a>3、获取当天的活动</h5><ol>
+<li>从 <code>bookings</code> 表中查询数据。</li>
+<li>选择所有字段（<code>*</code>）以及关联的 <code>guests</code> 表中的特定字段（<code>fullName</code>、<code>nationality</code> 和 <code>countryFlag</code>）。</li>
+<li>通过 <code>or</code> 条件筛选出符合以下任一条件的预订：<ul>
+<li>状态为 <code>unconfirmed</code> 且 <code>startDate</code> 等于今天的日期。</li>
+<li>状态为 <code>checked-in</code> 且 <code>endDate</code> 等于今天的日期。</li>
+</ul>
+</li>
+<li>根据 <code>created_at</code> 字段对查询结果进行排序。</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getStaysTodayActivity</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-keyword">await</span> supabase<br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;bookings&#x27;</span>)<br>    .<span class="hljs-title function_">select</span>(<span class="hljs-string">&#x27;*, guests(fullName, nationality, countryFlag)&#x27;</span>)<br>    .<span class="hljs-title function_">or</span>(<br>      <span class="hljs-string">`and(status.eq.unconfirmed,startDate.eq.<span class="hljs-subst">$&#123;getToday()&#125;</span>),and(status.eq.checked-in,endDate.eq.<span class="hljs-subst">$&#123;getToday()&#125;</span>)`</span><br>    )<br>    .<span class="hljs-title function_">order</span>(<span class="hljs-string">&#x27;created_at&#x27;</span>);<br><br>  <span class="hljs-comment">// Equivalent to this. But by querying this, we only download the data we actually need, otherwise we would need ALL bookings ever created</span><br>  <span class="hljs-comment">// (stay.status === &#x27;unconfirmed&#x27; &amp;&amp; isToday(new Date(stay.startDate))) ||</span><br>  <span class="hljs-comment">// (stay.status === &#x27;checked-in&#x27; &amp;&amp; isToday(new Date(stay.endDate)))</span><br><br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Bookings could not get loaded&#x27;</span>);<br>  &#125;<br>  <span class="hljs-keyword">return</span> data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（2）使用api中的函数"><a href="#（2）使用api中的函数" class="headerlink" title="（2）使用api中的函数"></a>（2）使用api中的函数</h4><h5 id="useRecentStays"><a href="#useRecentStays" class="headerlink" title="useRecentStays"></a>useRecentStays</h5><p>通过params得到filter中的数据，并计算实际入住的数量。</p>
+<p>subDays函数计算指定日期之前的日期，toISOString()将其转化为supabase能接受的IOS形式。</p>
+<p>useRecentBookings和它很像，不赘述；useTodayActivity较为简单，也不赘述</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useQuery &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@tanstack/react-query&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; subDays &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;date-fns&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; useSearchParams &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; getStaysAfterDate &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../../services/apiBookings&#x27;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">useRecentStays</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [searchParams] = <span class="hljs-title function_">useSearchParams</span>();<br>  <span class="hljs-keyword">const</span> numDays = !searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;last&#x27;</span>)<br>    ? <span class="hljs-number">7</span><br>    : <span class="hljs-title class_">Number</span>(searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;last&#x27;</span>));<br><br>  <span class="hljs-keyword">const</span> queryDate = <span class="hljs-title function_">subDays</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(), numDays).<span class="hljs-title function_">toISOString</span>();<br><br>  <span class="hljs-keyword">const</span> &#123; isLoading, <span class="hljs-attr">data</span>: stays &#125; = <span class="hljs-title function_">useQuery</span>(&#123;<br>    <span class="hljs-attr">queryFn</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">getStaysAfterDate</span>(queryDate),<br>    <span class="hljs-attr">queryKey</span>: [<span class="hljs-string">&#x27;stays&#x27;</span>, <span class="hljs-string">`last-<span class="hljs-subst">$&#123;numDays&#125;</span>`</span>],<br>  &#125;);<br><br>  <span class="hljs-keyword">const</span> confirmedStays = stays?.<span class="hljs-title function_">filter</span>(<br>    <span class="hljs-function">(<span class="hljs-params">stay</span>) =&gt;</span> stay.<span class="hljs-property">status</span> === <span class="hljs-string">&#x27;checked-in&#x27;</span> || stay.<span class="hljs-property">status</span> === <span class="hljs-string">&#x27;checked-out&#x27;</span><br>  );<br><br>  <span class="hljs-keyword">return</span> &#123; isLoading, stays, confirmedStays &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（3）构建stats"><a href="#（3）构建stats" class="headerlink" title="（3）构建stats"></a>（3）构建stats</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927155756049.png" srcset="/img/loading.gif" lazyload alt="image-20240927155756049"></p>
+<p>用到了可重用的组件stat。四个放置在stats组件中，较为简单不赘述。</p>
+<h4 id="（4）使用Recharts-Library构建图表"><a href="#（4）使用Recharts-Library构建图表" class="headerlink" title="（4）使用Recharts Library构建图表"></a>（4）使用Recharts Library构建图表</h4><p>⭕<code>npm i recharts@2</code></p>
+<hr>
+<h5 id="1、销售量线状图（可切换明暗模式）"><a href="#1、销售量线状图（可切换明暗模式）" class="headerlink" title="1、销售量线状图（可切换明暗模式）"></a>1、销售量线状图（可切换明暗模式）</h5><p>（太多参数了，看得我眼花缭乱😵‍💫😵‍💫😵‍💫）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">SalesChart</span>(<span class="hljs-params">&#123; bookings, numDays &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; isDarkMode &#125; = <span class="hljs-title function_">useDarkMode</span>();<br><br>  <span class="hljs-keyword">const</span> allDates = <span class="hljs-title function_">eachDayOfInterval</span>(&#123;<br>    <span class="hljs-attr">start</span>: <span class="hljs-title function_">subDays</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(), numDays - <span class="hljs-number">1</span>),<br>    <span class="hljs-attr">end</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(),<br>  &#125;);<br><br>  <span class="hljs-keyword">const</span> data = allDates.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">date</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-attr">label</span>: <span class="hljs-title function_">format</span>(date, <span class="hljs-string">&#x27;MMM dd&#x27;</span>),<br>      <span class="hljs-attr">totalSales</span>: bookings<br>        .<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">booking</span>) =&gt;</span> <span class="hljs-title function_">isSameDay</span>(date, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(booking.<span class="hljs-property">created_at</span>)))<br>        .<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc, cur</span>) =&gt;</span> acc + cur.<span class="hljs-property">totalPrice</span>, <span class="hljs-number">0</span>),<br>      <span class="hljs-attr">extrasSales</span>: bookings<br>        .<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">booking</span>) =&gt;</span> <span class="hljs-title function_">isSameDay</span>(date, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(booking.<span class="hljs-property">created_at</span>)))<br>        .<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc, cur</span>) =&gt;</span> acc + cur.<span class="hljs-property">extrasPrice</span>, <span class="hljs-number">0</span>),<br>    &#125;;<br>  &#125;);<br><br>  <span class="hljs-keyword">const</span> colors = isDarkMode<br>    ? &#123;<br>        <span class="hljs-attr">totalSales</span>: &#123; <span class="hljs-attr">stroke</span>: <span class="hljs-string">&#x27;#4f46e5&#x27;</span>, <span class="hljs-attr">fill</span>: <span class="hljs-string">&#x27;#4f46e5&#x27;</span> &#125;,<br>        <span class="hljs-attr">extrasSales</span>: &#123; <span class="hljs-attr">stroke</span>: <span class="hljs-string">&#x27;#22c55e&#x27;</span>, <span class="hljs-attr">fill</span>: <span class="hljs-string">&#x27;#22c55e&#x27;</span> &#125;,<br>        <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;#e5e7eb&#x27;</span>,<br>        <span class="hljs-attr">background</span>: <span class="hljs-string">&#x27;#18212f&#x27;</span>,<br>      &#125;<br>    : &#123;<br>        <span class="hljs-attr">totalSales</span>: &#123; <span class="hljs-attr">stroke</span>: <span class="hljs-string">&#x27;#4f46e5&#x27;</span>, <span class="hljs-attr">fill</span>: <span class="hljs-string">&#x27;#c7d2fe&#x27;</span> &#125;,<br>        <span class="hljs-attr">extrasSales</span>: &#123; <span class="hljs-attr">stroke</span>: <span class="hljs-string">&#x27;#16a34a&#x27;</span>, <span class="hljs-attr">fill</span>: <span class="hljs-string">&#x27;#dcfce7&#x27;</span> &#125;,<br>        <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;#374151&#x27;</span>,<br>        <span class="hljs-attr">background</span>: <span class="hljs-string">&#x27;#fff&#x27;</span>,<br>      &#125;;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">StyledSalesChart</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Heading</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;h2&quot;</span>&gt;</span></span><br><span class="language-xml">        Sales from &#123;format(allDates.at(0), &#x27;MMM dd yyyy&#x27;)&#125; <span class="hljs-symbol">&amp;mdash;</span>&#123;&#x27; &#x27;&#125;</span><br><span class="language-xml">        &#123;format(allDates.at(-1), &#x27;MMM dd yyyy&#x27;)&#125;&#123;&#x27; &#x27;&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Heading</span>&gt;</span></span><br><span class="language-xml">        </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">ResponsiveContainer</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#123;300&#125;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;100%&quot;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">AreaChart</span> <span class="hljs-attr">data</span>=<span class="hljs-string">&#123;data&#125;</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">XAxis</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">dataKey</span>=<span class="hljs-string">&quot;label&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">tick</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">fill:</span> <span class="hljs-attr">colors.text</span> &#125;&#125;</span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">tickLine</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">stroke:</span> <span class="hljs-attr">colors.text</span> &#125;&#125;</span></span><br><span class="hljs-tag"><span class="language-xml">          /&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">YAxis</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">unit</span>=<span class="hljs-string">&quot;$&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">tick</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">fill:</span> <span class="hljs-attr">colors.text</span> &#125;&#125;</span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">tickLine</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">stroke:</span> <span class="hljs-attr">colors.text</span> &#125;&#125;</span></span><br><span class="hljs-tag"><span class="language-xml">          /&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">CartesianGrid</span> <span class="hljs-attr">strokeDasharray</span>=<span class="hljs-string">&quot;4&quot;</span> /&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Tooltip</span> <span class="hljs-attr">contentStyle</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">backgroundColor:</span> <span class="hljs-attr">colors.background</span> &#125;&#125; /&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Area</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">dataKey</span>=<span class="hljs-string">&quot;totalSales&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;monotone&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#123;colors.totalSales.stroke&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">fill</span>=<span class="hljs-string">&#123;colors.totalSales.fill&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">strokeWidth</span>=<span class="hljs-string">&#123;2&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;Total sales&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">unit</span>=<span class="hljs-string">&quot;$&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          /&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Area</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">dataKey</span>=<span class="hljs-string">&quot;extrasSales&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;monotone&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#123;colors.extrasSales.stroke&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">fill</span>=<span class="hljs-string">&#123;colors.extrasSales.fill&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">strokeWidth</span>=<span class="hljs-string">&#123;2&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;Extras sales&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">unit</span>=<span class="hljs-string">&quot;$&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          /&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">AreaChart</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">ResponsiveContainer</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">StyledSalesChart</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927164947789.png" srcset="/img/loading.gif" lazyload alt="image-20240927164947789"></p>
+<h5 id="2、构建入住时间统计饼图"><a href="#2、构建入住时间统计饼图" class="headerlink" title="2、构建入住时间统计饼图"></a>2、构建入住时间统计饼图</h5><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927192105306.png" srcset="/img/loading.gif" lazyload alt="image-20240927192105306" style="zoom:67%;" />
+
+
+
+<h4 id="（5）构建今日活动"><a href="#（5）构建今日活动" class="headerlink" title="（5）构建今日活动"></a>（5）构建今日活动</h4><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927192152464.png" srcset="/img/loading.gif" lazyload alt="image-20240927192152464" style="zoom:67%;" />
+
+<h5 id="1、整体布局组件"><a href="#1、整体布局组件" class="headerlink" title="1、整体布局组件"></a>1、整体布局组件</h5><p>加载状态</p>
+<ul>
+<li><p>如果 isLoading 为 false，则表示数据已加载。</p>
+<ul>
+<li><p>活动列表：</p>
+<p>如果 <code>activities</code> 数组长度大于 0，渲染 <code>TodayList</code>，并使用 <code>map</code> 方法遍历每个活动，渲染 <code>TodayItem</code> 组件，传入活动数据。</p>
+</li>
+<li><p>无活动提示</p>
+<p>如果 <code>activities</code> 数组长度为 0，显示 “No activity today…” 的提示。</p>
+</li>
+</ul>
+</li>
+<li><p>如果 <code>isLoading</code> 为 <code>true</code>，则显示一个加载中的 <code>Spinner</code> 组件。</p>
+</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">TodayActivity</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; isLoading, activities &#125; = <span class="hljs-title function_">useTodayActivity</span>();<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">StyledToday</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Row</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;horizontal&quot;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Heading</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;h2&quot;</span>&gt;</span>Today<span class="hljs-tag">&lt;/<span class="hljs-name">Heading</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Row</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">      &#123;!isLoading ? (</span><br><span class="language-xml">        activities?.length &gt; 0 ? (</span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">TodayList</span>&gt;</span></span><br><span class="language-xml">            &#123;activities.map((activity) =&gt; (</span><br><span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">TodayItem</span> <span class="hljs-attr">activity</span>=<span class="hljs-string">&#123;activity&#125;</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;activity.id&#125;</span> /&gt;</span></span><br><span class="language-xml">            ))&#125;</span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">TodayList</span>&gt;</span></span><br><span class="language-xml">        ) : (</span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">NoActivity</span>&gt;</span>No activity today...<span class="hljs-tag">&lt;/<span class="hljs-name">NoActivity</span>&gt;</span></span><br><span class="language-xml">        )</span><br><span class="language-xml">      ) : (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Spinner</span> /&gt;</span></span><br><span class="language-xml">      )&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">StyledToday</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、每个活动的条目组件"><a href="#2、每个活动的条目组件" class="headerlink" title="2、每个活动的条目组件"></a>2、每个活动的条目组件</h5><blockquote>
+<p><code>alt</code> 属性是图像的替代文本。在图像无法显示时，替代文本会被显示出来，此外，它对使用屏幕阅读器的用户也很重要。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">TodayItem</span>(<span class="hljs-params">&#123; activity &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; id, status, guests, numNights &#125; = activity;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">StyledTodayItem</span>&gt;</span></span><br><span class="language-xml">      &#123;status === &#x27;unconfirmed&#x27; &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">Tag</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;green&quot;</span>&gt;</span>Arriving<span class="hljs-tag">&lt;/<span class="hljs-name">Tag</span>&gt;</span>&#125;</span><br><span class="language-xml">      &#123;status === &#x27;checked-in&#x27; &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">Tag</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;blue&quot;</span>&gt;</span>Departing<span class="hljs-tag">&lt;/<span class="hljs-name">Tag</span>&gt;</span>&#125;</span><br><span class="language-xml"></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Flag</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;guests.countryFlag&#125;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&#123;</span>`<span class="hljs-attr">Flag</span> <span class="hljs-attr">of</span> $&#123;<span class="hljs-attr">guests.country</span>&#125;`&#125; /&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Guest</span>&gt;</span>&#123;guests.fullName&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">Guest</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123;numNights&#125; nights<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">      &#123;status === &#x27;unconfirmed&#x27; &amp;&amp; (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">size</span>=<span class="hljs-string">&quot;small&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">variation</span>=<span class="hljs-string">&quot;primary&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">as</span>=<span class="hljs-string">&#123;Link&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">to</span>=<span class="hljs-string">&#123;</span>`/<span class="hljs-attr">checkin</span>/$&#123;<span class="hljs-attr">id</span>&#125;`&#125;</span></span><br><span class="hljs-tag"><span class="language-xml">        &gt;</span></span><br><span class="language-xml">          Check in</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span><br><span class="language-xml">      )&#125;</span><br><span class="language-xml"></span><br><span class="language-xml">      &#123;status === &#x27;checked-in&#x27; &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">CheckoutButton</span> <span class="hljs-attr">bookingId</span>=<span class="hljs-string">&#123;id&#125;</span> /&gt;</span>&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">StyledTodayItem</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、Error-Boundaries"><a href="#三、Error-Boundaries" class="headerlink" title="三、Error Boundaries"></a>三、Error Boundaries</h3><p>⭕<code>npm i react-error-boundary</code></p>
+<hr>
+<h4 id="（1）为App提供错误边界处理"><a href="#（1）为App提供错误边界处理" class="headerlink" title="（1）为App提供错误边界处理"></a>（1）为App提供错误边界处理</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">createRoot</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;root&#x27;</span>)).<span class="hljs-title function_">render</span>(<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">React.StrictMode</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">ErrorBoundary</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">FallbackComponent</span>=<span class="hljs-string">&#123;ErrorFallback&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">onReset</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> window.location.replace(&#x27;/&#x27;)&#125;</span><br><span class="language-xml">    &gt;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ErrorBoundary</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">React.StrictMode</span>&gt;</span></span><br>);<br></code></pre></td></tr></table></figure>
+
+<p><code>ErrorBoundary</code> 是一个<strong>错误边界</strong>组件，它捕获渲染树中的 JavaScript 错误，防止整个应用崩溃。错误边界只捕获<strong>渲染</strong>、<strong>生命周期</strong>和<strong>构造函数</strong>中的错误，不捕获事件处理器中的错误。</p>
+<p>**<code>FallbackComponent=&#123;ErrorFallback&#125;</code>**：</p>
+<ul>
+<li><code>FallbackComponent</code> 指定了当应用中发生错误时要显示的组件。<code>ErrorFallback</code> 是一个自定义组件，用于在错误发生时为用户展示友好的信息。</li>
+</ul>
+<p>**<code>onReset=&#123;() =&gt; window.location.replace(&#39;/&#39;)&#125;</code>**：</p>
+<ul>
+<li><code>onReset</code> 是 <code>ErrorBoundary</code> 组件的一个回调函数，当用户尝试重置错误时触发。在这个例子中，当 <code>ErrorFallback</code> 中的“重试”按钮被点击时，页面将通过 <code>window.location.replace(&#39;/&#39;)</code> 重新加载到应用的根路径（<code>/</code>）。</li>
+</ul>
+<h4 id="（2）构建错误发生后的组件界面（ErrorFallBack）"><a href="#（2）构建错误发生后的组件界面（ErrorFallBack）" class="headerlink" title="（2）构建错误发生后的组件界面（ErrorFallBack）"></a>（2）构建错误发生后的组件界面（ErrorFallBack）</h4><p>由于这个组件是脱离组件树的，所以要放置GlobalStyle，否则样式不起作用</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">ErrorFallback</span>(<span class="hljs-params">&#123; error, resetErrorBoundary &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">GlogalStyles</span> /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">StyledErrorFallback</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Box</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Heading</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;h1&quot;</span>&gt;</span>Someting went wrong 😢<span class="hljs-tag">&lt;/<span class="hljs-name">Heading</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;error.message&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">size</span>=<span class="hljs-string">&quot;large&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;resetErrorBoundary&#125;</span>&gt;</span></span><br><span class="language-xml">            Try again</span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">StyledErrorFallback</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927195221035.png" srcset="/img/loading.gif" lazyload alt="image-20240927195221035"></p>
+<h3 id="四、BUG修整"><a href="#四、BUG修整" class="headerlink" title="四、BUG修整"></a>四、BUG修整</h3><h4 id="（1）toggle的矛盾"><a href="#（1）toggle的矛盾" class="headerlink" title="（1）toggle的矛盾"></a>（1）toggle的矛盾</h4><p>之前我们把检测是否在窗体外点击的默认情况下，将 <code>listenCapturing</code> 设置为 <code>true</code>，表示事件是在捕获阶段被处理的。但是这会造成一个问题是，点击某个窗体的toggle，再次点击无法实现关闭的功能。一下是两点需要修改的地方。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927200325930.png" srcset="/img/loading.gif" lazyload alt="image-20240927200325930"></p>
+<h4 id="（2）不存在的booking订单"><a href="#（2）不存在的booking订单" class="headerlink" title="（2）不存在的booking订单"></a>（2）不存在的booking订单</h4><p>当我们将bookingId随便修改一个值之后，会到达ErrorFallBack界面，显示booking是undifined，但是觉得这个错误描述的不好，于是修改一下错误界面：</p>
+<p> <code>if (!booking) return &lt;Empty resourceName=&quot;booking&quot; /&gt;;</code></p>
+<h4 id="（3）明暗模式的默认值"><a href="#（3）明暗模式的默认值" class="headerlink" title="（3）明暗模式的默认值"></a>（3）明暗模式的默认值</h4><p>在我们的电脑的控制台输入这行代码，会显示true or false。true代表电脑默认是使用的dark模式，false代表light，比如我的电脑就是。于是我们期望可以按照不同用户的电脑需求来使得他们刚进入APP时显示相应的mode。</p>
+<p><code>window.matchMedia(&#39;(prefers-color-scheme: dark)&#39;).matches</code></p>
+<p>所以可以把isDarkMode的默认值就设为上述代码。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> [isDarkMode, setIsDarkMode] = <span class="hljs-title function_">useLocalStorageState</span>(<br>  <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">matchMedia</span>(<span class="hljs-string">&#x27;(prefers-color-scheme: dark)&#x27;</span>).<span class="hljs-property">matches</span>,<br>  <span class="hljs-string">&#x27;isDarkMode&#x27;</span><br>);<br></code></pre></td></tr></table></figure>
+
+
+
+<p>（4）功能展望</p>
+<p>创建booking、编辑booking，创建餐厅，结账时到发票界面、可以选择打印。</p>
+<h3 id="五、部署APP"><a href="#五、部署APP" class="headerlink" title="五、部署APP"></a>五、部署APP</h3><p>⭕<code>npm run build</code>  会生成一个dist包，这就是我们需要上传的包</p>
+<hr>
+<h4 id="（1）上传到Netlify"><a href="#（1）上传到Netlify" class="headerlink" title="（1）上传到Netlify"></a>（1）上传到Netlify</h4><h5 id="1、完善软件包"><a href="#1、完善软件包" class="headerlink" title="1、完善软件包"></a>1、完善软件包</h5><p>首先，我们需要在dist文件夹中新建一个文件：<code>Netlify.toml</code>，内容是：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx">[[redirects]]<br><span class="hljs-keyword">from</span> = <span class="hljs-string">&quot;/*&quot;</span><br>to = <span class="hljs-string">&quot;/index.html&quot;</span><br>status = <span class="hljs-number">200</span><br></code></pre></td></tr></table></figure>
+
+<p>然后再把它添加到项目的根目录下，这样如果需要修改项目再部署，这时候这个文件会自动添加到dist文件夹中，就不需要手动创建了。这是重定向配置，确保当用户直接访问某个页面（例如 <code>/dashboard</code> 或 <code>/about</code>）时，Netlify 会加载 <code>index.html</code>，从而让前端路由器处理这些路径。</p>
+<h5 id="2、登陆上传项目"><a href="#2、登陆上传项目" class="headerlink" title="2、登陆上传项目"></a>2、登陆上传项目</h5><p>首先注册登陆，在主页选择manually部署，将整个dist文件夹上传。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927204130502.png" srcset="/img/loading.gif" lazyload alt="image-20240927204130502"></p>
+<p>上传后点击下图按钮，可以进入我们的APP界面，其中的URL如果分享给别人，他们就可以打开并看到我们的项目。</p>
+<p><img src="C:/Users/姚姚/AppData/Roaming/Typora/typora-user-images/image-20240927204432552.png" srcset="/img/loading.gif" lazyload alt="image-20240927204432552"></p>
+<p>其中URL里的项目名可以自己修改。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927204716005.png" srcset="/img/loading.gif" lazyload alt="image-20240927204716005"></p>
+<h4 id="（2）部署到Github仓库"><a href="#（2）部署到Github仓库" class="headerlink" title="（2）部署到Github仓库"></a>（2）部署到Github仓库</h4><p>首先创建一个仓库，最好设为私有。生成一个token（但是我部署项目的时候没用到，不知道为什么）</p>
+<p>在我们的项目中，先输入<code>git init</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927210019652.png" srcset="/img/loading.gif" lazyload alt="image-20240927210019652"></p>
+<p>然后会看到所有的文件都变成了绿色，表示已经被git控制，其中除开public和src文件夹外的其他文件在最右边都有一个字母U，表示未被跟踪，终端输入<code>git status</code>也可以查看这一点。</p>
+<p>第一次上传&#x2F;每次修改文件后上传</p>
+<p>输入：<code>git add -A</code>  将所有的变更（包括新增、修改和删除的文件）添加到暂存区</p>
+<p>输入：<code>git commit -m &quot;your message&quot;</code> 提交变更，确保所有工作都被保存。</p>
+<p>输入：<code>git remote add origin &quot;你的github仓库地址&quot;.git</code>  将本地仓库与远程 GitHub 仓库关联起来（只有第一次上传的时候需要）</p>
+<p>输入：<code>git push -u origin main</code>   将本地的 <code>main</code> 分支推送到远程的 <code>origin</code> 仓库，并设置上游（upstream）跟踪关系。这意味着以后你可以只使用 <code>git push</code> 或 <code>git pull</code> 来更新该分支，而不需要每次都指定远程仓库和分支。</p>
+<h4 id="（3）部署到Vercel"><a href="#（3）部署到Vercel" class="headerlink" title="（3）部署到Vercel"></a>（3）部署到Vercel</h4><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240927213206860.png" srcset="/img/loading.gif" lazyload alt="image-20240927213206860" style="zoom:50%;" />
+
+<p>不知道为啥报错了，不管了!</p>
+<h1 id="六、完结撒花"><a href="#六、完结撒花" class="headerlink" title="六、完结撒花"></a>六、完结撒花</h1><p>🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程23-项目收尾</div>
+      <div>http://example.com/2024/09/27/react课程23-项目收尾/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 27, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/26/react%E8%AF%BE%E7%A8%8B22-%E5%AE%9E%E7%8E%B0%E8%BE%83%E4%B8%BA%E5%AE%8C%E6%95%B4%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD/" title="react课程22-实现较为完整的用户管理功能">
+                        <span class="hidden-mobile">react课程22-实现较为完整的用户管理功能</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
