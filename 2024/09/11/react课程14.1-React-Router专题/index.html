@@ -24,7 +24,7 @@
 <meta property="og:description" content="本篇文章重重整理一下React Router的工具和用法集合。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-09-11T07:14:15.949Z">
-<meta property="article:modified_time" content="2024-09-11T12:42:25.999Z">
+<meta property="article:modified_time" content="2024-09-26T07:38:43.605Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k words
+          2.2k words
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          17 mins
+          19 mins
         
       </span>
     
@@ -326,7 +326,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on September 11, 2024 pm
+                    Last updated on September 26, 2024 pm
                   
                 
               </p>
@@ -357,6 +357,12 @@
 
 <h4 id="（4）传递状态"><a href="#（4）传递状态" class="headerlink" title="（4）传递状态"></a>（4）传递状态</h4><p>可以通过 <code>navigate</code> 传递一些状态信息到目标页面，这些状态信息不会显示在 URL 中，但可以在目标页面中通过 <code>useLocation</code> 钩子来读取。</p>
 <h4 id="（5）阻止导航"><a href="#（5）阻止导航" class="headerlink" title="（5）阻止导航"></a>（5）阻止导航</h4><p>在某些情况下，你可能需要阻止导航（例如用户没有保存表单数据时）。React Router 提供了 <code>usePrompt</code> 来处理这个需求。</p>
+<h4 id="（6）注意事项"><a href="#（6）注意事项" class="headerlink" title="（6）注意事项"></a>（6）注意事项</h4><p>为什么 <code>navigate</code> 通常在回调函数或 <code>useEffect</code> 中使用？</p>
+<ol>
+<li><strong>避免过早执行</strong>：<code>navigate</code> 是一个会引起页面重定向的操作，调用它会导致组件状态发生改变。如果你在组件首次渲染的过程中调用它，可能会引发不必要的重渲染或不一致的状态。因此，它通常在回调函数（如 <code>onClick</code>）中使用，或放在 <code>useEffect</code> 中，确保页面已经完成初始渲染，且有合适的时机来执行导航操作。</li>
+<li><strong>确保页面逻辑的正确性</strong>：像表单提交或身份验证这样的场景，通常在特定的回调或生命周期阶段发生。在这些阶段使用 <code>navigate</code> 能确保导航是在合适的时刻执行，不会打断应用的正常渲染逻辑。</li>
+</ol>
+<p>在用户交互（如按钮点击）时，可以在事件处理回调中使用 <code>navigate</code></p>
 <h3 id="二、useNavigation"><a href="#二、useNavigation" class="headerlink" title="二、useNavigation"></a>二、useNavigation</h3><p><code>useNavigation</code> 是 React Router v6 提供的一个钩子，用于获取当前导航（页面跳转）的状态。它可以帮助你在组件中监控导航的进展，尤其是用于处理页面加载状态、异步数据请求等情况。</p>
 <h4 id="（1）useNavigation-的主要用途"><a href="#（1）useNavigation-的主要用途" class="headerlink" title="（1）useNavigation 的主要用途"></a>（1）<code>useNavigation</code> 的主要用途</h4><ol>
 <li><strong>监控导航状态</strong>：你可以检查当前的导航状态，例如是否处于加载、提交状态。</li>

@@ -16,12 +16,12 @@
   <meta name="author" content="Yaodeer">
   <meta name="keywords" content="">
   
-    <meta name="description" content="全新的项目😼😼😼">
+    <meta name="description" content="全新的项目😼😼😼 本节重点：styled component">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react课程17-Thewildoasis项目起步">
 <meta property="og:url" content="http://example.com/2024/09/20/react%E8%AF%BE%E7%A8%8B17-Thewildoasis%E9%A1%B9%E7%9B%AE%E8%B5%B7%E6%AD%A5/index.html">
 <meta property="og:site_name" content="Yaodeer">
-<meta property="og:description" content="全新的项目😼😼😼">
+<meta property="og:description" content="全新的项目😼😼😼 本节重点：styled component">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165341339.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165419677.png">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165522320.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165545636.png">
 <meta property="article:published_time" content="2024-09-20T12:29:47.007Z">
-<meta property="article:modified_time" content="2024-09-21T08:50:28.581Z">
+<meta property="article:modified_time" content="2024-09-25T01:46:03.868Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
@@ -267,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          738 words
+          1.1k words
         
       </span>
     
@@ -278,7 +278,7 @@
         
         
         
-          7 mins
+          9 mins
         
       </span>
     
@@ -332,7 +332,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on September 21, 2024 pm
+                    Last updated on September 25, 2024 am
                   
                 
               </p>
@@ -340,7 +340,7 @@
             
               <div class="markdown-body">
                 
-                <p>全新的项目😼😼😼</p>
+                <p>全新的项目😼😼😼 本节重点：styled component</p>
 <span id="more"></span>
 
 <h3 id="一、项目分析（懒得打字版）"><a href="#一、项目分析（懒得打字版）" class="headerlink" title="一、项目分析（懒得打字版）"></a>一、项目分析（懒得打字版）</h3><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240920165341339.png" srcset="/img/loading.gif" lazyload alt="image-20240920165341339"></p>
@@ -360,21 +360,19 @@
 
 
 
-<h4 id="（2）as属性"><a href="#（2）as属性" class="headerlink" title="（2）as属性"></a>（2）as属性</h4><p>在使用 styled-components 时，<code>as</code> 属性和 <code>type</code> 属性的作用有所不同，主要体现在以下几个方面：</p>
-<p><strong><code>as</code> 属性</strong>：</p>
-<ul>
+<h4 id="（2）属性"><a href="#（2）属性" class="headerlink" title="（2）属性"></a>（2）属性</h4><h5 id="1、-as-属性-："><a href="#1、-as-属性-：" class="headerlink" title="1、**as 属性**："></a>1、**<code>as</code> 属性**：</h5><ul>
 <li><code>as</code> 属性允许你更改组件的根元素。例如，如果你有一个 <code>styled.button</code>，你可以使用 <code>as=&quot;a&quot;</code> 将其渲染为一个链接，而不是按钮。</li>
 <li><code>as</code> 可以动态地根据需要更改渲染的 HTML 元素，非常灵活。</li>
 </ul>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">StyledButton</span> = styled.<span class="hljs-property">button</span><span class="hljs-string">`</span><br><span class="hljs-string">  background-color: blue;</span><br><span class="hljs-string">  color: white;</span><br><span class="hljs-string">`</span>;<br><br><span class="hljs-comment">// 使用 as 属性</span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">StyledButton</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;a&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/home&quot;</span>&gt;</span>Go Home<span class="hljs-tag">&lt;/<span class="hljs-name">StyledButton</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 
-<p><strong><code>type</code> 属性</strong>：</p>
-<ul>
+<h5 id="2、-type-属性-："><a href="#2、-type-属性-：" class="headerlink" title="2、**type 属性**："></a>2、**<code>type</code> 属性**：</h5><ul>
 <li><code>type</code> 属性通常用于原生 HTML 元素（如 <code>&lt;input&gt;</code> 或 <code>&lt;button&gt;</code>），指定元素的类型。例如，按钮的类型可以是 <code>button</code>、<code>submit</code> 或 <code>reset</code>。</li>
 <li><code>type</code> 属性是一个 HTML 属性，并不涉及 styled-components 的样式处理。</li>
 </ul>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">StyledButton</span> type=<span class="hljs-string">&quot;submit&quot;</span>&gt;<span class="hljs-title class_">Submit</span>&lt;/<span class="hljs-title class_">StyledButton</span>&gt;<br></code></pre></td></tr></table></figure>
 
+<h5 id="3、role属性"><a href="#3、role属性" class="headerlink" title="3、role属性"></a>3、<code>role</code>属性</h5><p><code>role</code> 是一个标准的 HTML 属性，用于指定元素的角色，通常与无障碍访问（Accessibility，简称 a11y）相关。它告诉屏幕阅读器等辅助技术，这个元素应该如何被解读或交互。</p>
 <p><strong>使用场景</strong>：</p>
 <ol>
 <li>使用 <code>as</code> 可以在同一个 styled 组件上进行多种表现形式的渲染，增加了组件的复用性。</li>
@@ -397,7 +395,22 @@
 
 <p>将layout组件包裹住其他的Route，使用<Outlet />组件承接其他组件内容</p>
 <p>index关键字认证主页面，replace关键字替代历史url</p>
-
+<h4 id="（3）styled-component的其他重要属性"><a href="#（3）styled-component的其他重要属性" class="headerlink" title="（3）styled component的其他重要属性"></a>（3）styled component的其他重要属性</h4><h5 id="1、-ref-属性-："><a href="#1、-ref-属性-：" class="headerlink" title="1、**ref 属性**："></a>1、**<code>ref</code> 属性**：</h5><ul>
+<li><code>ref</code> 属性允许你访问组件的 DOM 节点或 class 实例，用于直接操作 DOM，常见于需要获取元素引用的场景，例如焦点管理、动画、滚动等。</li>
+</ul>
+<h5 id="2、-key-属性-："><a href="#2、-key-属性-：" class="headerlink" title="2、**key 属性**："></a>2、**<code>key</code> 属性**：</h5><ul>
+<li><code>key</code> 是 React 用来标识哪些元素被修改、添加或移除的特殊属性，尤其在渲染列表时非常重要。<code>styled-components</code> 内的组件同样遵循这个规则。</li>
+</ul>
+<h5 id="3、-className-属性-："><a href="#3、-className-属性-：" class="headerlink" title="3、**className 属性**："></a>3、**<code>className</code> 属性**：</h5><ul>
+<li><code>className</code> 属性允许你给 <code>styled-component</code> 组件添加额外的 class 名，这对于在一个组件中应用多个样式规则或与外部 CSS 集成时特别有用。</li>
+</ul>
+<h5 id="4、-style-属性-："><a href="#4、-style-属性-：" class="headerlink" title="4、**style 属性**："></a>4、**<code>style</code> 属性**：</h5><ul>
+<li><code>style</code> 属性是内联样式，可以直接在组件上设置行内样式，用于一些动态样式的设置，但不建议与 <code>styled-components</code> 的样式系统大量混用。</li>
+</ul>
+<h5 id="5、-style-属性-："><a href="#5、-style-属性-：" class="headerlink" title="5、**style 属性**："></a>5、**<code>style</code> 属性**：</h5><ul>
+<li><code>style</code> 属性是内联样式，可以直接在组件上设置行内样式，用于一些动态样式的设置，但不建议与 <code>styled-components</code> 的样式系统大量混用。</li>
+</ul>
+<h5 id="6、children、onClick、defaultvalue等"><a href="#6、children、onClick、defaultvalue等" class="headerlink" title="6、children、onClick、defaultvalue等"></a>6、children、onClick、defaultvalue等</h5>
                 
               </div>
             

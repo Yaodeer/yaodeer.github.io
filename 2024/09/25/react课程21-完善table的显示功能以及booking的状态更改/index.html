@@ -1,0 +1,930 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本节实现在cabin、booking界面的过滤、排序、分页的功能，并实现修改booking状态。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程21-完善table的显示功能以及booking的状态更改">
+<meta property="og:url" content="http://example.com/2024/09/25/react%E8%AF%BE%E7%A8%8B21-%E5%AE%8C%E5%96%84table%E7%9A%84%E6%98%BE%E7%A4%BA%E5%8A%9F%E8%83%BD%E4%BB%A5%E5%8F%8Abooking%E7%9A%84%E7%8A%B6%E6%80%81%E6%9B%B4%E6%94%B9/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="本节实现在cabin、booking界面的过滤、排序、分页的功能，并实现修改booking状态。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240925171213178.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240925190720412.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240925195151800.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240925232925950.png">
+<meta property="article:published_time" content="2024-09-25T05:01:54.677Z">
+<meta property="article:modified_time" content="2024-09-27T04:52:05.675Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240925171213178.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程21-完善table的显示功能以及booking的状态更改 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程21-完善table的显示功能以及booking的状态更改"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-25 13:01" pubdate>
+          September 25, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程21-完善table的显示功能以及booking的状态更改</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on September 27, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本节实现在cabin、booking界面的过滤、排序、分页的功能，并实现修改booking状态。</p>
+<span id="more"></span>
+
+
+
+<h3 id="一、在客户端实现过滤cabin（可重用，排序功能）"><a href="#一、在客户端实现过滤cabin（可重用，排序功能）" class="headerlink" title="一、在客户端实现过滤cabin（可重用，排序功能）"></a>一、在客户端实现过滤cabin（可重用，排序功能）</h3><p>添加一个按钮，实现查看全部&#x2F;有折扣的&#x2F;没有折扣的cabin。并且在选择后需要相应地改变url。</p>
+<p>新建了CabinTableOperation组件，把它代替之前的文本，放在标题的右边。这个组件包含Filter组件，这就是我们要实现的过滤功能。</p>
+<h4 id="（1）创建Filter"><a href="#（1）创建Filter" class="headerlink" title="（1）创建Filter"></a>（1）创建Filter</h4><p>🔥《10.28》修改bug：每次过滤后要把page设置为1，否则会访问不存在的页数的数据</p>
+<hr>
+<h5 id="1、Filter-jsx"><a href="#1、Filter-jsx" class="headerlink" title="1、Filter.jsx"></a>1、Filter.jsx</h5><p>在这个组件里，我们要用到useParams Hook。（刚好之前不太懂）</p>
+<p>Filter接收两个prop，一个是filterField，一个是options数组。</p>
+<ul>
+<li>filterField负责被设置成URL中查询参数的键，并将其值设置为value，随后<code>setSearchParams</code>函数更新查询参数对象，使得URL反映出修改后的查询参数</li>
+<li>options是一个对象数组，含有value和label两个属性。value就是传递给handleClick参数的键值，label是过滤器显示在屏幕上的文本。</li>
+</ul>
+<p>根据传递的options数组来map出FilterButton，使得代码更具有重用性。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Filter</span>(<span class="hljs-params">&#123; filterField, options &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> [searchParams, setSearchParams] = <span class="hljs-title function_">useSearchParams</span>();<br>  <span class="hljs-keyword">const</span> currentFilter = searchParams.<span class="hljs-title function_">get</span>(filterField) || options.<span class="hljs-title function_">at</span>(<span class="hljs-number">0</span>).<span class="hljs-property">value</span>;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleClick</span>(<span class="hljs-params">value</span>) &#123;<br>    searchParams.<span class="hljs-title function_">set</span>(filterField, value);<br>    <span class="hljs-title function_">setSearchParams</span>(searchParams);<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">StyledFilter</span>&gt;</span></span><br><span class="language-xml">      &#123;options.map((option) =&gt; (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">FilterButton</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> handleClick(option.value)&#125;</span><br><span class="language-xml">          key=&#123;option.value&#125;</span><br><span class="language-xml">          active=&#123;option.value === currentFilter&#125;</span><br><span class="language-xml">          disabled=&#123;option.value === currentFilter&#125;</span><br><span class="language-xml">        &gt;</span><br><span class="language-xml">          &#123;option.label&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">FilterButton</span>&gt;</span></span><br><span class="language-xml">      ))&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">StyledFilter</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、CabinTableOperations-jsx"><a href="#2、CabinTableOperations-jsx" class="headerlink" title="2、CabinTableOperations.jsx"></a>2、CabinTableOperations.jsx</h5><p>这个组件的目的就是给Filter一个造型上的作用，并且把相应的参数传递</p>
+<h5 id="3、CabinTable-jsx"><a href="#3、CabinTable-jsx" class="headerlink" title="3、CabinTable.jsx"></a>3、CabinTable.jsx</h5><p>这个组件之前的作用就是呈现出cabin table的header和下面的列表。但是由于我们想要加入过滤的功能，所以显示的cabin列表就要随着过滤器而改变。而方法就是通过读取URL上的查询参数的值，来条件更新应该展示的cabins。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> [searchParams] = <span class="hljs-title function_">useSearchParams</span>();<br><br><span class="hljs-keyword">const</span> filterValue = searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;discount&#x27;</span>) || <span class="hljs-string">&#x27;all&#x27;</span>;<br><br><span class="hljs-keyword">let</span> filteredCabins;<br><span class="hljs-keyword">if</span> (filterValue === <span class="hljs-string">&#x27;all&#x27;</span>) filteredCabins = cabins;<br><span class="hljs-keyword">if</span> (filterValue === <span class="hljs-string">&#x27;no-discount&#x27;</span>)<br>    filteredCabins = cabins.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">cabin</span>) =&gt;</span> cabin.<span class="hljs-property">discount</span> === <span class="hljs-number">0</span>);<br><span class="hljs-keyword">if</span> (filterValue === <span class="hljs-string">&#x27;with-discount&#x27;</span>)<br>    filteredCabins = cabins.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">cabin</span>) =&gt;</span> cabin.<span class="hljs-property">discount</span> &gt; <span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure>
+
+<p>这里的要点有一个是：当初次进入cabin界面的时候，我们想要展示所有的cabin（all），但是此时查询参数是空的，所以就可以通过||短路运算符，使得默认值是“all”。</p>
+<h4 id="（2）实现排序功能"><a href="#（2）实现排序功能" class="headerlink" title="（2）实现排序功能"></a>（2）实现排序功能</h4><h5 id="1、CabinTableOperations传递给sortBy的参数"><a href="#1、CabinTableOperations传递给sortBy的参数" class="headerlink" title="1、CabinTableOperations传递给sortBy的参数"></a>1、CabinTableOperations传递给sortBy的参数</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jsx">options=&#123;[<br>     &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;name-asc&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Sort by name (A-Z)&#x27;</span> &#125;,<br>     &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;name-desc&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Sort by name (Z-A)&#x27;</span> &#125;,<br>     &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;regularPrice-asc&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Sort by Price (low first)&#x27;</span> &#125;,<br>     &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;regularPrice-desc&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Sort by Price (high first)&#x27;</span> &#125;,<br>     &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;maxCapacity-asc&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Sort by capacity (low first)&#x27;</span> &#125;,<br>     &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;maxCapacity-desc&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Sort by capacity (high first)&#x27;</span> &#125;,<br>]&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这就是排序选项中的value和label数组，注意value的前值需要和cabin的属性保持一致。asc表示正序，desc表示倒序。</p>
+<h5 id="2、sortBy（可重用）"><a href="#2、sortBy（可重用）" class="headerlink" title="2、sortBy（可重用）"></a>2、sortBy（可重用）</h5><p>这个组件的功能和刚刚的Filter很像，也是把相应的value设置到查询参数中，使得CabinTable可以读取并获得相应的参数。这个不用传递键的名字，因为不管谁用，键的名字都是“sortBy”。在这个函数中得到键值并传递给Select组件，是为了传递正在被选中的value的参数。然后把onChange函数传递过去，使得改变被选元素时改变查询参数。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">SortBy</span>(<span class="hljs-params">&#123; options &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> [searchParams, setSearchParams] = <span class="hljs-title function_">useSearchParams</span>();<br>  <span class="hljs-keyword">const</span> sortBy = searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;sortBy&#x27;</span>) || <span class="hljs-string">&#x27;&#x27;</span>;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleChange</span>(<span class="hljs-params">e</span>) &#123;<br>    searchParams.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;sortBy&#x27;</span>, e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>);<br>    <span class="hljs-title function_">setSearchParams</span>(searchParams);<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Select</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">options</span>=<span class="hljs-string">&#123;options&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;white&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;sortBy&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;handleChange&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">    /&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="3、Select-jsx"><a href="#3、Select-jsx" class="headerlink" title="3、Select.jsx"></a>3、Select.jsx</h5><p>⭐<code>&quot;...props&quot;</code>接收所有剩余prop。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Select</span>(<span class="hljs-params">&#123; options, value, onChange, ...props &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">StyledSelect</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;value&#125;</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;onChange&#125;</span> &#123;<span class="hljs-attr">...props</span>&#125;&gt;</span></span><br><span class="language-xml">      &#123;options.map((option) =&gt; (</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;option.value&#125;</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;option.value&#125;</span>&gt;</span></span><br><span class="language-xml">          &#123;option.label&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span></span><br><span class="language-xml">      ))&#125;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">StyledSelect</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="4、CabinTable"><a href="#4、CabinTable" class="headerlink" title="4、CabinTable"></a>4、CabinTable</h5><p>第一步当然是得到查询参数的值。</p>
+<p>但是由于它是由“-”连接，且两部分值都需要，所以可以用split函数分开。</p>
+<p>sort函数复习：a-b是正序，b-a是倒序。因此这里用了一个巧妙的小技巧，就是使用modifier符号，如果是asc就是1，否则为-1，乘以相应逻辑，实现不同排序功能。</p>
+<p>这里name是string，它的排序需要换一种方式，否则无法实现。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> sortBy = searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;sortBy&#x27;</span>) || <span class="hljs-string">&#x27;name-asc&#x27;</span>;<br><span class="hljs-keyword">const</span> [field, direction] = sortBy.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;-&#x27;</span>);<br><br><span class="hljs-keyword">const</span> modifier = direction === <span class="hljs-string">&#x27;asc&#x27;</span> ? <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">SortedCabins</span> = filteredCabins.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;<br>   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a[field] === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;<br>       <span class="hljs-keyword">return</span> a[field].<span class="hljs-title function_">localeCompare</span>(b[field]) * modifier;<br>   &#125; <span class="hljs-keyword">else</span> &#123;<br>       <span class="hljs-keyword">return</span> (a[field] - b[field]) * modifier;<br>   &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+
+
+<p>（怎么现在每个视频都是20分钟了😨😨😨😨😨😨要疯了我）</p>
+<blockquote>
+<p>此处穿插一条喜报，我发现了一条Jonas都没发现的bug，就是regularPrice 和 discount的值为300 80的时候竟然会报错说discount应该小于regularPrice。百思不得其解后，感觉应该是它们俩被当作字符串比较了。但是我还是很疑惑，于是GPT这样说：</p>
+<p>即使在表单输入中将 <code>type</code> 设置为 <code>number</code>，在 JavaScript 中获取到的值仍然是字符串。这是因为 HTML 表单元素在提交时会将所有输入的值以字符串的形式传递给 JavaScript。</p>
+</blockquote>
+<h3 id="二、建立Booking-Table"><a href="#二、建立Booking-Table" class="headerlink" title="二、建立Booking Table"></a>二、建立Booking Table</h3><p>✅fetching data的时候，和getCabins不同，因为bookings连接了cabins和guests，所以也可以获取这两个表单的信息：（括号内可以写进任何想要获取的信息，此处挑选需要的）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-keyword">await</span> supabase<br>   .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;bookings&#x27;</span>)<br>   .<span class="hljs-title function_">select</span>(<span class="hljs-string">&#x27;*,cabins(name),guests(fullName,email)&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+
+
+<p>把data文件夹中的UpLoader组件包含在SideBar中就会出现这样一个可以上传样本信息到表单中，这样就不用手动创建。（记得修改Policy）（浅浅看了一下，这个函数逻辑算是比较简单）</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240925171213178.png" srcset="/img/loading.gif" lazyload alt="image-20240925171213178" style="zoom: 67%;" />
+
+
+
+<h4 id="（1）实现过滤booking"><a href="#（1）实现过滤booking" class="headerlink" title="（1）实现过滤booking"></a>（1）实现过滤booking</h4><h5 id="1、实现"><a href="#1、实现" class="headerlink" title="1、实现"></a>1、实现</h5><p>换一种方式：不在客户端过滤，而是在服务端</p>
+<p>operation组件已经写好，过滤是通过status的状态，而排序是根据预定的开始日期和总价格。</p>
+<p>既然要在接收数据的时候就过滤，那么难道应该在apiBookings的函数中实现吗？不尽然。因为既然要过滤，我们就要从URL读取数据，要使用useParams，在异步fetching data阶段，是不允许使用这种钩子的。（ <strong>Hooks 只能在函数组件或自定义 Hooks 中被调用</strong>）</p>
+<p>因此我们可以在useBookings组件，也就是调用getBookings函数的地方得到查询参数的键和值，再传递给getBookings函数。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> filterValue = searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;status&#x27;</span>);<br><span class="hljs-keyword">const</span> filter =<br>  !filterValue || filterValue === <span class="hljs-string">&#x27;all&#x27;</span><br>    ? <span class="hljs-literal">null</span><br>    : &#123; <span class="hljs-attr">field</span>: <span class="hljs-string">&#x27;status&#x27;</span>, <span class="hljs-attr">value</span>: filterValue, <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;eq&#x27;</span> &#125;;<br><br><span class="hljs-keyword">const</span> &#123;<br>  isLoading,<br>  <span class="hljs-attr">data</span>: bookings,<br>  error,<br>&#125; = <span class="hljs-title function_">useQuery</span>(&#123;<br>  <span class="hljs-attr">queryKey</span>: [<span class="hljs-string">&#x27;bookings&#x27;</span>, filter],<br>  <span class="hljs-attr">queryFn</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">getBookings</span>(&#123; filter &#125;),<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>然后getBookings函数中在接收数据的时候根据键和值进行过滤。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">let</span> query = supabase<br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;bookings&#x27;</span>)<br>    .<span class="hljs-title function_">select</span>(<span class="hljs-string">&#x27;*,cabins(name),guests(fullName,email)&#x27;</span>);<br><span class="hljs-keyword">if</span> (filter !== <span class="hljs-literal">null</span>)<br>    query = query[filter.<span class="hljs-property">method</span> || <span class="hljs-string">&#x27;eq&#x27;</span>](filter.<span class="hljs-property">field</span>, filter.<span class="hljs-property">value</span>);<br></code></pre></td></tr></table></figure>
+
+<h5 id="2、要点"><a href="#2、要点" class="headerlink" title="2、要点"></a>2、要点</h5><p>传递的filter是一个object，除开键和值以外还有一个method，因为query是根据method、键、值来进行过滤处理的。eq是等于，还有gte是大于等于的意思。</p>
+<p>这里queryKey变成了一个对象，除开关键字“bookings”以外还有filter。这是因为React Query并不知道会在改变过滤的内容时就重新获取数据，于是我们切换过滤选项，页面不变，但URL会相应改变，刷新后才会显示过滤后的项目。于是把filter填进queryKey，类似于依赖数组的作用，每当filter发生变化的时候，都会重新fetch一次data。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240925190720412.png" srcset="/img/loading.gif" lazyload alt="image-20240925190720412"></p>
+<p>（React Query的作用）</p>
+<h4 id="（2）实现Sort-Booking"><a href="#（2）实现Sort-Booking" class="headerlink" title="（2）实现Sort Booking"></a>（2）实现Sort Booking</h4><h5 id="1、useBookings"><a href="#1、useBookings" class="headerlink" title="1、useBookings"></a>1、useBookings</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> sortByRaw = searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;sortBy&#x27;</span>) || <span class="hljs-string">&#x27;startDate-desc&#x27;</span>;<br><span class="hljs-keyword">const</span> [field, direction] = sortByRaw.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;-&#x27;</span>);<br><span class="hljs-keyword">const</span> sortBy = &#123; field, direction &#125;;<br></code></pre></td></tr></table></figure>
+
+<p>比较简单</p>
+<h5 id="2、getBookings"><a href="#2、getBookings" class="headerlink" title="2、getBookings"></a>2、getBookings</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">if</span> (sortBy)<br>    query = query.<span class="hljs-title function_">order</span>(sortBy.<span class="hljs-property">field</span>, &#123;<br>      <span class="hljs-attr">ascending</span>: sortBy.<span class="hljs-property">direction</span> === <span class="hljs-string">&#x27;asc&#x27;</span>,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>order函数是作用于特定库来排序的，包括supabase，因此很方便。第一个参数传递根据什么来排序，第二个参数传递是否是根据升序排列。asc就是ascending的简称。</p>
+<h4 id="（3）实现Pagination"><a href="#（3）实现Pagination" class="headerlink" title="（3）实现Pagination"></a>（3）实现Pagination</h4><blockquote>
+<p>需要先看下一大节：如何建立<code>Pagination</code></p>
+</blockquote>
+<h5 id="1、从api中获取count"><a href="#1、从api中获取count" class="headerlink" title="1、从api中获取count"></a>1、从api中获取count</h5><p>我们可以直接在<code>bookingtable</code>中得到<code>bookings.length</code>，但是有一个更好的办法，是在获取数据的时候加上count。，然后将它返回，这样就可以容易得到获得的结果数了。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">.<span class="hljs-title function_">select</span>(<span class="hljs-string">&#x27;*,cabins(name),guests(fullName,email)&#x27;</span>, &#123; <span class="hljs-attr">count</span>: <span class="hljs-string">&#x27;exact&#x27;</span> &#125;);<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、useBookings"><a href="#2、useBookings" class="headerlink" title="2、useBookings"></a>2、useBookings</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> page = !searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;page&#x27;</span>) ? <span class="hljs-number">1</span> : <span class="hljs-title class_">Number</span>(searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;page&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>跟分页组件中的逻辑一样，不多言。记得传递page并将其加入queryKey。</p>
+<h5 id="3、getBookings"><a href="#3、getBookings" class="headerlink" title="3、getBookings"></a>3、getBookings</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">if</span> (page) &#123;<br>    <span class="hljs-keyword">const</span> <span class="hljs-keyword">from</span> = (page - <span class="hljs-number">1</span>) * <span class="hljs-variable constant_">PAGE_SIZE</span>;<br>    <span class="hljs-keyword">const</span> to = <span class="hljs-keyword">from</span> + <span class="hljs-variable constant_">PAGE_SIZE</span> - <span class="hljs-number">1</span>;<br>    query = query.<span class="hljs-title function_">range</span>(<span class="hljs-keyword">from</span>, to);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>range也是supabase的特殊函数，它会自动接收从from到to的数据。由于数组第一位是0位，所以from不必加1.这里的小技巧是to可以直接用from+PAGE_SIZE（记得-1），就算超过了count，也不会有错误，只会返回范围内的结果。</p>
+<h3 id="三、建立可重用的Pagination（分页）组件"><a href="#三、建立可重用的Pagination（分页）组件" class="headerlink" title="三、建立可重用的Pagination（分页）组件"></a>三、建立可重用的Pagination（分页）组件</h3><p>组件接收count prop，表示结果数。</p>
+<h4 id="（1）组件部分"><a href="#（1）组件部分" class="headerlink" title="（1）组件部分"></a>（1）组件部分</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240925195151800.png" srcset="/img/loading.gif" lazyload alt="image-20240925195151800"></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">StyledPagination</span>&gt;<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">P</span>&gt;</span></span><br><span class="language-xml">        Showing <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;(currentPage - 1) * PAGE_SIZE + 1&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> to&#123;&#x27; &#x27;&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">           &#123;currentPage === pageCount ? count : currentPage * PAGE_SIZE&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>&#123;&#x27; &#x27;&#125;</span><br><span class="language-xml">        of <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&#123;count&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> results</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">P</span>&gt;</span></span><br><br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Buttons</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">PaginationButton</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;prevPage&#125;</span> <span class="hljs-attr">disabled</span>=<span class="hljs-string">&#123;currentPage</span> === <span class="hljs-string">1&#125;</span>&gt;</span></span><br><span class="language-xml">           <span class="hljs-tag">&lt;<span class="hljs-name">HiChevronLeft</span> /&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Previous<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">PaginationButton</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">PaginationButton</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;nextPage&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">disabled</span>=<span class="hljs-string">&#123;currentPage</span> === <span class="hljs-string">pageCount&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">        &gt;</span></span><br><span class="language-xml">           <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Next<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">           <span class="hljs-tag">&lt;<span class="hljs-name">HiChevronRight</span> /&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">PaginationButton</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">Buttons</span>&gt;</span></span><br>&lt;/<span class="hljs-title class_">StyledPagination</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>如果在最后一页的话，to后的数字就应该是count，防止出错。向前翻页和向后翻页的按钮条件禁用，原理比较易懂。</p>
+<h4 id="（2）变量和函数部分"><a href="#（2）变量和函数部分" class="headerlink" title="（2）变量和函数部分"></a>（2）变量和函数部分</h4><p>首先定义在函数体外一个常量：每页的结果数。<code>const PAGE_SIZE = 10;</code></p>
+<p>✅根据上一大节的内容，我们知道这个常量还需要在<code>apiBookings</code>文件中使用，因此我们可以在utils文件夹中创建一个文件：<code>Constants.jsx</code>来存储这样的常量，每次使用只需导入即可。</p>
+<p>然后是其他代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> [searchParams, setSearchParams] = <span class="hljs-title function_">useSearchParams</span>();<br><br>  <span class="hljs-keyword">if</span> (count &lt;= <span class="hljs-variable constant_">PAGE_SIZE</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br><br>  <span class="hljs-keyword">const</span> currentPage = !searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;page&#x27;</span>)<br>    ? <span class="hljs-number">1</span><br>    : <span class="hljs-title class_">Number</span>(searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;page&#x27;</span>));<br><br>  <span class="hljs-keyword">const</span> pageCount = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">ceil</span>(count / <span class="hljs-variable constant_">PAGE_SIZE</span>);<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">nextPage</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> next = currentPage === pageCount ? currentPage : currentPage + <span class="hljs-number">1</span>;<br><br>    searchParams.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;page&#x27;</span>, next);<br>    <span class="hljs-title function_">setSearchParams</span>(searchParams);<br>  &#125;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">prevPage</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> prev = currentPage === <span class="hljs-number">1</span> ? currentPage : currentPage - <span class="hljs-number">1</span>;<br><br>    searchParams.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;page&#x27;</span>, prev);<br>    <span class="hljs-title function_">setSearchParams</span>(searchParams);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>仍旧是通过强大的Param来得到当前的页数。当然刚进入这个界面的时候不存在那个查询参数，于是把当前页数设置为1，否则可以根据查询参数得到。</p>
+<p>如果总结果数还没一页的结果多，那么直接不返回这个组件。</p>
+<p>pageCount保留最大的页数。</p>
+<p>每次翻页的时候都相应地更新查询参数。</p>
+<h4 id="（3）Prefetching"><a href="#（3）Prefetching" class="headerlink" title="（3）Prefetching"></a>（3）Prefetching</h4><p><code>Prefetching</code> 是一种优化技术，用于在用户需要数据之前提前获取和加载数据，以加速应用程序的响应速度。它常用于提高用户体验，减少等待时间，特别是在网页应用和数据驱动的应用中。</p>
+<p>现在要做的很简单，就是我们再切换页面的时候，不管是前翻还是后翻，总会出现一个加载页面。但是我们想要数据可以丝滑地出现在界面上，于是，在useBookings组件中：</p>
+<p>首先获得：<code>const queryClient = useQueryClient();</code></p>
+<p>然后在useQuery查询数据之后，返回所有数据之前：（有点简单不多说了）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> pageCount = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">ceil</span>(count / <span class="hljs-variable constant_">PAGE_SIZE</span>);<br><br>  <span class="hljs-keyword">if</span> (page &lt; pageCount)<br>    queryClient.<span class="hljs-title function_">prefetchQuery</span>(&#123;<br>      <span class="hljs-attr">queryKey</span>: [<span class="hljs-string">&#x27;bookings&#x27;</span>, filter, sortBy, page + <span class="hljs-number">1</span>],<br>      <span class="hljs-attr">queryFn</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">getBookings</span>(&#123; filter, sortBy, <span class="hljs-attr">page</span>: page + <span class="hljs-number">1</span> &#125;),<br>    &#125;);<br><br>  <span class="hljs-keyword">if</span> (page &gt; <span class="hljs-number">1</span>)<br>    queryClient.<span class="hljs-title function_">prefetchQuery</span>(&#123;<br>      <span class="hljs-attr">queryKey</span>: [<span class="hljs-string">&#x27;bookings&#x27;</span>, filter, sortBy, page - <span class="hljs-number">1</span>],<br>      <span class="hljs-attr">queryFn</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">getBookings</span>(&#123; filter, sortBy, <span class="hljs-attr">page</span>: page - <span class="hljs-number">1</span> &#125;),<br>    &#125;);<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、建立Booking的Detail界面"><a href="#四、建立Booking的Detail界面" class="headerlink" title="四、建立Booking的Detail界面"></a>四、建立Booking的Detail界面</h3><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240925232925950.png" srcset="/img/loading.gif" lazyload alt="image-20240925232925950"></p>
+<p>首先在App.js的Router中加上这样一条：</p>
+<p><code>&lt;Route path=&quot;bookings/:bookingId&quot; element=&#123;&lt;Booking /&gt;&#125; /&gt;</code></p>
+<p>我们新创建了一个界面：Booking，里面直接返回<code>BookingDetial</code>组件，而这个组件需要接收相应的booking数据，这个数据是由我们新创建的钩子中获得。</p>
+<h4 id="（1）useBooking"><a href="#（1）useBooking" class="headerlink" title="（1）useBooking"></a>（1）useBooking</h4><p>要点有二：</p>
+<ul>
+<li>通过URL获得bookingId，使用了<code>useParams</code>钩子可直接获得</li>
+<li>把id传递给getBooking函数中</li>
+</ul>
+<h4 id="（2）getBooking"><a href="#（2）getBooking" class="headerlink" title="（2）getBooking"></a>（2）getBooking</h4><p>这个函数位于api中，作用是返回相应id的Booking的所有详细信息</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getBooking</span>(<span class="hljs-params">id</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-keyword">await</span> supabase<br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;bookings&#x27;</span>)<br>    .<span class="hljs-title function_">select</span>(<span class="hljs-string">&#x27;*, cabins(*), guests(*)&#x27;</span>)<br>    .<span class="hljs-title function_">eq</span>(<span class="hljs-string">&#x27;id&#x27;</span>, id)    <span class="hljs-comment">//提取等于id的booking内容</span><br>    .<span class="hljs-title function_">single</span>();<br><br>  <span class="hljs-keyword">if</span> (error) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Booking not found&#x27;</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（3）BookingRow"><a href="#（3）BookingRow" class="headerlink" title="（3）BookingRow"></a>（3）BookingRow</h4><p>用到了先前创建的Menu复合组件。点击按钮会导航界面到相应的detail界面，因此把相应的id放入URL中方便被提取。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Menus</span>.<span class="hljs-property">Menu</span>&gt;<br>     <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Menus.Toggle</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#123;bookingId&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Menus.Toggle</span>&gt;</span></span><br>        <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Menus.List</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#123;bookingId&#125;</span>&gt;</span></span><br><span class="language-xml">           <span class="hljs-tag">&lt;<span class="hljs-name">Menus.Button</span></span></span><br><span class="hljs-tag"><span class="language-xml">              <span class="hljs-attr">icon</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">HiEye</span> /&gt;</span>&#125;</span><br><span class="language-xml">              onClick=&#123;() =&gt; navigate(`/bookings/$&#123;bookingId&#125;`)&#125;</span><br><span class="language-xml">           &gt;</span><br><span class="language-xml">              See details</span><br><span class="language-xml">           <span class="hljs-tag">&lt;/<span class="hljs-name">Menus.Button</span>&gt;</span></span><br><span class="language-xml">     <span class="hljs-tag">&lt;/<span class="hljs-name">Menus.List</span>&gt;</span></span><br>&lt;/<span class="hljs-title class_">Menus</span>.<span class="hljs-property">Menu</span>&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（4）BookingDetail"><a href="#（4）BookingDetail" class="headerlink" title="（4）BookingDetail"></a>（4）BookingDetail</h4><p>以下几行有一个要点：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> &#123; booking, isLoading &#125; = <span class="hljs-title function_">useBooking</span>();<br><span class="hljs-keyword">const</span> moveBack = <span class="hljs-title function_">useMoveBack</span>();<br><br><span class="hljs-keyword">if</span> (isLoading) <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Spinner</span> /&gt;</span></span>;<br><br><span class="hljs-keyword">const</span> &#123; status, <span class="hljs-attr">id</span>: bookingId &#125; = booking;<br></code></pre></td></tr></table></figure>
+
+<p>第一<code>useMoveBack</code>钩子不能放在<code>if</code>语句之后；</p>
+<p>第二读取<code>&#123; status, id: bookingId &#125;</code>必须放在判断是否在加载语句之后，否则我们会在数据还没有加载完成的时候就试图读取，就会报错。（还让人百思不得其解）</p>
+<h3 id="五、实现Checkin、Checkout、Delete的功能"><a href="#五、实现Checkin、Checkout、Delete的功能" class="headerlink" title="五、实现Checkin、Checkout、Delete的功能"></a>五、实现Checkin、Checkout、Delete的功能</h3><h4 id="（1）实现基本checkin功能"><a href="#（1）实现基本checkin功能" class="headerlink" title="（1）实现基本checkin功能"></a>（1）实现基本checkin功能</h4><p>新建了checkin&#x2F;：bookingId的界面。</p>
+<p>在BookingRow和BookingDetial中都加入了“checkin”按钮，可以导航到checkin界面。这个界面中还有一个确认checkin的按钮，作用是需要修改booking的statu变成checkin，是否付钱变为Paid。（只有状态为unconfirmed的booking才能被checkin）</p>
+<p><code>useCheckin：</code></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">useCheckin</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> queryClient = <span class="hljs-title function_">useQueryClient</span>();<br>  <span class="hljs-keyword">const</span> navigate = <span class="hljs-title function_">useNavigate</span>();<br><br>  <span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">mutate</span>: checkin, <span class="hljs-attr">isLoading</span>: isCheckingIn &#125; = <span class="hljs-title function_">useMutation</span>(&#123;<br>    <span class="hljs-attr">mutationFn</span>: <span class="hljs-function">(<span class="hljs-params">bookingId</span>) =&gt;</span><br>      <span class="hljs-title function_">updateBooking</span>(bookingId, &#123; <span class="hljs-attr">status</span>: <span class="hljs-string">&#x27;checked-in&#x27;</span>, <span class="hljs-attr">isPaid</span>: <span class="hljs-literal">true</span> &#125;),<br><br>    <span class="hljs-attr">onSuccess</span>: <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> &#123;<br>      toast.<span class="hljs-title function_">success</span>(<span class="hljs-string">`Booking #<span class="hljs-subst">$&#123;data.id&#125;</span> successfully checked in`</span>);<br>      queryClient.<span class="hljs-title function_">invalidateQueries</span>(&#123;<br>        <span class="hljs-attr">active</span>: <span class="hljs-literal">true</span>,<br>      &#125;);<br>      <span class="hljs-title function_">navigate</span>(<span class="hljs-string">&#x27;/&#x27;</span>);<br>    &#125;,<br><br>    <span class="hljs-attr">onError</span>: <span class="hljs-function">() =&gt;</span> toast.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;There was an error while checking in&#x27;</span>),<br>  &#125;);<br><br>  <span class="hljs-keyword">return</span> &#123; checkin, isCheckingIn &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过代码可以看到，onSuccess函数是可以接收到返回的data数据的。</p>
+<p><code>queryClient.invalidateQueries(&#123;&#125;);</code>之前是放置queryId，现在放置active设置为true</p>
+<p>⭐<code>queryClient.invalidateQueries()</code> 是 React Query 中用于使缓存失效并触发重新获取数据的方法。在这里使用了一个配置对象 <code>&#123; active: true &#125;</code>，这表示使所有当前 “active”（即正在被观察或使用）的查询失效。</p>
+<h4 id="（2）实现添加早饭的功能"><a href="#（2）实现添加早饭的功能" class="headerlink" title="（2）实现添加早饭的功能"></a>（2）实现添加早饭的功能</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&#123;!hasBreakfast &amp;&amp; (<br>   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Box</span>&gt;</span></span><br><span class="language-xml">       <span class="hljs-tag">&lt;<span class="hljs-name">Checkbox</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">checked</span>=<span class="hljs-string">&#123;addBreakfast&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> &#123;</span><br><span class="language-xml">                setAddBreakfast((addBreakfast) =&gt; !addBreakfast);</span><br><span class="language-xml">                setConfirmPaid(false);</span><br><span class="language-xml">           &#125;&#125;</span><br><span class="language-xml">             id=&quot;Breakfast&quot;</span><br><span class="language-xml">          &gt;</span><br><span class="language-xml">             Want to add breakfast for &#123;formatCurrency(optionalBreakfastPrice)&#125;?</span><br><span class="language-xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">Checkbox</span>&gt;</span></span><br><span class="language-xml">   <span class="hljs-tag">&lt;/<span class="hljs-name">Box</span>&gt;</span></span><br>)&#125;<br></code></pre></td></tr></table></figure>
+
+<p>除此之外确定付钱的checkbox也要把总钱数修改一下。</p>
+<p>这个时候，在checkin的时候就要分情况讨论是否有添加早餐，传递给checkin函数的就不仅仅是bookingId了，而且需要是一个对象，包含：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">checkin</span>(&#123;<br>    bookingId,<br>    <span class="hljs-attr">breakfast</span>: &#123;<br>        <span class="hljs-attr">hasBreakfast</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">extrasPrice</span>: optionalBreakfastPrice,<br>        <span class="hljs-attr">totalPrice</span>: totalPrice + optionalBreakfastPrice,<br>&#125;,<br></code></pre></td></tr></table></figure>
+
+<p>useCheckin中也需要发生改变：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-attr">mutationFn</span>: <span class="hljs-function">(<span class="hljs-params">&#123; bookingId, breakfast &#125;</span>) =&gt;</span><br>   <span class="hljs-title function_">updateBooking</span>(bookingId, &#123;<br>   <span class="hljs-attr">status</span>: <span class="hljs-string">&#x27;checked-in&#x27;</span>,<br>      <span class="hljs-attr">isPaid</span>: <span class="hljs-literal">true</span>,<br>      ...breakfast,<br>&#125;),<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（3）checkout和delete"><a href="#（3）checkout和delete" class="headerlink" title="（3）checkout和delete"></a>（3）checkout和delete</h4><p>delete中只有一个地方，就是在detail界面想要删掉后就返回booking界面。所以在这里传递一个对象，包含想要发生的事情，这里传递的onSettled意思是不管成功或失败均执行。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Modal</span>.<span class="hljs-property">Window</span> name=<span class="hljs-string">&quot;delete&quot;</span>&gt;<br>   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ConfirmDelete</span></span></span><br><span class="hljs-tag"><span class="language-xml">       <span class="hljs-attr">resourceName</span>=<span class="hljs-string">&quot;booking&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">       <span class="hljs-attr">disabled</span>=<span class="hljs-string">&#123;isDeletingBooking&#125;</span></span></span><br><span class="hljs-tag"><span class="language-xml">       <span class="hljs-attr">onConfirm</span>=<span class="hljs-string">&#123;()</span> =&gt;</span></span><br><span class="language-xml">           deleteBooking(bookingId, &#123; onSettled: () =&gt; navigate(-1) &#125;)</span><br><span class="language-xml">       &#125;</span><br><span class="language-xml">   /&gt;</span><br>&lt;/<span class="hljs-title class_">Modal</span>.<span class="hljs-property">Window</span>&gt;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程21-完善table的显示功能以及booking的状态更改</div>
+      <div>http://example.com/2024/09/25/react课程21-完善table的显示功能以及booking的状态更改/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 25, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/26/react%E8%AF%BE%E7%A8%8B22-%E5%AE%9E%E7%8E%B0%E8%BE%83%E4%B8%BA%E5%AE%8C%E6%95%B4%E7%9A%84%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD/" title="react课程22-实现较为完整的用户管理功能">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">react课程22-实现较为完整的用户管理功能</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/24/react%E8%AF%BE%E7%A8%8B20-Advanced-React-Patterns/" title="react课程20-Advanced React Patterns">
+                        <span class="hidden-mobile">react课程20-Advanced React Patterns</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
