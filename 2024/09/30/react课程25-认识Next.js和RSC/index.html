@@ -1,0 +1,947 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本节课初步了解Next.js和RSC的特性以及如何使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程25-认识Next.js和RSC">
+<meta property="og:url" content="http://example.com/2024/09/30/react%E8%AF%BE%E7%A8%8B25-%E8%AE%A4%E8%AF%86Next.js%E5%92%8CRSC/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="本节课初步了解Next.js和RSC的特性以及如何使用">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930183322866.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930183345739.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930183405183.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930210854700.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930210909397.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930210942266.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930211005768.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930211017757.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001084958987.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001085035897.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001085123256.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001085143136.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001093504533.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001093616393.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930153505570.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930183025098.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930183044156.png">
+<meta property="article:published_time" content="2024-09-30T07:17:51.072Z">
+<meta property="article:modified_time" content="2024-10-01T01:37:50.900Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930183322866.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程25-认识Next.js和RSC - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程25-认识Next.js和RSC"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-30 15:17" pubdate>
+          September 30, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程25-认识Next.js和RSC</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on October 1, 2024 am
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本节课初步了解Next.js和RSC的特性以及如何使用</p>
+<span id="more"></span>
+
+<h3 id="一、Next-js"><a href="#一、Next-js" class="headerlink" title="一、Next.js"></a>一、Next.js</h3><h4 id="（1）图片版定义"><a href="#（1）图片版定义" class="headerlink" title="（1）图片版定义"></a>（1）图片版定义</h4><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930183322866.png" srcset="/img/loading.gif" lazyload alt="image-20240930183322866" style="zoom: 50%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930183345739.png" srcset="/img/loading.gif" lazyload alt="image-20240930183345739" style="zoom:50%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930183405183.png" srcset="/img/loading.gif" lazyload alt="image-20240930183405183" style="zoom:50%;" />
+
+<h4 id="（2）整体特性介绍"><a href="#（2）整体特性介绍" class="headerlink" title="（2）整体特性介绍"></a>（2）整体特性介绍</h4><p>Next.js 是一个基于 React 的前端开发框架，旨在简化开发现代 Web 应用程序的过程。它提供了一系列功能，如服务端渲染（SSR）、静态生成（SSG）、API 路由、文件系统路由、图像优化等，极大地增强了 React 的能力，并在性能和 SEO 上有很大优势。</p>
+<p><strong>服务器端渲染（SSR）</strong>：</p>
+<ul>
+<li>服务端渲染意味着页面在服务器上生成 HTML，然后发送到客户端。这对于 SEO 友好、初始加载速度快、改善用户体验尤为重要。Next.js 允许开发者在每次请求时通过服务端渲染生成页面。</li>
+</ul>
+<p><strong>静态生成（SSG）</strong>：</p>
+<ul>
+<li>静态生成意味着页面在构建时被预先生成并缓存，适合内容不经常变化的页面。Next.js 的静态生成在构建时生成 HTML，用户请求时直接返回生成好的页面，这样大大加快了页面的响应速度。</li>
+</ul>
+<p><strong>动态API 路由</strong>：</p>
+<ul>
+<li>允许开发者在 Next.js 应用中直接创建 API 路由，处理请求并返回数据，方便处理后端逻辑。使用文件系统路由，自动根据文件结构生成路由。开发者只需创建一个新的页面文件，就可以轻松添加新路由。</li>
+</ul>
+<p><strong>增量静态再生（ISR）</strong>：</p>
+<ul>
+<li>结合了静态生成和服务器端渲染的优点，可以在运行时更新静态内容，使得页面可以在不重新构建整个应用的情况下保持最新。通过 ISR，你可以在构建时生成页面，并设置在特定时间间隔后重新生成页面内容，从而兼顾性能和动态性。</li>
+</ul>
+<p><strong>快速刷新</strong>：</p>
+<ul>
+<li>Next.js 支持 React 的快速刷新功能（Fast Refresh），可以在开发时保持组件状态，同时实现即时页面更新，提升开发体验。</li>
+</ul>
+<p><strong>图像优化</strong>：</p>
+<ul>
+<li>提供内置的图像优化功能（Image Optimization），自动处理图像的大小、格式、加载方式（如懒加载）等，以确保图片的最佳显示效果和性能。</li>
+</ul>
+<p><strong>支持 TypeScript</strong>：</p>
+<ul>
+<li>内置支持 TypeScript，使得类型安全和开发体验更好。</li>
+</ul>
+<p><strong>集成 CSS 和 Sass 支持</strong>：</p>
+<ul>
+<li>支持内联 CSS、CSS Modules 和 Sass，方便样式的管理和维护。</li>
+</ul>
+<p><strong>热重载</strong>：</p>
+<ul>
+<li>在开发过程中，可以实时预览代码更改，提高开发效率。</li>
+</ul>
+<h4 id="（3）优势"><a href="#（3）优势" class="headerlink" title="（3）优势"></a>（3）优势</h4><p><strong>SEO 优化</strong>：</p>
+<ul>
+<li>由于支持服务器端渲染和静态生成，Next.js 在搜索引擎优化方面表现良好。</li>
+</ul>
+<p><strong>性能优越</strong>：</p>
+<ul>
+<li>通过静态生成和动态路由，Next.js 应用可以实现快速加载和响应。提供了许多性能优化手段，如<strong>懒加载</strong>、<strong>代码拆分</strong>、<strong>边缘缓存</strong>等，帮助开发者提升应用的响应速度和用户体验</li>
+</ul>
+<p><strong>开发效率高</strong>：</p>
+<ul>
+<li>丰富的功能和开发工具使得构建和维护大型应用更加高效。</li>
+</ul>
+<p><strong>社区支持</strong>：</p>
+<ul>
+<li>作为一个广泛使用的框架，Next.js 拥有强大的社区支持，提供了丰富的学习资源和第三方插件。</li>
+</ul>
+<h4 id="（4）App-Route-和-Page-Route的区别"><a href="#（4）App-Route-和-Page-Route的区别" class="headerlink" title="（4）App Route 和 Page Route的区别"></a>（4）App Route 和 Page Route的区别</h4><h5 id="1、-Page-Route（页面路由）"><a href="#1、-Page-Route（页面路由）" class="headerlink" title="1、 Page Route（页面路由）"></a>1、 <strong>Page Route（页面路由）</strong></h5><p>Page Route 是 Next.js 旧版本（即 Next.js 13 之前）使用的传统路由系统，它基于 <code>pages/</code> 目录。每个文件会自动映射为一个对应的 URL 路由。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>文件系统路由：文件名即为 URL 路由，所有的页面文件都位于 <code>pages/</code> 目录中。例如：<ul>
+<li><code>pages/index.js</code> 对应 <code>/</code></li>
+<li><code>pages/about.js</code> 对应 <code>/about</code></li>
+</ul>
+</li>
+<li><strong>服务端渲染和静态生成</strong>：通过 <code>getServerSideProps()</code>、<code>getStaticProps()</code>、<code>getStaticPaths()</code> 来处理数据获取和页面渲染。</li>
+<li><strong>API 路由</strong>：可以在 <code>pages/api/</code> 目录中创建 API 路由。</li>
+</ul>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>Page Route 适合在较为简单的项目中，快速创建页面和 API，并且兼容现有的 SSR 和静态生成场景。</li>
+</ul>
+<h5 id="2、App-Route（应用路由）"><a href="#2、App-Route（应用路由）" class="headerlink" title="2、App Route（应用路由）"></a>2、App Route（应用路由）</h5><p>App Route 是 Next.js 13 引入的新路由系统，基于新的 <code>app/</code> 目录。它提供了更多灵活性和新特性，比如嵌套布局、服务器组件（Server Components）、并行路由和渐进式渲染。</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li><strong>嵌套布局</strong>：<code>app/</code> 目录支持嵌套布局，可以更灵活地组织页面结构。例如，<code>app/layout.js</code> 定义整个应用的布局，而每个页面可以有自己的局部布局。</li>
+<li><strong>React 服务器组件（RSC）</strong>：支持将 React 组件在服务器端渲染，减少客户端 JavaScript 的负载，提升性能。</li>
+<li><strong>文件系统路由</strong>：类似于 <code>pages/</code> 目录，但是更加灵活，支持动态路由、并行路由、渐进式渲染。</li>
+<li><strong>服务端渲染和数据获取</strong>：与 Page Route 不同，App Route 使用<code>getServerSideProps</code> 之外的新机制处理数据获取，结合 React Server Components 的优势。</li>
+</ul>
+<p><strong>使用场景</strong>：</p>
+<ul>
+<li>App Route 提供了更好的架构灵活性，适合大型、复杂的应用开发，特别是那些需要更精细控制布局和渲染逻辑的项目。</li>
+</ul>
+<h5 id="3、主要区别"><a href="#3、主要区别" class="headerlink" title="3、主要区别"></a>3、主要区别</h5><p>文件结构：Page Route 使用 <code>pages/</code> 目录，而 App Route 使用 <code>app/</code> 目录。</p>
+<p>布局系统：App Route 支持嵌套布局，而 Page Route 依赖顶层的 <code>_app.js</code> 文件来共享布局。</p>
+<p>服务器组件：App Route 支持 React 服务器组件，允许在服务器端直接渲染组件，提升性能。</p>
+<p>灵活性：App Route 提供了更强的灵活性，支持动态布局、并行渲染等新特性，而 Page Route 更适合传统的单层页面布局。</p>
+<h3 id="二、React-Server-Component（RSC）"><a href="#二、React-Server-Component（RSC）" class="headerlink" title="二、React Server Component（RSC）"></a>二、React Server Component（RSC）</h3><h4 id="（1）什么是RSC"><a href="#（1）什么是RSC" class="headerlink" title="（1）什么是RSC"></a>（1）什么是RSC</h4><p>RSC 是一种组件类型，它允许在服务端渲染 React 组件，并且这些组件在客户端不需要再进行重新渲染。通过在服务器端处理部分逻辑和渲染，RSC 可以显著减少客户端的 JavaScript 负载，并提升页面加载性能。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930210854700.png" srcset="/img/loading.gif" lazyload alt="image-20240930210854700"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930210909397.png" srcset="/img/loading.gif" lazyload alt="image-20240930210909397"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930210942266.png" srcset="/img/loading.gif" lazyload alt="image-20240930210942266"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930211005768.png" srcset="/img/loading.gif" lazyload alt="image-20240930211005768"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930211017757.png" srcset="/img/loading.gif" lazyload alt="image-20240930211017757"></p>
+<h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><ul>
+<li>服务器端渲染：RSC 是在服务器端执行的组件，生成的 HTML 直接发送到客户端。客户端只需接收 HTML，而无需额外的 JavaScript。</li>
+<li>减少客户端负载：因为 RSC 在服务端渲染，所以在客户端不需要再进行重新渲染，也不需要传递组件的 JavaScript 代码，减少了客户端的 JavaScript 体积。</li>
+<li>无状态组件：RSC 本质上是无状态的，它不维护本地的状态或副作用，这与传统的 React 组件不同。</li>
+<li>与客户端组件组合：RSC 可以与客户端组件结合使用。在一个页面中可以有一部分是服务端渲染的组件，另一部分是客户端渲染的交互式组件。这种组合模式为应用的性能和交互性提供了极大的灵活性。</li>
+</ul>
+<h4 id="（2）RSC在屏幕后是如何工作的"><a href="#（2）RSC在屏幕后是如何工作的" class="headerlink" title="（2）RSC在屏幕后是如何工作的"></a>（2）RSC在屏幕后是如何工作的</h4><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001084958987.png" srcset="/img/loading.gif" lazyload alt="image-20241001084958987" style="zoom: 33%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001085035897.png" srcset="/img/loading.gif" lazyload alt="image-20241001085035897" style="zoom:33%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001085123256.png" srcset="/img/loading.gif" lazyload alt="image-20241001085123256" style="zoom:67%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001085143136.png" srcset="/img/loading.gif" lazyload alt="image-20241001085143136" style="zoom:33%;" />
+
+
+
+<h4 id="（3）RSC和SSR如何配合"><a href="#（3）RSC和SSR如何配合" class="headerlink" title="（3）RSC和SSR如何配合"></a>（3）RSC和SSR如何配合</h4><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001093504533.png" srcset="/img/loading.gif" lazyload alt="image-20241001093504533" style="zoom:33%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001093616393.png" srcset="/img/loading.gif" lazyload alt="image-20241001093616393" style="zoom: 50%;" />
+
+
+
+<h4 id="（4）总结一些重点"><a href="#（4）总结一些重点" class="headerlink" title="（4）总结一些重点"></a>（4）总结一些重点</h4><p>连接客户端和服务端的是props。</p>
+<p>所有组件最初都是在服务端进行渲染，然后再渲染到客户端。</p>
+<h3 id="三、项目浅浅起步"><a href="#三、项目浅浅起步" class="headerlink" title="三、项目浅浅起步"></a>三、项目浅浅起步</h3><p>⭕<code>npx create-next-app@14 the-wild-oasis-website</code></p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930153505570.png" srcset="/img/loading.gif" lazyload alt="image-20240930153505570" style="zoom: 50%;" />
+
+<p>⚠️⚠️⚠️⚠️组件必须要保持在下面export default的格式，否则next.js会认为这不是组件！！！！！</p>
+<hr>
+<h4 id="（1）设置路由Route"><a href="#（1）设置路由Route" class="headerlink" title="（1）设置路由Route"></a>（1）设置路由Route</h4><h5 id="1、创建页面"><a href="#1、创建页面" class="headerlink" title="1、创建页面"></a>1、创建页面</h5><p>APP Route的建立是直接在APP文件夹下创建相应名字的文件夹，然后再在文件夹中创建page.js，然后相应路由下就会显示page.js的内容。</p>
+<h5 id="2、修改设置"><a href="#2、修改设置" class="headerlink" title="2、修改设置"></a>2、修改设置</h5><p>由于每个界面的名字都叫page，很不好区分，因此可以在设置中搜索custom labels，打开应用自定义标签，添加<strong>项</strong>：<code>** /app/ **/page.js</code>     <strong>值</strong>：<code>Page: $&#123;dirname&#125;</code></p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930183025098.png" srcset="/img/loading.gif" lazyload alt="image-20240930183025098" style="zoom: 50%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240930183044156.png" srcset="/img/loading.gif" lazyload alt="image-20240930183044156" style="zoom:67%;" />
+
+<h5 id="3、界面间navigate"><a href="#3、界面间navigate" class="headerlink" title="3、界面间navigate"></a>3、界面间navigate</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Link</span> href=<span class="hljs-string">&quot;/cabins&quot;</span>&gt;<span class="hljs-title class_">Explore</span> luxury cabins&lt;/<span class="hljs-title class_">Link</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>和React的Link不一样了。但是效果一样，不需要硬刷新，类似SPA</p>
+<h5 id="4、layout"><a href="#4、layout" class="headerlink" title="4、layout"></a>4、layout</h5><blockquote>
+<p>APP需要有一个root layout</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">RootLayout</span>(<span class="hljs-params">&#123; children &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Logo</span> /&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Navigation</span> /&gt;</span>   &#123;/*这个组件在component文件夹里*/&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>&#123;children&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>    &#123;/*和React Router中不同的地方*/&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（2）RSC初使用"><a href="#（2）RSC初使用" class="headerlink" title="（2）RSC初使用"></a>（2）RSC初使用</h4><p>⭕<a target="_blank" rel="noopener" href="https://jsonplaceholder.typicode.com/">https://jsonplaceholder.typicode.com/</a>  FAKE API</p>
+<hr>
+<h5 id="1、尝试获取数据"><a href="#1、尝试获取数据" class="headerlink" title="1、尝试获取数据"></a>1、尝试获取数据</h5><p> const res &#x3D; await fetch(‘<a target="_blank" rel="noopener" href="https://jsonplaceholder.typicode.com/users">https://jsonplaceholder.typicode.com/users</a> ‘);</p>
+<p> const data &#x3D; await res.json();</p>
+<p> console.log(data);</p>
+<p>数据被缓存在浏览器中，浏览器从HTML中直接得到数据。log的数据并不在浏览器的控制台，而是出现在了编译器的终端中</p>
+<h5 id="2、使用Client-Component来增加互动性内容"><a href="#2、使用Client-Component来增加互动性内容" class="headerlink" title="2、使用Client Component来增加互动性内容"></a>2、使用Client Component来增加互动性内容</h5><blockquote>
+<p>默认情况下，APP路径下的界面或者组件都是RSC</p>
+</blockquote>
+<p>如果你需要某个组件在客户端执行（例如有状态管理、事件处理等交互逻辑），你需要显式声明为 <strong>客户端组件</strong>。这可以通过在文件顶部添加 <code>&quot;use client&quot;;</code> 来声明组件为客户端组件。不然根本是无法使用useState的。</p>
+<h5 id="3、加载旋转指示器"><a href="#3、加载旋转指示器" class="headerlink" title="3、加载旋转指示器"></a>3、加载旋转指示器</h5><blockquote>
+<p>因为尽管是SSR渲染，在加载的时候还是有一定的延迟。</p>
+</blockquote>
+<p>在app文件夹下创建文件<code>loading.js</code>，作为全局Loading文件夹，这样app下的所有页面，只要正在加载，就会显示这个文件夹的内容。</p>
+<h5 id="4、RenderToReadableStream"><a href="#4、RenderToReadableStream" class="headerlink" title="4、RenderToReadableStream"></a>4、RenderToReadableStream</h5><blockquote>
+<p><strong>Next.js</strong> 在其最新版本中（特别是 Next.js 13 引入的 App Router）自动实现了流式渲染和 <code>RenderToReadableStream</code> 的功能。Next.js 利用 React 18 的服务端渲染能力，为开发者提供了更高效的页面加载体验，而无需开发者手动处理流式渲染的细节。</p>
+</blockquote>
+<p><code>RenderToReadableStream</code> 是 React 18 引入的一个新特性，用于支持在服务端渲染（SSR）期间将组件渲染为可读流。这种方法允许在服务器端生成和传输内容的同时，客户端可以逐步接收并渲染这些内容，从而提高了页面的加载速度和用户体验。</p>
+<p><strong>流式渲染</strong>：<code>RenderToReadableStream</code> 可以将 React 组件渲染为可读流，这意味着内容可以逐步发送到客户端，而不是等待整个页面的渲染完成。这对于提高首屏加载时间非常有帮助。</p>
+<p><strong>渐进式渲染</strong>：由于内容可以在渲染的过程中逐步传输，用户可以在部分内容可用时就开始查看，而不是等待整个页面加载完成。</p>
+<p><strong>提高性能</strong>：流式渲染可以减少服务器的内存消耗，因为它允许在渲染期间释放已经发送的内容，同时也减少了客户端的初始 JavaScript 负载。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程25-认识Next.js和RSC</div>
+      <div>http://example.com/2024/09/30/react课程25-认识Next.js和RSC/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 30, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/01/react%E8%AF%BE%E7%A8%8B26-%E9%A1%B5%E9%9D%A2%E5%BB%BA%E7%AB%8B%E5%8F%8AData%E5%A4%84%E7%90%86/" title="react课程26-页面建立及Data处理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">react课程26-页面建立及Data处理</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/29/react%E8%AF%BE%E7%A8%8B24-SSR%E6%A6%82%E5%BF%B5%E5%BC%95%E5%85%A5%E5%8F%8A%E6%89%8B%E5%86%99/" title="react课程24-SSR概念引入及手写">
+                        <span class="hidden-mobile">react课程24-SSR概念引入及手写</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

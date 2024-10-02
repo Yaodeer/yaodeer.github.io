@@ -1,0 +1,939 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JavaScript是高级的、面向对象的、多范式的编程语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS课程1-">
+<meta property="og:url" content="http://example.com/2024/09/28/JS%E8%AF%BE%E7%A8%8B1-/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="JavaScript是高级的、面向对象的、多范式的编程语言">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-28T05:14:42.320Z">
+<meta property="article:modified_time" content="2024-09-29T14:48:38.032Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>JS课程1- - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JS课程1-"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-28 13:14" pubdate>
+          September 28, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">JS课程1-</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on September 29, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>JavaScript是高级的、面向对象的、多范式的编程语言</p>
+<span id="more"></span>
+
+<h3 id="一、一些基本知识"><a href="#一、一些基本知识" class="headerlink" title="一、一些基本知识"></a>一、一些基本知识</h3><h4 id="七种数据类型"><a href="#七种数据类型" class="headerlink" title="七种数据类型"></a>七种数据类型</h4><p>number、string、bool、undefined、null、symbol、bigInt（<strong>dynamic</strong>）</p>
+<p>其中 <strong>Symbol</strong> 和 <strong>BigInt</strong> 是ES6 中新增的数据类型：</p>
+<ul>
+<li><strong>Symbol</strong>代表创建后独一无二且不可变的数据类型，它主要是为了解决可能出现的全局变量冲突的问题。</li>
+<li><strong>BigInt</strong> 是一种数字类型的数据，它可以表示任意精度格式的整数，使用 BigInt 可以安全地存储和操作大整数，即使这个数已经超出了 Number 能够表示的安全整数范围。</li>
+</ul>
+<p>这些数据可以分为<strong>原始数据类型</strong>和<strong>引用数据类型（复杂数据类型）</strong>，他们在内存中的存储方式不同。</p>
+<ul>
+<li><strong>堆：</strong> 存放<strong>引用数据类型</strong>，引用数据类型占据空间大、大小不固定。如果存储在栈中，将会影响程序运行的性能；<strong>引用数据类型在栈中存储了指针</strong>，该指针指向堆中该实体的起始地址，如<code>Object</code>、<code>Array</code>、<code>Function</code>。</li>
+<li><strong>栈：</strong> 存放<strong>原始数据类型</strong>，栈中的简单数据段，占据空间小，属于被频繁使用的数据，如<code>String</code>、<code>Number</code>、<code>Null</code>、<code>Boolean</code>。</li>
+</ul>
+<p>const需要初始值。</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence运算符的优先级</a></p>
+<p>+号和-号会实现自动类型转换：num-&gt;string    string-&gt;num</p>
+<h4 id="falsey-values："><a href="#falsey-values：" class="headerlink" title="falsey values："></a>falsey values：</h4><p>0，”“，undefined，null，NaN  （空对象是真值）</p>
+<ul>
+<li><strong>undefined</strong> 代表的含义是<strong>未定义</strong>，一般变量<strong>声明了但还没有定义</strong>的时候会返回 <code>undefined</code>，<code>typeof</code>为<code>undefined</code></li>
+<li><strong>null</strong> 代表的含义是<strong>空对象</strong>，null主要用于赋值给一些可能会返回对象的变量，作为初始化，<code>typeof</code>为<code>object</code></li>
+</ul>
+<p><code>null == undefined // true          null === undefined //false</code></p>
+<h3 id="二、一些基本语法"><a href="#二、一些基本语法" class="headerlink" title="二、一些基本语法"></a>二、一些基本语法</h3><p>const x&#x3D;prompt(“are you a pig？”)  弹窗，用户输入的内容会保留在变量里</p>
+<p>unshift在数组前加入数据，后加是push；pop弹出最后的元素，shift弹出最前元素。indexOf：下标，includes：检验是否包含</p>
+<h4 id="如何判断是不是数组？"><a href="#如何判断是不是数组？" class="headerlink" title="如何判断是不是数组？"></a>如何判断是不是数组？</h4><p>原型链、ES6的isArray、instanceof（判断类型）</p>
+<h4 id="this"><a href="#this" class="headerlink" title="this"></a><strong>this</strong></h4><h5 id="1、全局上下文中的-this"><a href="#1、全局上下文中的-this" class="headerlink" title="1、全局上下文中的 this"></a>1、全局上下文中的 <code>this</code></h5><p>在全局作用域中，<code>this</code> 指向全局对象：</p>
+<ul>
+<li>在浏览器中，<code>this</code> 指向 <code>window</code> 对象。</li>
+<li>在 Node.js 中，<code>this</code> 在模块的顶层上下文中指向 <code>module.exports</code>。</li>
+</ul>
+<h5 id="2、函数调用中的-this"><a href="#2、函数调用中的-this" class="headerlink" title="2、函数调用中的 this"></a>2、函数调用中的 <code>this</code></h5><p>当一个普通函数被调用时，<code>this</code> 的值取决于调用该函数的对象：</p>
+<ul>
+<li>如果函数是在全局上下文中调用，<code>this</code> 指向全局对象（在浏览器中是 <code>window</code>）。</li>
+<li>如果函数是作为对象的方法调用，<code>this</code> 指向该对象。</li>
+</ul>
+<p>trunc函数：取整。Math.trunc(x);</p>
+<h4 id="Max、Min"><a href="#Max、Min" class="headerlink" title="Max、Min"></a>Max、Min</h4><p>Math.max(…arr);             Math.min(…arr);</p>
+<p>虽然函数默认不接受数组作为参数，但是可以通过扩展运算符（…）将数组传递给函数</p>
+<h4 id="reduce（）"><a href="#reduce（）" class="headerlink" title="reduce（）"></a>reduce（）</h4><h5 id="1、计算总和"><a href="#1、计算总和" class="headerlink" title="1、计算总和"></a>1、计算总和</h5><p><code>sum=arrs.reduce((acc，cur)=&gt;acc+cur，0）</code>；</p>
+<h5 id="2、计算最大值"><a href="#2、计算最大值" class="headerlink" title="2、计算最大值"></a>2、计算最大值</h5><p><code>max = arrs.reduce((acc, cur) =&gt; Math.max(acc, cur),arrs[0]);</code></p>
+<h4 id="concat（）"><a href="#concat（）" class="headerlink" title="concat（）"></a>concat（）</h4><p><code>array1.concat(array2)</code></p>
+<p><code>array1.concat(array2,array3)</code></p>
+<p><code>array.concat(num)</code></p>
+<p><code>arrary.concat(1,[2,3],4)</code></p>
+<h3 id="三、DOM"><a href="#三、DOM" class="headerlink" title="三、DOM"></a>三、DOM</h3><h4 id="（1）整体概述"><a href="#（1）整体概述" class="headerlink" title="（1）整体概述"></a>（1）整体概述</h4><p>Document Object Model（文档对象类型）是一个编程接口，用于表示和操作HTML或XML文档的内容。通过DOM，开发者可以访问和修改网页的结构、样式和内容。</p>
+<h4 id="（2）核心概念"><a href="#（2）核心概念" class="headerlink" title="（2）核心概念"></a>（2）核心概念</h4><p><strong>文档（Document）</strong>：</p>
+<ul>
+<li>DOM将HTML或XML文档表示为一个树形结构，每个节点代表文档中的一部分（如元素、属性、文本等）。</li>
+</ul>
+<p><strong>节点（Node）</strong>：</p>
+<ul>
+<li>DOM中的每个元素（<code>&lt;div&gt;</code>、<code>&lt;p&gt;</code>等）、属性（<code>class=&quot;example&quot;</code>）和文本（<code>Hello World!</code>）都被视为一个节点。</li>
+<li>常见的节点类型：<ul>
+<li><strong>元素节点</strong>：如HTML标签 (<code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;a&gt;</code> 等)。</li>
+<li><strong>属性节点</strong>：HTML元素的属性（如 <code>id</code>、<code>class</code>）。</li>
+<li><strong>文本节点</strong>：元素内的文本。</li>
+</ul>
+</li>
+</ul>
+<p><strong>父节点、子节点和同级节点</strong>：</p>
+<ul>
+<li>父节点（parent node）：包含其他节点的节点。</li>
+<li>子节点（child node）：被父节点包含的节点。</li>
+<li>同级节点（sibling node）：同一个父节点的子节点。</li>
+</ul>
+<h4 id="（3）访问和修改DOM"><a href="#（3）访问和修改DOM" class="headerlink" title="（3）访问和修改DOM"></a>（3）访问和修改DOM</h4><h5 id="1、访问"><a href="#1、访问" class="headerlink" title="1、访问"></a>1、访问</h5><ul>
+<li><p><strong>document.getElementById</strong>() </p>
+<p>根据元素的id获取元素</p>
+</li>
+<li><p><strong>document.getElementByClassName</strong>()</p>
+<p>根据元素的class获取元素集合</p>
+</li>
+<li><p><strong>document.querySelector</strong>()</p>
+<p>使用CSS选择语法器获取第一个匹配的元素</p>
+</li>
+<li><p><strong>document.querySelectorAll()</strong></p>
+<p>使用CSS选择器语法获取所有匹配的元素。</p>
+<p>byTagName、byName</p>
+</li>
+</ul>
+<h5 id="2、修改"><a href="#2、修改" class="headerlink" title="2、修改"></a>2、修改</h5><p>选中元素之后，可以通过innerTHML或<strong>textContent</strong>修改文本元素的内容，通过<strong>value</strong>修改表单元素的值，通过<strong>style</strong>修改内联的样式，通过setAttribute修改元素的属性。</p>
+<p><code>element.setAttribute(&#39;class&#39;, &#39;newClass&#39;);</code></p>
+<h5 id="3、动态添加和删除元素"><a href="#3、动态添加和删除元素" class="headerlink" title="3、动态添加和删除元素"></a>3、动态添加和删除元素</h5><ul>
+<li>创建元素：通过createElement（）创建一个新元素，然后使用appendChild添加到文档中。</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> newElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;div&quot;</span>)<br>newElement.<span class="hljs-property">textConten</span>=<span class="hljs-string">&quot;this is a newElement&quot;</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">appendChild</span>(newElement)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>删除元素：使用removeChild（）删除元素</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> parentElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;parent&#x27;</span>);<br><span class="hljs-keyword">const</span> childElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;child&#x27;</span>);<br>parentElement.<span class="hljs-title function_">removeChild</span>(childElement);<br></code></pre></td></tr></table></figure>
+
+<h4 id="（4）DOM事件"><a href="#（4）DOM事件" class="headerlink" title="（4）DOM事件"></a>（4）DOM事件</h4><h5 id="1、onclick"><a href="#1、onclick" class="headerlink" title="1、onclick"></a>1、onclick</h5><p><code>button.onclick = function() &#123;  alert(&#39;按钮被点击了&#39;); &#125;;</code></p>
+<h5 id="2、addEventListener"><a href="#2、addEventListener" class="headerlink" title="2、addEventListener()"></a>2、addEventListener()</h5><p>比如项目中的一个钩子：监听组件外点击</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">useHandleClickOutside</span>(<span class="hljs-params">handler, listenCapturing = <span class="hljs-literal">true</span></span>) &#123;<br>  <span class="hljs-keyword">const</span> ref = <span class="hljs-title function_">useRef</span>();<br>  <span class="hljs-title function_">useEffect</span>(<br>    <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleClick</span>(<span class="hljs-params">e</span>) &#123;<br>        <span class="hljs-keyword">if</span> (ref.<span class="hljs-property">current</span> &amp;&amp; !ref.<span class="hljs-property">current</span>.<span class="hljs-title function_">contains</span>(e.<span class="hljs-property">target</span>)) &#123;<br>          <span class="hljs-title function_">handler</span>();<br>        &#125;<br>      &#125;<br>      <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, handleClick, listenCapturing);<br>      <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span><br>        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, handleClick, listenCapturing);<br>    &#125;,<br>    [handler, listenCapturing]<br>  );<br><br>  <span class="hljs-keyword">return</span> ref;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="（5）DOM树"><a href="#（5）DOM树" class="headerlink" title="（5）DOM树"></a>（5）DOM树</h4><p><strong>DOM树</strong>（Document Object Model Tree）是用于表示HTML或XML文档的层次结构的模型。通过DOM树，开发者可以访问和操作文档的结构、样式和内容。DOM树将文档中的每个元素、属性和文本节点都视为一个节点，并组织成树形结构。</p>
+<h5 id="1、结构"><a href="#1、结构" class="headerlink" title="1、结构"></a>1、结构</h5><p><strong>根节点（Root Node）</strong>：</p>
+<ul>
+<li>在DOM树中，根节点是整个文档的入口。在HTML文档中，根节点是 <code>document</code>，而在XML文档中，根节点通常是文档的根元素。</li>
+</ul>
+<p><strong>元素节点（Element Nodes）</strong>：</p>
+<ul>
+<li>每个HTML或XML标签（例如 <code>&lt;div&gt;</code>、<code>&lt;p&gt;</code>、<code>&lt;a&gt;</code> 等）都是一个元素节点。元素节点可以有子节点，形成父子关系。</li>
+</ul>
+<p><strong>属性节点（Attribute Nodes）</strong>：</p>
+<ul>
+<li>属性节点是元素节点的属性，例如 <code>id</code>、<code>class</code> 和 <code>src</code> 等。属性节点通常不在树的层次结构中显示，但可以通过DOM API访问。</li>
+</ul>
+<p><strong>文本节点（Text Nodes）</strong>：</p>
+<ul>
+<li>文本节点包含元素内的文本内容。每个元素节点的文本内容都是一个文本节点。</li>
+</ul>
+<h5 id="2、节点类型"><a href="#2、节点类型" class="headerlink" title="2、节点类型"></a>2、节点类型</h5><ul>
+<li>文档节点（Document Node）：</li>
+</ul>
+<p><strong>根节点</strong>，代表整个文档。</p>
+<ul>
+<li>元素节点（Element Node）：</li>
+</ul>
+<p>代表HTML或XML元素。</p>
+<ul>
+<li>文本节点（Text Node）：</li>
+</ul>
+<p>代表元素内的文本内容。</p>
+<ul>
+<li>属性节点（Attribute Node）（不在树结构中单独表示，但可以访问）：</li>
+</ul>
+<p>代表元素的属性。</p>
+<h5 id="3、访问"><a href="#3、访问" class="headerlink" title="3、访问"></a>3、访问</h5><p>.childNodes：获取所有子节点</p>
+<p>.parentNode：获取父节点</p>
+<p>.nextSibling：获取下一个兄弟节点</p>
+<h3 id="四、Web-API"><a href="#四、Web-API" class="headerlink" title="四、Web API"></a>四、Web API</h3><p><strong>Web API</strong>（Web Application Programming Interface，Web应用程序编程接口）是为开发者提供的一组接口，用于通过互联网与服务器或其他网络资源进行交互。Web API允许客户端（如浏览器或移动应用）请求和获取数据或服务，而不直接访问服务器端的实现细节。</p>
+<h4 id="（1）浏览器提供的API"><a href="#（1）浏览器提供的API" class="headerlink" title="（1）浏览器提供的API"></a>（1）浏览器提供的API</h4><p>这些API是内置于浏览器中的，允许开发者操作浏览器功能和网页内容。它们包括对文档对象模型（DOM）、存储、网络、音频、视频等的访问。</p>
+<h5 id="1、DOM-API"><a href="#1、DOM-API" class="headerlink" title="1、DOM API"></a>1、DOM API</h5><p>操作HTML 和CSS的接口，例如<code>getElementById</code></p>
+<h5 id="2、Fetch-API"><a href="#2、Fetch-API" class="headerlink" title="2、Fetch API"></a>2、Fetch API</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;https://api.example.com/data&#x27;</span>)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">json</span>())<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data));<br></code></pre></td></tr></table></figure>
+
+<h5 id="3、LocalStorage-和-SessionStorage"><a href="#3、LocalStorage-和-SessionStorage" class="headerlink" title="3、LocalStorage 和 SessionStorage"></a>3、<strong>LocalStorage 和 SessionStorage</strong></h5><p>用于在客户端存储数据。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;usename&#x27;</span>,<span class="hljs-string">&#x27;Jonas&#x27;</span>)<br><span class="hljs-keyword">const</span> username=<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;username&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h5 id="4、Geolocation-API"><a href="#4、Geolocation-API" class="headerlink" title="4、Geolocation API"></a>4、Geolocation API</h5><p>获取用户的地理位置信息。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx">navigator.<span class="hljs-property">getlocation</span>.<span class="hljs-title function_">getCurrentPosition</span>(<br>	<span class="hljs-function">(<span class="hljs-params">pos</span>)=&gt;</span>&#123;<br>		<span class="hljs-title function_">setPostion</span>(&#123;<br>			<span class="hljs-attr">lat</span>: pos.<span class="hljs-property">coords</span>.<span class="hljs-property">latitude</span>;<br>			<span class="hljs-attr">lng</span>: pos.<span class="hljs-property">coords</span>.<span class="hljs-property">longitude</span><br>		&#125;)<br>	&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="（2）服务端API"><a href="#（2）服务端API" class="headerlink" title="（2）服务端API"></a>（2）服务端API</h4><h5 id="1、RESTful-API"><a href="#1、RESTful-API" class="headerlink" title="1、RESTful API"></a>1、RESTful API</h5><p>REST（Representational State Transfer）是一种设计Web服务的架构风格，基于HTTP协议，使用常见的HTTP方法如 <code>GET</code>、<code>POST</code>、<code>PUT</code>、<code>DELETE</code> 来进行操作。</p>
+<h5 id="2、GraphQL（Apollo）"><a href="#2、GraphQL（Apollo）" class="headerlink" title="2、GraphQL（Apollo）"></a>2、GraphQL（Apollo）</h5><p>查询（Query）：请求特定字段，避免获取不必要的数据</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&#123;<br>   <span class="hljs-title function_">user</span>(<span class="hljs-params">id: <span class="hljs-string">&#x27;1&#x27;</span></span>) &#123;<br>      name<br>      email<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>变更（Mutation）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx">mutation&#123;<br>   <span class="hljs-title function_">createUser</span>(<span class="hljs-params">name: <span class="hljs-string">&#x27;Jonas&#x27;</span>,email: <span class="hljs-string">&#x27;jonas@test.com&#x27;</span></span>)&#123;<br>      id<br>      name<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>订阅（subscription）、模式：type</p>
+<p>优点：</p>
+<ul>
+<li><p>灵活的数据获取：</p>
+<p>客户端可以精确请求所需字段，避免多余的数据传输。</p>
+</li>
+<li><p>单一端点：</p>
+<p>所有请求通过单一的API端点进行，简化了网络请求的管理。</p>
+</li>
+<li><p>强类型系统：</p>
+<p>模式提供了清晰的类型定义和文档，增强了API的可维护性。</p>
+</li>
+<li><p>自描述性：</p>
+<p>GraphQL API可以通过 <code>introspection</code> 查询自身的模式，使得开发者可以轻松理解API。</p>
+</li>
+</ul>
+<h4 id="（3）HTTP状态码："><a href="#（3）HTTP状态码：" class="headerlink" title="（3）HTTP状态码："></a>（3）HTTP状态码：</h4><ul>
+<li><strong>200 OK</strong>：请求成功。</li>
+<li><strong>201 Created</strong>：资源成功创建。</li>
+<li><strong>400 Bad Request</strong>：请求无效。</li>
+<li><strong>401 Unauthorized</strong>：请求未授权。</li>
+<li><strong>404 Not Found</strong>：请求的资源未找到。</li>
+<li><strong>500 Internal Server Error</strong>：服务器内部错误。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JS%E8%AF%BE%E7%A8%8B/" class="category-chain-item">JS课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JS课程1-</div>
+      <div>http://example.com/2024/09/28/JS课程1-/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 28, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/29/react%E8%AF%BE%E7%A8%8B24-SSR%E6%A6%82%E5%BF%B5%E5%BC%95%E5%85%A5%E5%8F%8A%E6%89%8B%E5%86%99/" title="react课程24-SSR概念引入及手写">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">react课程24-SSR概念引入及手写</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/27/react%E8%AF%BE%E7%A8%8B23-%E9%A1%B9%E7%9B%AE%E6%94%B6%E5%B0%BE/" title="react课程23-项目收尾">
+                        <span class="hidden-mobile">react课程23-项目收尾</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

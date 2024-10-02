@@ -1,0 +1,965 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本节课包含项目分析、页面建立（包含加载和错误界面）、渲染方面的处理和擦cache问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程26-页面建立及Data处理">
+<meta property="og:url" content="http://example.com/2024/10/01/react%E8%AF%BE%E7%A8%8B26-%E9%A1%B5%E9%9D%A2%E5%BB%BA%E7%AB%8B%E5%8F%8AData%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="本节课包含项目分析、页面建立（包含加载和错误界面）、渲染方面的处理和擦cache问题。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001192359765.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001192124627.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001210353424.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001203443894.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001204330663.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001210123404.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001210232473.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001213503801.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001213600236.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001214756971.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001235341827.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001235421642.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001235407728.png">
+<meta property="article:published_time" content="2024-10-01T02:28:37.260Z">
+<meta property="article:modified_time" content="2024-10-02T00:32:17.160Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001192359765.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程26-页面建立及Data处理 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程26-页面建立及Data处理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-01 10:28" pubdate>
+          October 1, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程26-页面建立及Data处理</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on October 2, 2024 am
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本节课包含项目分析、页面建立（包含加载和错误界面）、渲染方面的处理和擦cache问题。</p>
+<span id="more"></span>
+
+<h3 id="一、信息"><a href="#一、信息" class="headerlink" title="一、信息"></a>一、信息</h3><h4 id="（1）项目分析"><a href="#（1）项目分析" class="headerlink" title="（1）项目分析"></a>（1）项目分析</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001192359765.png" srcset="/img/loading.gif" lazyload alt="image-20241001192359765"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001192124627.png" srcset="/img/loading.gif" lazyload alt="image-20241001192124627"></p>
+<h4 id="（2）suspense"><a href="#（2）suspense" class="headerlink" title="（2）suspense"></a>（2）suspense</h4><p>在 React 中，<code>Suspense</code> 是一个用于管理异步操作（例如组件加载或数据获取）的机制。它允许你在组件渲染之前显示一个 “loading” 状态，直到所需的资源加载完毕。<code>Suspense</code> 主要用于处理动态导入的组件或与 React 的 Concurrent Mode 结合使用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">LazyComponent</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">lazy</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./LazyComponent&#x27;</span>));<br><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">div</span>&gt;</span>Loading...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>&#125;&gt;</span><br><span class="language-xml">   <span class="hljs-tag">&lt;<span class="hljs-name">LazyComponent</span> /&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>**<code>React.lazy()</code>**：这是 React 提供的一个方法，用于懒加载组件。它返回一个动态导入的 Promise，直到这个 Promise 解析后，组件才会被渲染。</p>
+<p>**<code>Suspense</code>**：<code>Suspense</code> 包裹着懒加载的组件，负责在组件加载过程中显示一个 “占位符”（通常是一个 loading 状态）。一旦组件加载完成，它就会正常渲染。</p>
+<p><strong><code>fallback</code> 属性</strong>：这是 <code>Suspense</code> 的关键属性，用来指定加载过程中要显示的内容。在上例中，当 <code>LazyComponent</code> 正在加载时，浏览器会先显示 <code>&lt;div&gt;Loading...&lt;/div&gt;</code>，直到组件加载完成。</p>
+<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><p>只用于客户端渲染：<code>Suspense</code> 目前主要用于客户端渲染，而不是在服务器端渲染（SSR）中。</p>
+<p>结合数据加载（实验性）：<code>Suspense</code> 的最大潜力是与 <code>Concurrent Mode</code> 结合，控制数据加载过程中的用户体验，但这部分功能还处于实验阶段。</p>
+<h4 id="（3）Dynamic-Route-Segment"><a href="#（3）Dynamic-Route-Segment" class="headerlink" title="（3）Dynamic Route Segment"></a>（3）Dynamic Route Segment</h4><blockquote>
+<p>我们需要为每个小屋创建一个url，总不能为每个id新建一个文件夹吧。</p>
+</blockquote>
+<p>在 Next.js 中，<strong>动态路由段</strong>（dynamic route segment）是一种用于创建根据 URL 变化而生成不同页面的路由机制。它允许你在文件系统路由中定义一个动态的部分，这样页面路径可以根据参数动态变化。</p>
+<h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><ul>
+<li>文件名决定路由：文件系统会自动基于文件名生成相应的路由。</li>
+<li>动态参数：方括号内的内容会被当作动态参数，<code>useRouter()</code> 钩子可以读取这些参数。</li>
+<li>嵌套动态路由：你可以在不同层级嵌套动态路由，创建复杂的 URL 结构。</li>
+</ul>
+<h5 id="如何使用："><a href="#如何使用：" class="headerlink" title="如何使用："></a>如何使用：</h5><h4 id="（4）专业术语们"><a href="#（4）专业术语们" class="headerlink" title="（4）专业术语们"></a>（4）专业术语们</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001210353424.png" srcset="/img/loading.gif" lazyload alt="image-20241001210353424"></p>
+<h5 id="1、Serverless-computing"><a href="#1、Serverless-computing" class="headerlink" title="1、Serverless computing"></a>1、Serverless computing</h5><p>无服务器计算是一种云计算模型，开发人员无需管理服务器，而是专注于编写和部署代码。背后的基础设施由云提供商自动管理，它根据需求动态分配资源并仅在代码运行时计费。尽管名称中包含“serverless”，实际上服务器仍然存在，只是由云提供商负责维护，开发者不必直接接触。</p>
+<h5 id="2、ISR："><a href="#2、ISR：" class="headerlink" title="2、ISR："></a>2、ISR：</h5><p>增量静态再生（Incremental Static Regeneration，简称 ISR）是 Next.js 的一种功能，它允许你在保持静态生成的性能优势的同时，对某些页面进行更新。使用 ISR，可以在不重新构建整个站点的情况下，更新特定页面的内容。这种方式特别适合于内容经常变化但又不需要实时更新的页面，如博客文章、产品列表或新闻网站。</p>
+<p>在用户请求某个页面时，如果页面的缓存过期（超过 <code>revalidate</code> 设置的时间），Next.js 会在后台生成一个新的页面副本并将其缓存。用户会立即获得之前缓存的页面，而新的副本会在下一次请求时提供。页面更新后的内容会在下一次用户访问时可见，从而实现内容的增量更新。</p>
+<h3 id="二、项目构建起步"><a href="#二、项目构建起步" class="headerlink" title="二、项目构建起步"></a>二、项目构建起步</h3><blockquote>
+<p>app文件夹下创建不想要自动创建路径的文件夹，需要在命名前加”_”。</p>
+</blockquote>
+<blockquote>
+<p>tailwind.config.js文件夹中找到theme-extend目录，可以在里面添加自定义主题。</p>
+</blockquote>
+<p>⭕<code>npm i @heroicons/react</code>  安装图标库</p>
+<hr>
+<h4 id="（1）修建网站布局"><a href="#（1）修建网站布局" class="headerlink" title="（1）修建网站布局"></a>（1）修建网站布局</h4><h5 id="1、建立metadata"><a href="#1、建立metadata" class="headerlink" title="1、建立metadata"></a>1、建立metadata</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> metadata = &#123;<br>  <span class="hljs-comment">// title: &#x27;The Wild Oasis&#x27;,  最普通的方式</span><br>  <span class="hljs-attr">title</span>: &#123;<br>    <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;%s / The Wild Oasis&#x27;</span>,    <span class="hljs-comment">//“%s”会被替换成其他界面的标题</span><br>    <span class="hljs-attr">default</span>: <span class="hljs-string">&#x27;Welcome The Wild Oasis &#x27;</span>,  <span class="hljs-comment">//没有定义标题的界面，标题是这个</span><br>  &#125;,<br><br>  <span class="hljs-attr">description</span>:<br>    <span class="hljs-string">&#x27;Luxurious cabin hotel,located int the heart of the Italian Dolomites,surrounded by beautiful mountains and dark forests&#x27;</span>,<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h5 id="2、icon"><a href="#2、icon" class="headerlink" title="2、icon"></a>2、icon</h5><p>浏览器上方标题旁边的图标，只需要把图片放置在app文件夹根路径中，命名为icon，就设置好了</p>
+<h5 id="3、font"><a href="#3、font" class="headerlink" title="3、font"></a>3、font</h5><blockquote>
+<p>Next.js 提供了对自定义字体的强大支持，可以通过 <code>@next/font</code> 动态加载 Google Fonts 或本地字体，不再需要手动从 CDN 引入字体文件。（隐私+性能）</p>
+</blockquote>
+<blockquote>
+<p>在 CSS 中，<code>antialiased</code> 通常用来处理字体的渲染方式，主要作用是让字体显示得更加清晰和平滑</p>
+</blockquote>
+<ul>
+<li><p>导入字体函数：<code>import &#123; Josefin_Sans &#125; from &#39;next/font/google&#39;;</code></p>
+</li>
+<li><p>进行字体配置：</p>
+</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> josefin = <span class="hljs-title class_">Josefin</span>_Sans(&#123;<br>  <span class="hljs-attr">subsets</span>: [<span class="hljs-string">&#x27;latin&#x27;</span>],<br>  <span class="hljs-attr">display</span>: <span class="hljs-string">&#x27;swap&#x27;</span>,<br>&#125;);  <span class="hljs-comment">//在字体加载之前，页面会使用系统默认字体，加载后再切换为指定字体，避免空白或闪烁的问题</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>运用字体设置：<code>className=&#123;``$&#123;josefin.className&#125;``&#125;</code></li>
+</ul>
+<h5 id="4、图像优化"><a href="#4、图像优化" class="headerlink" title="4、图像优化"></a>4、图像优化</h5><p>⭕<code>import Image from &#39;next/image&#39;;</code></p>
+<hr>
+<p>方法一：<code>&lt;Image src=&quot;/logo.png&quot; height=&quot;60&quot; width=&quot;60&quot; alt=&quot;The Wild Oasis logo&quot; /&gt;</code>（必须指定高度和宽度，否则会报错）</p>
+<p>方法二：（静态导入）先导入图像，再直接放置进组件里，接入导入后名字叫logo：</p>
+<p>   <code>&lt;Image src=&quot;logo&quot; quality=&#123;10&#125; alt=&quot;The Wild Oasis logo&quot; /&gt;</code></p>
+<p>（无需设置高度和宽度，quality越高图像质量越高越清晰，大小越大）</p>
+<p>fill（填充），placeholder：blur（模糊加载）</p>
+<hr>
+<ul>
+<li>自动图像优化</li>
+</ul>
+<p>Next.js 会自动根据设备的分辨率、视窗大小和图像的具体需求对图像进行优化。它会生成不同尺寸的图像并根据设备加载合适的版本，这样可以减少不必要的资源浪费和页面加载时间。</p>
+<ul>
+<li>延迟加载（Lazy Loading）</li>
+</ul>
+<p>默认情况下，<code>next/image</code> 使用延迟加载技术（lazy loading），只有当图像滚动到视口中时才会进行加载。这可以减少首屏加载时间，提高用户体验。</p>
+<ul>
+<li>响应式图像处理</li>
+</ul>
+<p><code>next/image</code> 支持自动生成不同尺寸的响应式图像。当你指定图像宽度和高度时，Next.js 会为不同的屏幕大小和分辨率生成合适的图像版本，确保图像在各种设备上都能高效加载。</p>
+<ul>
+<li>现代图像格式支持</li>
+</ul>
+<p>Next.js 会自动为支持的浏览器提供现代化的图像格式（如 WebP）。WebP 图像格式比传统的 JPEG 和 PNG 更加高效，能大幅减少图像的文件大小，提高加载速度。</p>
+<ul>
+<li>图像裁剪和调整</li>
+</ul>
+<p>Next.js 允许对图像进行动态裁剪、缩放和调整大小。例如，你可以为不同的屏幕设置不同的宽度和高度，Next.js 会自动处理这些操作。</p>
+<ul>
+<li>图像缓存</li>
+</ul>
+<p>Next.js 的图像优化功能支持缓存优化后的图像。优化后的图像会被存储在服务器或 CDN 中，确保在后续的页面加载中更快地提供这些图像，从而减少对服务器的请求负担。</p>
+<ul>
+<li>兼容性处理</li>
+</ul>
+<p>Next.js 会根据用户的浏览器特性自动加载最合适的图像格式，并提供最佳的显示效果。例如，对于支持 WebP 的浏览器，Next.js 会提供 WebP 格式图像，而对于不支持的浏览器，会提供 JPEG 或 PNG 格式。</p>
+<ul>
+<li>减少带宽和流量消耗</li>
+</ul>
+<p>通过加载更小、优化后的图像，Next.js 帮助大幅减少带宽消耗，尤其在移动端网络速度较慢的情况下，这对提高用户体验有很大帮助。</p>
+<h5 id="5、如何使Image非静态导入图像动态大小"><a href="#5、如何使Image非静态导入图像动态大小" class="headerlink" title="5、如何使Image非静态导入图像动态大小"></a>5、如何使Image非静态导入图像动态大小</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;div className=<span class="hljs-string">&quot;relative aspect-square col-span-2&quot;</span>&gt;<br>   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Image</span></span></span><br><span class="hljs-tag"><span class="language-xml">       <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;@/public/about&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">       <span class="hljs-attr">fill</span></span></span><br><span class="hljs-tag"><span class="language-xml">       <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;object-cover&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">       <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Family that manages The Wild Oasis&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">   /&gt;</span></span><br>&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>指定父类容器</li>
+</ul>
+<p><code>relative</code>：这表示父容器采用了相对定位（<code>position: relative</code>），这是 <code>next/image</code> 中使用 <code>layout=&quot;fill&quot;</code> 时的必需条件。这样图像才能根据父容器的大小进行定位和调整。</p>
+<p><code>aspect-square</code>：这通常是一个 Tailwind CSS 的类，表示容器的宽高比为1:1，也就是一个正方形。通过这个类，父容器将被强制保持宽度与高度相等。</p>
+<p><code>col-span-2</code>：这是典型的网格布局类，表示这个 <code>div</code> 占据了网格中的 2 列宽度。这通常用于 <code>grid</code> 布局中来控制元素的宽度。</p>
+<ul>
+<li>设置图像格式</li>
+</ul>
+<p><code>layout=&quot;fill&quot;</code>：这是 <code>next/image</code> 组件的一个属性，表示图像将填充整个父容器的空间。由于父容器已经通过 <code>relative</code> 定位并设置了宽高比（正方形），图像将按照父容器的大小动态调整。无需指定图像的宽度和高度，Next.js 会自动计算和优化。</p>
+<p><code>className=&quot;object-cover&quot;</code>：这是一个 CSS 类，通常与 Tailwind CSS 一起使用。<code>object-cover</code> 的作用是让图像保持其原始比例并填满整个容器。如果图像的比例和容器不匹配，它将裁剪图像的一部分，而不是拉伸或压缩图像，从而保持图像的完整性。</p>
+<h5 id="6、嵌套layout"><a href="#6、嵌套layout" class="headerlink" title="6、嵌套layout"></a>6、嵌套layout</h5><p>我们在app文件夹下放至了layout，但是在文件夹下的account路径下也需要layout布局，那么可以直接在此文件夹中创建layout.js，放置相应的navigation组件即可。</p>
+<h4 id="（2）连接supabse"><a href="#（2）连接supabse" class="headerlink" title="（2）连接supabse"></a>（2）连接supabse</h4><h5 id="1、根目录下新建-env-local文件夹"><a href="#1、根目录下新建-env-local文件夹" class="headerlink" title="1、根目录下新建.env.local文件夹"></a>1、根目录下新建<code>.env.local</code>文件夹</h5><blockquote>
+<p>这个文件夹负责放置supabase的URL和KEY。</p>
+</blockquote>
+<p><strong>服务器端变量</strong>：例如数据库连接信息、API 密钥等敏感信息放在 <code>.env.local</code> 中，并且不加 <code>NEXT_PUBLIC_</code> 前缀。</p>
+<p><strong>客户端变量</strong>：如果你需要某些环境变量在浏览器中使用（如公共 API 的 URL），可以加上 <code>NEXT_PUBLIC_</code> 前缀。</p>
+<p>URL还是正常的URL，而KEY不用settings-&gt;API-&gt;Project API keys-&gt;(anon public)的key，而是(service_role)中的KEY。（为了绕过RLP）</p>
+<p>⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️无语了我亲爱的环境变量配置⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️</p>
+<p>SUPABASE_URL&#x3D;<a target="_blank" rel="noopener" href="https://mmyxdnpmmlqmyjxjypmw.supabase.co/">https://mmyxdnpmmlqmyjxjypmw.supabase.co</a></p>
+<p>SUPABASE_KEY&#x3D;service_role</p>
+<p>🚫不能有空格、🚫没有引号、🚫后面不能加分号。。。🚫字母大小写别写错</p>
+<p>我说怎么一直连接不上。。。GPT你真的有毛病一开始不跟我说问了一个小时了才说。。。</p>
+<h5 id="2、lib文件夹下建立supabase-js"><a href="#2、lib文件夹下建立supabase-js" class="headerlink" title="2、lib文件夹下建立supabase.js"></a>2、lib文件夹下建立<code>supabase.js</code></h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; createClient &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@supabase/supabase-js&#x27;</span>;<br><br><span class="hljs-keyword">const</span> supabase = <span class="hljs-title function_">createClient</span>(<br>  process.<span class="hljs-property">env</span>.<span class="hljs-property">SUPABASE_URL</span>,<br>  process.<span class="hljs-property">env</span>.<span class="hljs-property">SUPABASE_KEY</span><br>);<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> supabase;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、Data处理"><a href="#三、Data处理" class="headerlink" title="三、Data处理"></a>三、Data处理</h3><blockquote>
+<p>现在获取data变得非常方便，仅仅是把RSC设置成async方程，然后直接： <code>const cabins = await getCabins();</code>类似这样就可以了。</p>
+</blockquote>
+<h4 id="（1）准备工作"><a href="#（1）准备工作" class="headerlink" title="（1）准备工作"></a>（1）准备工作</h4><h5 id="1、允许加载远程图像"><a href="#1、允许加载远程图像" class="headerlink" title="1、允许加载远程图像"></a>1、允许加载远程图像</h5><p>我们在调取cabins的数据的时候，会加载supabase上的cabin图像，因此在 Next.js 中配置 <code>remotePatterns</code> 的目的是为了允许应用加载来自特定远程服务器的图像。通过指定 <code>protocol</code>、<code>hostname</code>、<code>port</code> 和 <code>pathname</code>，可以控制哪些外部图像源被允许在的应用中使用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> nextConfig = &#123;<br>  <span class="hljs-attr">images</span>: &#123;<br>    <span class="hljs-attr">remotePatterns</span>: [<br>      &#123;<br>        <span class="hljs-attr">protocol</span>: <span class="hljs-string">&#x27;https&#x27;</span>,<br>xuexi        <span class="hljs-attr">hostname</span>: <span class="hljs-string">&#x27;mmyxdnpmmlqmyjxjypmw.supabase.co&#x27;</span>,<br>        <span class="hljs-attr">port</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-attr">pathname</span>: <span class="hljs-string">&#x27;/storage/v1/object/public/cabin-images/**&#x27;</span>,<br>      &#125;,<br>    ],<span class="hljs-comment">//没有指定端口，表示使用默认端口443</span><br>  &#125;,<span class="hljs-comment">//**表示任何以前面开头的路径都可以被加载</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、利用suspense使旋转器只放置在需要加载的组件"><a href="#2、利用suspense使旋转器只放置在需要加载的组件" class="headerlink" title="2、利用suspense使旋转器只放置在需要加载的组件"></a>2、利用suspense使旋转器只放置在需要加载的组件</h5><blockquote>
+<p>suspense只能包裹一个组件来使用</p>
+</blockquote>
+<p>在加载cabins界面的时候，如果正在加载cabins数据，整个界面都会被Spinner组件遮挡，包括一部分静态文字，这样会导致bad UX。所以我们可以把获取cabins和渲染cabins的部分提取到一个组件中，然后导入到cabins界面，用suspense包裹住，就🆗了。这里suspense的fallback组件会覆盖cabins界面本身设置的loading组件。</p>
+<h5 id="3、Cabin-组件"><a href="#3、Cabin-组件" class="headerlink" title="3、Cabin 组件"></a>3、Cabin 组件</h5><blockquote>
+<p>在Cabins界面时，每个cabin有一个按钮，点击进入详细界面，url设置为cabin&#x2F;${id}</p>
+</blockquote>
+<p>我们在cabins文件夹下建立<code>[cabinId]</code>动态文件夹。里面建立page.js就是相应的cabin界面。</p>
+<p>让Page组件接收<code>&#123;params&#125;</code>作为参数， <code>const cabin = await getCabin(params.cabinId);</code>就可以获得cabin数据。</p>
+<h5 id="4、动态metadata"><a href="#4、动态metadata" class="headerlink" title="4、动态metadata"></a>4、动态metadata</h5><p>我们想要给cabin界面也设置浏览器标题，同时标题中含有cabin id，于是可以使用函数来动态创建。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">generateMetadata</span>(<span class="hljs-params">&#123; params &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; name &#125; = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getCabin</span>(params.<span class="hljs-property">cabinId</span>);<br>  <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">`Cabin <span class="hljs-subst">$&#123;name&#125;</span>`</span> &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="5、设置Error-Bundaries"><a href="#5、设置Error-Bundaries" class="headerlink" title="5、设置Error Bundaries"></a>5、设置Error Bundaries</h5><p>与之前的错误边界处理方式不同，在这里我们只需要在app的根目录下创建一个文件夹：<code>error.js</code>，然后返回一个组件，接收error、reset函数。于是就可以在界面上显示error.message，并且设置按钮，click函数为reset。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001203443894.png" srcset="/img/loading.gif" lazyload alt="image-20241001203443894"></p>
+<p>⚠️需要声明<code>“use client”</code></p>
+<h5 id="6、not-found-error"><a href="#6、not-found-error" class="headerlink" title="6、not-found error"></a>6、not-found error</h5><p>在app的根目录下创建一个文件夹：<code>not-found.js</code>，填写相应内容即可，当用户访问不存在的URL的时候就会进入这个界面。</p>
+<p>但是我们想要在用户试图访问不存在的id的cabin界面时也进入这个错误界面（默认是显示上面的error界面），于是我们可以找到service文件中的getCabin函数，在error下，调用<code>notFound();</code>。</p>
+<p>我们还想要动态定义cabin下not-found界面的信息，于是可以在[cabinId]文件夹下也创建一个not-found文件夹，写入想要的信息即可。</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001204330663.png" srcset="/img/loading.gif" lazyload alt="image-20241001204330663" style="zoom: 50%;" />
+
+
+
+<h4 id="（2）Data-Rendering的两种方式"><a href="#（2）Data-Rendering的两种方式" class="headerlink" title="（2）Data Rendering的两种方式"></a>（2）Data Rendering的两种方式</h4><p>⭕<code>npm run build</code>    打包后可以在最下方看到哪些文件是静态渲染，哪些是动态</p>
+<p>此处<code>[cabinId]</code>界面是动态渲染，因为nextjs并不知道究竟有多少id</p>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001210123404.png" srcset="/img/loading.gif" lazyload alt="image-20241001210123404" style="zoom: 33%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001210232473.png" srcset="/img/loading.gif" lazyload alt="image-20241001210232473" style="zoom:33%;" />
+
+
+
+<h4 id="（3）Dynamic-Static"><a href="#（3）Dynamic-Static" class="headerlink" title="（3）Dynamic-&gt;Static"></a>（3）Dynamic-&gt;Static</h4><h5 id="1、如何让next-js知道动态URL段的所有可能值"><a href="#1、如何让next-js知道动态URL段的所有可能值" class="headerlink" title="1、如何让next.js知道动态URL段的所有可能值"></a>1、如何让next.js知道动态URL段的所有可能值</h5><blockquote>
+<p>由于静态界面性能好、更安全等特性，我们想要把动态界面也渲染成静态界面。cabins是有限长度，也很好传递各个id。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">generateStaticParams</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> cabins = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getCabins</span>();<br>  <span class="hljs-keyword">const</span> ids = cabins.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">cabin</span>) =&gt;</span> (&#123; <span class="hljs-attr">cabinId</span>: <span class="hljs-title class_">String</span>(cabin.<span class="hljs-property">id</span>) &#125;));<br><br>  <span class="hljs-keyword">return</span> ids;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>generateStaticParams</code> 是 Next.js 中用于 <strong>静态生成动态路由参数</strong> 的函数。该函数主要用于在构建时生成页面的路径参数，使得这些路径能够在静态站点生成时创建对应的静态页面。其返回的数组会被 Next.js 用来生成静态页面。对于每个 <code>cabinId</code>，Next.js 会生成对应的静态页面。</p>
+<h5 id="2、SSG"><a href="#2、SSG" class="headerlink" title="2、SSG"></a>2、SSG</h5><p><strong>SSG（Static Site Generation）</strong> 是 <strong>Next.js</strong> 中的一种渲染方法，允许在构建时生成页面的 HTML，而不是在每次用户请求时动态生成。这种方法可以显著提高页面的加载速度和性能，因为静态页面可以通过 CDN 缓存并在全球范围内快速提供给用户。</p>
+<p>由于上面的操作，使得整个APP都是静态渲染，于是可以在<code>next.config.js</code>文件中配置： <code>output：”export“</code>，然后运行npm run build，会生成一个out包。使用vscdode打开整个包，下载以下插件之后，会在编译器右下角看到go Live，点击后会生成静态界面。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001213503801.png" srcset="/img/loading.gif" lazyload alt="image-20241001213503801" style="zoom:33%;" /><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001213600236.png" srcset="/img/loading.gif" lazyload alt="image-20241001213600236"  /></p>
+<p>但是界面中使用Image组件的所有图片都无法被渲染了。因为**<code>next/image</code> 依赖服务端功能**，<code>Image</code> 组件依赖 Next.js 的内置图像优化功能，这在静态导出时并不可用。默认情况下，<code>next export</code> 不支持自动优化图像。</p>
+<p>解决问题可以使用Cloudinary图像优化：搜索next.js static export 找到Image Optimization部分，里面有较为详细的配置信息。</p>
+<h5 id="3、Patial-Pre-Rendering-PPR"><a href="#3、Patial-Pre-Rendering-PPR" class="headerlink" title="3、Patial Pre-Rendering (PPR)"></a>3、Patial Pre-Rendering (PPR)</h5><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001214756971.png" srcset="/img/loading.gif" lazyload alt="image-20241001214756971"></p>
+<h3 id="四、Caching-in-Next-js"><a href="#四、Caching-in-Next-js" class="headerlink" title="四、Caching in Next.js"></a>四、Caching in Next.js</h3><h4 id="（1）概念"><a href="#（1）概念" class="headerlink" title="（1）概念"></a>（1）概念</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001235341827.png" srcset="/img/loading.gif" lazyload alt="image-20241001235341827"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001235421642.png" srcset="/img/loading.gif" lazyload alt="image-20241001235421642"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241001235407728.png" srcset="/img/loading.gif" lazyload alt="image-20241001235407728"></p>
+<p>1、相同的url和options</p>
+<p>2、可以是不同user</p>
+<p><code>no-store</code> 是一种缓存控制指令，指示浏览器和任何中间缓存（如代理服务器）都不应缓存响应。每次请求时，客户端都会向服务器请求新鲜的数据，而不是使用任何先前的缓存内容。<code>unstable_noStore</code> 是 Next.js 中的一个实验性特性，旨在为某些请求提供更细粒度的缓存控制。它允许你在服务器端返回响应时，指定某些内容不应被缓存。这与普通的 <code>noStore</code> 方法类似，但由于它是实验性特性，因此可能在未来的版本中发生变化或被替换。</p>
+<p><strong>避免缓存</strong>：当你希望确保某些 API 响应或页面请求不被缓存时，可以使用 <code>unstable_noStore</code>。这对于处理动态内容、实时数据或敏感信息尤为重要。</p>
+<p><strong>开发和调试</strong>：在开发期间，使用 <code>unstable_noStore</code> 可以确保你始终获得最新的数据或页面渲染，避免缓存引起的混淆。</p>
+<p><strong>API 请求</strong>：在发送 API 请求时，如果你希望强制获取新数据而不是从缓存中读取，可以在请求配置中使用 <code>unstable_noStore</code>。</p>
+<h4 id="（2）模拟生产环境的caching-和ISR"><a href="#（2）模拟生产环境的caching-和ISR" class="headerlink" title="（2）模拟生产环境的caching 和ISR"></a>（2）模拟生产环境的caching 和ISR</h4><blockquote>
+<p>在package.json 中加入”prod”: “next build &amp;&amp; next start”  然后终端输入npm run prod就可以模拟生产环境了。</p>
+<p>⚠ For production Image Optimization with Next.js, the optional ‘sharp’ package is strongly recommended. Run ‘npm i sharp’, and Next.js will use it automatically for Image Optimization.（终端的警告）</p>
+</blockquote>
+<h5 id="1、关闭data-cache"><a href="#1、关闭data-cache" class="headerlink" title="1、关闭data cache"></a>1、关闭data cache</h5><p>如果这时候在数据库修改某个值，是不会在网页上显示的，就算刷新也不行，因为这是一个完全静态的界面，所以我们想要关掉data cache（同时也能关掉full route cache）</p>
+<p>在cabins的page代码中设置：<code>export const revalidate = 0;</code>（每次修改都需要重新run）</p>
+<h5 id="2、ISR"><a href="#2、ISR" class="headerlink" title="2、ISR"></a>2、ISR</h5><p>只需要修改上面的值为我们想要自动刷新的间隔就可。注意时间的单位是秒。</p>
+<h5 id="3、noStore"><a href="#3、noStore" class="headerlink" title="3、noStore"></a>3、noStore</h5><p><code>import &#123; unstable_noStore &#125; from &#39;next/cache&#39;;</code></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程26-页面建立及Data处理</div>
+      <div>http://example.com/2024/10/01/react课程26-页面建立及Data处理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 1, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/30/react%E8%AF%BE%E7%A8%8B25-%E8%AE%A4%E8%AF%86Next.js%E5%92%8CRSC/" title="react课程25-认识Next.js和RSC">
+                        <span class="hidden-mobile">react课程25-认识Next.js和RSC</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,939 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本小节介绍SSR和CSR的区别、一些浏览器性能标准以及如何手写SSR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程24-SSR概念引入及手写">
+<meta property="og:url" content="http://example.com/2024/09/29/react%E8%AF%BE%E7%A8%8B24-SSR%E6%A6%82%E5%BF%B5%E5%BC%95%E5%85%A5%E5%8F%8A%E6%89%8B%E5%86%99/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="本小节介绍SSR和CSR的区别、一些浏览器性能标准以及如何手写SSR">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240929231551242.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240929231516523.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240929231606502.png">
+<meta property="article:published_time" content="2024-09-29T15:39:14.726Z">
+<meta property="article:modified_time" content="2024-09-30T07:13:58.704Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240929231551242.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程24-SSR概念引入及手写 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程24-SSR概念引入及手写"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-29 23:39" pubdate>
+          September 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程24-SSR概念引入及手写</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on September 30, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本小节介绍SSR和CSR的区别、一些浏览器性能标准以及如何手写SSR</p>
+<span id="more"></span>
+
+<h3 id="一、CSR、SSR、SEO、LCP、FCP、CDN"><a href="#一、CSR、SSR、SEO、LCP、FCP、CDN" class="headerlink" title="一、CSR、SSR、SEO、LCP、FCP、CDN"></a>一、CSR、SSR、SEO、LCP、FCP、CDN</h3><h4 id="（1）比较CSR和SSR图片版"><a href="#（1）比较CSR和SSR图片版" class="headerlink" title="（1）比较CSR和SSR图片版"></a>（1）比较CSR和SSR图片版</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240929231551242.png" srcset="/img/loading.gif" lazyload alt="image-20240929231551242"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240929231516523.png" srcset="/img/loading.gif" lazyload alt="image-20240929231516523"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20240929231606502.png" srcset="/img/loading.gif" lazyload alt="image-20240929231606502"></p>
+<h4 id="（2）CSR"><a href="#（2）CSR" class="headerlink" title="（2）CSR"></a>（2）CSR</h4><h5 id="1、定义"><a href="#1、定义" class="headerlink" title="1、定义"></a>1、定义</h5><p>在客户端渲染中，网页的 HTML、CSS 和 JavaScript 由浏览器处理，所有的渲染工作在客户端进行。</p>
+<h5 id="2、工作原理"><a href="#2、工作原理" class="headerlink" title="2、工作原理"></a>2、工作原理</h5><ol>
+<li>用户访问网页，服务器返回一个空的 HTML 框架以及 JavaScript 和 CSS 文件。</li>
+<li>浏览器下载并执行 JavaScript，动态生成并渲染网页内容。</li>
+</ol>
+<h5 id="3、优点"><a href="#3、优点" class="headerlink" title="3、优点"></a>3、优点</h5><ul>
+<li><strong>快速的交互</strong>：页面内容加载后，用户的操作无需再次请求服务器，响应速度快。</li>
+<li><strong>减少服务器负担</strong>：服务器只需要提供静态文件，减轻了负担。</li>
+<li><strong>丰富的用户体验</strong>：可以实现更复杂的交互和动画效果，适合单页应用（SPA）。</li>
+</ul>
+<h5 id="4、缺点"><a href="#4、缺点" class="headerlink" title="4、缺点"></a>4、缺点</h5><ul>
+<li><strong>首次加载时间长</strong>：由于需要下载和解析 JavaScript，首次内容绘制（FCP）可能较慢。</li>
+<li><strong>SEO 劣势</strong>：搜索引擎爬虫可能无法完全理解动态生成的内容，影响 SEO。</li>
+</ul>
+<h4 id="（3）SSR"><a href="#（3）SSR" class="headerlink" title="（3）SSR"></a>（3）SSR</h4><h5 id="1、定义-1"><a href="#1、定义-1" class="headerlink" title="1、定义"></a>1、定义</h5><p>在服务器端渲染中，网页的 HTML 在服务器上生成，然后发送到客户端。</p>
+<h5 id="2、工作原理-1"><a href="#2、工作原理-1" class="headerlink" title="2、工作原理"></a>2、工作原理</h5><ol>
+<li>用户访问网页，服务器处理请求并生成完整的 HTML。</li>
+<li>服务器返回生成的 HTML 内容，浏览器直接渲染这个内容。</li>
+</ol>
+<h5 id="3、优点-1"><a href="#3、优点-1" class="headerlink" title="3、优点"></a>3、优点</h5><ul>
+<li><strong>快速的首次加载</strong>：由于服务器返回完整的 HTML，用户能够更快地看到页面内容。</li>
+<li><strong>SEO 友好</strong>：搜索引擎能够直接抓取服务器返回的 HTML，有助于提升搜索排名。</li>
+</ul>
+<h5 id="4、缺点-1"><a href="#4、缺点-1" class="headerlink" title="4、缺点"></a>4、缺点</h5><ul>
+<li><strong>服务器负担重</strong>：服务器需要为每个请求生成 HTML，可能导致性能瓶颈。</li>
+<li><strong>交互响应较慢</strong>：用户操作需要发送请求到服务器并等待响应，可能影响交互体验。</li>
+</ul>
+<h4 id="（4）SEO"><a href="#（4）SEO" class="headerlink" title="（4）SEO"></a>（4）SEO</h4><p><code>SEO</code>（Search Engine Optimization，搜索引擎优化）是一种通过优化网站和内容，提高其在搜索引擎结果页面（SERP）中排名的技术和策略。其目标是增加网站的可见性，从而吸引更多的自然流量。</p>
+<h5 id="1、主要组成部分"><a href="#1、主要组成部分" class="headerlink" title="1、主要组成部分"></a>1、主要组成部分</h5><ul>
+<li>关键词研究：确定目标受众使用的关键词和短语，以便在内容中合理嵌入这些关键词。</li>
+<li>页面优化：包括优化标题标签、元描述、URL 结构、图像替代文本等，以确保搜索引擎能够理解页面内容。</li>
+<li>内容优化：创建高质量、有价值且相关的内容，以满足用户需求并鼓励他们停留在页面上。</li>
+<li>技术SEO：包括提高网站加载速度、确保移动友好性、优化网站结构和内部链接等，使搜索引擎能够更好地抓取和索引网站。</li>
+<li>外部链接建设：通过获取其他网站的链接，提升网站的权威性和可信度，增强搜索引擎对该网站的信任度。</li>
+<li>用户体验（UX）：提高网站的可用性和用户体验，确保访问者能够顺利浏览和找到所需信息。</li>
+</ul>
+<h5 id="2、重要性："><a href="#2、重要性：" class="headerlink" title="2、重要性："></a>2、重要性：</h5><ul>
+<li>提高可见性：优化后的网站在搜索引擎中排名更高，能吸引更多的访问者。</li>
+<li>增加流量：自然流量通常比付费广告更具成本效益，长远来看更可持续。</li>
+<li>建立品牌信任：高排名的网站通常被视为可信赖的来源，有助于建立品牌的信誉。</li>
+<li>提高转化率：优化后的内容更符合用户需求，有助于提高潜在客户的转化率。</li>
+</ul>
+<h4 id="（5）LCP"><a href="#（5）LCP" class="headerlink" title="（5）LCP"></a>（5）LCP</h4><p><code>LCP</code>（Largest Contentful Paint，最大内容绘制）是网页性能评估中的一个重要指标，用于衡量用户在页面加载过程中感知到的主要内容何时渲染完成。它是 Google 的 Web Vitals 指标之一，旨在帮助开发者改善用户体验。</p>
+<h5 id="1、定义-2"><a href="#1、定义-2" class="headerlink" title="1、定义"></a>1、定义</h5><p>LCP 测量的是从页面开始加载到页面上最大的可见内容元素（如图像、视频、块级文本等）完全绘制的时间。这个时间越短，用户体验通常越好。</p>
+<h5 id="2、重要性"><a href="#2、重要性" class="headerlink" title="2、重要性"></a>2、重要性</h5><ul>
+<li>用户体验：LCP 反映了用户在访问网页时的等待时间。较长的 LCP 可能意味着用户在加载内容时的挫败感，从而影响整体的用户体验。</li>
+<li>搜索引擎优化（SEO）：Google 已将 LCP 作为网页性能的一个重要排名因素，优化 LCP 有助于提升网站在搜索引擎结果中的排名。</li>
+</ul>
+<h5 id="3、如何改善"><a href="#3、如何改善" class="headerlink" title="3、如何改善"></a>3、如何改善</h5><p>优化图像和视频：确保使用适当格式和压缩的图像，减少文件大小，提高加载速度。</p>
+<p>使用CDN：通过 CDN 加速内容交付，减少从服务器到用户的延迟。</p>
+<p>减小CSS和JS的体积：精简和压缩资源，减少加载时间，确保主要内容能够尽快渲染。</p>
+<p>优先加载关键资源：使用 <code>link rel=&quot;preload&quot;</code> 标签提前加载重要资源，确保用户快速看到页面内容。</p>
+<p>使用SSR：通过 SSR 提高初始加载速度，使得内容更快地可见。</p>
+<h4 id="（6）FCP"><a href="#（6）FCP" class="headerlink" title="（6）FCP"></a>（6）FCP</h4><p><code>FCP</code>（First Contentful Paint，首次内容绘制）是网页性能评估中的一个重要指标，旨在衡量用户首次看到任何可见内容（如文本、图像等）所需的时间。它是 Google 的 Web Vitals 指标之一，用于评估网页加载的速度和用户体验。</p>
+<h5 id="1、定义-3"><a href="#1、定义-3" class="headerlink" title="1、定义"></a>1、定义</h5><p>FCP 测量的是从页面开始加载到浏览器绘制出任何可见内容的时间。这包括页面的文本、图像、SVG 图形等。</p>
+<h5 id="2、重要性-1"><a href="#2、重要性-1" class="headerlink" title="2、重要性"></a>2、重要性</h5><ul>
+<li>用户体验：FCP 是用户感知加载性能的第一个重要信号。较快的 FCP 表示用户能够更早地看到内容，从而提升用户体验。</li>
+<li>SEO：同上</li>
+</ul>
+<h5 id="3、如何改善-1"><a href="#3、如何改善-1" class="headerlink" title="3、如何改善"></a>3、如何改善</h5><ul>
+<li>优化资源加载：确保使用合适的图像格式和压缩，减少文件大小，加快加载速度。</li>
+<li>使用优先级加载：通过将关键 CSS 和 JavaScript 放在 <code>&lt;head&gt;</code> 中，确保它们优先加载。</li>
+<li>避免阻塞渲染：减少外部 CSS 和 JavaScript 文件的数量，避免阻塞初始渲染。</li>
+<li>利用服务器端渲染（SSR）：提高初始加载速度，使内容更早呈现给用户。</li>
+<li>使用 CDN（内容分发网络）：通过 CDN 加速资源的交付，减少从服务器到用户的延迟。</li>
+</ul>
+<h4 id="（7）CDN"><a href="#（7）CDN" class="headerlink" title="（7）CDN"></a>（7）CDN</h4><p>（Content Delivery Network，内容分发网络）是一种分布式的网络架构，旨在提高网站内容的加载速度和可用性。CDN 通过在全球多个位置部署缓存服务器，来将内容更接近用户，从而优化数据传输。</p>
+<h5 id="1、工作原理"><a href="#1、工作原理" class="headerlink" title="1、工作原理"></a>1、工作原理</h5><ul>
+<li>内容缓存：CDN 在其边缘服务器上缓存静态资源（如图像、CSS、JavaScript 文件等），这些资源会在用户访问时快速提供。</li>
+<li>智能路由：当用户请求某个资源时，CDN 会根据用户的地理位置和当前网络状况，选择离用户最近的边缘服务器来响应请求。</li>
+<li>动态内容处理：对于动态内容，CDN 可以通过负载均衡和智能路由等技术来优化数据传输，提高响应速度。</li>
+</ul>
+<h5 id="2、优点"><a href="#2、优点" class="headerlink" title="2、优点"></a>2、优点</h5><ul>
+<li>提高加载速度：通过将内容分发到离用户更近的服务器，减少延迟，提升加载速度。</li>
+<li>减轻服务器负担：将大量的静态资源请求转发给 CDN，减轻源服务器的压力。</li>
+<li>提高可用性和可靠性：如果某个边缘服务器出现故障，CDN 可以自动将请求转发到其他可用的服务器，提高网站的可靠性。</li>
+<li>增强安全性：CDN 可以提供 DDoS 保护、SSL 加密等安全功能，帮助网站抵御攻击。</li>
+</ul>
+<h5 id="3、常见的服务提供商"><a href="#3、常见的服务提供商" class="headerlink" title="3、常见的服务提供商"></a>3、常见的服务提供商</h5><p>Cloudflare、Akamai、Amazon CloudFront、Google Cloud CDN、Fastly</p>
+<h3 id="二、Manual-SSR-with-React-DOM-Node-js"><a href="#二、Manual-SSR-with-React-DOM-Node-js" class="headerlink" title="二、Manual  SSR with React DOM +Node.js"></a>二、Manual  SSR with React DOM +Node.js</h3><h4 id="（1）起步"><a href="#（1）起步" class="headerlink" title="（1）起步"></a>（1）起步</h4><p>🐈‍⬛新建文件：<code>server.js</code>  -&gt;   <code>npm init</code>初始化工程（一直Enter就好了） -&gt;  出现<code>package.json</code></p>
+<p>⭕<code>npm --watch server.js</code>    添加watch关键字，否则每次修改都须重新运行</p>
+<hr>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> &#123; createServer &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);<br><span class="hljs-keyword">const</span> &#123; parse &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;url&#x27;</span>);<br><br><span class="hljs-keyword">const</span> server = <span class="hljs-title function_">createServer</span>(<span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> pathName = <span class="hljs-title function_">parse</span>(req.<span class="hljs-property">url</span>, <span class="hljs-literal">true</span>).<span class="hljs-property">pathname</span>;<br><br>  <span class="hljs-keyword">if</span> (pathName === <span class="hljs-string">&#x27;/&#x27;</span>) &#123;<br>    res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;Hello World&#x27;</span>);<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pathName === <span class="hljs-string">&#x27;/test&#x27;</span>) &#123;<br>    res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;TEST&#x27;</span>);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;URL not found&#x27;</span>);<br>  &#125;<br>&#125;);<br><span class="hljs-comment">//监听端口</span><br>server.<span class="hljs-title function_">listen</span>(<span class="hljs-number">8000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;listening for requests on port 8000&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<h5 id="1、引入模块"><a href="#1、引入模块" class="headerlink" title="1、引入模块"></a>1、引入模块</h5><p><code>require(&#39;http&#39;)</code>：导入 Node.js 的 <code>http</code> 模块，它提供了用于创建 HTTP 服务器的功能。<code>createServer</code> 是其中的一个方法，用于创建 HTTP 服务器。</p>
+<p><code>require(&#39;url&#39;)</code>：导入 <code>url</code> 模块，其中的 <code>parse</code> 方法用于解析请求的 URL，提取路径和查询参数等信息。</p>
+<h5 id="2、创建服务器"><a href="#2、创建服务器" class="headerlink" title="2、创建服务器"></a>2、创建服务器</h5><p><code>createServer()</code>：这是创建 HTTP 服务器的函数。它接收一个回调函数，回调函数中的 <code>req</code> 代表客户端的请求，<code>res</code> 代表服务器的响应。</p>
+<p><code>parse(req.url, true)</code>：使用 <code>url.parse()</code> 方法解析客户端请求的 URL。第二个参数 <code>true</code> 表示将查询字符串转换为对象形式。<code>req.url</code>是客户端请求的 URL</p>
+<p><code>pathname</code>：表示请求的路径部分（不包含查询参数），例如 <code>/test</code> 或 <code>/</code>。</p>
+<h5 id="3、路由处理"><a href="#3、路由处理" class="headerlink" title="3、路由处理"></a>3、路由处理</h5><p><code>res.end()</code>：该方法结束响应并发送数据到客户端。比如，<code>res.end(&#39;Hello World&#39;)</code> 就是将 “Hello World” 发送给客户端，并结束响应。</p>
+<h4 id="（2）返回HTML作为响应"><a href="#（2）返回HTML作为响应" class="headerlink" title="（2）返回HTML作为响应"></a>（2）返回HTML作为响应</h4><h5 id="1、读取HTML文件"><a href="#1、读取HTML文件" class="headerlink" title="1、读取HTML文件"></a>1、读取HTML文件</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> htmlTemplate = <span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;__dirname&#125;</span>/index.html`</span>, <span class="hljs-string">&#x27;utf-8&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><code>readFileSync()</code>：这是 Node.js 内置的 <code>fs</code>（文件系统）模块中的同步方法，用于读取文件的内容</p>
+<p><code>$&#123;__dirname&#125;/index.html</code>：<code>__dirname</code> 是一个全局变量，表示当前文件所在的目录路径。<code>$&#123;__dirname&#125;/index.html</code> 拼接得到完整的 <code>index.html</code> 文件路径。</p>
+<p><code>&#39;utf-8&#39;</code>：这是文件读取的编码方式，确保文件内容被读取为字符串（HTML 文本内容）</p>
+<p><code>htmlTemplate</code>：保存了 <code>index.html</code> 文件的内容作为字符串，之后会在服务器响应时将其返回给客户端</p>
+<h5 id="2、服务器逻辑"><a href="#2、服务器逻辑" class="headerlink" title="2、服务器逻辑"></a>2、服务器逻辑</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jsx">res.<span class="hljs-title function_">writeHead</span>(<span class="hljs-number">200</span>, &#123; <span class="hljs-string">&#x27;Contnt-type&#x27;</span>: <span class="hljs-string">&#x27;text/html&#x27;</span> &#125;);<br>res.<span class="hljs-title function_">end</span>(htmlTemplate);<br></code></pre></td></tr></table></figure>
+
+<p><code>res.writeHead(200)</code>：设置响应状态码为 <code>200</code>，表示请求成功。</p>
+<p><code>&#123; &#39;Contnt-type&#39;: &#39;text.html&#39; &#125;</code>：设置响应头的 <code>Content-Type</code></p>
+<h4 id="（3）在server端运行jsx代码"><a href="#（3）在server端运行jsx代码" class="headerlink" title="（3）在server端运行jsx代码"></a>（3）在server端运行jsx代码</h4><p>⭕<code>npm i -D @babel/core @babel/preset-env @babel/preset-react @babel/register</code></p>
+<p>⭕ <code>npm i react react-dom</code></p>
+<hr>
+<h5 id="1、start-js启动文件"><a href="#1、start-js启动文件" class="headerlink" title="1、start.js启动文件"></a>1、start.js启动文件</h5><blockquote>
+<p>⭕ <code>node --watch start.js</code>   命令来运行start.js  而不是运行server.js</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//加入日志验证是否正常执行了代码</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Babel register is running...&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><code>require(&#39;@babel/register&#39;)(&#123; extensions: [&#39;.js&#39;, &#39;.jsx&#39;] &#125;);</code></p>
+<p>这行代码的作用是加载并启用 <code>@babel/register</code>，它可以在运行时动态地编译 JavaScript 和 JSX 文件。具体来说：</p>
+<ul>
+<li><code>@babel/register</code> 是 Babel 提供的一个运行时工具，它可以在代码执行时实时编译那些使用了现代 JavaScript 或 JSX 语法的文件。</li>
+<li><code>extensions: [&#39;.js&#39;, &#39;.jsx&#39;]</code> 表示 Babel 应该处理 <code>.js</code> 和 <code>.jsx</code> 文件。这样的话，在你运行这些文件时，它们会自动通过 Babel 转换为普通的 ES5 JavaScript（兼容 Node.js）。</li>
+</ul>
+<p><code>require(&#39;./server.js&#39;);</code></p>
+<p>这行代码的作用是加载并运行 <code>server.js</code> 文件。</p>
+<ul>
+<li><code>require(&#39;./server.js&#39;)</code> 是 Node.js 中的模块加载方式，用来加载当前目录下的 <code>server.js</code> 文件。</li>
+<li>由于第一行代码已经启用了 <code>@babel/register</code>，<code>server.js</code> 文件中的现代 JavaScript 语法（如 ES6 和 JSX）会被 Babel 实时编译并执行。</li>
+</ul>
+<h5 id="2、server-js"><a href="#2、server-js" class="headerlink" title="2、server.js"></a>2、server.js</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> &#123; renderToString &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;react-dom/server&#x27;</span>);<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">React</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;react&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><code>react-dom/server</code>：用于将 React 组件渲染为字符串的模块，适用于服务器端渲染</p>
+<p><code>react</code>：React 库，用于创建组件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> renderedReact = <span class="hljs-title function_">renderToString</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Home</span> /&gt;</span></span>);<br><span class="hljs-keyword">const</span> html = htmlTemplate.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;%%%Content%%%&#x27;</span>, renderedReact);<br></code></pre></td></tr></table></figure>
+
+<p>使用 <code>renderToString(&lt;Home /&gt;)</code> 将 <code>Home</code> 组件渲染为 HTML 字符串。</p>
+<p>将渲染结果插入到 HTML 模板中，替换 <code>%%%Content%%%</code> 占位符。</p>
+<p>（如果不插入HTML中会产生渲染问题、交互问题等）</p>
+<h4 id="（4）Hydrate"><a href="#（4）Hydrate" class="headerlink" title="（4）Hydrate"></a>（4）Hydrate</h4><p><code>hydrate</code>在前端开发中通常指的是一个过程，特别是在使用框架如 React、Vue 和 Svelte 时，将服务器渲染的 HTML 结构与客户端的 JavaScript 代码结合起来，以便实现动态交互，并解决静态内容与动态内容之间的不一致问题。（在服务器上渲染HTML意味着从React应用程序中删除所有的交互性？！）</p>
+<h5 id="1、将静态内容转化为动态组件"><a href="#1、将静态内容转化为动态组件" class="headerlink" title="1、将静态内容转化为动态组件"></a>1、将静态内容转化为动态组件</h5><ul>
+<li>静态HTML：当服务器端渲染 React 组件时，生成的 HTML 是静态的，没有任何事件处理或状态管理。</li>
+<li><code>hydrate</code> 的作用：调用 <code>ReactDOM.hydrate()</code> 函数可以将已有的静态 HTML 转换为 React 组件，使其具备动态交互能力。React 会重新绑定事件处理器，初始化组件的状态，并使组件的生命周期方法正常工作</li>
+</ul>
+<h5 id="2、减少重新渲染"><a href="#2、减少重新渲染" class="headerlink" title="2、减少重新渲染"></a>2、减少重新渲染</h5><ul>
+<li>减少不必要的重新渲染：通过使用 <code>hydrate</code>，React 可以利用已有的静态 HTML，而不是从头开始渲染组件。这意味着在初始加载时，不需要重新生成 HTML，从而提高了性能。（只有HTML的DOM树和Bundle的DOM树相等时，才会渲染）</li>
+<li>状态保留：<code>hydrate</code> 使得在客户端的状态可以与服务器端渲染时的状态保持一致，避免了状态丢失的问题。</li>
+</ul>
+<h5 id="3、保持交互性"><a href="#3、保持交互性" class="headerlink" title="3、保持交互性"></a>3、保持交互性</h5><ul>
+<li>事件处理：通过 <code>hydrate</code>，React 将自动为已渲染的 HTML 元素绑定事件处理器。例如，按钮的点击事件、输入框的变化事件等，这些在 SSR 时是无法直接处理的。</li>
+<li>组件更新：当用户与组件交互时，<code>hydrate</code> 使得组件可以根据状态变化进行更新，而不需要重新渲染整个组件树。</li>
+</ul>
+<h5 id="4、确保一致性"><a href="#4、确保一致性" class="headerlink" title="4、确保一致性"></a>4、确保一致性</h5><ul>
+<li>避免内容闪烁：在客户端渲染时，<code>hydrate</code> 确保服务器渲染的内容与客户端渲染的内容保持一致，避免了闪烁和内容不一致的问题。</li>
+<li>快速响应：用户在客户端与页面交互时，可以立即感知到变化，因为 <code>hydrate</code> 确保了用户交互的流畅性和及时响应。</li>
+</ul>
+<h5 id="5、优点"><a href="#5、优点" class="headerlink" title="5、优点"></a>5、优点</h5><p>通过 <code>hydrate</code>，React 能够有效地将服务器端生成的静态内容转化为具有交互性的动态组件，确保页面在用户交互时的流畅性和一致性。这一过程避免了重新渲染带来的性能损失，同时为用户提供了更好的体验</p>
+<p>提升性能：由于初始内容是服务器渲染的，用户可以更快地看到页面，减少了首次内容绘制（FCP）时间。</p>
+<p>提高 SEO</p>
+<p>更好的用户体验</p>
+<h4 id="（5）使用hydrate渲染互动性界面"><a href="#（5）使用hydrate渲染互动性界面" class="headerlink" title="（5）使用hydrate渲染互动性界面"></a>（5）使用hydrate渲染互动性界面</h4><h5 id="1、创建clien-js"><a href="#1、创建clien-js" class="headerlink" title="1、创建clien.js"></a>1、创建clien.js</h5><p><code>ReactDOM.hydrateRoot</code>： 该方法来自 React 18，是为了将服务端渲染的内容与客户端 React 代码 “结合”。通过 <code>hydrateRoot</code>，React 可以在客户端接管已经在服务端生成的静态 HTML，并使其变得交互式。</p>
+<p> <code>document.getElementById(&#39;root&#39;)</code> 获取了页面上的 <code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code>，React 的组件会渲染到这个元素中。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">hydrateRoot</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;root&#x27;</span>), <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Home</span> /&gt;</span></span>);<br></code></pre></td></tr></table></figure>
+
+<p>里面还需包含和server.js中一样的JSX代码</p>
+<h5 id="2、在server-js中包含client路径"><a href="#2、在server-js中包含client路径" class="headerlink" title="2、在server.js中包含client路径"></a>2、在server.js中包含client路径</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> clientJS = <span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;__dirname&#125;</span>/client.js`</span>, <span class="hljs-string">&#x27;utf-8&#x27;</span>);<br><br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pathName === <span class="hljs-string">&#x27;/client.js&#x27;</span>) &#123;<br>    res.<span class="hljs-title function_">writeHead</span>(<span class="hljs-number">200</span>, &#123; <span class="hljs-string">&#x27;Content-type&#x27;</span>: <span class="hljs-string">&#x27;application/javascript&#x27;</span> &#125;);<br>    res.<span class="hljs-title function_">end</span>(clientJS);<br></code></pre></td></tr></table></figure>
+
+<h5 id="3、在HTML中"><a href="#3、在HTML中" class="headerlink" title="3、在HTML中"></a>3、在HTML中</h5><p>中间的两个引入是搜索 babel cdn和react cdn来引入的</p>
+<ul>
+<li>Babel：这是 Babel 的独立版本，用于在浏览器中直接编译和转译 ES6+ 和 JSX 代码。</li>
+<li>React (UMD Module)：这个脚本引入了 React 库，它是一个 JavaScript 库，用于构建用户界面。通过这个 CDN，你可以在浏览器中使用 React 编写组件。这是 UMD (Universal Module Definition) 版本的 React，它可以直接在浏览器中使用，而无需模块打包工具（如 Webpack）。这是开发环境的版本（<code>react.development.js</code>），它包括额外的调试信息，方便开发和调试。</li>
+<li>ReactDOM (UMD Module)：这个脚本引入了 ReactDOM 库，它是 React 的一部分，负责将 React 组件渲染到实际的 DOM 中。它允许你把 React 的虚拟 DOM 转换为浏览器的实际 DOM。同样，这是 ReactDOM 的 UMD 版本，允许你直接在浏览器中使用 <code>ReactDOM.render()</code> 或 <code>ReactDOM.hydrateRoot()</code> 方法。</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;body&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;root&quot;</span>&gt;</span>%%%Content%%%<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/@babel/standalone/babel.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span></span></span><br><span class="hljs-tag"><span class="language-xml">    <span class="hljs-attr">crossorigin</span></span></span><br><span class="hljs-tag"><span class="language-xml">    <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/react@18/umd/react.development.js&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">  &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span></span></span><br><span class="hljs-tag"><span class="language-xml">    <span class="hljs-attr">crossorigin</span></span></span><br><span class="hljs-tag"><span class="language-xml">    <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/react-dom@18/umd/react-dom.development.js&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">  &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/babel&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/client.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程24-SSR概念引入及手写</div>
+      <div>http://example.com/2024/09/29/react课程24-SSR概念引入及手写/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/30/react%E8%AF%BE%E7%A8%8B25-%E8%AE%A4%E8%AF%86Next.js%E5%92%8CRSC/" title="react课程25-认识Next.js和RSC">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">react课程25-认识Next.js和RSC</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/28/JS%E8%AF%BE%E7%A8%8B1-/" title="JS课程1-">
+                        <span class="hidden-mobile">JS课程1-</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
