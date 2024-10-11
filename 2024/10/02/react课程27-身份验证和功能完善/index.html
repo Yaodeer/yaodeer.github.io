@@ -1,0 +1,976 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本节课包含如何利用Auth2.0实现身份验证的功能，以及完善用户的功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react课程27-身份验证和功能完善">
+<meta property="og:url" content="http://example.com/2024/10/02/react%E8%AF%BE%E7%A8%8B27-%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E5%92%8C%E5%8A%9F%E8%83%BD%E5%AE%8C%E5%96%84/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="本节课包含如何利用Auth2.0实现身份验证的功能，以及完善用户的功能。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002090311747.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002091030466.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002154442550.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002155741057.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002160240048.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002161018410.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002161334107.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002161911262.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002161922299.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002162009003.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241004142609510.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002163902629.png">
+<meta property="article:published_time" content="2024-10-02T01:36:57.719Z">
+<meta property="article:modified_time" content="2024-10-04T15:46:31.518Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002090311747.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>react课程27-身份验证和功能完善 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="react课程27-身份验证和功能完善"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-02 09:36" pubdate>
+          October 2, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">react课程27-身份验证和功能完善</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on October 4, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本节课包含如何利用Auth2.0实现身份验证的功能，以及完善用户的功能。</p>
+<span id="more"></span>
+
+<h3 id="一、"><a href="#一、" class="headerlink" title="一、"></a>一、</h3><h4 id="（1）客户端-服务端VS后端-前端"><a href="#（1）客户端-服务端VS后端-前端" class="headerlink" title="（1）客户端&amp;&amp;服务端VS后端&amp;&amp;前端"></a>（1）客户端&amp;&amp;服务端VS后端&amp;&amp;前端</h4><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002090311747.png" srcset="/img/loading.gif" lazyload alt="image-20241002090311747"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002091030466.png" srcset="/img/loading.gif" lazyload alt="image-20241002091030466"></p>
+<h3 id="二、部分处理"><a href="#二、部分处理" class="headerlink" title="二、部分处理"></a>二、部分处理</h3><h4 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a>（1）</h4><h5 id="1、使NavBar被选中链接高亮"><a href="#1、使NavBar被选中链接高亮" class="headerlink" title="1、使NavBar被选中链接高亮"></a>1、使NavBar被选中链接高亮</h5><p>找到组件<code>SideNavigation</code>，使用nextjs提供的hook：<code>usePathname</code></p>
+<p><code>const pathName = usePathname();</code>可以获得当前的路径，于是可以进入条件style模式：</p>
+<p><code>$&#123; pathName === link.href ? &#39;bg-primary-800&#39; : &#39;&#39;  &#125;</code></p>
+<p>✅最重要的是需要声明<code>“use client”</code></p>
+<h5 id="2、提取profile中的表单到client组件"><a href="#2、提取profile中的表单到client组件" class="headerlink" title="2、提取profile中的表单到client组件"></a>2、提取profile中的表单到client组件</h5><p>由于表单中用到了setCountry，是一个服务端的组件，如果直接包含在client组件中，就会报错（因为client组件不能import服务端组件）。因此可以在服务端的Profile Page中，将setCountry组件通过children传递过去，就OK了。</p>
+<h4 id="（2）建立filter理解如何把状态从client传递到server"><a href="#（2）建立filter理解如何把状态从client传递到server" class="headerlink" title="（2）建立filter理解如何把状态从client传递到server"></a>（2）建立filter理解如何把状态从client传递到server</h4><blockquote>
+<p>通过URL</p>
+</blockquote>
+<h5 id="1、维护服务端"><a href="#1、维护服务端" class="headerlink" title="1、维护服务端"></a>1、维护服务端</h5><blockquote>
+<p>在 <code>app</code> 目录下的动态路由文件夹中，Page和layout默认可以接收 <code>params</code>，这些 <code>params</code> 会自动从文件结构中解析传递到组件中，而不需要通过 <code>getStaticProps</code> 或 <code>getServerSideProps</code></p>
+</blockquote>
+<p>cabins界面通过接收searchParams参数，得到filter数据，传递给CabinList，由此可以条件渲染cabins。此时cabins界面已经成为动态界面，revalidate参数已无用，因为它只适用于静态界面。</p>
+<h5 id="2、suspense-fallback失效的问题"><a href="#2、suspense-fallback失效的问题" class="headerlink" title="2、suspense fallback失效的问题"></a>2、suspense fallback失效的问题</h5><blockquote>
+<p>方法：使用suspense组件时不仅传入fallback，还要传入唯一的可以、值</p>
+</blockquote>
+<p>当 <code>Suspense</code> 组件的 <code>key</code> 发生变化时，React 会将当前挂载的组件卸载并重新渲染。这意味着当 <code>key</code> 改变时，<code>Suspense</code> 内的组件（如 <code>CabinList</code>）会被强制重新加载，即使在同一个 <code>Suspense</code> 中缓存的数据也会被刷新。这对于需要根据某些条件（如 <code>filter</code>）强制刷新内容时非常有用。</p>
+<h5 id="3、建立Filter组件"><a href="#3、建立Filter组件" class="headerlink" title="3、建立Filter组件"></a>3、建立Filter组件</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; usePathname, useRouter, useSearchParams &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;next/navigation&#x27;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Filter</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> searchParams = <span class="hljs-title function_">useSearchParams</span>();<br>  <span class="hljs-keyword">const</span> router = <span class="hljs-title function_">useRouter</span>();<br>  <span class="hljs-keyword">const</span> pathname = <span class="hljs-title function_">usePathname</span>();<br><br>  <span class="hljs-keyword">const</span> activeFilter = searchParams.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;capacity&#x27;</span>) ?? <span class="hljs-string">&#x27;all&#x27;</span>;<br><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleFilter</span>(<span class="hljs-params">filter</span>) &#123;<br>    <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> <span class="hljs-title class_">URLSearchParams</span>(searchParams);<br>    params.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;capacity&#x27;</span>, filter);<br>    router.<span class="hljs-title function_">replace</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;pathname&#125;</span>?<span class="hljs-subst">$&#123;params.toString()&#125;</span>`</span>, &#123; <span class="hljs-attr">scroll</span>: <span class="hljs-literal">false</span> &#125;);<br>  &#125;<br>  <br>  <span class="hljs-keyword">return</span>...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>❓❓为什么这么复杂</p>
+<p>在 Next.js 的 <strong>client component</strong> 中，<code>useSearchParams()</code> 提供了对 URL 查询参数的访问，但它的返回值是一个 <code>URLSearchParams</code> 对象的只读版本。这意味着你可以使用 <code>useSearchParams()</code> 来<strong>获取</strong>参数，但不能直接通过它来<strong>修改</strong>或<strong>设置</strong>新的查询参数。</p>
+<p>❓❓<code>URLSearchParams</code></p>
+<p>这是 JavaScript 标准 <code>URLSearchParams</code> API 的工作方式，与 Next.js 本身无关，创建一个新的 <code>URLSearchParams</code> 实例后，可以自由地添加、修改或删除查询参数，并且将这些修改应用到 URL 中。</p>
+<p>❓❓WHY  “router.replace”</p>
+<p><code>params.set(&#39;capacity&#39;, filter)</code> 本身<strong>不会自动更新 URL</strong> 或切换界面，它只是在内存中修改了一个 <code>URLSearchParams</code> 对象，并没有直接与浏览器的地址栏进行交互，也不会触发页面的重新渲染。</p>
+<p><code>router.replace()</code> 是 Next.js 提供的 API，用来<strong>显式更新浏览器的地址栏</strong>并影响页面渲染。在不添加新浏览历史记录的情况下<strong>替换当前 URL</strong>，即页面不会进行完整的刷新，用户点击 “后退” 按钮时也不会回到修改前的 URL。</p>
+<p>❓❓<code>&#123; scroll: false &#125;</code></p>
+<p>常在改变 URL 后，页面会自动滚动到顶部。通过传递 <code>&#123; scroll: false &#125;</code>，你可以阻止页面滚动，保持当前的滚动位置不变。这在切换过滤条件或更新查询参数时非常有用，避免页面跳转导致的体验不一致。</p>
+<h4 id="（3）create-an-API-endpoint"><a href="#（3）create-an-API-endpoint" class="headerlink" title="（3）create an API endpoint"></a>（3）create an API endpoint</h4><p>路径：<code>app\api\cabins\[cabinId]\route.js</code></p>
+<p>内容：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">GET</span>(<span class="hljs-params">request, &#123; params &#125;</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; cabinId &#125; = params;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-keyword">const</span> [cabin, bookedDates] = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([<br>      <span class="hljs-title function_">getCabin</span>(cabinId),<br>      <span class="hljs-title function_">getBookedDatesByCabinId</span>(cabinId),<br>    ]);<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Response</span>.<span class="hljs-title function_">json</span>(&#123; cabin, bookedDates &#125;);<br>  &#125; <span class="hljs-keyword">catch</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Response</span>.<span class="hljs-title function_">json</span>(&#123; <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;cabin not found&#x27;</span> &#125;);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>访问后：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002154442550.png" srcset="/img/loading.gif" lazyload alt="image-20241002154442550"></p>
+<p>详细信息：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Response">https://developer.mozilla.org/zh-CN/docs/Web/API/Response</a></p>
+<h3 id="三、使用（NEXT）Auth-js进行Authentication"><a href="#三、使用（NEXT）Auth-js进行Authentication" class="headerlink" title="三、使用（NEXT）Auth.js进行Authentication"></a>三、使用（NEXT）Auth.js进行Authentication</h3><h4 id="（1）配置环境变量"><a href="#（1）配置环境变量" class="headerlink" title="（1）配置环境变量"></a>（1）配置环境变量</h4><p>找到.env.local文件夹，在里面添加两个环境变量</p>
+<p>其中我们可以访问<a target="_blank" rel="noopener" href="https://generate-secret.vercel.app/%E7%BD%91%E5%9D%80%EF%BC%8C%E4%BB%96%E4%BC%9A%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90secret%EF%BC%8C%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8">https://generate-secret.vercel.app/网址，他会随机生成secret，更加安全</a></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-variable constant_">NEXTAUTH_URL</span>=<span class="hljs-attr">http</span>:<span class="hljs-comment">//localhost:3000/</span><br><span class="hljs-variable constant_">NEXTAUTH_SECRET</span>=***<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（2）google-developer-console（⚠️配置出问题，换用了Github）"><a href="#（2）google-developer-console（⚠️配置出问题，换用了Github）" class="headerlink" title="（2）google developer console（⚠️配置出问题，换用了Github）"></a>（2）google developer console（⚠️配置出问题，换用了Github）</h4><p>⭕<a target="_blank" rel="noopener" href="https://authjs.dev/getting-started/providers/google">https://authjs.dev/getting-started/providers/google</a>  这是配置的相关网址</p>
+<hr>
+<h5 id="1、创建项目和OAuth-consent-screen"><a href="#1、创建项目和OAuth-consent-screen" class="headerlink" title="1、创建项目和OAuth consent screen"></a>1、创建项目和OAuth consent screen</h5><blockquote>
+<p>OAuth 同意屏幕（OAuth consent screen）是 Google Cloud Platform 上的一个配置步骤，用于在用户使用您的应用程序进行身份验证和授权时展示给用户的信息</p>
+</blockquote>
+<p>点击创建项目，然后select it</p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002155741057.png" srcset="/img/loading.gif" lazyload alt="image-20241002155741057" style="zoom: 33%;" />
+
+<p>左侧sideBar选择API&amp;Services，再选择<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002160240048.png" srcset="/img/loading.gif" lazyload alt="image-20241002160240048" style="zoom:67%;" /></p>
+<p>选择External，因为Internal只对google workspase的用户有效，然后点击create。</p>
+<p>第一页Domain部分不用填，第二页不用填，第三页把自己的邮箱或其他想要测试的邮箱添加进去，然后就结束。</p>
+<h5 id="2、Credentials"><a href="#2、Credentials" class="headerlink" title="2、Credentials"></a>2、Credentials</h5><blockquote>
+<p><strong>Credentials（凭据）</strong> 是一组用于身份验证和授权的安全信息，允许您的应用程序安全地访问 Google AP</p>
+</blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002161018410.png" srcset="/img/loading.gif" lazyload alt="image-20241002161018410" style="zoom:67%;" />
+
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002161334107.png" srcset="/img/loading.gif" lazyload alt="image-20241002161334107"></p>
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002161911262.png" srcset="/img/loading.gif" lazyload alt="image-20241002161911262" style="zoom:67%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002161922299.png" srcset="/img/loading.gif" lazyload alt="image-20241002161922299" style="zoom:67%;" />
+
+
+
+<p><strong>弹出的这个界面最好不要立马叉掉！</strong>因为需要用上面的值配置环境变量</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-variable constant_">AUTH_GOOGLE_ID</span>=<span class="hljs-title class_">Client</span> <span class="hljs-variable constant_">ID</span><br><span class="hljs-variable constant_">AUTH_GOOGLE_SECRET</span>=<span class="hljs-title class_">Client</span> <span class="hljs-title class_">Secrte</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002162009003.png" srcset="/img/loading.gif" lazyload alt="image-20241002162009003"></p>
+<h4 id="（3）配置Auth-js"><a href="#（3）配置Auth-js" class="headerlink" title="（3）配置Auth.js"></a>（3）配置Auth.js</h4><blockquote>
+<p>天杀的谷歌。。。。。。Github轻轻松松配好，谷歌跟发癫了似的。</p>
+</blockquote>
+<p>⭕<code>npm i next-auth@beta </code>    （第五版）</p>
+<hr>
+<h5 id="1、配置Auth-js"><a href="#1、配置Auth-js" class="headerlink" title="1、配置Auth.js"></a>1、配置Auth.js</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">NextAuth</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;next-auth&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Github</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;next-auth/providers/google&#x27;</span>;<br><br><span class="hljs-keyword">const</span> authConfig = &#123;<br>  <span class="hljs-attr">providers</span>: [<br>    <span class="hljs-title class_">Github</span>(&#123;<br>      <span class="hljs-attr">clientId</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">AUTH_GOOGLE_ID</span>,<br>      <span class="hljs-attr">clientSecret</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">AUTH_GOOGLE_SECRET</span>,<br>    &#125;),<br>  ],<br>&#125;;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> &#123;<br>  auth,<br>  signIn,<br>  signOut,<br>  <span class="hljs-attr">handlers</span>: &#123; <span class="hljs-variable constant_">GET</span>, <span class="hljs-variable constant_">POST</span> &#125;,<br>&#125; = <span class="hljs-title class_">NextAuth</span>(authConfig);<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、api下建auth路径"><a href="#2、api下建auth路径" class="headerlink" title="2、api下建auth路径"></a>2、api下建auth路径</h5><p><code>app\api\auth\[...nextauth]\route.js</code></p>
+<p><a target="_blank" rel="noopener" href="http://localhost:3000/api/auth/signin">Sign In</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241004142609510.png" srcset="/img/loading.gif" lazyload alt="image-20241004142609510"></p>
+<p><a target="_blank" rel="noopener" href="http://localhost:3000/api/auth/providers">localhost:3000&#x2F;api&#x2F;auth&#x2F;providers</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241002163902629.png" srcset="/img/loading.gif" lazyload alt="image-20241002163902629"></p>
+<h5 id="3、用户信息"><a href="#3、用户信息" class="headerlink" title="3、用户信息"></a>3、用户信息</h5><p>点击上方的按钮用自己的账号Signin后，在组件中使用<code>const session=await auth()</code>，就会得到用户信息</p>
+<p>推荐在server端得到用户信息；<strong>使用auth（）会使整个界面变成动态</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&#123;<br>  <span class="hljs-attr">user</span>: &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Yaodeer&#x27;</span>,<br>    <span class="hljs-attr">email</span>: <span class="hljs-string">&#x27;@qq.com&#x27;</span>,<br>    <span class="hljs-attr">image</span>: <span class="hljs-string">&#x27;https://avatars.githubusercontent.com/u/165669001?v=4&#x27;</span><br>  &#125;,<br>  <span class="hljs-attr">expires</span>: <span class="hljs-string">&#x27;2024-11-03T05:01:45.847Z&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（4）使用Middleware保护APP路线"><a href="#（4）使用Middleware保护APP路线" class="headerlink" title="（4）使用Middleware保护APP路线"></a>（4）使用Middleware保护APP路线</h4><p>⭕在根文件夹下创建<code>middleware.js</code></p>
+<hr>
+<p>auth可以让我们得到当前会话，也可以作为中间件使用。</p>
+<h5 id="1、middleware-js"><a href="#1、middleware-js" class="headerlink" title="1、middleware.js"></a>1、middleware.js</h5><p>将 <code>auth</code> 作为中间件导出。这个中间件会在请求到达匹配的路径时被调用。</p>
+<p><code>matcher</code> 指定了 <code>/account</code> 路径，只有请求 <code>/account</code> 路径时，才会调用这个中间件</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123;auth&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@/app/_lib/auth&quot;</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> middleware = auth;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> config = &#123;<br>   <span class="hljs-attr">matcher</span>: [<span class="hljs-string">&quot;/account&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、auth-js"><a href="#2、auth-js" class="headerlink" title="2、auth.js"></a>2、auth.js</h5><p>在authConfig中添加callbacks属性：</p>
+<p>authorized的作用是决定用户是否被授权访问某个资源。</p>
+<p><code>request</code>: 这是当前的请求对象，包含请求相关的数据（例如 URL、headers 等）。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-attr">callbacks</span>: &#123;<br>   <span class="hljs-title function_">authorized</span>(<span class="hljs-params">&#123;auth,request&#125;</span>)&#123;<br>      <span class="hljs-keyword">return</span> !!auth?.<span class="hljs-property">user</span>;<br>   &#125;<span class="hljs-comment">//!! 是一种常见的 JavaScript 技巧，用于将值转换为布尔值</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（5）自定义signin和signout界面"><a href="#（5）自定义signin和signout界面" class="headerlink" title="（5）自定义signin和signout界面"></a>（5）自定义signin和signout界面</h4><h5 id="1、signin"><a href="#1、signin" class="headerlink" title="1、signin"></a>1、signin</h5><p>在app下创建login文件夹，创建page界面（含有文字和自定义的signin按钮）。</p>
+<p>在authConfig中添加page属性：<code>signIn：“/login”</code></p>
+<p>❓❓<em><strong>如何把auth.js中导出的signIn功能和按钮连接起来</strong></em></p>
+<p>不能直接添加onClick，因为想保持它是服务器组件。</p>
+<p>-&gt;在lib中添加action.js，最上方添加“use server”属性，于是可以在下面export一些函数</p>
+<p>–&gt;首先是signInAction函数</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">signInAction</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">await</span> <span class="hljs-title function_">signIn</span>(<span class="hljs-string">&quot;github&quot;</span>, &#123; <span class="hljs-attr">redirectTo</span>: <span class="hljs-string">&quot;/account&quot;</span> &#125;);<br>&#125;<span class="hljs-comment">//前：动作提供者，后：成功后的重定向</span><br></code></pre></td></tr></table></figure>
+
+<p>—&gt;将Button组件用form包裹起来，添加<code>action=&#123;signInAction&#125;</code></p>
+<h5 id="2、signout"><a href="#2、signout" class="headerlink" title="2、signout"></a>2、signout</h5><p>signout按钮是客户端组件，但是仍旧可以按照上面的办法，添加action属性。</p>
+<h4 id="（6）为登陆的新用户创建supabase信息"><a href="#（6）为登陆的新用户创建supabase信息" class="headerlink" title="（6）为登陆的新用户创建supabase信息"></a>（6）为登陆的新用户创建supabase信息</h4><p>在callback中加入：</p>
+<p>首先在signIn之后执行创建用户的函数，创建之后再执行，将创建出来的guestId赋给session中，这样可以获得身份的凭据。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">async</span> <span class="hljs-title function_">signIn</span>(<span class="hljs-params">&#123; user, account, profile &#125;</span>) &#123;<br>   <span class="hljs-keyword">try</span> &#123;<br>     <span class="hljs-keyword">const</span> existingGuest = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getGuest</span>(user.<span class="hljs-property">email</span>);<br><br>     <span class="hljs-keyword">if</span> (!existingGuest) &#123;<br>         <span class="hljs-keyword">await</span> <span class="hljs-title function_">createGuest</span>(&#123;<span class="hljs-attr">email</span>: user.<span class="hljs-property">email</span>,<span class="hljs-attr">fullName</span>: user.<span class="hljs-property">name</span>,<br>       &#125;);<br>     &#125;<br>     <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>   &#125; <span class="hljs-keyword">catch</span> &#123;<br>     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>   &#125;<br> &#125;,<br> <span class="hljs-keyword">async</span> <span class="hljs-title function_">session</span>(<span class="hljs-params">&#123; session, user &#125;</span>) &#123;<br>   <span class="hljs-keyword">const</span> guest = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getGuest</span>(session.<span class="hljs-property">user</span>.<span class="hljs-property">email</span>);<br>   session.<span class="hljs-property">user</span>.<span class="hljs-property">guestId</span> = guest.<span class="hljs-property">id</span>;<br>   <span class="hljs-keyword">return</span> session;<br> &#125;,<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、为用户添加动作"><a href="#四、为用户添加动作" class="headerlink" title="四、为用户添加动作"></a>四、为用户添加动作</h3><h4 id="（1）更新信息"><a href="#（1）更新信息" class="headerlink" title="（1）更新信息"></a>（1）更新信息</h4><p>仍旧是在表单中采用action关键字，相应的函数会自动接收表中数据。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">updateProfile</span>(<span class="hljs-params">formData</span>) &#123;<br>  <span class="hljs-keyword">const</span> session = <span class="hljs-keyword">await</span> <span class="hljs-title function_">auth</span>();<br>  <span class="hljs-keyword">if</span> (!session) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;You need to be logged in&#x27;</span>);<br><br>  <span class="hljs-keyword">const</span> nationalID = formData.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;nationalID&#x27;</span>);<br>  <span class="hljs-keyword">const</span> [nationality, countryFlag] = formData.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;nationality&#x27;</span>).<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;%&#x27;</span>);<br><br>  <span class="hljs-keyword">if</span> (!<span class="hljs-regexp">/^[a-zA-Z0-9]&#123;6,12&#125;$/</span>.<span class="hljs-title function_">test</span>(nationalID))<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Please provide a valid nationID&#x27;</span>);  <span class="hljs-comment">//检验是否是正确的身份证</span><br><br>  <span class="hljs-keyword">const</span> updateData = &#123; nationalID, nationality, countryFlag &#125;;<br><br>  <span class="hljs-keyword">const</span> &#123; data, error &#125; = <span class="hljs-keyword">await</span> supabase<br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;guests&#x27;</span>)<br>    .<span class="hljs-title function_">update</span>(updateData)<br>    .<span class="hljs-title function_">eq</span>(<span class="hljs-string">&#x27;id&#x27;</span>, session.<span class="hljs-property">user</span>.<span class="hljs-property">guestId</span>);<br><br>  <span class="hljs-keyword">if</span> (error) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Guest could not be updated&#x27;</span>);<br>  <span class="hljs-keyword">return</span> data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="💭1解决cache问题-revalidatePath"><a href="#💭1解决cache问题-revalidatePath" class="headerlink" title="-&gt;💭1解决cache问题(revalidatePath)"></a>-&gt;💭1解决cache问题(revalidatePath)</h5><blockquote>
+<p>动态界面自动刷新的时间是30s</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">revalidatePath</span>(<span class="hljs-string">&#x27;/account/profile&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>在 Next.js 中，<code>revalidatePath</code> 是一个用于手动触发路径重新验证的函数，通常在你需要在服务器端更新某个页面或 API 的缓存时使用。该函数常用于在进行数据更改后，让 Next.js 知道该路径的数据已过期并需要重新加载。</p>
+<h5 id="💭2呈现加载状态"><a href="#💭2呈现加载状态" class="headerlink" title="-&gt;💭2呈现加载状态"></a>-&gt;💭2呈现加载状态</h5><p> <code>const &#123; pending &#125; = useFormStatus();</code></p>
+<p>这个组件必须在自己被包含到form组件中才能使用。（不太懂）</p>
+<p>所以把表单的按钮提取成了一个单独的组件，在其中得到pending状态并条件渲染（按钮的文字和disabled），然后再把这个Button放置入form中，就可以得到form的状态了。</p>
+<h4 id="（2）删除预定"><a href="#（2）删除预定" class="headerlink" title="（2）删除预定"></a>（2）删除预定</h4><h5 id="💭1构建Reservation界面"><a href="#💭1构建Reservation界面" class="headerlink" title="-&gt;💭1构建Reservation界面"></a>-&gt;💭1构建Reservation界面</h5><p>（为什么不先实现创建预定，难道是太难了）</p>
+<p>给自己的id添加点预定展示界面。过去的booking不能修改和删除。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">deleteReservation</span>(<span class="hljs-params">bookingId</span>) &#123;<br>  <span class="hljs-keyword">const</span> session = <span class="hljs-keyword">await</span> <span class="hljs-title function_">auth</span>();<br>  <span class="hljs-keyword">if</span> (!session) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;You need to be logged in&#x27;</span>);<br><br>  <span class="hljs-keyword">const</span> guestBookings = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getBookings</span>(session.<span class="hljs-property">user</span>.<span class="hljs-property">guestId</span>);<br>  <span class="hljs-keyword">const</span> guestBookingIds = <span class="hljs-keyword">await</span> guestBookings.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">booking</span>) =&gt;</span> booking.<span class="hljs-property">id</span>);<br><br>  <span class="hljs-keyword">if</span> (!guestBookingIds.<span class="hljs-title function_">includes</span>(bookingId))<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;You are not allowed to delete this booking&#x27;</span>);<br><br>  <span class="hljs-keyword">const</span> &#123; error &#125; = <span class="hljs-keyword">await</span> supabase<br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;bookings&#x27;</span>)<br>    .<span class="hljs-title function_">delete</span>()<br>    .<span class="hljs-title function_">eq</span>(<span class="hljs-string">&#x27;id&#x27;</span>, bookingId);<br><br>  <span class="hljs-keyword">if</span> (error) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Booking could not be deleted&#x27;</span>);<br><br>  <span class="hljs-title function_">revalidatePath</span>(<span class="hljs-string">&#x27;/account/reservations&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>⚠️中间的几行代码是因为，如果我们打开网络请求录制，在自己的界面删除一个预定，然后选择复制这个删除预定的请求为cURL，粘贴到终端，只需要修改一下里面的bookingId，就可以删除所有人的booking了。</p>
+<p>这一次调用服务端action是通过在button上添加onClick属性。</p>
+<h5 id="💭2呈现加载状态2️⃣（useTransition）"><a href="#💭2呈现加载状态2️⃣（useTransition）" class="headerlink" title="-&gt;💭2呈现加载状态2️⃣（useTransition）"></a>-&gt;💭2呈现加载状态2️⃣（useTransition）</h5><blockquote>
+<p>由于这次是按钮，所以不能用useFormStatus来显示loading状态了。</p>
+</blockquote>
+<p><code>useTransition</code> 是 React 18 引入的一个 Hook，用于处理“并发渲染”中的非紧急更新。这允许你将某些状态更新标记为非紧急的，从而不会阻塞用户界面的交互。<code>useTransition</code> 可以帮助避免在状态更新期间卡顿的情况，例如加载新数据或页面内容时</p>
+<p><code>useTransition</code> 返回两个值：</p>
+<ol>
+<li><code>isPending</code>：表示更新是否正在进行中。</li>
+<li><code>startTransition</code>：用于将更新标记为“非紧急”的函数。</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> [isPending, startTransition] = <span class="hljs-title function_">useTransition</span>();<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleDelete</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-title function_">confirm</span>(<span class="hljs-string">&#x27;Are you sure you want to delete this reservation?&#x27;</span>))<br>    <span class="hljs-title function_">startTransition</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">deleteReservation</span>(bookingId));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果用户确认删除，<code>startTransition</code> 被调用，删除操作 (<code>deleteReservation</code>) 被封装在 <code>startTransition</code> 中，意味着这是一个非紧急的更新操作，不会阻塞页面的其他操作。</p>
+<h4 id="（3）修改预定"><a href="#（3）修改预定" class="headerlink" title="（3）修改预定"></a>（3）修改预定</h4><p>当我们点击Edit的时候，会将我们定向到(<a target="_blank" rel="noopener" href="http://localhost:3000/account/reservations/edit/bookingId)%E7%95%8C%E9%9D%A2%E3%80%82">http://localhost:3000/account/reservations/edit/bookingId)界面。</a></p>
+<p>所以首先要做的就是先创建一个动态的Route。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">updateBooking</span>(<span class="hljs-params">formData</span>) &#123;<br>   <span class="hljs-comment">//1、验证是否登陆</span><br>  <span class="hljs-keyword">const</span> session = <span class="hljs-keyword">await</span> <span class="hljs-title function_">auth</span>();<br>  <span class="hljs-keyword">if</span> (!session) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;You need to be logged in&#x27;</span>);<br>  <span class="hljs-comment">//2、获得数据</span><br>  <span class="hljs-keyword">const</span> bookingId = <span class="hljs-title class_">Number</span>(formData.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;bookingId&#x27;</span>));<br>  <span class="hljs-comment">//3、防止误删他人数据</span><br>  <span class="hljs-keyword">const</span> guestBookings = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getBookings</span>(session.<span class="hljs-property">user</span>.<span class="hljs-property">guestId</span>);<br>  <span class="hljs-keyword">const</span> guestBookingIds = guestBookings.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">booking</span>) =&gt;</span> booking.<span class="hljs-property">id</span>);<br><br>  <span class="hljs-keyword">if</span> (!guestBookingIds.<span class="hljs-title function_">includes</span>(bookingId))<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;You are not allowed to update this booking&#x27;</span>);<br>  <span class="hljs-comment">//4、更新</span><br>  <span class="hljs-keyword">const</span> updateData = &#123;<br>    <span class="hljs-attr">numGuests</span>: <span class="hljs-title class_">Number</span>(formData.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;numGuests&#x27;</span>)),<br>    <span class="hljs-attr">observations</span>: formData.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;observations&#x27;</span>).<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>),<br>  &#125;;<span class="hljs-comment">//防止输入太多字导致系统崩溃</span><br><br>  <span class="hljs-keyword">const</span> &#123; error &#125; = <span class="hljs-keyword">await</span> supabase<br>    .<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;bookings&#x27;</span>)<br>    .<span class="hljs-title function_">update</span>(updateData)<br>    .<span class="hljs-title function_">eq</span>(<span class="hljs-string">&#x27;id&#x27;</span>, bookingId)<br>    .<span class="hljs-title function_">select</span>()<br>    .<span class="hljs-title function_">single</span>();<br>  <span class="hljs-comment">//5、错误处理</span><br>  <span class="hljs-keyword">if</span> (error) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Booking could not be updated&#x27;</span>);<br>  <span class="hljs-comment">//6、清除缓存</span><br>  <span class="hljs-title function_">revalidatePath</span>(<span class="hljs-string">`/account/reservations/edit/<span class="hljs-subst">$&#123;bookingId&#125;</span>`</span>);<br>  <span class="hljs-comment">//7、重定向</span><br>  <span class="hljs-title function_">redirect</span>(<span class="hljs-string">&#x27;/account/reservations&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（4）useOptimistic"><a href="#（4）useOptimistic" class="headerlink" title="（4）useOptimistic"></a>（4）useOptimistic</h4><blockquote>
+<p>我们想在预定界面使用这个hook</p>
+</blockquote>
+<p><code>useOptimistic</code> 是 React 18 中提供的一个 Hook，用于实现 <strong>乐观更新</strong>（Optimistic UI）。乐观更新是指在后台数据更新（如网络请求）尚未完成时，先更新用户界面，使其看起来好像数据已经更新成功了，而后台的实际更新在完成后再同步数据状态。这种方式可以提高用户体验，减少界面的延迟感。如果有错误，那么状态会回滚到操作前。</p>
+<p>首先把Reservation提取出来到ReservationList组件中，好在这里使用hook（“use client”不要忘记）。</p>
+<p>然后我们在这里重构（乐观化）deleteReservation函数，并传递给删除预定的组件中去。</p>
+<h5 id="1、初始化状态"><a href="#1、初始化状态" class="headerlink" title="1、初始化状态"></a>1、初始化状态</h5><p><code>optimisticBookings</code>：这是一个包含当前乐观状态下的预订列表的变量，它会在每次删除操作后立即更新。</p>
+<p><code>optimisticDelete</code>：这是一个用于更新乐观状态的函数，当用户触发删除时，调用该函数会立即更新界面。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> [optimisticBookings, optimisticDelete] = <span class="hljs-title function_">useOptimistic</span>(<br>    bookings,<br>    <span class="hljs-function">(<span class="hljs-params">curBookings, bookingId</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">return</span> curBookings.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">booking</span>) =&gt;</span> booking.<span class="hljs-property">id</span> != bookingId);<br>    &#125;<br>  );<br></code></pre></td></tr></table></figure>
+
+<p><strong>初始状态</strong> <code>bookings</code>：这是从父组件传递过来的预订列表。</p>
+<p><strong>更新函数</strong>：该函数用于更新预订列表。每当删除操作触发时，它会将 <code>bookingId</code> 传入，过滤掉与这个 <code>id</code> 对应的预订项，从而在 UI 上立即移除它。</p>
+<h5 id="2、删除函数"><a href="#2、删除函数" class="headerlink" title="2、删除函数"></a>2、删除函数</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleDelete</span>(<span class="hljs-params">bookingId</span>) &#123;<br>  <span class="hljs-title function_">optimisticDelete</span>(bookingId);<br>  <span class="hljs-keyword">await</span> <span class="hljs-title function_">deleteReservation</span>(bookingId);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>**<code>optimisticDelete(bookingId)</code>**：这行代码会立即从 <code>optimisticBookings</code> 列表中删除指定的 <code>bookingId</code>，从而让用户界面上立刻反映删除的结果。</p>
+<p>**<code>deleteReservation(bookingId)</code>**：该函数发出实际的删除请求，通常是向后端 API 发送 <code>DELETE</code> 请求，删除指定的预订项。</p>
+<h5 id="3、最后"><a href="#3、最后" class="headerlink" title="3、最后"></a>3、最后</h5><p>将原本map的bookings改为<code>optimisticBookings</code></p>
+<h4 id="（5）创建预定"><a href="#（5）创建预定" class="headerlink" title="（5）创建预定"></a>（5）创建预定</h4><blockquote>
+<p>Object.entries(formData.entries)</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">createBooking</span>(<span class="hljs-params">bookingData, formData</span>) &#123;<br>  <span class="hljs-keyword">const</span> session = <span class="hljs-keyword">await</span> <span class="hljs-title function_">auth</span>();<br>  <span class="hljs-keyword">if</span> (!session) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;You need to be logged in&#x27;</span>);<br><br>  <span class="hljs-keyword">const</span> newBooking = &#123;<br>    ...bookingData,<br>    <span class="hljs-attr">guestId</span>: session.<span class="hljs-property">user</span>.<span class="hljs-property">guestId</span>,<br>    <span class="hljs-attr">numGuests</span>: <span class="hljs-title class_">Number</span>(formData.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;numGuests&#x27;</span>)),<br>    <span class="hljs-attr">observations</span>: formData.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;observations&#x27;</span>).<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>),<br>    <span class="hljs-attr">extrasPrice</span>: <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">totalPrice</span>: bookingData.<span class="hljs-property">cabinPrice</span>,<br>    <span class="hljs-attr">isPaid</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">hasBreakfast</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">status</span>: <span class="hljs-string">&#x27;unconfirmed&#x27;</span>,<br>  &#125;;<br><br>  <span class="hljs-keyword">const</span> &#123; error &#125; = <span class="hljs-keyword">await</span> supabase.<span class="hljs-title function_">from</span>(<span class="hljs-string">&#x27;bookings&#x27;</span>).<span class="hljs-title function_">insert</span>([newBooking]);<br><br>  <span class="hljs-keyword">if</span> (error) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Booking could not be created&#x27;</span>);<br><br>  <span class="hljs-title function_">revalidatePath</span>(<span class="hljs-string">`/cabins/<span class="hljs-subst">$&#123;bookingData.cabinId&#125;</span>`</span>);<br><br>  <span class="hljs-title function_">redirect</span>(<span class="hljs-string">&#x27;/thankyou&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="五、一些疑问"><a href="#五、一些疑问" class="headerlink" title="五、一些疑问"></a>五、一些疑问</h3><h4 id="（1）什么叫做next-js中所有的navigation都被包装成了transitions"><a href="#（1）什么叫做next-js中所有的navigation都被包装成了transitions" class="headerlink" title="（1）什么叫做next.js中所有的navigation都被包装成了transitions"></a>（1）什么叫做next.js中所有的navigation都被包装成了transitions</h4><p>在 Next.js 13 及以上版本中，所有的页面导航都被包装成了“<strong>transitions</strong>”。这意味着当你在 Next.js 应用中进行页面导航时，React 自动将这些导航操作处理为<strong>并发渲染的过渡（concurrent transitions）</strong>。这种方式可以优化用户体验，使得页面导航更加流畅，尤其是在加载新页面内容时，避免了卡顿或延迟。</p>
+<h5 id="1、什么是-Transition？"><a href="#1、什么是-Transition？" class="headerlink" title="1、什么是 Transition？"></a>1、什么是 Transition？</h5><p><code>Transition</code> 是 React 18 引入的并发特性之一，它允许某些状态更新标记为“非紧急”，从而不会阻塞 UI 的响应。与传统的同步渲染不同，React 可以在处理某些状态变化时，让其他更紧急的 UI 更新（例如用户输入或按钮点击）优先执行。</p>
+<p>在 Next.js 中，当页面切换（例如从 <code>/home</code> 导航到 <code>/about</code>）时，这种页面导航会被包装成 Transition，意味着 React 可以在后台处理页面加载，同时保持用户界面的交互顺畅。</p>
+<h5 id="2、为什么-Next-js-包装导航为-Transition？"><a href="#2、为什么-Next-js-包装导航为-Transition？" class="headerlink" title="2、为什么 Next.js 包装导航为 Transition？"></a>2、为什么 Next.js 包装导航为 Transition？</h5><ol>
+<li><strong>提高页面导航的流畅性</strong>：当你从一个页面导航到另一个页面时，React 会将页面的加载过程作为一个 transition。这样，即使后台正在加载新页面，前台的用户界面（如加载指示器、按钮等）仍然可以继续响应用户输入，而不会因为页面加载导致整个应用的阻塞或卡顿。</li>
+<li><strong>避免导航时的卡顿</strong>：如果导航过程中有大量的数据获取或计算，传统的同步渲染可能导致整个应用变得不响应。而通过将导航包装为 transition，React 可以将这些非紧急的任务推迟处理，从而优先处理紧急的 UI 更新。</li>
+<li><strong>更优的用户体验</strong>：包装成 transition 后，Next.js 可以更好地管理异步操作（如数据获取、组件加载等），确保页面切换时不会阻塞用户的交互。</li>
+</ol>
+<h5 id="具体场景举例"><a href="#具体场景举例" class="headerlink" title="具体场景举例"></a>具体场景举例</h5><p>假设你有一个 Next.js 应用，当你从一个页面导航到另一个页面时：</p>
+<ul>
+<li><strong>传统同步渲染</strong>：页面导航会在新页面完全加载完毕之前阻塞用户的其他操作。这可能导致短暂的“白屏”或 UI 不响应的现象。</li>
+<li><strong>使用 Transition</strong>：当页面正在加载时，React 可以继续处理其他用户交互（比如点击按钮、输入文本），而后台的页面加载则被标记为非紧急的，并逐步完成。这种方式确保了页面导航更加流畅。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react%E8%AF%BE%E7%A8%8B/" class="category-chain-item">react课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>react课程27-身份验证和功能完善</div>
+      <div>http://example.com/2024/10/02/react课程27-身份验证和功能完善/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 2, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/06/HTML+CSS%E8%AF%BE%E7%A8%8B1-%E8%A1%A5%E5%85%85%E5%AD%A6%E4%B9%A0/" title="HTML+CSS课程1-补充学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HTML+CSS课程1-补充学习</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/01/react%E8%AF%BE%E7%A8%8B26-%E9%A1%B5%E9%9D%A2%E5%BB%BA%E7%AB%8B%E5%8F%8AData%E5%A4%84%E7%90%86/" title="react课程26-页面建立及Data处理">
+                        <span class="hidden-mobile">react课程26-页面建立及Data处理</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

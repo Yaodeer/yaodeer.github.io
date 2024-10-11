@@ -24,7 +24,7 @@
 <meta property="og:description" content="本篇来记录一下之前偷懒没认真了解的React基础知识😌🥱😪😴">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-09-11T06:46:03.648Z">
-<meta property="article:modified_time" content="2024-09-29T14:48:30.863Z">
+<meta property="article:modified_time" content="2024-10-09T06:35:58.730Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          989 words
+          1.9k words
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          9 mins
+          16 mins
         
       </span>
     
@@ -326,7 +326,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on September 29, 2024 pm
+                    Last updated on October 9, 2024 pm
                   
                 
               </p>
@@ -342,6 +342,7 @@
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7271165389694058556">前端铜九铁十面试必备八股文——网络HTTP 1.1 和 HTTP 2.0 的区别：二进制协议：HTTP1.1的解析是基于 - 掘金 (juejin.cn)</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7273119689185673253">前端铜九铁十面试必备八股文——性能优化图片懒加载原理 图片懒加载也叫延迟加载，只加载当前屏幕的图片，可视区域外的图片不会 - 掘金 (juejin.cn)</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7272009063406272571">前端铜九铁十面试必备八股文——工程化webpack的构建流程1. <strong>初始化参数</strong>：从配置文件或者shell语句中读取 - 掘金 (juejin.cn)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39823006/article/details/139494949?ops_request_misc=&request_id=&biz_id=102&utm_term=%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-1-139494949.142%5Ev100%5Epc_search_result_base9&spm=1018.2226.3001.4187">2024前端笔试题（vue2&#x2F;vue3&#x2F;react）_vue 笔试题-CSDN博客</a></p>
 <h4 id="一、default导出和直接export导出的区别"><a href="#一、default导出和直接export导出的区别" class="headerlink" title="一、default导出和直接export导出的区别"></a>一、default导出和直接export导出的区别</h4><ul>
 <li><p><strong>export default</strong>：用于导出模块中的<strong>默认值</strong>，每个模块只能有<strong>一个</strong>默认导出。导入时不需要使用大括号 <code>&#123;&#125;</code>，并且导入时的名称可以任意更改。</p>
 </li>
@@ -396,6 +397,76 @@
 </ul>
 </li>
 </ul>
+<h4 id="PageRouter"><a href="#PageRouter" class="headerlink" title="PageRouter"></a>PageRouter</h4><p>无app文件夹，建立pages文件夹，里面的文件自动成为路由，index.js成为根路由；</p>
+<p>可嵌套路由：建立相应名称文件夹。index.js同理成为根路由；</p>
+<p>可动态路由：建立和App Router语法一样，但是命名在文件上而不是文件夹；</p>
+<p>读取动态路由：非params，使用useRouter，router.query.[相应路由]；</p>
+<p>_app：管理布局、样式等。类layout文件。</p>
+<p>标题：需要下载head组件，和return的内容放在一起。使用title和Link指定。</p>
+<p>fetch数据：不可直接在组件内，需要借用getStaticProps获得并返回。（可控SSG），可返回revalidate参数，实现静态增量再生。</p>
+<p>动态界面fetch：借用getSeverSideProps，它可以获得params参数，</p>
+<h4 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h4><p><code>axios</code> 是一个基于 <code>Promise</code> 的 HTTP 库，它能在浏览器和 Node.js 环境中发送 HTTP 请求。相比于传统的 <code>XMLHttpRequest</code> 和 <code>fetch</code>，<code>axios</code> 提供了更多功能和更简便的用法，例如自动转换 JSON 响应、支持请求&#x2F;响应拦截器、取消请求、处理超时等。</p>
+<ul>
+<li>Axios 的特点：</li>
+</ul>
+<ol>
+<li><strong>支持 Promise</strong>：支持链式调用，便于处理异步逻辑。</li>
+<li><strong>自动 JSON 数据转换</strong>：会自动将请求和响应的数据转换为 JSON 格式。</li>
+<li><strong>请求和响应拦截器</strong>：可以在请求或响应被处理之前拦截并进行修改。</li>
+<li><strong>错误处理更简便</strong>：自动处理 HTTP 错误状态码，并可以统一管理错误。</li>
+<li><strong>支持取消请求</strong>：可以通过 <code>CancelToken</code> 取消正在进行的请求。</li>
+<li><strong>支持超时设置</strong>：可以设定请求的超时时间。</li>
+<li><strong>兼容性好</strong>：在 Node.js 和浏览器端都可以使用。</li>
+</ol>
+<ul>
+<li>为什么使用 Axios 而不是 Fetch？</li>
+</ul>
+<ol>
+<li><strong>兼容性</strong>：<code>fetch</code> 不支持自动处理跨域 cookie，<code>axios</code> 可以做到。</li>
+<li><strong>更丰富的功能</strong>：<code>axios</code> 提供了拦截器、自动 JSON 解析、取消请求等功能，而这些在 <code>fetch</code> 中需要手动实现。</li>
+<li><strong>错误处理</strong>：<code>fetch</code> 只会在网络错误时抛出异常，HTTP 错误状态码不会抛出异常，而 <code>axios</code> 会自动处理状态码异常并抛出错误。</li>
+</ol>
+<h4 id="React-API"><a href="#React-API" class="headerlink" title="React API"></a>React API</h4><p>React API 是 React 库中提供的一组接口和工具，用于构建用户界面。通过 React API，你可以创建组件、管理状态、处理事件等。React API 主要包括以下几部分：</p>
+<ol>
+<li><strong>React 组件 API</strong><ul>
+<li><code>React.Component</code>：创建类组件的基类，用于创建有状态组件。</li>
+<li><code>React.PureComponent</code>：类似于 <code>React.Component</code>，但会自动实现 <code>shouldComponentUpdate</code> 以避免不必要的重新渲染。</li>
+<li><code>React.memo</code>：用于优化函数组件，避免不必要的重新渲染。</li>
+</ul>
+</li>
+<li><strong>Hooks API</strong><ul>
+<li><code>useState</code>：在函数组件中引入本地状态。</li>
+<li><code>useEffect</code>：处理副作用（如数据请求、订阅等）。</li>
+<li><code>useContext</code>：在组件树中共享数据而不需要手动传递 props。</li>
+<li><code>useReducer</code>：类似于 Redux 中的 reducer，用于管理复杂状态逻辑。</li>
+<li><code>useRef</code>：获取组件实例或 DOM 元素的引用。</li>
+</ul>
+</li>
+<li><strong>Render 方法</strong><ul>
+<li><code>ReactDOM.render</code>：在 React 18 之前，用于将 React 组件渲染到 DOM 中。</li>
+<li><code>createRoot</code>：在 React 18 中的渲染入口，用于启用并发渲染。</li>
+</ul>
+</li>
+<li><strong>Context API</strong><ul>
+<li><code>React.createContext</code>：创建全局状态并在组件树中共享。</li>
+<li><code>Context.Provider</code>：提供数据给所有子组件。</li>
+<li><code>Context.Consumer</code>：访问提供的数据。</li>
+</ul>
+</li>
+<li><strong>JSX API</strong><ul>
+<li>JSX 是一种语法糖，用来书写 React 元素，它看起来像 HTML，但在底层是 JavaScript 对象。</li>
+<li><code>React.createElement</code>：底层方法，用于创建 React 元素，JSX 最终会被编译为对这个函数的调用。</li>
+</ul>
+</li>
+<li><strong>Fragments</strong><ul>
+<li><code>React.Fragment</code>：用于返回多个元素而不在 DOM 中生成额外的父级容器。</li>
+</ul>
+</li>
+<li><strong>React 事件系统</strong><ul>
+<li>React 提供了跨浏览器的合成事件，如 <code>onClick</code>、<code>onChange</code>、<code>onSubmit</code> 等。</li>
+</ul>
+</li>
+</ol>
 
                 
               </div>

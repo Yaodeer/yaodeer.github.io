@@ -1,0 +1,823 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="学习一下HTML、CSS的基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML+CSS课程1-补充学习">
+<meta property="og:url" content="http://example.com/2024/10/06/HTML+CSS%E8%AF%BE%E7%A8%8B1-%E8%A1%A5%E5%85%85%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="学习一下HTML、CSS的基础知识">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-10-06T01:13:18.763Z">
+<meta property="article:modified_time" content="2024-10-11T15:12:29.531Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>HTML+CSS课程1-补充学习 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HTML+CSS课程1-补充学习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-06 09:13" pubdate>
+          October 6, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">HTML+CSS课程1-补充学习</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on October 11, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>学习一下HTML、CSS的基础知识</p>
+<span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://codingheroes.io/resources/">Jonas’ Resources for Hand-Crafting Beautiful and Performant Websites (codingheroes.io)</a></p>
+<p>Jonas的资源网站</p>
+<h3 id="一、HTML基本概述"><a href="#一、HTML基本概述" class="headerlink" title="一、HTML基本概述"></a>一、HTML基本概述</h3><h4 id="（1）定义"><a href="#（1）定义" class="headerlink" title="（1）定义"></a>（1）定义</h4><p>HTML（HyperText Markup Language，超文本标记语言）是构建网页和应用程序的核心技术之一，用于描述网页的结构和内容。HTML不是编程语言，而是一种<strong>标记语言</strong>，它通过使用一组标签（tags）来标记文本，使其具有不同的含义、用途和显示效果。</p>
+<p>浏览器读取HTML文件，并将其解析为一个<strong>DOM树</strong>（文档对象模型），再根据CSS样式和JavaScript脚本生成最终的网页。这使得HTML不仅为静态内容提供了结构，还能通过JavaScript进行动态操作。</p>
+<h4 id="（2）主要功能"><a href="#（2）主要功能" class="headerlink" title="（2）主要功能"></a>（2）主要功能</h4><p><strong>结构化文档</strong>：HTML通过标记符号（标签）来定义文档的不同部分，使浏览器能够正确显示网页的内容。它为网页中的标题、段落、图像、链接等提供结构化定义。</p>
+<p><strong>超文本链接</strong>：HTML通过 <code>&lt;a&gt;</code> 标签创建超链接，使用户能够在不同页面和网站之间导航，这也是构成互联网基础的一个重要功能。</p>
+<p><strong>多媒体支持</strong>：通过标签嵌入图像（<code>&lt;img&gt;</code>）、音频（<code>&lt;audio&gt;</code>）、视频（<code>&lt;video&gt;</code>）等多媒体内容，增强网页的表现力。</p>
+<p><strong>表单与交互</strong>：HTML定义了各种表单元素（<code>&lt;form&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;button&gt;</code> 等），允许用户提交数据，如搜索、注册、留言等，从而实现人与网页之间的交互。</p>
+<p><strong>语义化标记</strong>：HTML5 引入了许多语义化标签（如 <code>&lt;article&gt;</code>、<code>&lt;section&gt;</code>、<code>&lt;header&gt;</code>、<code>&lt;footer&gt;</code> 等），使网页内容更加清晰、易读，不仅对开发者友好，也有助于搜索引擎的优化（SEO）和无障碍访问（Accessibility）。</p>
+<h4 id="（3）常见标签"><a href="#（3）常见标签" class="headerlink" title="（3）常见标签"></a>（3）常见标签</h4><p>最上方：<code>&lt;!DOCTYPE html&gt; </code>声明文档类型，告知浏览器该文档遵循 HTML5 规范</p>
+<p><code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code></p>
+<p><code>&lt;a&gt;</code>的<code>target</code>属性设置为<code>“_blank”</code>的时候，会在新的标签页打开链接</p>
+<p><code>&lt;h1&gt;</code> - <code>&lt;h6&gt;</code> 表示不同级别的标题</p>
+<p><code>&lt;ul&gt;</code> 表示无序列表，<code>&lt;ol&gt;</code> 表示有序列表，<code>&lt;li&gt;</code> 是列表项。</p>
+<p><code>&lt;table&gt;</code> 用于创建表格，配合 <code>&lt;tr&gt;</code>、<code>&lt;td&gt;</code>、<code>&lt;th&gt;</code> 等标签使用。</p>
+<p><code>&lt;em&gt;</code>斜体</p>
+<p><code>&lt;img&gt;</code>的<code>alt</code>属性其一可以使得搜索引擎识别图像内容，其二可以让盲人使用网站时识别图像内容。</p>
+<h4 id="（4）HTML5新特性"><a href="#（4）HTML5新特性" class="headerlink" title="（4）HTML5新特性"></a>（4）HTML5新特性</h4><p><strong>多媒体支持</strong>：HTML5 提供了内置的音频（<code>&lt;audio&gt;</code>）和视频（<code>&lt;video&gt;</code>）支持，不再需要依赖 Flash 等插件。</p>
+<p><strong>表单增强</strong>：引入了新的输入类型（如 <code>email</code>、<code>date</code>、<code>number</code> 等），提升了表单验证和用户体验。</p>
+<p><strong>Canvas</strong>：<code>&lt;canvas&gt;</code> 标签允许使用 JavaScript 绘制图形、制作动画和交互式内容。</p>
+<p><strong>本地存储</strong>：HTML5 支持通过 <code>localStorage</code> 和 <code>sessionStorage</code> 进行数据存储，允许网页在本地存储大量数据，无需使用Cookie。</p>
+<p><strong>Semantic（语义标签）</strong>：（SEO、可访问性）</p>
+<ul>
+<li>**<code>&lt;header&gt;</code>**：定义文档或节的页眉。</li>
+<li>**<code>&lt;nav&gt;</code>**：定义导航链接区域。</li>
+<li>**<code>&lt;article&gt;</code>**：独立的内容区域，适用于博客文章、新闻等独立的内容单元。</li>
+<li>**<code>&lt;section&gt;</code>**：表示文档中的某个区域，通常包含一组相关的内容。</li>
+<li>**<code>&lt;aside&gt;</code>**：表示侧边栏内容，通常用于与主要内容相关但不直接属于主要内容的信息。</li>
+<li>**<code>&lt;footer&gt;</code>**：定义文档或节的页脚。</li>
+<li>**<code>&lt;strong&gt;</code>**：加粗字体，表强调（不再用<code>&lt;b&gt;</code>）</li>
+</ul>
+<h4 id="（5）补充"><a href="#（5）补充" class="headerlink" title="（5）补充"></a>（5）补充</h4><p>链接可以指向另外一个html文件代表的网页，只需在href属性下写相对路径即可。</p>
+<p>href写为<code>“#”</code>属性可以返回页面顶部</p>
+<h3 id="二、CSS基本概述"><a href="#二、CSS基本概述" class="headerlink" title="二、CSS基本概述"></a>二、CSS基本概述</h3><h4 id="（1）定义-1"><a href="#（1）定义-1" class="headerlink" title="（1）定义"></a>（1）定义</h4><blockquote>
+<p>在html文件中的head标签内定义：</p>
+<link href="style.css" rel="stylesheet" />引入外部css
+</blockquote>
+<p><strong>CSS（Cascading Style Sheets，层叠样式表）</strong> 是用于控制网页外观的语言，它与 HTML 配合使用，为网页添加样式和布局。CSS 主要用于设计网页的视觉展示，如颜色、字体、布局、间距、边框、动画等，使网页更加美观和易于使用。</p>
+<p><strong>层叠</strong>是指当多个样式冲突时，CSS 根据特定的规则确定哪一个样式最终会被应用。优先级规则包括样式来源、样式选择器的特殊性、样式的声明顺序等。浏览器会选择优先级较高的样式来渲染元素。</p>
+<p>样式表是一组规则，定义了如何为 HTML 元素应用样式。样式表可以是 <strong>外部</strong>（通过 <code>&lt;link&gt;</code> 标签引入外部 CSS 文件），<strong>内部</strong>（嵌入在 HTML 文档中的 <code>&lt;style&gt;</code> 标签内），或者是<strong>行内</strong>样式（直接在 HTML 元素的 <code>style</code> 属性中定义）。</p>
+<h4 id="（2）选择器"><a href="#（2）选择器" class="headerlink" title="（2）选择器"></a>（2）选择器</h4><p>选择器用于选择 HTML 文档中的元素，并对这些元素应用相应的样式。CSS 选择器可以通过标签名、类名、ID、属性、伪类和伪元素等来选择不同的元素。</p>
+<p>常见的选择器包括：</p>
+<ul>
+<li><strong>元素选择器</strong>：直接选中 HTML 标签，如 <code>p &#123; color: blue; &#125;</code> 会把所有的段落文字设为蓝色。</li>
+<li><strong>类选择器</strong>：通过类名选择元素，类名前加 <code>.</code>，如 <code>.button &#123; background-color: red; &#125;</code>。</li>
+<li><strong>ID 选择器</strong>：通过 ID 名称选择元素，ID 前加 <code>#</code>，如 <code>#header &#123; font-size: 24px; &#125;</code>。</li>
+<li><strong>组合选择器</strong>：可以组合多个选择器，如 <code>p, h1 &#123; color: black; &#125;</code>。</li>
+</ul>
+<p>每个 CSS 规则包含一个选择器和一组声明，声明由<strong>属性</strong>和<strong>属性值</strong>组成。声明指定如何对选中的元素应用样式。每条声明以分号 <code>;</code> 结尾。</p>
+<h4 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h4><p>颜色规则：RGB &#x2F; HEXADECIMAL（十六进制）；灰色：三色值相同</p>
+<p>pseudo class（伪类）：<code>first-child/second child/nth-child(n/odd/even)</code></p>
+<ul>
+<li>装饰a类：link、visited、hover（text-decoration）、active</li>
+</ul>
+<p>选择器的优先级：<code>！important &gt; Inline style &gt; ID &gt; Class &gt; Element&gt;*(通用)</code>（多个同类选择器，最后一个优先级最高）</p>
+<p>inheritance:</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/HTML-CSS%E8%AF%BE%E7%A8%8B/" class="category-chain-item">HTML+CSS课程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/react/" class="print-no-link">#react</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>HTML+CSS课程1-补充学习</div>
+      <div>http://example.com/2024/10/06/HTML+CSS课程1-补充学习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 6, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="数据结构与算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据结构与算法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/02/react%E8%AF%BE%E7%A8%8B27-%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E5%92%8C%E5%8A%9F%E8%83%BD%E5%AE%8C%E5%96%84/" title="react课程27-身份验证和功能完善">
+                        <span class="hidden-mobile">react课程27-身份验证和功能完善</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
