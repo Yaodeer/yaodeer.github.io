@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241014165347592.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241014170623771.png">
 <meta property="article:published_time" content="2024-10-14T11:44:49.656Z">
-<meta property="article:modified_time" content="2024-10-14T11:47:17.226Z">
+<meta property="article:modified_time" content="2024-10-14T15:51:26.559Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
@@ -343,7 +343,7 @@
 
 
 <h3 id="一、HTML基础知识"><a href="#一、HTML基础知识" class="headerlink" title="一、HTML基础知识"></a>一、HTML基础知识</h3><h4 id="（1）文档与网站架构"><a href="#（1）文档与网站架构" class="headerlink" title="（1）文档与网站架构"></a>（1）文档与网站架构</h4><h5 id="1、文档的基本组成部分"><a href="#1、文档的基本组成部分" class="headerlink" title="1、文档的基本组成部分"></a>1、文档的基本组成部分</h5><blockquote>
-<p>每个页面上只能用一次 <code>&lt;main&gt;</code>，且直接位于<boby>中。最好不要把它嵌套进其他元素。<code>&lt;section&gt;</code> 更适用于组织页面使其按功能（比如迷你地图、一组文章标题和摘要）分块。<aside>包含一些间接信息（术语条目、作者简介、相关链接，等等）。</p>
+<p>每个页面上只能用一次 <code>&lt;main&gt;</code>，且直接位于<boby>中。最好不要把它嵌套进其他元素。<code>&lt;section&gt;</code> 更适用于组织页面使其按功能（比如迷你地图、一组文章标题和摘要）分块。<code>&lt;aside&gt;</code>包含一些间接信息（术语条目、作者简介、相关链接，等等）。</p>
 </blockquote>
 <ul>
 <li><code>&lt;header&gt;</code> ：页眉</li>
@@ -381,8 +381,7 @@
 <h5 id="2、title"><a href="#2、title" class="headerlink" title="2、title"></a>2、title</h5><p>给图片指定title特性可以让鼠标悬停时显示出title内容。</p>
 <p>但是<code>title</code> 有很多无障碍问题，这些问题主要是基于这样一个事实，即屏幕阅读器的支持并不完善，除此之外大多数浏览器都不会显示它，除非你将鼠标悬停在上面</p>
 <h5 id="3、说明文字"><a href="#3、说明文字" class="headerlink" title="3、说明文字"></a>3、说明文字</h5><p>HTML专门提供了这样的语义容器，旨在说明文字和图片之间的关联。（不一定仅是图片）</p>
-<figcaption>元素告诉浏览器和辅助技术工具，这段说明文字描述了<figure>元素的内容。
-
+<p><code>&lt;figcaption&gt;</code>元素告诉浏览器和辅助技术工具，这段说明文字描述了<code>&lt;figure&gt;</code>元素的内容。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span></span><br><span class="hljs-tag">    <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;images/dinosaur.jpg&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;The head and torso of a dinosaur skeleton;</span></span><br><span class="hljs-string"><span class="hljs-tag">            it has a large head with long sharp teeth&quot;</span> /&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span><br>    A T-Rex on display in the Manchester University Museum.<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
@@ -411,11 +410,11 @@
 </ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">controls</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;rabbit320.mp4&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;video/mp4&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;rabbit320.webm&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;video/webm&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>你的浏览器不支持此视频。可点击<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;rabbit320.mp4&quot;</span>&gt;</span>此链接<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>观看<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>移除src属性，而是添加几个单独的source元素，分别指向各自的资源。浏览器会检查<source>元素，并且播放第一个与其自身 codec 相匹配的媒体。</p>
+<p>移除src属性，而是添加几个单独的source元素，分别指向各自的资源。浏览器会检查<code>&lt;source&gt;</code>元素，并且播放第一个与其自身 codec 相匹配的媒体。</p>
 <blockquote>
 <p>WebM 和 MP4 这两种格式在目前已经足够，只要视频支持这两种格式，那么其在大多数平台和浏览器上都能正确播放。</p>
 </blockquote>
-<p>建议添加type属性，它包含了<source>中指定的MIME类型，同时浏览器也会通过检查这个属性来迅速的跳过那些不支持的格式。如果你没有添加 <code>type</code> 属性，浏览器会尝试加载每一个文件，直到找到一个能正确播放的格式，但是这样会消耗掉大量的时间和资源。</p>
+<p>建议添加type属性，它包含了<code>&lt;source&gt;</code>中指定的MIME类型，同时浏览器也会通过检查这个属性来迅速的跳过那些不支持的格式。如果你没有添加 <code>type</code> 属性，浏览器会尝试加载每一个文件，直到找到一个能正确播放的格式，但是这样会消耗掉大量的时间和资源。</p>
 <blockquote>
 <p>Multipurpose Internet Mail Extensions，多用途互联网邮件扩展，不仅用于电子邮件系统，还广泛应用于 HTTP 协议中，用来描述网络传输中文件的类型或格式</p>
 </blockquote>
