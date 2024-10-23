@@ -1,0 +1,934 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CSS+HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端八股总结-CSS+HTML+页面渲染">
+<meta property="og:url" content="http://example.com/2024/10/23/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93-CSS+HTML+%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="CSS+HTML">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-10-23T12:23:03.822Z">
+<meta property="article:modified_time" content="2024-10-23T12:23:03.948Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>前端八股总结-CSS+HTML+页面渲染 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="前端八股总结-CSS+HTML+页面渲染"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-23 20:23" pubdate>
+          October 23, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">前端八股总结-CSS+HTML+页面渲染</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on October 23, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>CSS+HTML</p>
+<span id="more"></span>
+
+<h3 id="（1）CSS"><a href="#（1）CSS" class="headerlink" title="（1）CSS"></a>（1）CSS</h3><h3 id="1、outline-width"><a href="#1、outline-width" class="headerlink" title="1、outline-width"></a>1、outline-width</h3><blockquote>
+<p>用于设置元素外轮廓线的宽度。它通常与 <code>outline</code> 结合使用，用来绘制围绕元素的轮廓线，但不会影响元素的布局（即不会占据空间）。</p>
+</blockquote>
+<p>🐦属性值：</p>
+<ul>
+<li>medium：默认值，表示中等宽度的轮廓线</li>
+<li>thin：较细</li>
+<li>thick：较粗</li>
+<li><code>&lt;length&gt;</code>：可以设置具体的长度值。</li>
+</ul>
+<p><strong>注意</strong>：</p>
+<ul>
+<li><code>outline-width</code> 必须与 <code>outline-style</code> 一起使用，否则轮廓线不会显示。</li>
+<li>与 <code>border</code> 不同，<code>outline</code> 不会影响元素的尺寸，也不会改变文档的布局。</li>
+</ul>
+<h4 id="2、长度单位"><a href="#2、长度单位" class="headerlink" title="2、长度单位"></a>2、长度单位</h4><h5 id="绝对单位"><a href="#绝对单位" class="headerlink" title="@绝对单位"></a>@绝对单位</h5><blockquote>
+<p>表示的是固定的值，常用于打印媒体或者需要精确布局的场景。在怕屏幕设备上可能有不一致的显示效果，因为设备的分辨率各不相同。pt（磅）：1pt &#x3D; 1&#x2F;72 英寸，常用于打印。pc（派卡）：1pc &#x3D; 12pt，用于印刷领域。cm（厘米）：厘米，用于精确布局或印刷。mm（毫米）：毫米，同样适用于印刷或精确布局。in（英寸<strong>）</strong>：1in &#x3D; 2.54 厘米，常用于打印输出。</p>
+</blockquote>
+<ul>
+<li><strong>px（像素）</strong>：屏幕上的一个物理像素。最常用的单位。</li>
+</ul>
+<h5 id="相对单位"><a href="#相对单位" class="headerlink" title="@相对单位"></a>@相对单位</h5><blockquote>
+<p>相对单位依赖于其他属性值（如父元素的字体大小、视口大小等），因此更适合响应式设计。</p>
+</blockquote>
+<p>🐦与字体相关：</p>
+<ul>
+<li><strong>em</strong>：相对于父元素的字体大小。1em 表示父元素的字体大小，2em 则是父字体大小的两倍。比如，如果父元素的字体大小是 16px，1em &#x3D; 16px。</li>
+<li><strong>rem（根元素的 em）</strong>：相对于根元素（通常是 <code>&lt;html&gt;</code>）的字体大小。它避免了 <code>em</code> 的嵌套影响，常用于构建响应式布局。例如，如果 <code>&lt;html&gt;</code> 的字体大小是 16px，那么 1rem 就是 16px。</li>
+</ul>
+<p>🐦与视口相关：</p>
+<ul>
+<li><strong>vw（视口宽度）</strong>：1vw 等于视口宽度的 1%。假设视口宽度是 1000px，1vw 就是 10px。</li>
+<li><strong>vh（视口高度）</strong>：1vh 等于视口高度的 1%。例如，如果视口高度是 900px，那么 1vh 就是 9px。</li>
+<li><strong>vmin</strong>：视口的宽度和高度中较小的那个值的 1%。例如，视口宽度为 1200px，高度为 800px，1vmin &#x3D; 8px。</li>
+<li><strong>vmax</strong>：视口的宽度和高度中较大的那个值的 1%。以宽度 1200px、高度 800px 为例，1vmax &#x3D; 12px。</li>
+</ul>
+<h4 id="3、链接的伪类顺序"><a href="#3、链接的伪类顺序" class="headerlink" title="3、链接的伪类顺序"></a>3、链接的伪类顺序</h4><blockquote>
+<p>我们使用伪类来表示链接的不同状态，如 <code>:link</code>、<code>:visited</code>、<code>:hover</code> 和 <code>:active</code>。这些伪类应按以下顺序进行定义，以确保正确的样式应用</p>
+</blockquote>
+<ul>
+<li><strong><code>:link</code></strong> — 未访问的链接状态（默认状态）。</li>
+<li><strong><code>:visited</code></strong> — 已访问的链接状态。</li>
+<li><strong><code>:hover</code></strong> — 当鼠标悬停在链接上时的状态。</li>
+<li><strong><code>:active</code></strong> — 链接被点击时的状态。</li>
+</ul>
+<h3 id="（2）HTML"><a href="#（2）HTML" class="headerlink" title="（2）HTML"></a>（2）HTML</h3><h4 id="1、内联框架"><a href="#1、内联框架" class="headerlink" title="1、内联框架"></a>1、内联框架</h4><blockquote>
+<p>内联框架（Inline Frame），通常用 <code>&lt;iframe&gt;</code> 标签表示，是一种在当前HTML文档中嵌入另一个HTML文档的方式。</p>
+</blockquote>
+<p>🐣<strong>特性和优劣：</strong></p>
+<ul>
+<li><p>🔹嵌入内容：可以轻松地在网页中嵌入其他网页、视频、地图等多媒体内容，用户无需离开当前页面。</p>
+</li>
+<li><p>🔹独立文档（内容分离）：内联框架中的内容是独立的，与父文档的CSS和JavaScript隔离，避免了样式和脚本冲突。</p>
+</li>
+<li><p>🔸跨域问题：嵌入的内容可能受<strong>同源策略</strong>影响，导致无法访问内联框架中的文档内容。</p>
+</li>
+<li><p>🔸性能开销：使用内联框架可能导致性能问题，因为每个框架都是一个独立的文档，增加了加载和渲染的开销。</p>
+</li>
+<li><p>🔸SEO影响：搜索引擎可能对内联框架中的内容抓取不佳。</p>
+</li>
+<li><p>🔸安全问题：嵌入的网页可能会被恶意攻击者用于钓鱼或注入恶意代码的攻击。</p>
+</li>
+</ul>
+<p>🐣<strong>属性：</strong></p>
+<ul>
+<li><code>src</code>：指定要加载的文档URL。</li>
+<li><code>width</code> 和 <code>height</code>：设置框架的宽度和高度。</li>
+<li><code>sandbox</code>：应用一系列限制以提高安全性。</li>
+<li><code>allow</code>：控制允许的功能，如使用摄像头、麦克风等。</li>
+</ul>
+<h3 id="（3）页面渲染"><a href="#（3）页面渲染" class="headerlink" title="（3）页面渲染"></a>（3）页面渲染</h3><h4 id="1、网页的生成过程"><a href="#1、网页的生成过程" class="headerlink" title="1、网页的生成过程"></a>1、网页的生成过程</h4><p>🐽输入URL：</p>
+<ul>
+<li>用户在浏览器中输入URL，浏览器会解析该URL并发送HTTP请求到相应的服务器。</li>
+</ul>
+<p>🐽服务器响应：</p>
+<ul>
+<li>服务器接收到请求后，查找对应的资源（如HTML文件、CSS文件、JavaScript文件等），并将其作为HTTP响应发送回浏览器。</li>
+</ul>
+<p>🐽解析HTML：</p>
+<ul>
+<li>浏览器接收到HTML文档后，开始解析。HTML被解析为<strong>DOM（文档对象模型）树</strong>，每个元素对应树中的一个节点。</li>
+</ul>
+<p>🐽解析CSS：</p>
+<ul>
+<li>浏览器会同时解析CSS文件，生成<strong>CSSOM（CSS对象模型）树</strong>。这棵树描述了所有样式和它们如何应用于DOM节点。</li>
+</ul>
+<p>🐽构建渲染树：</p>
+<ul>
+<li>浏览器结合DOM树和CSSOM树，生成<strong>渲染树</strong>。渲染树只包含需要在屏幕上显示的元素和其样式。</li>
+</ul>
+<p>🐽布局（Flow）：</p>
+<ul>
+<li>浏览器计算渲染树中每个节点的确切位置和大小，完成布局过程。</li>
+</ul>
+<p>🐽绘制（Paint）：</p>
+<ul>
+<li>浏览器将渲染树中的内容绘制到屏幕上。这一过程涉及将元素的视觉样式渲染为像素。</li>
+</ul>
+<p>🐽执行JavaScript：</p>
+<ul>
+<li>如果页面中包含JavaScript，浏览器会在合适的时机（通常是解析到<code>&lt;script&gt;</code>标签时）执行脚本。JavaScript可以操作DOM和CSSOM，从而可能导致重新布局和重绘。</li>
+</ul>
+<p>🐽页面交互：</p>
+<ul>
+<li>用户与页面的交互（如点击、输入等）会触发事件，可能导致进一步的DOM更新、重排和重绘。</li>
+</ul>
+<h4 id="2、重绘（Repaint）和重排（Reflow）"><a href="#2、重绘（Repaint）和重排（Reflow）" class="headerlink" title="2、重绘（Repaint）和重排（Reflow）"></a>2、重绘（Repaint）和重排（Reflow）</h4><blockquote>
+<p>重排一定会引起重绘，而重绘不一定会导致重排。</p>
+</blockquote>
+<h5 id="🐇重绘："><a href="#🐇重绘：" class="headerlink" title="🐇重绘："></a>🐇重绘：</h5><p>当元素的外观（如颜色、背景等）发生变化，但其几何形状（大小和位置）不变时，浏览器会执行重绘。重绘是一个较轻的操作，因为只需要重新绘制受影响的部分。</p>
+<p>🔸相对较快，影响较小，但频繁的重绘仍然可能导致性能问题。</p>
+<h5 id="🐇重排："><a href="#🐇重排：" class="headerlink" title="🐇重排："></a>🐇重排：</h5><p>当元素的几何形状（如大小、位置）发生变化时，浏览器会执行重排。重排是一个更重的操作，因为它可能会影响文档中其他元素的位置和布局，需要重新计算页面的几何形状。</p>
+<p>如：改变元素的宽度、高度、边距、填充或添加&#x2F;删除DOM元素。</p>
+<p>🔸性能开销更大，因为它涉及更复杂的计算，特别是在复杂布局中。</p>
+<h5 id="🐇如何优化？"><a href="#🐇如何优化？" class="headerlink" title="🐇如何优化？"></a>🐇如何优化？</h5><ul>
+<li><p>减少重绘：</p>
+<ul>
+<li><p>使用CSS类：通过切换CSS类而不是单独修改样式，减少频繁的样式变化。</p>
+</li>
+<li><p>使用CSS动画：尽量使用CSS动画和过渡，而非JavaScript，CSS引擎在处理动画时更高效。</p>
+</li>
+<li><p>合并样式改变：在一次重绘中，尽量合并多个样式改变，而不是逐个改变。</p>
+</li>
+</ul>
+</li>
+<li><p>减少重排：</p>
+<ul>
+<li>批量DOM操作：尽量将多次DOM操作合并为一次，例如使用文档片段（DocumentFragment）或将元素的可见性设置为<code>display: none</code>，进行修改后再显示。</li>
+<li>避免频繁访问布局属性：尽量减少访问可能引发重排的属性（如<code>offsetWidth</code>、<code>clientHeight</code>等），可以将需要的值存储在变量中，避免多次读取。</li>
+<li>使用绝对或固定定位：对于不需要重新布局的元素，使用绝对定位（<code>position: absolute</code>）可以减少重排。</li>
+<li>避免使用表格布局：使用现代的CSS布局（如Flexbox或Grid）可以更好地控制布局并减少重排。</li>
+<li>监听事件优化：使用事件委托而不是在每个元素上单独添加事件监听器，以减少内存占用和重排。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3、DocumentFragment"><a href="#3、DocumentFragment" class="headerlink" title="3、DocumentFragment"></a>3、DocumentFragment</h4><blockquote>
+<p><code>DocumentFragment</code> 是一个轻量级的容器，用于在文档中临时存储和操作一组节点。它在处理DOM操作时非常有用，因为它可以帮助减少重绘和重排的次数。</p>
+</blockquote>
+<ul>
+<li><strong>轻量级</strong>：<code>DocumentFragment</code> 本身并不是文档的一部分，所以对它的操作不会引发重排或重绘。</li>
+<li><strong>临时存储</strong>：可以将多个节点添加到 <code>DocumentFragment</code> 中，进行批量处理。</li>
+<li><strong>高效插入</strong>：将 <code>DocumentFragment</code> 插入到DOM中时，所有包含的节点会一次性添加，从而减少DOM操作的开销。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 创建一个 DocumentFragment</span><br><span class="hljs-keyword">const</span> fragment = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createDocumentFragment</span>();<br><br><span class="hljs-comment">// 创建多个元素</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>    <span class="hljs-keyword">const</span> newElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;div&#x27;</span>);<br>    newElement.<span class="hljs-property">textContent</span> = <span class="hljs-string">`Item <span class="hljs-subst">$&#123;i + <span class="hljs-number">1</span>&#125;</span>`</span>;<br>    fragment.<span class="hljs-title function_">appendChild</span>(newElement); <span class="hljs-comment">// 将元素添加到 DocumentFragment 中</span><br>&#125;<br><br><span class="hljs-comment">// 一次性将 DocumentFragment 插入到 DOM 中</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;container&#x27;</span>).<span class="hljs-title function_">appendChild</span>(fragment);<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="4、preload、prefetch-和-prerender"><a href="#4、preload、prefetch-和-prerender" class="headerlink" title="4、preload、prefetch 和 prerender"></a>4、preload、prefetch 和 prerender</h4><blockquote>
+<p><code>&lt;link rel=&quot;preload/prefecth/prerender&quot; href=&quot;&quot; as=&quot;&quot;&gt;</code></p>
+</blockquote>
+<h5 id="🐕preload"><a href="#🐕preload" class="headerlink" title="🐕preload"></a>🐕preload</h5><p>目的：用于优先加载当前页面所需的<strong>关键资源</strong>（如CSS、JS、图像等），确保在页面渲染时，这些资源已准备就绪。</p>
+<ul>
+<li>加快页面加载：确保用户在访问页面时，不会因为缺少关键资源而等待，从而提升用户体验。</li>
+<li>优化渲染：特别适用于需要即时显示的内容，比如关键图像、样式或JavaScript文件。</li>
+</ul>
+<p><strong>高优先级</strong></p>
+<h5 id="🦮prefetch"><a href="#🦮prefetch" class="headerlink" title="🦮prefetch"></a>🦮prefetch</h5><p>目的：用于在用户当前页面浏览时，提前加载下一个可能会访问的页面或资源（如图像、样式）。（浏览器会在空闲时间加载 <code>prefetch</code> 指定的资源，不会干扰当前页面的加载。）</p>
+<ul>
+<li>减少等待时间：在用户导航到下一个页面时，减少加载时间，提供更顺畅的体验。</li>
+<li>利用空闲时间：通过在用户当前操作的上下文中加载下一个可能需要的资源，优化整体性能。</li>
+</ul>
+<p><strong>低优先级</strong></p>
+<h5 id="🐕‍🦺prerender"><a href="#🐕‍🦺prerender" class="headerlink" title="🐕‍🦺prerender"></a>🐕‍🦺prerender</h5><p>目的：在后台完全渲染一个页面（通常用于用户很可能会访问的页面），使其在用户访问时几乎立即可见。（资源消耗较大，因为需要加载和渲染整个界面）</p>
+<p>提供即时体验：用户导航到预渲染的页面时，几乎可以立即看到内容，消除了加载时间。</p>
+<p>资源消耗：由于预渲染涉及完整页面的加载和渲染，可能会消耗较多的带宽和计算资源。</p>
+<p><strong>高优先级</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%AB%E8%82%A1%E9%9D%A2%E7%BB%8F/" class="category-chain-item">八股面经</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/c/" class="print-no-link">#c++</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>前端八股总结-CSS+HTML+页面渲染</div>
+      <div>http://example.com/2024/10/23/前端八股总结-CSS+HTML+页面渲染/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 23, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/23/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93-JS/" title="前端八股总结-JS">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">前端八股总结-JS</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/22/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%9510.22/" title="力扣刷题记录10.22">
+                        <span class="hidden-mobile">力扣刷题记录10.22</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

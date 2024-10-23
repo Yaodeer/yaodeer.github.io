@@ -23,11 +23,14 @@
 <meta property="og:site_name" content="Yaodeer">
 <meta property="og:description" content="k">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241019212625221.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241019212736368.png">
 <meta property="article:published_time" content="2024-10-14T12:44:48.245Z">
-<meta property="article:modified_time" content="2024-10-14T15:47:11.804Z">
+<meta property="article:modified_time" content="2024-10-19T14:05:43.108Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241019212625221.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -261,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          518 words
+          1.3k words
         
       </span>
     
@@ -272,7 +275,7 @@
         
         
         
-          5 mins
+          12 mins
         
       </span>
     
@@ -326,7 +329,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on October 14, 2024 pm
+                    Last updated on October 19, 2024 pm
                   
                 
               </p>
@@ -367,7 +370,48 @@
 <li>上述的规则应用于渲染树之后，渲染树会依照应该出现的结构进行布局。</li>
 <li>网页展示在屏幕上（这一步被称为着色）。</li>
 </ol>
-<h3 id="二、CSS基础"><a href="#二、CSS基础" class="headerlink" title="二、CSS基础"></a>二、CSS基础</h3><h4 id="（1）CSS构建"><a href="#（1）CSS构建" class="headerlink" title="（1）CSS构建"></a>（1）CSS构建</h4><h4 id="（2）CSS选择器"><a href="#（2）CSS选择器" class="headerlink" title="（2）CSS选择器"></a>（2）CSS选择器</h4><h5 id="1、包含选择符的选择器"><a href="#1、包含选择符的选择器" class="headerlink" title="1、包含选择符的选择器"></a>1、包含选择符的选择器</h5><p>仅仅是在两个选择器间加上一个空格。该选择器将选择<li>内部的所有<em>元素，也就是<li>的后代。</p>
+<h3 id="二、CSS基础"><a href="#二、CSS基础" class="headerlink" title="二、CSS基础"></a>二、CSS基础</h3><h4 id="（1）CSS选择器"><a href="#（1）CSS选择器" class="headerlink" title="（1）CSS选择器"></a>（1）CSS选择器</h4><blockquote>
+<p>选择器是元素和其他部分组合起来告诉浏览器哪个HTML元素应当是被选为应用规则中的CSS属性值的方式。选择器选择的元素叫“选择器的对象”。</p>
+</blockquote>
+<h5 id="1、选择器列表"><a href="#1、选择器列表" class="headerlink" title="1、选择器列表"></a>1、选择器列表</h5><p>当有多个使用相同样式的CSS选择器，那么它们可以被混编为一个选择器列表。</p>
+<p>⚠️当组合起来的选择器中有一个无效（存在语法错误），会造成整条规则失效。</p>
+<h5 id="2、类型选择器"><a href="#2、类型选择器" class="headerlink" title="2、类型选择器"></a>2、类型选择器</h5><p>也叫标签名选择器或元素选择器，因为它在文档中选择了一个HTML标签&#x2F;元素的缘故。</p>
+<h5 id="3、全局选择器"><a href="#3、全局选择器" class="headerlink" title="3、全局选择器"></a>3、全局选择器</h5><p>尽量不要使用，除了一些特殊情况：</p>
+<p>比如我们想选择所有<code>&lt;artical&gt;</code>元素的第一子元素：<code>artical :first-child</code></p>
+<p>这条语句很容易跟<code>artical:first-child</code>混合，他的意思是选择作为其父元素的第一个子元素的 <code>&lt;article&gt;</code> 元素。这意味着它只在 <code>&lt;article&gt;</code> 本身是某个父元素的第一个子元素时应用。</p>
+<p>因此可以使用全局选择器：<code>artical *:first-child</code></p>
+<h5 id="4、类选择器（-）"><a href="#4、类选择器（-）" class="headerlink" title="4、类选择器（.）"></a>4、类选择器（.）</h5><p>指向特定元素的类：<code>span.highlight</code></p>
+<p>多个类被应用的时候指向一个元素：<code>.notebox.danger</code>（某个元素的类包含所有这些类会被选择）</p>
+<h5 id="5、ID选择器（-）"><a href="#5、ID选择器（-）" class="headerlink" title="5、ID选择器（#）"></a>5、ID选择器（#）</h5><p>语法和类选择器一样。一个文档同个id只能用一次。</p>
+<h5 id="6、伪类选择器（-）"><a href="#6、伪类选择器（-）" class="headerlink" title="6、伪类选择器（:）"></a>6、伪类选择器（:）</h5><blockquote>
+<p>用于选择处于特定状态的元素，比如当它们是这一类型的第一个元素时，或者是当鼠标指针悬浮在元素上面的时候。它们表现得会像是你向你的文档的某个部分应用了一个类一样，帮你在你的标记文本中减少多余的类，让你的代码更灵活、更易于维护。<strong>不加空格</strong></p>
+</blockquote>
+<p>:label: 简单伪类：</p>
+<ul>
+<li>:first-child、:last-child：选择第一个&#x2F;最后一个子元素</li>
+<li>:only-child：选择没有人和兄弟元素的元素。</li>
+<li>:invalid：选择任何未通过验证的<code>&lt;form&gt; &lt;fieldset&gt; &lt;input&gt;</code>或其他表单元素（用于为用户显示字段错误）</li>
+<li>:nth-child<ul>
+<li>number：选择第number个元素。可用于为表格的col设置样式。</li>
+<li>even&#x2F;odd：偶数&#x2F;奇数</li>
+<li>An+B：n为正整数或0，A、B为整数，A不为0。</li>
+<li><code>of &lt;selector&gt;</code>，传递选择器参数，可以选择与该选择器匹配的第n个元素。这个方法可以用于修复表格条纹。（表格一般颜色呈条纹状宜阅读，但是如果有一行被隐藏颜色就会被打乱）<code>.fixed &gt; tbody &gt; tr:nth-child(even of :not([hidden]))</code></li>
+</ul>
+</li>
+</ul>
+<p>:label:用户行为伪类：</p>
+<ul>
+<li>:hover：只会在用户将指针挪到元素上的时候才会激活，一般就是链接元素。</li>
+<li>:focus：只会在用户使用键盘控制，选定元素的时候激活。</li>
+</ul>
+<h5 id="7、伪元素选择器（-）"><a href="#7、伪元素选择器（-）" class="headerlink" title="7、伪元素选择器（#）"></a>7、伪元素选择器（#）</h5><blockquote>
+<p>表现得是像你往标记文本中加入全新 HTML 元素一样，而不是向现有的元素上应用类</p>
+</blockquote>
+<p>::first-line</p>
+<h5 id="、存否和值选择器"><a href="#、存否和值选择器" class="headerlink" title="、存否和值选择器"></a>、存否和值选择器</h5><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241019212625221.png" srcset="/img/loading.gif" lazyload alt="image-20241019212625221"></p>
+<h5 id="子字符串匹配选择器"><a href="#子字符串匹配选择器" class="headerlink" title="子字符串匹配选择器"></a>子字符串匹配选择器</h5><p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241019212736368.png" srcset="/img/loading.gif" lazyload alt="image-20241019212736368"></p>
+<p>🔸大小写不敏感：在闭合括号前加“i” : <code>li[class^=&quot;a&quot; i]</code></p>
+<h5 id="1、包含选择符的选择器"><a href="#1、包含选择符的选择器" class="headerlink" title="1、包含选择符的选择器"></a>1、包含选择符的选择器</h5><p>仅仅是在两个选择器间加上一个空格。该选择器将选择<li>内部的所有<em>元素，也就是<li>的后代。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">li</span> <span class="hljs-selector-tag">em</span> &#123;<br>  <span class="hljs-attribute">color</span>: rebeccapurple;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h5 id="2、相邻选择符"><a href="#2、相邻选择符" class="headerlink" title="2、相邻选择符"></a>2、相邻选择符</h5>
@@ -459,6 +503,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/10/15/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%9510.15/" title="力扣刷题记录10.15">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">力扣刷题记录10.15</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

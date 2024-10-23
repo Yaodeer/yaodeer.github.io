@@ -16,15 +16,15 @@
   <meta name="author" content="Yaodeer">
   <meta name="keywords" content="">
   
-    <meta name="description" content="总结一下做题时遇到的知识点">
+    <meta name="description" content="记录一下在笔试或面试中的八股知识。融合一下其他人总结的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法">
-<meta property="og:url" content="http://example.com/2024/10/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="前端八股总结-JS">
+<meta property="og:url" content="http://example.com/2024/10/23/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93-JS/index.html">
 <meta property="og:site_name" content="Yaodeer">
-<meta property="og:description" content="总结一下做题时遇到的知识点">
+<meta property="og:description" content="记录一下在笔试或面试中的八股知识。融合一下其他人总结的。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-10-09T08:25:09.184Z">
-<meta property="article:modified_time" content="2024-10-12T14:34:28.994Z">
+<meta property="article:published_time" content="2024-10-23T12:23:08.194Z">
+<meta property="article:modified_time" content="2024-10-23T12:26:13.751Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>数据结构与算法 - Yaodeer</title>
+  <title>前端八股总结-JS - Yaodeer</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -238,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数据结构与算法"></span>
+            <span id="subtitle" data-typed-text="前端八股总结-JS"></span>
           
         </div>
 
@@ -249,8 +249,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-09 16:25" pubdate>
-          October 9, 2024 pm
+        <time datetime="2024-10-23 20:23" pubdate>
+          October 23, 2024 pm
         </time>
       </span>
     
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          529 words
+          499 words
         
       </span>
     
@@ -321,12 +321,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">数据结构与算法</h1>
+            <h1 id="seo-header">前端八股总结-JS</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on October 12, 2024 pm
+                    Last updated on October 23, 2024 pm
                   
                 
               </p>
@@ -334,51 +334,68 @@
             
               <div class="markdown-body">
                 
-                <p>总结一下做题时遇到的知识点</p>
+                <p>记录一下在笔试或面试中的八股知识。融合一下其他人总结的。</p>
 <span id="more"></span>
 
-<p>一个世纪没学算法了🥹🥹原来学前端也要考算法题🥹🥹🥹。。。。。</p>
-<h3 id="一、知识点"><a href="#一、知识点" class="headerlink" title="一、知识点"></a>一、知识点</h3><h4 id="（1）i-和-i的区别"><a href="#（1）i-和-i的区别" class="headerlink" title="（1）i++和++i的区别"></a>（1）i++和++i的区别</h4><p>i++先赋值再自增，++i先自增再赋值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;<br>i = i++;<br><span class="hljs-type">int</span> j = i++;<br><span class="hljs-type">int</span> k = i + ++i * i++;<br>System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;i = &quot;</span> + i);    <span class="hljs-comment">//4</span><br>System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;j = &quot;</span> + j);    <span class="hljs-comment">//1</span><br>System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;k = &quot;</span> + k);    <span class="hljs-comment">//11(2+3*3)</span><br></code></pre></td></tr></table></figure>
+<h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><h4 id="1、console-info"><a href="#1、console-info" class="headerlink" title="1、console.info()"></a>1、<code>console.info()</code></h4><p><code>console.info()</code> 是 JavaScript 中 <code>console</code> 对象的一个方法，用于在浏览器的开发者工具控制台中输出信息。它的功能类似于 <code>console.log()</code>，但通常用于记录信息级别的日志。</p>
+<h4 id="2、帮你彻底搞懂JS中的prototype、-proto-与constructor（图解）-js-prototype-constructor-CSDN博客"><a href="#2、帮你彻底搞懂JS中的prototype、-proto-与constructor（图解）-js-prototype-constructor-CSDN博客" class="headerlink" title="2、帮你彻底搞懂JS中的prototype、__proto__与constructor（图解）_js prototype constructor-CSDN博客"></a>2、<a target="_blank" rel="noopener" href="https://blog.csdn.net/cc18868876837/article/details/81211729?ops_request_misc=%7B%22request_id%22:%224D358ECD-189D-47AA-BE6C-CED4356284C6%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=4D358ECD-189D-47AA-BE6C-CED4356284C6&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-81211729-null-null.142%5Ev100%5Epc_search_result_base9&utm_term=prototype&spm=1018.2226.3001.4187">帮你彻底搞懂JS中的prototype、__proto__与constructor（图解）_js prototype constructor-CSDN博客</a></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 判断 p 是否为 Person 的实例</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Person</span>(<span class="hljs-params">name</span>) &#123;<br> <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name<br>&#125;<br><span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&#x27;sunshine&#x27;</span>)<br>p <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Person</span> <span class="hljs-comment">// true</span><br><br><span class="hljs-comment">// 这里的 p 是 Person 函数构造出来的，所以顺着 p 的原型链可以找到 Object 的构造函数</span><br>p.<span class="hljs-property">__proto__</span> === <span class="hljs-title class_">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> <span class="hljs-comment">// true</span><br>p.<span class="hljs-property">__proto__</span>.<span class="hljs-property">__proto__</span> === <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
 
 
 
-<p>（2）</p>
-<p><code>ans=cnt==numCourses?ans:std::vector&lt;int&gt;();</code></p>
-<p>如果要返回空数组，不能直接写[]或者{}，而是要按照上面的语法写</p>
-<h3 id="二、数据结构与算法"><a href="#二、数据结构与算法" class="headerlink" title="二、数据结构与算法"></a>二、数据结构与算法</h3><blockquote>
-<p>data structure引入：在电脑中，变量存储在<strong>RAM</strong>（Random Access Memory，随机存取存储器）中。（随机存储，容易丢失，高速访问）</p>
-</blockquote>
-<blockquote>
-<p>插入、删除、遍历、查找、排序、访问是对各种数据结构的操作。</p>
-</blockquote>
-<h4 id="（1）数组（Array）"><a href="#（1）数组（Array）" class="headerlink" title="（1）数组（Array）"></a>（1）数组（Array）</h4><blockquote>
-<p>lookup：O(1) ; push：O(1) ; insert：O(n) ; delete：O(n)</p>
-</blockquote>
-<p>定义数组元素初始值时，数组可以不指定初始数组长度。</p>
-<p><code>int arr3[] = &#123; 100,90,80,70,60,50,40,30,20,10 &#125;;</code></p>
-<p>数组长度：<code>sizeof（arr）</code></p>
-<p>二维数组的长度：行数：<code>sizeof（arr）</code> ；列数：<code>sizeof（arr[0]）</code></p>
-<p>（2）栈</p>
-<p>（3）队列</p>
-<p>（4）向量</p>
-<h4 id="（5）set"><a href="#（5）set" class="headerlink" title="（5）set"></a>（5）set</h4><h4 id="（6）unordered-set"><a href="#（6）unordered-set" class="headerlink" title="（6）unordered_set"></a>（6）unordered_set</h4><h5 id="1、特点"><a href="#1、特点" class="headerlink" title="1、特点"></a>1、特点</h5><p>无序性：元素不按照特定顺序存储。与 <code>set</code> 不同，<code>unordered_set</code> 不保证元素的排列顺序，元素的顺序与插入顺序无关。</p>
-<p>唯一性：<code>unordered_set</code> 中的每个元素都是唯一的，即不能有重复元素。如果尝试插入重复元素，插入操作会被忽略。</p>
-<p>底层实现：<code>unordered_set</code> 使用哈希表（hash table）作为底层数据结构，因此它在插入、查找和删除元素时平均时间复杂度为 O(1)，但在最坏情况下可能降到 O(N)。</p>
-<p>需要哈希函数：<code>unordered_set</code> 需要一个哈希函数来计算元素的哈希值。对于内置类型（如整数、字符串等），STL 提供了默认的哈希函数。</p>
-<h5 id="2、操作"><a href="#2、操作" class="headerlink" title="2、操作"></a>2、操作</h5><p>插入：insert（value）</p>
-<p>查找：find（value）</p>
-<p>删除：erase（value）</p>
-<p>清空：clear（）</p>
-<p>返回元素数量：size（）</p>
-<h4 id="（7）哈希表"><a href="#（7）哈希表" class="headerlink" title="（7）哈希表"></a>（7）哈希表</h4><ul>
-<li>声明：<code>unordered_map&lt;int,int&gt; hashtable;</code></li>
-<li>查找：<code>auto it=hashtable.find(target-nums[i]);</code></li>
+<h4 id="3、Object-assign详解-CSDN博客"><a href="#3、Object-assign详解-CSDN博客" class="headerlink" title="3、Object.assign详解-CSDN博客"></a>3、<a target="_blank" rel="noopener" href="https://blog.csdn.net/guxin_duyin/article/details/88916106?ops_request_misc=%7B%22request_id%22:%2251FF465A-6E67-41F2-8FBC-8D29316BCA96%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=51FF465A-6E67-41F2-8FBC-8D29316BCA96&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-88916106-null-null.142%5Ev100%5Epc_search_result_base9&utm_term=object.assign&spm=1018.2226.3001.4187">Object.assign详解-CSDN博客</a></h4><h4 id="4、看这一篇就够了！-Ajax详解-ajax解析-CSDN博客"><a href="#4、看这一篇就够了！-Ajax详解-ajax解析-CSDN博客" class="headerlink" title="4、看这一篇就够了！-Ajax详解_ajax解析-CSDN博客"></a>4、<a target="_blank" rel="noopener" href="https://blog.csdn.net/Oriental_/article/details/104863762?ops_request_misc=%7B%22request_id%22:%22B4AF4373-CC0B-4840-A14D-AA79FED7133B%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=B4AF4373-CC0B-4840-A14D-AA79FED7133B&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-104863762-null-null.142%5Ev100%5Epc_search_result_base9&utm_term=ajax&spm=1018.2226.3001.4187">看这一篇就够了！-Ajax详解_ajax解析-CSDN博客</a></h4><h4 id="5、数据类型"><a href="#5、数据类型" class="headerlink" title="5、数据类型"></a>5、数据类型</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45811256/article/details/127572573?ops_request_misc=%7B%22request_id%22:%22B81D8FB6-F82B-4874-AF5C-8493977CAD29%22,%22scm%22:%2220140713.130102334.pc_all.%22%7D&request_id=B81D8FB6-F82B-4874-AF5C-8493977CAD29&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~hot_rank-13-127572573-null-null.142%5Ev100%5Epc_search_result_base9&utm_term=%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%96%B9%E6%B3%95&spm=1018.2226.3001.4187">js中判断数据类型的几种实用方法_js判断类型-CSDN博客</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Boolean</span>([]); <span class="hljs-comment">//true</span><br><span class="hljs-title class_">Number</span>([]); <span class="hljs-comment">//0</span><br><span class="hljs-title class_">Number</span>(&#123;&#125;); <span class="hljs-comment">// NaN</span><br><span class="hljs-title class_">Number</span>(<span class="hljs-literal">false</span>); <span class="hljs-comment">//0</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>NaN!&#x3D;&#x3D;NaN</strong> （Not a Number）</p>
+<p>做减法运算时，有一个是NaN结果就是NaN。</p>
+<p>isNaN()会先将参数转为Number 类型，再判断是否为NaN。</p>
+<ul>
+<li><code>console.log(isNaN(&#39;&#39;));//false</code></li>
 </ul>
-<p><code>it-&gt;second：</code>值 ；<code>it-&gt;first：</code>键</p>
-<p>（8）双向队列</p>
-<p>（9）map</p>
-<p>（10）string</p>
+<h4 id="6、JSON-stringfy和JSON-parse"><a href="#6、JSON-stringfy和JSON-parse" class="headerlink" title="6、JSON.stringfy和JSON.parse"></a>6、JSON.stringfy和JSON.parse</h4><p>🐼<code>JSON.stringfy</code></p>
+<blockquote>
+<p>JSON.stringify(value[, replacer[, space]])</p>
+</blockquote>
+<ul>
+<li>用途：将 JavaScript 对象转换为 JSON 字符串，方便存储和传输。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">job</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attr">hobbies</span>: [<span class="hljs-string">&quot;reading&quot;</span>, <span class="hljs-string">&quot;traveling&quot;</span>] &#125;;<br><span class="hljs-keyword">const</span> jsonString = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(obj);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(jsonString); <br><span class="hljs-comment">// 输出: &#123;&quot;name&quot;:&quot;Alice&quot;,&quot;age&quot;:null,&quot;hobbies&quot;:[&quot;reading&quot;,&quot;traveling&quot;]&#125;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>特殊行为</p>
+<ul>
+<li><p><code>undefined</code>：在对象中，值为 <code>undefined</code> 的属性会被忽略。</p>
+</li>
+<li><p>函数：如果对象包含函数，函数会被忽略。</p>
+</li>
+<li><p><code>symbol</code>：如果对象包含 <code>symbol</code> 类型的属性，属性会被忽略。</p>
+</li>
+<li><p><code>null</code>：会被保留，转换为 JSON 字符串中的 <code>null</code>。</p>
+</li>
+<li><p>数组：会被正常序列化。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>🐻‍❄️<code>JSON.parse</code></p>
+<blockquote>
+<p>JSON.parse(text[, reviver])</p>
+</blockquote>
+<ul>
+<li><p>用途：将 JSON 字符串解析为 JavaScript 对象，方便在程序中使用。</p>
+</li>
+<li><p>特殊行为：</p>
+<ul>
+<li><p><code>null</code>：解析字符串 <code>&quot;null&quot;</code> 会返回 <code>null</code>。</p>
+</li>
+<li><p>不支持 <code>undefined</code>：如果 JSON 字符串包含 <code>undefined</code>，解析会失败。</p>
+</li>
+<li><p>错误处理：如果传入的字符串不是有效的 JSON，<code>JSON.parse</code> 会抛出错误。</p>
+</li>
+</ul>
+</li>
+</ul>
 
                 
               </div>
@@ -397,7 +414,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/c/" class="category-chain-item">c++</a>
+  <a href="/categories/%E5%85%AB%E8%82%A1%E9%9D%A2%E7%BB%8F/" class="category-chain-item">八股面经</a>
   
   
 
@@ -424,8 +441,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数据结构与算法</div>
-      <div>http://example.com/2024/10/09/数据结构与算法/</div>
+      <div>前端八股总结-JS</div>
+      <div>http://example.com/2024/10/23/前端八股总结-JS/</div>
     </div>
     <div class="license-meta">
       
@@ -437,7 +454,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 9, 2024</div>
+          <div>October 23, 2024</div>
         </div>
       
       
@@ -469,9 +486,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/10/09/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%9510.9/" title="力扣刷题记录10.9">
+                      <a href="/2024/10/23/CPP%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93/" title="CPP八股总结">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">力扣刷题记录10.9</span>
+                        <span class="hidden-mobile">CPP八股总结</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -479,8 +496,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/06/HTML+CSS%E8%AF%BE%E7%A8%8B1-%E8%A1%A5%E5%85%85%E5%AD%A6%E4%B9%A0/" title="HTML+CSS课程1-补充学习">
-                        <span class="hidden-mobile">HTML+CSS课程1-补充学习</span>
+                      <a href="/2024/10/23/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93-CSS+HTML+%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/" title="前端八股总结-CSS+HTML+页面渲染">
+                        <span class="hidden-mobile">前端八股总结-CSS+HTML+页面渲染</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
