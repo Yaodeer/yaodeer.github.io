@@ -1,0 +1,934 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="详细总结web缓存和HTTP缓存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端八股总结分支-缓存">
+<meta property="og:url" content="http://example.com/2024/10/26/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93%E5%88%86%E6%94%AF-%E7%BC%93%E5%AD%98/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="详细总结web缓存和HTTP缓存">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-10-26T08:36:23.447Z">
+<meta property="article:modified_time" content="2024-10-26T08:36:23.581Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>前端八股总结分支-缓存 - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="前端八股总结分支-缓存"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-26 16:36" pubdate>
+          October 26, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">前端八股总结分支-缓存</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on October 26, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>详细总结web缓存和HTTP缓存</p>
+<span id="more"></span>
+
+<h4 id="（1）HTTP缓存—-强缓存和协商缓存"><a href="#（1）HTTP缓存—-强缓存和协商缓存" class="headerlink" title="（1）HTTP缓存—-强缓存和协商缓存"></a>（1）HTTP缓存—-强缓存和协商缓存</h4><blockquote>
+<p>浏览器每次发起请求都会先在浏览器缓存中查找该请求的结果以及缓存标识</p>
+<p>浏览器每次拿到返回的请求结果都会将该结果和缓存标识存入浏览器缓存中</p>
+</blockquote>
+<h5 id="🦆缓存可以解决什么问题："><a href="#🦆缓存可以解决什么问题：" class="headerlink" title="🦆缓存可以解决什么问题："></a>🦆缓存可以解决什么问题：</h5><ul>
+<li>减少不必要的网络传输，节约带宽</li>
+<li>更快的加载界面</li>
+<li>减少服务器负载，避免服务器过载的情况出现</li>
+</ul>
+<p>缺点：占用内存</p>
+<h5 id="🦆强缓存（从内存-磁盘中读取）"><a href="#🦆强缓存（从内存-磁盘中读取）" class="headerlink" title="🦆强缓存（从内存&#x2F;磁盘中读取）"></a>🦆强缓存（从内存&#x2F;磁盘中读取）</h5><blockquote>
+<p>从内存读取的缓存更快</p>
+</blockquote>
+<p>🔸定义</p>
+<ul>
+<li>强缓存是在资源未过期的情况下，直接使用缓存中的资源，而不需要与服务器进行任何交互。这种缓存机制通过<strong>HTTP响应头</strong>来设置资源的<strong>过期时间</strong>，通常使用<code>Cache-Control</code> 和 <code>Expires</code> 头来控制。</li>
+</ul>
+<p>🔸工作原理</p>
+<ul>
+<li>当浏览器请求资源时查看强缓存是否有效。如果有效，浏览器直接使用缓存的资源，而不会向服务器发送请求；如果缓存已过期，浏览器会重新向服务器请求资源。</li>
+</ul>
+<p>🔸相关HTTP响应头</p>
+<p>eg：Cache-Control: max-age&#x3D;10（从第一次请求资源时开始，往后10秒内再次请求就直接从内存中读取，不需要与服务器做任何交互）</p>
+<ul>
+<li><p><strong>Cache-Control</strong>：设置缓存的策略。如max-age（缓存的最大有效时间）和public&#x2F;private（资源的可以被浏览器缓存也可以被代理服务器缓存&#x2F;只能浏览器）。</p>
+<ul>
+<li>no-cache：强制进行协商缓存</li>
+<li>no-store：禁止所有缓存</li>
+<li><strong>多条属性使用逗号分隔</strong></li>
+</ul>
+</li>
+<li><p><strong>Expires</strong>：指定资源过期的具体时间（在HTTP&#x2F;1.0中常用，<strong>HTTP&#x2F;1.1推荐使用Cache-Control</strong>）（<em>过度依赖本地时间，未考虑本地时间和服务器时间不同步的情况</em>）</p>
+</li>
+</ul>
+<h5 id="🦢协商缓存"><a href="#🦢协商缓存" class="headerlink" title="🦢协商缓存"></a>🦢协商缓存</h5><blockquote>
+<p>有哈希值的文件设置强缓存，没有哈希值的文件（如index.html）设置协商缓存</p>
+</blockquote>
+<p>🐔基于last-modified的协商缓存</p>
+<ul>
+<li><p>第一次请求</p>
+<ul>
+<li><p>首先需要在服务器端读出文件修改时间</p>
+</li>
+<li><p>将此修改时间赋给响应头的last-modified字段</p>
+</li>
+<li><p>最后设置Cache-Control：no-cache</p>
+</li>
+</ul>
+</li>
+<li><p>之后的每一次请求</p>
+<ul>
+<li>当客户端读取到<code>last-modified</code>的时候，会在下一次请求头中携带<code>If-Modified-Since</code> ，这个的值就是上面的修改时间。</li>
+<li>服务器收到事件后再次读取该资源的修改时间，做对比，如果相等说明未被修改，就返回一个304响应，表示可以直接读取，否则返回新的资源并更新修改时间到<code>last-modified</code>。</li>
+</ul>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>如果仅仅更新文件名也会导致缓存失效</li>
+<li>如果文件在极短时间内完成修改，由于文件修改最小单位是秒，会导致文件修改时间不变</li>
+</ul>
+<p>🐔基于ETag的协商缓存（HTTP1.1开始）</p>
+<blockquote>
+<p>文件指纹：文件打包后输出的文件名的后缀</p>
+</blockquote>
+<ul>
+<li>第一次请求资源的时候，服务端读取文件并计算出文件指纹，将文件指纹放在响应头的Etag字段中跟资源一起返回给客户端</li>
+<li>第二次请求资源的时候，客户端自动从缓存种读取上一次返回的Etag也就是文件指纹，并赋给请求头的If-None-Match字段，让上一次的文件指纹跟随请求一起回到服务端</li>
+<li>服务端拿到上一次文件指纹，和目标资源的指纹进行对比，如果完全吻合，返回304状态码和空的响应体；如果不吻合说明文件被更改，将新的文件指纹重新存储到响应头的Etag并返回给客户端</li>
+</ul>
+<p>计算开销大，不是Last-Modified的完全替代方案</p>
+<h4 id="（2）Cookie和Session"><a href="#（2）Cookie和Session" class="headerlink" title="（2）Cookie和Session"></a>（2）Cookie和Session</h4><blockquote>
+<p>Cookie通过在客户端记录信息确定用户身份，Session在服务端记录信息确定用户身份</p>
+</blockquote>
+<h5 id="🦜Cookie"><a href="#🦜Cookie" class="headerlink" title="🦜Cookie"></a>🦜Cookie</h5><blockquote>
+<p>由于HTTP协议是无连接的协议，一旦数据交换完毕，客户与服务端的连接就会关闭，再次交换数据需要建立新的连接。这就意味着服务器无法从连接上跟踪会话。</p>
+</blockquote>
+<p>Cookie的工作原理就是服务器在客户端请求服务器时，如果需要记住用户状态就给客户端颁发一个Cookie（通行证），浏览器保存Cookie，当再次请求的时候，把请求网址和Cookie一起提交给服务器。服务器检查该Cookie就可以辨认用户状态。</p>
+<p>🪶特点：</p>
+<ul>
+<li>一旦创建成功，名称无法修改</li>
+<li>不可跨域（由Cookie的隐私安全性决定）</li>
+<li>每个域名下Cookie数量不能超过20个，每个Cookie大小不能超过4kb</li>
+<li>在请求新的页面时会自动被发送过去</li>
+<li>两种保存方式：浏览器内存和客户端硬盘</li>
+</ul>
+<p>🪶生存周期：</p>
+<p>Cookie在生成时会被指定一个Expire值，这就是它的生存周期，超过周期Cookie会被自动删除。如果设置为负值，则关闭浏览器就会失效，浏览器也不会以任何形式保存该Cookie；如果设置为0，表示删除该Cookie。<strong>默认为-1</strong> 。</p>
+<p>🪶缺陷：</p>
+<ul>
+<li>安全性无法得到保障。收到跨站点脚本攻击时，脚本会读取该站点所有Cookie内容。</li>
+<li>浏览器可以禁用Cookie</li>
+</ul>
+<p>🪶典型应用</p>
+<ul>
+<li>记住用户偏好，进行个性化设置</li>
+<li>购物车内容</li>
+<li>跟踪用户行为（搜索记录等），推送广告</li>
+</ul>
+<p>🪶字段</p>
+<ul>
+<li>Name：cookie的名称</li>
+<li>Value：cookie的值，对于认证cookie，value值包括web服务器所提供的访问令牌</li>
+<li>Size： cookie的大小</li>
+<li>Path：可以访问此cookie的页面路径。 比如domain是abc.com，path是&#x2F;test，那么只有&#x2F;test路径下的页面可以读取此cookie。</li>
+<li>Secure： 指定是否使用HTTPS安全协议发送Cookie。使用HTTPS安全协议，可以保护Cookie在浏览器和Web服务器间的传输过程中不被窃取和篡改。该方法也可用于Web站点的身份鉴别，即在HTTPS的连接建立阶段，浏览器会检查Web网站的SSL证书的有效性。但是基于兼容性的原因（比如有些网站使用自签署的证书）在检测到SSL证书无效时，浏览器并不会立即终止用户的连接请求，而是显示安全风险信息，用户仍可以选择继续访问该站点。</li>
+<li><strong>Expires&#x2F;Max-size</strong> ： 此cookie的超时时间。若设置其值为一个时间，那么当到达此时间后，此cookie失效。不设置的话默认值是Session，意思是cookie会和session一起失效。当浏览器关闭(不是浏览器标签页，而是整个浏览器) 后，此cookie失效。</li>
+</ul>
+<h5 id="🐦‍⬛Session"><a href="#🐦‍⬛Session" class="headerlink" title="🐦‍⬛Session"></a>🐦‍⬛Session</h5><blockquote>
+<p>Session机制通过检查服务器上的“客户明细表”来确认客户身份。</p>
+</blockquote>
+<p>Session是服务器端使用的一种记录客户端状态的机制。客户端访问服务器的时候，服务器把客户端信息以某种形式记录在服务器上，这就是Session。相当于程序在服务器上建立的一份客户档案，客户来访的时候只需要查询客户档案表即可。</p>
+<p>🪽特点：</p>
+<ul>
+<li>服务端会保存多个客户端的Session，各客户的Session彼此独立，互不可见。</li>
+<li>使用起来比Cookie方便安全（不会暴露给客户端），但是会对服务器造成压力</li>
+<li>服务器会向客户端发送sessionID存储到Cookie中，session包含sessionID、用户信息和记录。再次访问时找到发送的Cookie中的sessionID，就可以找到对应的session</li>
+<li>子窗口会公用父窗口的Cookie</li>
+<li>存储容量由服务器的处理能力和存储空间决定</li>
+</ul>
+<p>🪽生命周期</p>
+<p>创建—&gt;存储—&gt;使用—&gt;销毁（到期或关闭浏览器或用户登出）</p>
+<p>🪽URL重写</p>
+<p>对客户端不支持Cookie的解决方案。将Session的id信息重写到URL地址中，服务器可以解析重写后的URL获取SessionID。</p>
+<p>🪽适用场景</p>
+<p>存储敏感信息（登陆状态、用户权限）和需要服务器控制的会话信息</p>
+<h4 id="（3）webStorage本地存储"><a href="#（3）webStorage本地存储" class="headerlink" title="（3）webStorage本地存储"></a>（3）webStorage本地存储</h4><h5 id="🦜localStorage"><a href="#🦜localStorage" class="headerlink" title="🦜localStorage"></a>🦜localStorage</h5><blockquote>
+<p>HTML5引入的新特性。适合大信息量存储</p>
+</blockquote>
+<p>🪶优点：</p>
+<ul>
+<li>大小：5MB</li>
+<li>持久存储，不会随着页面关闭而消失；除非主动清理，否则永久存在</li>
+<li>仅存储在本地，不会像Cookie一样每次HTTP请求都会被携带</li>
+</ul>
+<p>🪶缺点：</p>
+<ul>
+<li>存在浏览器兼容问题，IE8以下的浏览器不支持</li>
+<li>如果浏览器设置为隐私模式，就无法读取到LocalStorage</li>
+<li>受到同源策略的限制（<strong>LocalStorage的数据只能在相同来源的页面之间共享</strong>，不同来源的网站即使在同一浏览器中运行，也无法相互访问对方的LocalStorage数据。）</li>
+</ul>
+<p>🪶常用API：</p>
+<ul>
+<li>localStorage.setItem(“key”,”value”);  保存数据</li>
+<li>let data&#x3D;localStorage.getItem(“key”);获取数据</li>
+<li>localStorage.removeItem(“key”);删除数据</li>
+<li>localStorage.clear();删除所有数据</li>
+<li>localStorage.key(index);获取某个索引的key</li>
+</ul>
+<p>🪶使用场景：</p>
+<ul>
+<li>有些网站具有换肤功能，存储换肤信息；</li>
+<li>存储浏览信息和不长变动的个人信息</li>
+<li>可以在表单填写未完成时保存数据，避免用户意外刷新或关闭页面导致信息丢失</li>
+</ul>
+<h5 id="🐦‍⬛sessionStorage"><a href="#🐦‍⬛sessionStorage" class="headerlink" title="🐦‍⬛sessionStorage"></a>🐦‍⬛sessionStorage</h5><blockquote>
+<p>HTML5引入的新特性，适合用于仅在会话（session）期间生效的数据存储</p>
+</blockquote>
+<p>🪽和localStorage对比</p>
+<ul>
+<li>SessionStorage和LocalStorage都在本地进行数据存储；大小一样</li>
+<li>SessionStorage也有同源策略的限制，但是SessionStorage有一条更加严格的限制，SessionStorage只有在同一浏览器的同一窗口下才能够共享；</li>
+<li>LocalStorage和SessionStorage都不能被爬虫爬取；</li>
+<li>刷新界面时不会删除，但是关闭窗口或标签页时会被删除</li>
+</ul>
+<p>🪽常用API和local一样</p>
+<p>🪽使用场景和session差不多</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%AB%E8%82%A1%E9%9D%A2%E7%BB%8F/" class="category-chain-item">八股面经</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/c/" class="print-no-link">#c++</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>前端八股总结分支-缓存</div>
+      <div>http://example.com/2024/10/26/前端八股总结分支-缓存/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 26, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/26/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93-%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0/" title="前端八股总结-手写实现">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">前端八股总结-手写实现</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/25/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%9510.25/" title="力扣刷题记录10.25">
+                        <span class="hidden-mobile">力扣刷题记录10.25</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://yaodeer.github.io/2024/04/12/About%20Me/" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://yaodeer.github.io/2024/04/12/About%20Me/" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

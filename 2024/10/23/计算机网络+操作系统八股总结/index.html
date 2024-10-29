@@ -23,11 +23,13 @@
 <meta property="og:site_name" content="Yaodeer">
 <meta property="og:description" content="备份一下机组知识，从0背操作系统😇">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241024163236109.png">
 <meta property="article:published_time" content="2024-10-23T12:37:17.655Z">
-<meta property="article:modified_time" content="2024-10-23T12:37:17.783Z">
+<meta property="article:modified_time" content="2024-10-25T02:06:53.891Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241024163236109.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -261,7 +263,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k words
+          5.5k words
         
       </span>
     
@@ -272,7 +274,7 @@
         
         
         
-          23 mins
+          47 mins
         
       </span>
     
@@ -326,7 +328,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on October 23, 2024 pm
+                    Last updated on October 25, 2024 am
                   
                 
               </p>
@@ -338,6 +340,16 @@
 <span id="more"></span>
 
 <h2 id="一、计算机网络"><a href="#一、计算机网络" class="headerlink" title="一、计算机网络"></a>一、计算机网络</h2><h3 id="（1）网络协议"><a href="#（1）网络协议" class="headerlink" title="（1）网络协议"></a>（1）网络协议</h3><h4 id="1、域名解析"><a href="#1、域名解析" class="headerlink" title="1、域名解析"></a>1、域名解析</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45629285/article/details/122969104?ops_request_misc=%7B%22request_id%22:%2296398E92-1CAD-4366-B044-D699C8D0F77D%22,%22scm%22:%2220140713.130102334.pc_all.%22%7D&request_id=96398E92-1CAD-4366-B044-D699C8D0F77D&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~hot_rank-2-122969104-null-null.142%5Ev100%5Epc_search_result_base9&utm_term=%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90&spm=1018.2226.3001.4187">多张图带你彻底搞懂DNS域名解析过程_dns解析的过程是怎么样的-CSDN博客</a></p>
+<p><strong>域名系统作为将域名和 IP 地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。</strong></p>
+<h5 id="🦥递归查询"><a href="#🦥递归查询" class="headerlink" title="🦥递归查询"></a>🦥递归查询</h5><p>主机首先向其<strong>本地域名服务器</strong>进行递归查询，本地服务器收到递归查询委托后，向<strong>根域名服务器</strong>进行递归查询，根域名接着向<strong>顶级域名服务器</strong>递归查询，顶级域名向<strong>权限域名服务器</strong>查询。</p>
+<p>查询到对应的IP后，结果会在之前受委托的各域名服务器间传递，最后传回用户主机。</p>
+<h5 id="🦥迭代查询"><a href="#🦥迭代查询" class="headerlink" title="🦥迭代查询"></a>🦥迭代查询</h5><p>（主机向本地域名服务器进行的是递归查询）</p>
+<p>本地服务器开始发送迭代查询，收到查询的服务器要么给出所要查询的IP地址，要么告诉本地服务器下一步应该找哪个域名服务器进行查询，让本地服务器进行后续的查询。</p>
+<h5 id="🦥高速缓存"><a href="#🦥高速缓存" class="headerlink" title="🦥高速缓存"></a>🦥高速缓存</h5><p>为了提高DNS的查询效率，减轻根域名服务器的负荷和减少因特网上DNS查询的报文数量，在域名服务器中使用高速缓存。用以存放最近查询过的域名以及从何处获得域名映射信息的记录。</p>
+<ul>
+<li>为每项高速缓存设置计时器并删除超过合理时间的项</li>
+<li>主机也需要维护高速缓存</li>
+</ul>
 <h4 id="2、如何判断两个IP地址处于同一个网络"><a href="#2、如何判断两个IP地址处于同一个网络" class="headerlink" title="2、如何判断两个IP地址处于同一个网络"></a>2、如何判断两个IP地址处于同一个网络</h4><p>将两个IP地址和相同的子网掩码做按位与运算，如果结果相同说明在同一网络。</p>
 <h4 id="3、MAC地址的作用"><a href="#3、MAC地址的作用" class="headerlink" title="3、MAC地址的作用"></a>3、MAC地址的作用</h4><blockquote>
 <p>MAC地址是每个网络接口卡（NIC）制造时分配的一个唯一标识符。它通常以16进制格式表示，并由六组两位数字组成，例如 <code>00:1A:2B:3C:4D:5E</code>。分为单播、广播和多播地址，位于数据链路层。</p>
@@ -372,6 +384,35 @@
 <li><strong>重放攻击风险</strong>：由于客户端在握手之前就发送了数据，这可能使得某些类型的重放攻击变得更容易，尤其是当传输的数据不是一次性的。</li>
 <li><strong>安全性考量</strong>：使用0-RTT时，服务器需要对会话票据进行安全管理，以防止滥用。</li>
 <li><strong>数据完整性</strong>：由于客户端在握手完成之前就发送了数据，服务器必须小心处理这些数据，以确保在验证身份之前不处理任何敏感操作。</li>
+</ul>
+<h4 id="5、包过滤防火墙"><a href="#5、包过滤防火墙" class="headerlink" title="5、包过滤防火墙"></a>5、包过滤防火墙</h4><blockquote>
+<p>一种通过检查网络数据包的头部信息，根据预设的规则来决定是否允许数据包通过的防火墙类型。它工作在<strong>网络层</strong>（OSI 模型的第三层），对数据包的 <strong>IP 地址</strong>、<strong>端口号</strong>、<strong>协议</strong>等信息进行过滤。是最早的一种防火墙类型，也是目前最简单、性能最高的防火墙之一。</p>
+</blockquote>
+<p><strong>缺乏上下文</strong>：包过滤防火墙只检查单个数据包，无法感知连接的状态或上下文，容易受到某些攻击，如 IP 欺骗。</p>
+<p><strong>灵活性差</strong>：无法深入到应用层进行过滤，无法对内容进行检查，只能基于 IP、端口和协议进行粗粒度过滤。</p>
+<p><strong>容易被绕过</strong>：如果攻击者知道某些开放的端口，可能通过伪装包绕过包过滤规则。</p>
+<h4 id="6、ARP协议"><a href="#6、ARP协议" class="headerlink" title="6、ARP协议"></a>6、ARP协议</h4><blockquote>
+<p>ARP（Address Resolution Protocol，地址解析协议） 是用于将<strong>IP地址</strong>解析为<strong>MAC地址</strong>的协议。它在局域网（LAN）中非常常用，特别是在IPv4环境中，用来帮助主机在网络中找到其他主机的硬件地址，以实现数据的正确传输。<strong>工作在数据链路层（网络接口层）</strong></p>
+</blockquote>
+<h5 id="基本工作原理"><a href="#基本工作原理" class="headerlink" title="基本工作原理"></a>基本工作原理</h5><ul>
+<li>当一台主机想要与同一个局域网中的另一台主机通信时，发起通信的主机已经知道对方的 IP 地址（如 192.168.1.2），但是并不知道对方的 MAC 地址。</li>
+<li>这时，发起通信的主机会在网络上广播一个 <strong>ARP 请求</strong>，请求中包含了自己知道的目标主机的 IP 地址，目的是询问“谁拥有这个 IP 地址？”。</li>
+<li>网络中的每个主机都会收到这个 ARP 请求包，但只有目标 IP 地址匹配的主机会回应一个 <strong>ARP 回复</strong>，并告知自己的 MAC 地址。</li>
+<li>发起通信的主机接收到 ARP 回复后，将目标 IP 地址和 MAC 地址缓存到自己的 <strong>ARP 缓存表</strong> 中，以便后续的通信不需要再次发送 ARP 请求。</li>
+</ul>
+<h5 id="请求与响应"><a href="#请求与响应" class="headerlink" title="请求与响应"></a>请求与响应</h5><ul>
+<li>ARP 请求：广播消息，查询目标 IP 地址对应的 MAC 地址。<ul>
+<li>包含发起主机的IP地址和MAC地址，以及目标主机的IP地址</li>
+</ul>
+</li>
+<li>ARP 响应：目标主机接收到请求后，单播回复自己的 MAC 地址。<ul>
+<li>包含发起主机和目标主机的IP地址和MAC地址</li>
+</ul>
+</li>
+</ul>
+<h5 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h5><ul>
+<li>局域网范围：ARP是基于广播的协议，工作在局域网（同一子网中），无法跨网段工作。</li>
+<li>ARP欺骗：由于ARP没有验证机制，容易受到ARP欺骗攻击。攻击者可以伪造ARP相应包，将自身MAC地址和目标IP地址绑定，从而窃听或劫持网络通信。</li>
 </ul>
 <h3 id="（2）HTTP协议"><a href="#（2）HTTP协议" class="headerlink" title="（2）HTTP协议"></a>（2）HTTP协议</h3><h4 id="1、Header"><a href="#1、Header" class="headerlink" title="1、Header"></a>1、Header</h4><blockquote>
 <p>在HTTP（超文本传输协议）中，<strong>Header（头部）</strong>用于在客户端和服务器之间传递额外的元数据。HTTP请求和响应都包含头部，头部由多个键值对组成，格式为：<code>键: 值</code>。</p>
@@ -433,7 +474,93 @@
 <p>🔶多路复用改进：(基于UDP)即使某个数据包丢失其他流也不受影响，提高整体传输效率</p>
 <p>🔶0-RTT连接建立：QUIC允许在某些情况下进行0-RTT握手，进一步减少延迟</p>
 <p>🔺更高的传输效率和更低的延迟，适用于现代网络的需求，特别是在移动网络和高延迟环境下的表现出色。</p>
-<h2 id="二、操作系统"><a href="#二、操作系统" class="headerlink" title="二、操作系统"></a>二、操作系统</h2><h3 id="（1）进程调度"><a href="#（1）进程调度" class="headerlink" title="（1）进程调度"></a>（1）进程调度</h3><p>1、</p>
+<h3 id="（3）跨域"><a href="#（3）跨域" class="headerlink" title="（3）跨域"></a>（3）跨域</h3><blockquote>
+<p>跨域（Cross-Origin）是指浏览器处于安全性考虑，阻止来自不同域的网页请求资源。跨域请求通常由浏览器的同源策略（Same-Origin Policy）引起。浏览器默认只允许同源请求。</p>
+</blockquote>
+<h4 id="1、同源请求"><a href="#1、同源请求" class="headerlink" title="1、同源请求"></a>1、同源请求</h4><p>规定只有<strong>协议</strong>、<strong>域名</strong>、<strong>端口</strong>都相同的两个页面，才能共享资源或进行请求。</p>
+<h5 id="为什么会有跨域限制？"><a href="#为什么会有跨域限制？" class="headerlink" title="为什么会有跨域限制？"></a>为什么会有跨域限制？</h5><p>跨域限制的主要目的是<strong>保护用户数据</strong>，避免一些恶意网站或脚本未经授权访问用户在其他网站上的敏感信息。例如：</p>
+<ul>
+<li><strong>CSRF 攻击（跨站请求伪造）</strong>：攻击者伪造用户请求，利用用户的身份在合法网站上执行未授权操作。</li>
+<li><strong>数据泄露</strong>：攻击者可能利用跨域访问，获取用户的敏感信息。</li>
+</ul>
+<h5 id="跨域的场景："><a href="#跨域的场景：" class="headerlink" title="跨域的场景："></a>跨域的场景：</h5><ul>
+<li>Ajax 请求：前端通过 XMLHttpRequest 或 <code>fetch</code> API 向不同源的服务器发送请求。</li>
+<li>页面中的资源加载：比如通过 <code>&lt;img&gt;</code>、<code>&lt;script&gt;</code>、<code>&lt;iframe&gt;</code>、<code>&lt;link&gt;</code> 标签加载外部资源时，可能涉及跨域。</li>
+<li>跨域嵌套的页面：通过 <code>&lt;iframe&gt;</code> 嵌套不同域的页面时会受到限制。</li>
+</ul>
+<h4 id="2、CORS"><a href="#2、CORS" class="headerlink" title="2、CORS"></a>2、CORS</h4><blockquote>
+<p>Cross-Origin Resource Sharing（跨域资源共享）事最常用的解决跨域问题的机制。服务器通过设置特定的响应头，允许浏览器访问来自不同源的资源。</p>
+</blockquote>
+<ul>
+<li>当浏览器发起跨域请求时，会自动添加Origin请求头，标记请求的来源。</li>
+<li>如果服务器允许该跨域请求，会发出以下响应头。</li>
+</ul>
+<h5 id="🔹常见的响应头："><a href="#🔹常见的响应头：" class="headerlink" title="🔹常见的响应头："></a>🔹常见的响应头：</h5><ul>
+<li>Access-Control-Allow-Origin：允许的源，可以是具体的域名（如 <code>http://example.com</code>），也可以是 <code>*</code>（允许所有域）。</li>
+<li>Access-Control-Allow-Methods：允许的 HTTP 方法（如 <code>GET</code>、<code>POST</code>、<code>PUT</code> 等）。</li>
+<li>Access-Control-Allow-Headers：允许的请求头（如 Content-Type、Authorization）。</li>
+<li>Access-Control-Allow-Credentials：是否允许发送凭证（如 Cookies）。</li>
+</ul>
+<h5 id="🔹CORS请求类型"><a href="#🔹CORS请求类型" class="headerlink" title="🔹CORS请求类型"></a>🔹CORS请求类型</h5><ul>
+<li>简单请求：如GET和POST，且请求头比较简单（如Content-Type：text&#x2F;plain），这种请求头不需要预检。</li>
+<li>预检请求：非简单请求，浏览器会先发送一个OPTIONS请求，询问服务器是否允许当前跨域请求。服务器相应允许后，才会发送实际的请求。</li>
+</ul>
+<h5 id="🔹示例"><a href="#🔹示例" class="headerlink" title="🔹示例"></a>🔹示例</h5><ul>
+<li>前端请求</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;http://api.com/data&#x27;</span>)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">json</span>())<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data));<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>API服务器的响应</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">200</span> OK<br><span class="hljs-attribute">Access-Control-Allow-Origin</span><span class="hljs-punctuation">: </span>http://frontend.com<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/json<br><br><span class="language-json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;some data&quot;</span><span class="hljs-punctuation">&#125;</span></span><br></code></pre></td></tr></table></figure>
+
+<h5 id="🔹注意："><a href="#🔹注意：" class="headerlink" title="🔹注意："></a>🔹注意：</h5><ul>
+<li>如果希望允许凭据（如Cookies）随请求一起发送，必须明确指定允许的域名，而不是*</li>
+</ul>
+<h4 id="3、JSONP（JSON-with-Padding）"><a href="#3、JSONP（JSON-with-Padding）" class="headerlink" title="3、JSONP（JSON with Padding）"></a>3、JSONP（JSON with Padding）</h4><blockquote>
+<p>早期的跨域解决方案，适用于只进行GET请求的场景。</p>
+</blockquote>
+<h5 id="🔸工作方式"><a href="#🔸工作方式" class="headerlink" title="🔸工作方式"></a>🔸工作方式</h5><p>前端通过动态创建<code>&lt;script&gt;</code>标签向服务器发送请求，服务器返回一段JavaScript代码，其中包含了一个函数调用。该函数是由前端提前定义好的，服务器返回的数据作为该函数的参数。</p>
+<h5 id="🔸示例"><a href="#🔸示例" class="headerlink" title="🔸示例"></a>🔸示例</h5><ul>
+<li>前端代码</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">	<span class="hljs-keyword">function</span> <span class="hljs-title function_">handleResponse</span>(<span class="hljs-params">data</span>)&#123;</span><br><span class="language-javascript">      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);</span><br><span class="language-javascript">   &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://api.example.com/data?callback=handleResponse&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>服务器返回的内容</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">handleReponse</span>(&#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;John&quot;</span>,<span class="hljs-string">&quot;age&quot;</span>: <span class="hljs-number">30</span>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>通过这种方式前端就可以绕过同源策略成功获取跨域数据。</p>
+<h5 id="🔸缺点"><a href="#🔸缺点" class="headerlink" title="🔸缺点"></a>🔸缺点</h5><p>只能用于GET请求，存在风险，容易受到XSS攻击</p>
+<h4 id="4、Websocket协议"><a href="#4、Websocket协议" class="headerlink" title="4、Websocket协议"></a>4、Websocket协议</h4><blockquote>
+<p>Wedsocket协议是一种在客户端（浏览器）和服务器之间进行全双工通信的协议，它允许双方在单个持久连接的基础上，进行双向的数据传输。与传统的HTTP协议不同，Websocket不是基于请求-响应模式的，而是可以在连接建立后，双方随时主动发消息。这使得它适合实时应用，如聊天、游戏、实时数据推送。</p>
+</blockquote>
+<h5 id="🦄特点："><a href="#🦄特点：" class="headerlink" title="🦄特点："></a>🦄特点：</h5><ul>
+<li>双向通信（Full-Duplex)： 允许服务器和客户端同时发送和接收数据，而不必等待对方发起请求</li>
+<li>低延迟：由于只需要进行一次初始握手，并且链接一旦建立变持续存在，后续的数据传输不需要重新建立连接，因此可以减少延迟。</li>
+<li>节省带宽：通信报文头部比HTTP端，后续的消息交换只需要很少的协议头数据</li>
+<li>持久连接：连接一旦建立便会一直保持，除非客户端&#x2F;服务器主动关闭连接或发生错误</li>
+</ul>
+<h5 id="🦄与HTTP的关系"><a href="#🦄与HTTP的关系" class="headerlink" title="🦄与HTTP的关系"></a>🦄与HTTP的关系</h5><p>并非取代HTTP，而是建立在HTTP协议之上。握手成功后接管。</p>
+<ul>
+<li>握手：它的握手是通过标准的HTTP&#x2F;1.1请求来完成的，客户端发起的HTTP请求带有Upgrade：websocket头部，表示请求服务器升级协议。</li>
+<li>HTTP&#x2F;2：由于HTTP&#x2F;2采用多路复用流的方式，与Websocket的单连接设计不兼容</li>
+</ul>
+<h5 id="🦄优缺点"><a href="#🦄优缺点" class="headerlink" title="🦄优缺点"></a>🦄优缺点</h5><p>优点：高效、实时、占用资源少</p>
+<p>缺点：不支持断线重连（HTTP会自动发起新请求）、防火墙兼容问题（非标准HTTP通信）</p>
+<h3 id="（4）常见的网络攻击"><a href="#（4）常见的网络攻击" class="headerlink" title="（4）常见的网络攻击"></a>（4）常见的网络攻击</h3><h4 id="1、XSS攻击（跨站脚本攻击）"><a href="#1、XSS攻击（跨站脚本攻击）" class="headerlink" title="1、XSS攻击（跨站脚本攻击）"></a>1、XSS攻击（跨站脚本攻击）</h4><p>攻击者将恶意的脚本代码注入到受信任的网站中，其他用户在访问时执行这些恶意脚本，从而被攻击者窃取会话信息、用户数据等。</p>
+<h4 id="2、CSRF攻击（跨站请求伪造）"><a href="#2、CSRF攻击（跨站请求伪造）" class="headerlink" title="2、CSRF攻击（跨站请求伪造）"></a>2、CSRF攻击（跨站请求伪造）</h4><p>攻击者诱使已经登陆的用户访问恶意网站或者链接，从而在用户不知情的情况下以用户身份执行未经授权的操作。</p>
+<h2 id="二、操作系统"><a href="#二、操作系统" class="headerlink" title="二、操作系统"></a>二、操作系统</h2><h3 id="（1）进程调度"><a href="#（1）进程调度" class="headerlink" title="（1）进程调度"></a>（1）进程调度</h3><h4 id="1、阻塞和就绪"><a href="#1、阻塞和就绪" class="headerlink" title="1、阻塞和就绪"></a>1、阻塞和就绪</h4><h5 id="🐅阻塞状态"><a href="#🐅阻塞状态" class="headerlink" title="🐅阻塞状态"></a>🐅阻塞状态</h5><p>进程处于阻塞状态时，表示它正在<strong>等待某个事件的发生</strong>，通常是等待 I&#x2F;O 操作完成、信号量、条件变量或资源的释放。通常是因为请求的资源不可用（等待磁盘读写、网络数据接收）。</p>
+<p>一旦等待的时间发生，阻塞的进程会被唤醒，转变为就绪状态，等待CPU资源的分配。</p>
+<h5 id="🐆就绪状态"><a href="#🐆就绪状态" class="headerlink" title="🐆就绪状态"></a>🐆就绪状态</h5><p>进程处于就绪状态时，表示它已经准备好可以运行，<strong>等待 CPU 分配时间片</strong>。通常是一个准备执行的进程已经获得了所有所需的资源，但是由于<strong>CPU正在被其他进程使用</strong>，所以处于就绪状态。</p>
+<h4 id="2、进程和线程和协程"><a href="#2、进程和线程和协程" class="headerlink" title="2、进程和线程和协程"></a>2、进程和线程和协程</h4><p><strong>线程</strong>是进程中的一个执行流，<strong>是程序执行的最小单元</strong>。每个线程都拥有自己的栈、寄存器、和程序计数器，但它们共享进程的资源（如内存和文件描述符）。</p>
+<p><strong>进程</strong>是系统中资源分配的基本单位，而线程是程序执行的基本单位。</p>
+<p>一个进程可以包含多个线程，这些线程可以并发执行。</p>
+<p>线程之间的创建、销毁和切换的开销通常比进程更小，因此线程通常被认为是更轻量级的执行单位。</p>
+<p><strong>协程</strong>是一种协作式的多任务处理机制，它允许程序在执行过程中挂起（暂停）某个任务，然后在需要的时候恢复该任务的执行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241024163236109.png" srcset="/img/loading.gif" lazyload alt="image-20241024163236109"></p>
 
                 
               </div>
@@ -523,6 +650,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/10/25/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%9510.25/" title="力扣刷题记录10.25">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">力扣刷题记录10.25</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

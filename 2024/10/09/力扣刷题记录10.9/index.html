@@ -24,7 +24,7 @@
 <meta property="og:description" content="开始刷100题。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-10-09T13:37:51.372Z">
-<meta property="article:modified_time" content="2024-10-11T15:10:40.846Z">
+<meta property="article:modified_time" content="2024-10-25T02:16:00.202Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary_large_image">
@@ -326,7 +326,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on October 11, 2024 pm
+                    Last updated on October 25, 2024 am
                   
                 
               </p>
@@ -369,7 +369,7 @@
 <p>初始化两个指针l,r分别从左右两端开始遍历。在两个指针未相遇前，寻找满足条件的三个数，并继续跳过重复的元素。不满足条件时则做相应的调整。</p>
 <p>时间复杂度：O(N^2) </p>
 <h4 id="（2）滑动窗口"><a href="#（2）滑动窗口" class="headerlink" title="（2）滑动窗口"></a>（2）滑动窗口</h4><h5 id="1、无重复字符的最长子串c-（做完就忘，烦死我了😩😩😩）"><a href="#1、无重复字符的最长子串c-（做完就忘，烦死我了😩😩😩）" class="headerlink" title="1、无重复字符的最长子串c++（做完就忘，烦死我了😩😩😩）"></a>1、<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/">无重复字符的最长子串c++</a>（做完就忘，烦死我了😩😩😩）</h5><blockquote>
-<p>给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的 <strong>最长 子串</strong> 的长度。</p>
+<p>给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lengthOfLongestSubstring</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(!s.<span class="hljs-built_in">size</span>()) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;   <span class="hljs-comment">//先判断一手</span><br>        <span class="hljs-type">int</span> maxSize=<span class="hljs-number">0</span>,left=<span class="hljs-number">0</span>;<br>        unordered_set &lt;<span class="hljs-type">int</span>&gt; ans;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;s.<span class="hljs-built_in">size</span>();i++)&#123;<br>            <span class="hljs-keyword">while</span>(ans.<span class="hljs-built_in">find</span>(s[i])!=ans.<span class="hljs-built_in">end</span>())&#123;<br>                ans.<span class="hljs-built_in">erase</span>(s[left]);<br>                left++;<br>            &#125;<br>            maxSize=<span class="hljs-built_in">max</span>(maxSize,i-left+<span class="hljs-number">1</span>);<br>            ans.<span class="hljs-built_in">insert</span>(s[i]);<br>        &#125;<br>        <span class="hljs-keyword">return</span> maxSize;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
