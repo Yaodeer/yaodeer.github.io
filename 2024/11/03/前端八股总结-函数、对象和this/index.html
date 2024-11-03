@@ -1,0 +1,835 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/IMG_20240421_150811.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yaodeer">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="记录一下一些常见场景">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端八股总结-函数、对象和this">
+<meta property="og:url" content="http://example.com/2024/11/03/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93-%E5%87%BD%E6%95%B0%E3%80%81%E5%AF%B9%E8%B1%A1%E5%92%8Cthis/index.html">
+<meta property="og:site_name" content="Yaodeer">
+<meta property="og:description" content="记录一下一些常见场景">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-03T05:03:11.930Z">
+<meta property="article:modified_time" content="2024-11-03T07:56:25.664Z">
+<meta property="article:author" content="Yaodeer">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>前端八股总结-函数、对象和this - Yaodeer</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 85vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚姚</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/MVIMG_20231023_100821.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="前端八股总结-函数、对象和this"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-03 13:03" pubdate>
+          November 3, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">前端八股总结-函数、对象和this</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on November 3, 2024 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>记录一下一些常见场景</p>
+<span id="more"></span>
+
+<p>（崩溃了，怎么就是看不懂🥹小小this赶紧让我拿下）</p>
+<p>this部分参考总结于<a target="_blank" rel="noopener" href="https://github.com/YvetteLau/Blog/issues/6">嗨，你真的懂this吗？ · Issue #6 · YvetteLau&#x2F;Blog</a></p>
+<h3 id="一、this的绑定规则"><a href="#一、this的绑定规则" class="headerlink" title="一、this的绑定规则"></a>一、this的绑定规则</h3><h4 id="（1）默认绑定"><a href="#（1）默认绑定" class="headerlink" title="（1）默认绑定"></a>（1）默认绑定</h4><p>默认绑定，在不能应用其它绑定规则时使用的默认规则，通常是<strong>独立函数调用</strong>。</p>
+<ul>
+<li>在非严格模式下，函数内的 <code>this</code> 指向全局对象（浏览器中是 <code>window</code>，Node.js 中是 <code>global</code>），除非该函数是作为对象的方法调用。</li>
+<li>在严格模式下，如果函数是直接调用（不通过对象调用），<code>this</code> 将会是 <code>undefined</code>。</li>
+</ul>
+<p>浏览器中，使用 <code>var</code> 定义(<strong>let不行</strong>)的全局变量（如 <code>name</code>）会被添加到 <code>window</code> 对象上。</p>
+<p>在 Node.js 中，使用 <code>var</code> 定义的全局变量不会自动添加到 <code>global</code> 对象上。相反，它们只能在当前模块的作用域中访问。</p>
+<ul>
+<li>global.name &#x3D; ‘YvetteLau’;只有这样的显示定义才被视为定义</li>
+</ul>
+<h4 id="（2）隐式绑定"><a href="#（2）隐式绑定" class="headerlink" title="（2）隐式绑定"></a>（2）隐式绑定</h4><p>函数的调用是在某个对象上触发的，即调用位置上存在上下文对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sayHi</span>(<span class="hljs-params"></span>)&#123;<br>   <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;hello,&quot;</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>);<br>&#125;<br><span class="hljs-keyword">let</span> person=&#123;<br>   <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Yaoyao&quot;</span>,<br>   <span class="hljs-attr">sayHi</span>: sayHi,<br>&#125;<br><span class="hljs-keyword">let</span> name=<span class="hljs-string">&quot;Shenshen&quot;</span>;<br>person.<span class="hljs-title function_">sayHi</span>();  <span class="hljs-comment">//Hello,Yaoyao.</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>对象属性链中只有最后一层会影响到调用位置：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sayHi</span>(<span class="hljs-params"></span>)&#123;<br>   <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;hello,&quot;</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>);<br>&#125;<br><span class="hljs-keyword">let</span> person1=&#123;<br>   <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Yaoyao&quot;</span>,<br>   <span class="hljs-attr">sayHi</span>: sayHi,<br>&#125;<br><span class="hljs-keyword">let</span> person2=&#123;<br>   <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Shenshen&quot;</span>,<br>   <span class="hljs-attr">friend</span>: person1,<br>&#125;<br>person2.<span class="hljs-property">friend</span>.<span class="hljs-title function_">sayHi</span>();  <span class="hljs-comment">//Hello,Yaoyao.</span><br></code></pre></td></tr></table></figure>
+
+<p>不是通过对象来进行<strong>调用</strong>仍旧是默认指向！！！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sayHi</span>(<span class="hljs-params"></span>)&#123;<br>   <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;hello,&quot;</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>);<br>&#125;<br><span class="hljs-keyword">let</span> person=&#123;<br>   <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Yaoyao&quot;</span>,<br>   <span class="hljs-attr">sayHi</span>: sayHi,<br>&#125;<br><span class="hljs-keyword">var</span> name=<span class="hljs-string">&quot;Shenshen&quot;</span>;<br><span class="hljs-keyword">let</span> <span class="hljs-title class_">Hi</span>=person.<span class="hljs-property">sayHi</span>;<br><span class="hljs-title class_">Hi</span>();<br></code></pre></td></tr></table></figure>
+
+<p>在上面的例子中，输出的是Shenshen。因为Hi绑定在sayHi上，调用时和person没有关系</p>
+<p>下一个例子：（隐形绑定的丢失会发生在回调函数中）（在浏览器运行）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sayHi</span>(<span class="hljs-params"></span>)&#123;<br>   <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;hello,&quot;</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>);<br>&#125;<br><span class="hljs-keyword">let</span> person1=&#123;<br>   <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Yaoyao&quot;</span>,<br>   <span class="hljs-attr">sayHi</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>         <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Hello,&#x27;</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>);  <span class="hljs-comment">//setTimeout的回调函数中，this使用的是默认绑定</span><br>      &#125;)<br>   &#125;<br>&#125;<br><span class="hljs-keyword">let</span> person2=&#123;<br>   <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Shenshen&quot;</span>,<br>   <span class="hljs-attr">sayHi</span>: sayHi<br>&#125;<br><span class="hljs-keyword">var</span> name=<span class="hljs-string">&quot;Shanshan&quot;</span>;<br>person1.<span class="hljs-title function_">sayHi</span>();  <span class="hljs-comment">//Hello, Shanshan</span><br><span class="hljs-built_in">setTimeout</span>(person2.<span class="hljs-property">sayHi</span>,<span class="hljs-number">1000</span>);  <span class="hljs-comment">//Hello, Shanshan</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>   person2.<span class="hljs-title function_">sayHi</span>();<br>&#125;,<span class="hljs-number">1000</span>);  <span class="hljs-comment">//Hello, shenshen</span><br></code></pre></td></tr></table></figure>
+
+<p>（在node中运行时就算显式指定global.name的值还是会输出undefined，不知道为什么）</p>
+<h4 id="（3）显式绑定"><a href="#（3）显式绑定" class="headerlink" title="（3）显式绑定"></a>（3）显式绑定</h4><p>显式绑定的丢失：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sayHi</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Hello,&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>);<br>&#125;<br><span class="hljs-keyword">var</span> person = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;YvetteLau&#x27;</span>,<br>    <span class="hljs-attr">sayHi</span>: sayHi<br>&#125;<br><span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;Wiliam&#x27;</span>;<br><span class="hljs-keyword">var</span> <span class="hljs-title class_">Hi</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) &#123;<br>    <span class="hljs-title function_">fn</span>();<br>&#125;<br><span class="hljs-title class_">Hi</span>.<span class="hljs-title function_">call</span>(person, person.<span class="hljs-property">sayHi</span>); <br></code></pre></td></tr></table></figure>
+
+<p>这时候，fn是person.sayHi，将this绑定到了Hi的this，但是执行fn的时候相当于直接调用了sayHi方法，此时隐式绑定也丢了，对应的是默认绑定。</p>
+<p>解决方法是在调用fn的时候也硬绑定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> <span class="hljs-title class_">Hi</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) &#123;<br>    fn.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果我们将null或者是undefined作为this的绑定对象传入call、apply或者是bind,这些值在调用时会被忽略，实际应用的是默认绑定规则。</p>
+<h4 id="（4）new绑定"><a href="#（4）new绑定" class="headerlink" title="（4）new绑定"></a>（4）new绑定</h4><p>使用new来调用函数会自动执行下面的操作：</p>
+<p>1、创建一个新对象</p>
+<p>2、将构造函数的作用域赋值给新对象（即this指向这个新对象）</p>
+<p>3、执行构造函数中的代码</p>
+<p>4、返回新对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sayHi</span>(<span class="hljs-params">name</span>)&#123;<br>	<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>=name;<br>&#125;<br><span class="hljs-keyword">var</span> <span class="hljs-title class_">Hi</span>=<span class="hljs-keyword">new</span> <span class="hljs-title function_">sayHi</span>(<span class="hljs-string">&quot;Yaoyao&quot;</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Hi</span>.<span class="hljs-property">name</span>); <span class="hljs-comment">//Yaoyao</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（5）绑定优先级"><a href="#（5）绑定优先级" class="headerlink" title="（5）绑定优先级"></a>（5）绑定优先级</h4><p>new绑定&gt;显式绑定&gt;隐式绑定&gt;默认绑定</p>
+<h4 id="（6）箭头函数"><a href="#（6）箭头函数" class="headerlink" title="（6）箭头函数"></a>（6）箭头函数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;<br>    <span class="hljs-attr">hi</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-function">()=&gt;</span>&#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>);<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">sayHi</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-function">()=&gt;</span>&#123;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>);<br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">say</span>: <span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">let</span> hi = obj.<span class="hljs-title function_">hi</span>();  <span class="hljs-comment">//输出obj对象————①</span><br><span class="hljs-title function_">hi</span>();               <span class="hljs-comment">//输出obj对象————②</span><br><span class="hljs-keyword">let</span> sayHi = obj.<span class="hljs-title function_">sayHi</span>();<br><span class="hljs-keyword">let</span> fun1 = <span class="hljs-title function_">sayHi</span>(); <span class="hljs-comment">//输出window————③</span><br><span class="hljs-title function_">fun1</span>();             <span class="hljs-comment">//输出window————④</span><br>obj.<span class="hljs-title function_">say</span>();          <span class="hljs-comment">//输出window————⑤</span><br></code></pre></td></tr></table></figure>
+
+<p>①：通过对象调用函数，属于隐式调用。this指向obj</p>
+<p>②：箭头函数是从上一个作用域继承this，所以这时指向的是obj</p>
+<p>③：这是上面的隐式绑定丢失的情况，this指向window</p>
+<p>④：这一步执行的是箭头函数，继承上一个作用域，this指向window</p>
+<p>⑤：当前代码块中obj中不存在this，因此再向上找就找到了window</p>
+<p>如果这样去显式绑定：（箭头函数不能显式绑定）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> sayHi=obj.<span class="hljs-title function_">sayHi</span>();<br><span class="hljs-keyword">let</span> fun1=sayHi.<span class="hljs-title function_">bind</span>(obj);<br><span class="hljs-title function_">fun1</span>();<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（7）例题"><a href="#（7）例题" class="headerlink" title="（7）例题"></a>（7）例题</h4><h5 id="1、"><a href="#1、" class="headerlink" title="1、"></a>1、</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> number = <span class="hljs-number">5</span>;<br><span class="hljs-keyword">var</span> obj = &#123;<br>    <span class="hljs-attr">number</span>: <span class="hljs-number">3</span>,<br>    <span class="hljs-attr">fn</span>: (<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">var</span> number;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">number</span> *= <span class="hljs-number">2</span>;<br>        number = number * <span class="hljs-number">2</span>;<br>        number = <span class="hljs-number">3</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-keyword">var</span> num = <span class="hljs-variable language_">this</span>.<span class="hljs-property">number</span>;<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">number</span> *= <span class="hljs-number">2</span>;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num);<br>            number *= <span class="hljs-number">3</span>;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(number);<br>        &#125;<br>    &#125;)()<br>&#125;<br><span class="hljs-keyword">var</span> myFun = obj.<span class="hljs-property">fn</span>;<br>myFun.<span class="hljs-title function_">call</span>(<span class="hljs-literal">null</span>);<br>obj.<span class="hljs-title function_">fn</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">window</span>.<span class="hljs-property">number</span>);<br></code></pre></td></tr></table></figure>
+
+<p>输出结果分别为10、9、3、27、20</p>
+<h5 id="2、"><a href="#2、" class="headerlink" title="2、"></a>2、</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;<br>    <span class="hljs-attr">a</span>: <span class="hljs-string">&#x27;obj&#x27;</span>,<br>    <span class="hljs-attr">foo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;foo:&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;inner:&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>)<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">var</span> a = <span class="hljs-string">&#x27;window&#x27;</span><br><span class="hljs-keyword">var</span> obj2 = &#123; <span class="hljs-attr">a</span>: <span class="hljs-string">&#x27;obj2&#x27;</span> &#125;<br> <br>obj.<span class="hljs-title function_">foo</span>()()<br>obj.<span class="hljs-property">foo</span>.<span class="hljs-title function_">call</span>(obj2)()<br>obj.<span class="hljs-title function_">foo</span>().<span class="hljs-title function_">call</span>(obj2)<br></code></pre></td></tr></table></figure>
+
+<p>①：分别打印出的是obj.a和window.a</p>
+<p>②：分别打印的是obj2.a和window.a</p>
+<p>③：分别打印的是obj.a和obj2.a</p>
+<h5 id="3、"><a href="#3、" class="headerlink" title="3、"></a>3、</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;<br>  <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>,<br>  <span class="hljs-attr">foo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">b</span>) &#123;<br>    b = b || <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">c</span>) &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span> + b + c)<br>    &#125;<br>  &#125;<br>&#125;<br><span class="hljs-keyword">var</span> a = <span class="hljs-number">2</span><br><span class="hljs-keyword">var</span> obj2 = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">3</span> &#125;<br> <br>obj.<span class="hljs-title function_">foo</span>(a).<span class="hljs-title function_">call</span>(obj2, <span class="hljs-number">1</span>)<br>obj.<span class="hljs-property">foo</span>.<span class="hljs-title function_">call</span>(obj2)(<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<p>①：传入foo的参数为a&#x3D;2，也就是说b&#x3D;2；call方法将this绑定到obj2，this.a&#x3D;3，此时c&#x3D;1</p>
+<p>②：foo绑定至obj2，此时没有传入参数，b&#x3D;this.a&#x3D;obj2.a&#x3D;3，return匿名函数中的this.a指向window对象a&#x3D;2，传入的参数c&#x3D;1。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%AB%E8%82%A1%E9%9D%A2%E7%BB%8F/" class="category-chain-item">八股面经</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/js/" class="print-no-link">#js</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>前端八股总结-函数、对象和this</div>
+      <div>http://example.com/2024/11/03/前端八股总结-函数、对象和this/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yaodeer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 3, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/03/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93JS%E5%88%86%E6%94%AF-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="前端八股总结JS分支-类型转换">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">前端八股总结JS分支-类型转换</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/28/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93JS%E5%88%86%E6%94%AF-%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" title="前端八股总结JS分支-数组常用方法">
+                        <span class="hidden-mobile">前端八股总结JS分支-数组常用方法</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comment-three-kappa.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":500,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://yaodeer.github.io/2024/04/12/About%20Me/" target="_blank" rel="nofollow noopener"><span>2024</span></a> <i class="iconfont icon-love"></i> <a href="https://yaodeer.github.io/2024/04/12/About%20Me/" target="_blank" rel="nofollow noopener"><span>Yaodeer</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

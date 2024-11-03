@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241024163236109.png">
 <meta property="article:published_time" content="2024-10-23T12:37:17.655Z">
-<meta property="article:modified_time" content="2024-10-25T02:06:53.891Z">
+<meta property="article:modified_time" content="2024-11-03T13:57:59.400Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary_large_image">
@@ -263,7 +263,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.5k words
+          7.2k words
         
       </span>
     
@@ -274,7 +274,7 @@
         
         
         
-          47 mins
+          60 mins
         
       </span>
     
@@ -328,7 +328,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on October 25, 2024 am
+                    Last updated on November 3, 2024 pm
                   
                 
               </p>
@@ -414,6 +414,22 @@
 <li>局域网范围：ARP是基于广播的协议，工作在局域网（同一子网中），无法跨网段工作。</li>
 <li>ARP欺骗：由于ARP没有验证机制，容易受到ARP欺骗攻击。攻击者可以伪造ARP相应包，将自身MAC地址和目标IP地址绑定，从而窃听或劫持网络通信。</li>
 </ul>
+<h4 id="7、GET和POST的区别"><a href="#7、GET和POST的区别" class="headerlink" title="7、GET和POST的区别"></a>7、GET和POST的区别</h4><h5 id="🐸GET"><a href="#🐸GET" class="headerlink" title="🐸GET"></a>🐸GET</h5><ul>
+<li>用于从服务器获取数据</li>
+<li>请求参数通过URL的查询字符串传递，通常在URL末尾？开始，以key&#x3D;value的形式</li>
+<li>适合传递少量数据</li>
+<li>由于请求参数在URL中可见，不适合传递敏感信息</li>
+<li>请求可以被缓存，以提高性能</li>
+<li>幂等的，即多次请求相同的 URL 应返回相同的结果，而不改变服务器状态。</li>
+</ul>
+<h5 id="🐸POST"><a href="#🐸POST" class="headerlink" title="🐸POST"></a>🐸POST</h5><ul>
+<li>用于向服务器发送数据（例如提交表单数据）</li>
+<li>请求参数放在请求体中</li>
+<li>可以发送大量数据，几乎没有大小限制（具体取决于服务器）</li>
+<li>相对来说更安全，但仍然需要通过 HTTPS 加密传输以确保安全。</li>
+<li>通常不会被缓存，因为通常涉及更改服务器的状态</li>
+<li>不是幂等的，重复提交相同的 POST 请求可能会导致不同的结果，例如多次创建相同的资源。</li>
+</ul>
 <h3 id="（2）HTTP协议"><a href="#（2）HTTP协议" class="headerlink" title="（2）HTTP协议"></a>（2）HTTP协议</h3><h4 id="1、Header"><a href="#1、Header" class="headerlink" title="1、Header"></a>1、Header</h4><blockquote>
 <p>在HTTP（超文本传输协议）中，<strong>Header（头部）</strong>用于在客户端和服务器之间传递额外的元数据。HTTP请求和响应都包含头部，头部由多个键值对组成，格式为：<code>键: 值</code>。</p>
 </blockquote>
@@ -474,6 +490,48 @@
 <p>🔶多路复用改进：(基于UDP)即使某个数据包丢失其他流也不受影响，提高整体传输效率</p>
 <p>🔶0-RTT连接建立：QUIC允许在某些情况下进行0-RTT握手，进一步减少延迟</p>
 <p>🔺更高的传输效率和更低的延迟，适用于现代网络的需求，特别是在移动网络和高延迟环境下的表现出色。</p>
+<h4 id="3、HTTP和HTTPS的区别"><a href="#3、HTTP和HTTPS的区别" class="headerlink" title="3、HTTP和HTTPS的区别"></a>3、HTTP和HTTPS的区别</h4><h5 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h5><ul>
+<li>数据以明文形式传输，任何在传输过程中拦截数据的攻击者都可以查看和修改信息。</li>
+<li>没有身份验证机制，无法验证服务器的身份，用户无法确定自己访问是合法网站。</li>
+<li>由于没有加密和解密过程，HTTP 的传输速度相对较快。</li>
+<li>不再被搜索引擎优先考虑，可能会影响网站的搜索排名。</li>
+<li>默认使用端口 80</li>
+</ul>
+<h5 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h5><ul>
+<li>通过 SSL&#x2F;TLS 协议加密传输的数据，确保数据在传输过程中不被第三方窃取或篡改。这使得 HTTPS 更加安全，能够保护用户的隐私和敏感信息。</li>
+<li>在发送数据之前，客户端和服务器之间会进行安全连接的握手，生成加密密钥以确保通信的安全性。</li>
+<li>通过证书验证服务器身份，用户可以查看证书信息，确保与合法的网站进行通信。只有受信任的证书颁发机构（CA）签发的证书才能被浏览器接受。</li>
+<li>加密和解密会消耗一些性能，尤其是在握手和密钥交换阶段，可能会稍微增加延迟。但现代硬件和优化技术使得这种性能差距逐渐缩小。</li>
+<li>搜索引擎（如 Google）更倾向于优先考虑使用 HTTPS 的网站，认为它们更安全。此外，用户在访问 HTTPS 网站时，通常会看到浏览器中的安全锁图标，增加用户的信任感。</li>
+<li>默认使用端口 443。</li>
+</ul>
+<h4 id="4、HTTPS的握手过程"><a href="#4、HTTPS的握手过程" class="headerlink" title="4、HTTPS的握手过程"></a>4、HTTPS的握手过程</h4><p>TCP连接会先建立好。</p>
+<blockquote>
+<p>基于<strong>SSL（安全套接层）或 TLS（传输层安全性）</strong></p>
+</blockquote>
+<h5 id="1️⃣客户端发送“Hello”"><a href="#1️⃣客户端发送“Hello”" class="headerlink" title="1️⃣客户端发送“Hello”"></a>1️⃣客户端发送“Hello”</h5><ul>
+<li>协议版本：客户端支持的最高版本</li>
+<li>随机数：用于密钥生成</li>
+<li>支持的加密套件：客户端支持的加密算法列表</li>
+<li>压缩方法：客户端支持的压缩算法（如果有）</li>
+</ul>
+<h5 id="2️⃣服务器回复“Hello”"><a href="#2️⃣服务器回复“Hello”" class="headerlink" title="2️⃣服务器回复“Hello”"></a>2️⃣服务器回复“Hello”</h5><ul>
+<li>协议版本：服务器选择的协议版本。</li>
+<li>随机数：服务器随机生成的数值。</li>
+<li>选择的加密套件：服务器选择的加密算法。</li>
+<li>选择的压缩方法：服务器选择的压缩算法（如果有）。</li>
+</ul>
+<h5 id="3️⃣服务器向客户端发送SSL-TLS证书"><a href="#3️⃣服务器向客户端发送SSL-TLS证书" class="headerlink" title="3️⃣服务器向客户端发送SSL&#x2F;TLS证书"></a>3️⃣服务器向客户端发送SSL&#x2F;TLS证书</h5><ul>
+<li>服务器的公钥。</li>
+<li>证书颁发机构（CA）的信息。</li>
+<li>证书的有效期等。</li>
+</ul>
+<h5 id="4️⃣服务器Hello-Done"><a href="#4️⃣服务器Hello-Done" class="headerlink" title="4️⃣服务器Hello Done"></a>4️⃣服务器Hello Done</h5><p>表示服务器Hello消息已经结束，客户端可以开始处理服务器的消息</p>
+<h5 id="5️⃣客户端密钥交换"><a href="#5️⃣客户端密钥交换" class="headerlink" title="5️⃣客户端密钥交换"></a>5️⃣客户端密钥交换</h5><p>客户端生成一个称为“预主密钥”的随机数，并用服务器的公钥对其进行加密。然后客户端将加密后的预主密钥发送给服务器。</p>
+<h5 id="6️⃣密钥生成"><a href="#6️⃣密钥生成" class="headerlink" title="6️⃣密钥生成"></a>6️⃣密钥生成</h5><p>客户端和服务器都是用预主密钥和之前交换的随机数生成会话密钥（对称密钥）。对称密钥用于后续的数据加密和解密。</p>
+<h5 id="7️⃣完成握手"><a href="#7️⃣完成握手" class="headerlink" title="7️⃣完成握手"></a>7️⃣完成握手</h5><p>客户端完成：客户端发送一条消息表示握手完成，消息会使用会话密钥加密</p>
+<p>服务器完成：服务器收到客户端的消息后也发送加密消息</p>
+<h5 id="8️⃣安全通信开始"><a href="#8️⃣安全通信开始" class="headerlink" title="8️⃣安全通信开始"></a>8️⃣安全通信开始</h5><p>完成握手后，客户端和服务器之间的通信将会使用会话密钥加密。此时，数据传输的机密性和完整性得到保障。</p>
 <h3 id="（3）跨域"><a href="#（3）跨域" class="headerlink" title="（3）跨域"></a>（3）跨域</h3><blockquote>
 <p>跨域（Cross-Origin）是指浏览器处于安全性考虑，阻止来自不同域的网页请求资源。跨域请求通常由浏览器的同源策略（Same-Origin Policy）引起。浏览器默认只允许同源请求。</p>
 </blockquote>
@@ -485,6 +543,7 @@
 </ul>
 <h5 id="跨域的场景："><a href="#跨域的场景：" class="headerlink" title="跨域的场景："></a>跨域的场景：</h5><ul>
 <li>Ajax 请求：前端通过 XMLHttpRequest 或 <code>fetch</code> API 向不同源的服务器发送请求。</li>
+<li>前端和服务器分开部署，接口请求需要跨域</li>
 <li>页面中的资源加载：比如通过 <code>&lt;img&gt;</code>、<code>&lt;script&gt;</code>、<code>&lt;iframe&gt;</code>、<code>&lt;link&gt;</code> 标签加载外部资源时，可能涉及跨域。</li>
 <li>跨域嵌套的页面：通过 <code>&lt;iframe&gt;</code> 嵌套不同域的页面时会受到限制。</li>
 </ul>
@@ -538,6 +597,7 @@
 <p>Wedsocket协议是一种在客户端（浏览器）和服务器之间进行全双工通信的协议，它允许双方在单个持久连接的基础上，进行双向的数据传输。与传统的HTTP协议不同，Websocket不是基于请求-响应模式的，而是可以在连接建立后，双方随时主动发消息。这使得它适合实时应用，如聊天、游戏、实时数据推送。</p>
 </blockquote>
 <h5 id="🦄特点："><a href="#🦄特点：" class="headerlink" title="🦄特点："></a>🦄特点：</h5><ul>
+<li>Websocket 不受同源策略影响，只要服务器端支持，无需任何配置就支持跨域。</li>
 <li>双向通信（Full-Duplex)： 允许服务器和客户端同时发送和接收数据，而不必等待对方发起请求</li>
 <li>低延迟：由于只需要进行一次初始握手，并且链接一旦建立变持续存在，后续的数据传输不需要重新建立连接，因此可以减少延迟。</li>
 <li>节省带宽：通信报文头部比HTTP端，后续的消息交换只需要很少的协议头数据</li>
@@ -550,8 +610,34 @@
 </ul>
 <h5 id="🦄优缺点"><a href="#🦄优缺点" class="headerlink" title="🦄优缺点"></a>🦄优缺点</h5><p>优点：高效、实时、占用资源少</p>
 <p>缺点：不支持断线重连（HTTP会自动发起新请求）、防火墙兼容问题（非标准HTTP通信）</p>
-<h3 id="（4）常见的网络攻击"><a href="#（4）常见的网络攻击" class="headerlink" title="（4）常见的网络攻击"></a>（4）常见的网络攻击</h3><h4 id="1、XSS攻击（跨站脚本攻击）"><a href="#1、XSS攻击（跨站脚本攻击）" class="headerlink" title="1、XSS攻击（跨站脚本攻击）"></a>1、XSS攻击（跨站脚本攻击）</h4><p>攻击者将恶意的脚本代码注入到受信任的网站中，其他用户在访问时执行这些恶意脚本，从而被攻击者窃取会话信息、用户数据等。</p>
+<h3 id="（4）常见的网络攻击"><a href="#（4）常见的网络攻击" class="headerlink" title="（4）常见的网络攻击"></a>（4）常见的网络攻击</h3><p><a target="_blank" rel="noopener" href="https://github.com/YvetteLau/Blog/issues/29">【面试篇】寒冬求职之你必须要懂的Web安全 · Issue #29 · YvetteLau&#x2F;Blog</a></p>
+<h4 id="1、XSS攻击（跨站脚本攻击）"><a href="#1、XSS攻击（跨站脚本攻击）" class="headerlink" title="1、XSS攻击（跨站脚本攻击）"></a>1、XSS攻击（跨站脚本攻击）</h4><p>攻击者将恶意的脚本代码注入到受信任的网站中，其他用户在访问时执行这些恶意脚本，从而被攻击者窃取会话信息、用户数据等。</p>
+<p>本质：恶意代码没有经过过滤，与网站的正常代码混在一起；浏览器无法分辨哪些脚本是可信的，导致恶意脚本被执行；由于直接在用户的终端执行，恶意代码可以直接获取用户用户的信息，利用这些信息冒充用户向网站发起攻击者定义的请求。</p>
+<h5 id="如何避免"><a href="#如何避免" class="headerlink" title="如何避免"></a>如何避免</h5><ul>
+<li>对所有用户输入进行严格的验证和过滤。可以使用白名单策略，只允许特定格式或内容的输入。</li>
+<li>将敏感信息（如会话 cookie）设置为 HttpOnly，这样 JavaScript 无法访问这些 cookie。</li>
+<li>设置 Secure 标志，确保 cookie 仅通过 HTTPS 传输。</li>
+<li>使用现代的前端框架</li>
+</ul>
 <h4 id="2、CSRF攻击（跨站请求伪造）"><a href="#2、CSRF攻击（跨站请求伪造）" class="headerlink" title="2、CSRF攻击（跨站请求伪造）"></a>2、CSRF攻击（跨站请求伪造）</h4><p>攻击者诱使已经登陆的用户访问恶意网站或者链接，从而在用户不知情的情况下以用户身份执行未经授权的操作。</p>
+<ul>
+<li>使用 CSRF 令牌：为每个表单生成唯一的 CSRF 令牌，并在请求中验证该令牌。</li>
+<li>检查 Referer 头：验证请求的来源，以确保请求来自合法的页面。</li>
+<li>同源策略：确保敏感操作只能从同源域进行。</li>
+</ul>
+<h4 id="3、中间人攻击"><a href="#3、中间人攻击" class="headerlink" title="3、中间人攻击"></a>3、中间人攻击</h4><p>HTTPS 中间人攻击（Man-in-the-Middle Attack, MITM）是一种网络攻击方式，攻击者通过在用户和网站之间插入自己，从而拦截和操纵通信数据。尽管 HTTPS（超文本传输安全协议）提供了加密和安全性，但如果攻击者能够控制某些网络条件，依然可以实施中间人攻击。</p>
+<p><strong>SSL Stripping</strong>：</p>
+<ul>
+<li>攻击者将 HTTPS 请求转换为 HTTP 请求，使用户与网站之间的连接不再加密，从而能够拦截数据。</li>
+</ul>
+<p><strong>Wi-Fi 热点攻击</strong>：</p>
+<ul>
+<li>攻击者设置伪造的 Wi-Fi 热点，诱使用户连接，从而监控用户的网络流量。</li>
+</ul>
+<p><strong>DNS Spoofing</strong>：</p>
+<ul>
+<li>攻击者通过伪造 DNS 响应将用户引导到恶意网站，尽管该网站看起来与原网站相同。</li>
+</ul>
 <h2 id="二、操作系统"><a href="#二、操作系统" class="headerlink" title="二、操作系统"></a>二、操作系统</h2><h3 id="（1）进程调度"><a href="#（1）进程调度" class="headerlink" title="（1）进程调度"></a>（1）进程调度</h3><h4 id="1、阻塞和就绪"><a href="#1、阻塞和就绪" class="headerlink" title="1、阻塞和就绪"></a>1、阻塞和就绪</h4><h5 id="🐅阻塞状态"><a href="#🐅阻塞状态" class="headerlink" title="🐅阻塞状态"></a>🐅阻塞状态</h5><p>进程处于阻塞状态时，表示它正在<strong>等待某个事件的发生</strong>，通常是等待 I&#x2F;O 操作完成、信号量、条件变量或资源的释放。通常是因为请求的资源不可用（等待磁盘读写、网络数据接收）。</p>
 <p>一旦等待的时间发生，阻塞的进程会被唤醒，转变为就绪状态，等待CPU资源的分配。</p>
 <h5 id="🐆就绪状态"><a href="#🐆就绪状态" class="headerlink" title="🐆就绪状态"></a>🐆就绪状态</h5><p>进程处于就绪状态时，表示它已经准备好可以运行，<strong>等待 CPU 分配时间片</strong>。通常是一个准备执行的进程已经获得了所有所需的资源，但是由于<strong>CPU正在被其他进程使用</strong>，所以处于就绪状态。</p>

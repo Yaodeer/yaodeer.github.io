@@ -24,7 +24,7 @@
 <meta property="og:description" content="详细总结web缓存和HTTP缓存">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-10-26T08:36:23.447Z">
-<meta property="article:modified_time" content="2024-10-26T08:36:23.581Z">
+<meta property="article:modified_time" content="2024-11-03T16:00:40.250Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary_large_image">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k words
+          2.8k words
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          22 mins
+          24 mins
         
       </span>
     
@@ -326,7 +326,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on October 26, 2024 pm
+                    Last updated on November 4, 2024 am
                   
                 
               </p>
@@ -341,12 +341,15 @@
 <p>浏览器每次发起请求都会先在浏览器缓存中查找该请求的结果以及缓存标识</p>
 <p>浏览器每次拿到返回的请求结果都会将该结果和缓存标识存入浏览器缓存中</p>
 </blockquote>
-<h5 id="🦆缓存可以解决什么问题："><a href="#🦆缓存可以解决什么问题：" class="headerlink" title="🦆缓存可以解决什么问题："></a>🦆缓存可以解决什么问题：</h5><ul>
+<h5 id="缓存可以解决什么问题："><a href="#缓存可以解决什么问题：" class="headerlink" title="缓存可以解决什么问题："></a>缓存可以解决什么问题：</h5><ul>
 <li>减少不必要的网络传输，节约带宽</li>
 <li>更快的加载界面</li>
 <li>减少服务器负载，避免服务器过载的情况出现</li>
 </ul>
 <p>缺点：占用内存</p>
+<blockquote>
+<p>CSS、媒体文件、字体文件、CDN加载的资源</p>
+</blockquote>
 <h5 id="🦆强缓存（从内存-磁盘中读取）"><a href="#🦆强缓存（从内存-磁盘中读取）" class="headerlink" title="🦆强缓存（从内存&#x2F;磁盘中读取）"></a>🦆强缓存（从内存&#x2F;磁盘中读取）</h5><blockquote>
 <p>从内存读取的缓存更快</p>
 </blockquote>
@@ -372,7 +375,7 @@
 </li>
 </ul>
 <h5 id="🦢协商缓存"><a href="#🦢协商缓存" class="headerlink" title="🦢协商缓存"></a>🦢协商缓存</h5><blockquote>
-<p>有哈希值的文件设置强缓存，没有哈希值的文件（如index.html）设置协商缓存</p>
+<p>动态内容、频繁更新的API接口返回的数据；敏感数据</p>
 </blockquote>
 <p>🐔基于last-modified的协商缓存</p>
 <ul>
@@ -408,6 +411,12 @@
 <li>服务端拿到上一次文件指纹，和目标资源的指纹进行对比，如果完全吻合，返回304状态码和空的响应体；如果不吻合说明文件被更改，将新的文件指纹重新存储到响应头的Etag并返回给客户端</li>
 </ul>
 <p>计算开销大，不是Last-Modified的完全替代方案</p>
+<h5 id="已经设置为强缓存的文件想转化为协商缓存："><a href="#已经设置为强缓存的文件想转化为协商缓存：" class="headerlink" title="已经设置为强缓存的文件想转化为协商缓存："></a>已经设置为强缓存的文件想转化为协商缓存：</h5><ul>
+<li>清除浏览器的缓存</li>
+<li>修改文件的URL（早JS文件的引入中加入查询参数：版本号或者时间戳；修改文件名）</li>
+<li>Ctrl+F5强制刷新界面</li>
+<li>浏览器的开发者工具F12设置禁用缓存选项</li>
+</ul>
 <h4 id="（2）Cookie和Session"><a href="#（2）Cookie和Session" class="headerlink" title="（2）Cookie和Session"></a>（2）Cookie和Session</h4><blockquote>
 <p>Cookie通过在客户端记录信息确定用户身份，Session在服务端记录信息确定用户身份</p>
 </blockquote>
@@ -418,8 +427,7 @@
 <p>🪶特点：</p>
 <ul>
 <li>一旦创建成功，名称无法修改</li>
-<li>不可跨域（由Cookie的隐私安全性决定）</li>
-<li>每个域名下Cookie数量不能超过20个，每个Cookie大小不能超过4kb</li>
+<li>每个Cookie大小不能超过4kb</li>
 <li>在请求新的页面时会自动被发送过去</li>
 <li>两种保存方式：浏览器内存和客户端硬盘</li>
 </ul>
@@ -441,7 +449,8 @@
 <li>Name：cookie的名称</li>
 <li>Value：cookie的值，对于认证cookie，value值包括web服务器所提供的访问令牌</li>
 <li>Size： cookie的大小</li>
-<li>Path：可以访问此cookie的页面路径。 比如domain是abc.com，path是&#x2F;test，那么只有&#x2F;test路径下的页面可以读取此cookie。</li>
+<li>Path：可以访问此cookie的页面路径。 比如domain是abc.com，path是&#x2F;test，那么只有&#x2F;test路径下的页面可以读取此cookie。（子路径可以，‘&#x2F;’路径不可以）</li>
+<li><strong>domain</strong>：用于指定cookie的可用域名，设置后，这个cookie会对指定的域及其所有指定的子域有效。如果未指定，默认是设置cookie的主机名。</li>
 <li>Secure： 指定是否使用HTTPS安全协议发送Cookie。使用HTTPS安全协议，可以保护Cookie在浏览器和Web服务器间的传输过程中不被窃取和篡改。该方法也可用于Web站点的身份鉴别，即在HTTPS的连接建立阶段，浏览器会检查Web网站的SSL证书的有效性。但是基于兼容性的原因（比如有些网站使用自签署的证书）在检测到SSL证书无效时，浏览器并不会立即终止用户的连接请求，而是显示安全风险信息，用户仍可以选择继续访问该站点。</li>
 <li><strong>Expires&#x2F;Max-size</strong> ： 此cookie的超时时间。若设置其值为一个时间，那么当到达此时间后，此cookie失效。不设置的话默认值是Session，意思是cookie会和session一起失效。当浏览器关闭(不是浏览器标签页，而是整个浏览器) 后，此cookie失效。</li>
 </ul>
@@ -504,6 +513,13 @@
 </ul>
 <p>🪽常用API和local一样</p>
 <p>🪽使用场景和session差不多</p>
+<h4 id="（4）token"><a href="#（4）token" class="headerlink" title="（4）token"></a>（4）token</h4><p>Token 是一种用于身份验证的机制，通常以 JSON Web Token（JWT）形式存在。它由服务器生成并发送给客户端，客户端在后续请求中发送该 Token。</p>
+<p><strong>存储方式</strong>：通常在客户端存储，可以放在 Cookie、localStorage 或 sessionStorage 中。</p>
+<p><strong>生命周期</strong>：可以设置过期时间，Token 可以是短期（如访问 Token）和长期（如刷新 Token）。</p>
+<p><strong>安全性</strong>：Token 通常经过签名，确保数据的完整性和有效性。</p>
+<p>可以存储较大的数据量</p>
+<h5 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h5><p>RESTful API 身份验证和授权。</p>
+<p>分布式系统和微服务架构，Token 可以在不同服务间共享。</p>
 
                 
               </div>

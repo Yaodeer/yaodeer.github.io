@@ -24,7 +24,7 @@
 <meta property="og:description" content="备份一下遇到的CPP知识">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-10-23T12:36:09.483Z">
-<meta property="article:modified_time" content="2024-10-24T15:59:09.984Z">
+<meta property="article:modified_time" content="2024-11-01T09:05:22.030Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary_large_image">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k words
+          1.2k words
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          10 mins
+          11 mins
         
       </span>
     
@@ -326,7 +326,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on October 24, 2024 pm
+                    Last updated on November 1, 2024 pm
                   
                 
               </p>
@@ -408,6 +408,8 @@
 <ul>
 <li>从0-6的地址开始依次向后，直到找到空位置的距离相加。最后除以7。</li>
 </ul>
+<h4 id="3、排序"><a href="#3、排序" class="headerlink" title="3、排序"></a>3、排序</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43914593/article/details/134621725">＜蓝桥杯软件赛＞零基础备赛20周–第8周第1讲–十大排序-CSDN博客</a></p>
+<h4 id="4、二分"><a href="#4、二分" class="headerlink" title="4、二分"></a>4、二分</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43914593/article/details/134986095">＜蓝桥杯软件赛＞零基础备赛20周–第10周–二分_蓝桥杯20周csdn-CSDN博客</a></p>
 <h3 id="（3）其他知识点"><a href="#（3）其他知识点" class="headerlink" title="（3）其他知识点"></a>（3）其他知识点</h3><h4 id="1、i-和-i的区别"><a href="#1、i-和-i的区别" class="headerlink" title="1、i++和++i的区别"></a>1、i++和++i的区别</h4><p>i++先赋值再自增，++i先自增再赋值。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;<br>i = i++;<br><span class="hljs-type">int</span> j = i++;<br><span class="hljs-type">int</span> k = i + ++i * i++;<br>System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;i = &quot;</span> + i);    <span class="hljs-comment">//4</span><br>System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;j = &quot;</span> + j);    <span class="hljs-comment">//1</span><br>System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;k = &quot;</span> + k);    <span class="hljs-comment">//11(2+3*3)</span><br></code></pre></td></tr></table></figure>
 
@@ -416,6 +418,14 @@
 <h4 id="2、std-vector"><a href="#2、std-vector" class="headerlink" title="2、std::vector&lt;int&gt;()"></a>2、<code>std::vector&lt;int&gt;()</code></h4><p><code>ans=cnt==numCourses?ans:std::vector&lt;int&gt;();</code></p>
 <p>如果要返回空数组，不能直接写[]或者{}，而是要按照上面的语法写</p>
 <h4 id="3、设计模式"><a href="#3、设计模式" class="headerlink" title="3、设计模式"></a>3、设计模式</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/A1342772/article/details/91349142?ops_request_misc=%7B%22request_id%22:%22AFEAC980-6427-4EB1-9C54-51C82761BBBA%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=AFEAC980-6427-4EB1-9C54-51C82761BBBA&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-91349142-null-null.142%5Ev100%5Epc_search_result_base9&utm_term=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&spm=1018.2226.3001.4187">23 种设计模式详解（全23种）_23种设计模式-CSDN博客</a></p>
+<h4 id="4、stoi"><a href="#4、stoi" class="headerlink" title="4、stoi"></a>4、stoi</h4><p>用于将字符串转化为数字</p>
+<p><strong>stoi（str，pos，base）</strong></p>
+<ul>
+<li>pos可以定义从某个位置开始转化</li>
+<li>base可以指定转化为多少进制，直接写数字就可以了</li>
+</ul>
+<p>与此相对的是to_string，它用于把各种数值类型转化为字符串</p>
+<h4 id="5、replace"><a href="#5、replace" class="headerlink" title="5、replace"></a>5、replace</h4><p>用于在指定范围内替换指定的元素，通常与vector，string配合使用。</p>
 
                 
               </div>

@@ -16,24 +16,24 @@
   <meta name="author" content="Yaodeer">
   <meta name="keywords" content="">
   
-    <meta name="description" content="总结一下React常见问题">
+    <meta name="description" content="总结一下JS的类型转换">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端八股总结-React">
-<meta property="og:url" content="http://example.com/2024/10/28/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93-React/index.html">
+<meta property="og:title" content="前端八股总结JS分支-类型转换">
+<meta property="og:url" content="http://example.com/2024/11/03/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93JS%E5%88%86%E6%94%AF-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Yaodeer">
-<meta property="og:description" content="总结一下React常见问题">
+<meta property="og:description" content="总结一下JS的类型转换">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-10-28T14:13:25.163Z">
-<meta property="article:modified_time" content="2024-11-03T14:15:20.875Z">
+<meta property="article:published_time" content="2024-11-03T13:32:51.589Z">
+<meta property="article:modified_time" content="2024-11-03T13:32:51.737Z">
 <meta property="article:author" content="Yaodeer">
-<meta property="article:tag" content="c++">
+<meta property="article:tag" content="JS">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>前端八股总结-React - Yaodeer</title>
+  <title>前端八股总结JS分支-类型转换 - Yaodeer</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -238,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="前端八股总结-React"></span>
+            <span id="subtitle" data-typed-text="前端八股总结JS分支-类型转换"></span>
           
         </div>
 
@@ -249,8 +249,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-28 22:13" pubdate>
-          October 28, 2024 pm
+        <time datetime="2024-11-03 21:32" pubdate>
+          November 3, 2024 pm
         </time>
       </span>
     
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k words
+          1.1k words
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          15 mins
+          9 mins
         
       </span>
     
@@ -321,7 +321,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">前端八股总结-React</h1>
+            <h1 id="seo-header">前端八股总结JS分支-类型转换</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -334,61 +334,76 @@
             
               <div class="markdown-body">
                 
-                <p>总结一下React常见问题</p>
+                <p>总结一下JS的类型转换</p>
 <span id="more"></span>
 
-<p>（所以记忆是会消失的对吗，一阵不看就忘光了🥹）</p>
-<h3 id="0、React18的新特性"><a href="#0、React18的新特性" class="headerlink" title="0、React18的新特性"></a>0、React18的新特性</h3><p>并发渲染</p>
-<p>自动批处理</p>
-<p>suspense</p>
-<p>createRoot API（用于启用并发特性）</p>
-<p>SSR流式传输</p>
-<h3 id="一、useState是如何记住上次的状态的"><a href="#一、useState是如何记住上次的状态的" class="headerlink" title="一、useState是如何记住上次的状态的"></a>一、useState是如何记住上次的状态的</h3><blockquote>
-<p>工作原理是通过在组件内部维护一个状态变量，以及提供一个函数来更新这个状态</p>
-</blockquote>
-<p>每次组件渲染时，<code>useState</code> 都会记住上次的状态值，而不是重新初始化。这是因为 React 通过内部数据结构（如 fiber 树）跟踪状态变化。在组件的每次更新中，React 会查找与当前组件相对应的状态值，并返回它。</p>
-<h3 id="二、React生命周期"><a href="#二、React生命周期" class="headerlink" title="二、React生命周期"></a>二、React生命周期</h3><p>React生命周期是指组件从创建到销毁的整个过程。</p>
-<p>指的是<strong>挂载</strong>、<strong>更新</strong>和<strong>卸载</strong>。</p>
-<p>在类组件中通过生命周期方法来管理组件的生命周期。</p>
-<p>在函数组件中，则是通过<strong>useState钩子</strong>来管理的。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-comment">// 组件挂载时执行的代码</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-comment">// 组件卸载时执行的清理代码</span><br>    &#125;;<br>&#125;, [dependencies]); <span class="hljs-comment">// 可选的依赖数组</span><br></code></pre></td></tr></table></figure>
+<p>参考<a target="_blank" rel="noopener" href="https://github.com/YvetteLau/Blog/issues/28">【面试篇】寒冬求职季之你必须要懂的原生JS(中) · Issue #28 · YvetteLau&#x2F;Blog</a>（是真寒冬🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶🥶寒死人了）</p>
+<p>Typora字一多就卡，只能抽出来单独写了🥲JS知识点好多，背不完，根本背不完</p>
+<h3 id="一、强制类型转换"><a href="#一、强制类型转换" class="headerlink" title="一、强制类型转换"></a>一、强制类型转换</h3><h4 id="（1）Number"><a href="#（1）Number" class="headerlink" title="（1）Number()"></a>（1）Number()</h4><p>将任意类型的参数转换为数值类型</p>
+<ul>
+<li>布尔值：转化为0或1</li>
+<li>数字：返回自身</li>
+<li>null：返回0</li>
+<li>undefined：返回NaN</li>
+<li>字符串：<ul>
+<li>如果只包含数字（可十六进制，可正负号），转化为十进制</li>
+<li>如果包含有效的浮点形式，转化为浮点数值</li>
+<li>如果是空字符串，转化为0</li>
+<li>如果不是以上类型，转化为NaN</li>
+</ul>
+</li>
+<li>Symbol：抛出错误（Symbol唯一且不可变）</li>
+<li>如果是对象，调用对象的valueof方法，再根据前面规则转换；如果转换的结果是NaN，调用对象的toString方法再依次按照前面的规则转换返回的字符串值</li>
+</ul>
+<h4 id="（2）parseInt-param-radix"><a href="#（2）parseInt-param-radix" class="headerlink" title="（2）parseInt(param,radix)"></a>（2）parseInt(param,radix)</h4><p>用于将字符串转化为整数。</p>
+<ul>
+<li>param：要解析的字符串<ul>
+<li>会忽略掉字符串开始的空格</li>
+<li>从第一个有效字符开始解析，直到无法解析时停止（‘123abc’-&gt;123）</li>
+<li>如果不是字符串会被自动转化为字符串</li>
+</ul>
+</li>
+<li>radix：进制基数<ul>
+<li>2-36之间的整数，表示响应进制数</li>
+<li>如果未指定，会根据param的前缀识别，0x开头解析为十六进制，0开头会被解析为八进制或者十进制</li>
+</ul>
+</li>
+</ul>
+<h4 id="（3）toString"><a href="#（3）toString" class="headerlink" title="（3）toString()"></a>（3）toString()</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;<span class="hljs-attr">a</span>:<span class="hljs-number">1</span>&#125;;<br><span class="hljs-keyword">let</span> sym = <span class="hljs-title class_">Symbol</span>(<span class="hljs-number">100</span>);<br><span class="hljs-keyword">let</span> date = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();<br><span class="hljs-keyword">let</span> fn = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;稳住，我们能赢！&#x27;</span>)&#125;<br><span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;hello world&#x27;</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([].<span class="hljs-title function_">toString</span>()); <span class="hljs-comment">// &#x27;&#x27;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-literal">undefined</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>].<span class="hljs-title function_">toString</span>());<span class="hljs-comment">//1,2,3,,5,6</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-title function_">toString</span>()); <span class="hljs-comment">// [object Object]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(date.<span class="hljs-title function_">toString</span>()); <span class="hljs-comment">// Sun Apr 21 2019 16:11:39 GMT+0800 (CST)</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(fn.<span class="hljs-title function_">toString</span>());<span class="hljs-comment">// function () &#123;console.log(&#x27;稳住，我们能赢！&#x27;)&#125;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">toString</span>());<span class="hljs-comment">// &#x27;hello world&#x27;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(sym.<span class="hljs-title function_">toString</span>());<span class="hljs-comment">// Symbol(100)</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">undefined</span>.<span class="hljs-title function_">toString</span>());<span class="hljs-comment">// 抛错</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">null</span>.<span class="hljs-title function_">toString</span>());<span class="hljs-comment">// 抛错</span><br></code></pre></td></tr></table></figure>
 
-<ul>
-<li>挂载和卸载：</li>
+
+
+<h4 id="（4）String"><a href="#（4）String" class="headerlink" title="（4）String()"></a>（4）String()</h4><p>和上面一致，只是遇到null和undefined会转换成‘null’和‘undefined’，不会报错</p>
+<h4 id="（5）Boolean"><a href="#（5）Boolean" class="headerlink" title="（5）Boolean()"></a>（5）Boolean()</h4><p>假值：null，0，undefined，NaN，false，“”转化为false，其他都是true</p>
+<h3 id="二、隐式转换"><a href="#二、隐式转换" class="headerlink" title="二、隐式转换"></a>二、隐式转换</h3><h4 id="（1）-if-while条件判断"><a href="#（1）-if-while条件判断" class="headerlink" title="（1）&amp;&amp;  ||  !  if&#x2F;while条件判断"></a>（1）&amp;&amp;  ||  !  if&#x2F;while条件判断</h4><p>需要将数据转为Boolean类型，同Boolean()</p>
+<h4 id="（2）-，-，-，"><a href="#（2）-，-，-，" class="headerlink" title="（2）+，-，*，&#x2F;"></a>（2）+，-，*，&#x2F;</h4><h5 id="1、"><a href="#1、" class="headerlink" title="1、+"></a>1、+</h5><p>如果操作数是对象、数值或者布尔值，使用toString转换规则</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(&#123;&#125;+<span class="hljs-number">10</span>); <span class="hljs-comment">//[object Object]10</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-literal">undefined</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>] + <span class="hljs-number">10</span>);<span class="hljs-comment">//1,2,3,,5,610</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">undefined</span>+<span class="hljs-number">10</span>+<span class="hljs-string">&quot;s&quot;</span>);<span class="hljs-comment">//NaNs</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">String</span>(<span class="hljs-literal">undefined</span>)+<span class="hljs-number">10</span>);<span class="hljs-comment">//undefined10</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="2、-、-、-操作符"><a href="#2、-、-、-操作符" class="headerlink" title="2、-、*、/ 操作符"></a>2、<code>-</code>、<code>*</code>、<code>/</code> 操作符</h5><p>针对的是运算，如果操作值之一不是数值，则被隐式调用Number()函数进行转换。如果其中有一个转换除了为NaN，结果为NaN.</p>
+<h4 id="（3）-，"><a href="#（3）-，" class="headerlink" title="（3）&lt;&#x3D;，&gt;&#x3D;，&lt;，&gt;"></a>（3）&lt;&#x3D;，&gt;&#x3D;，&lt;，&gt;</h4><ul>
+<li>若两个操作值都是数值，进行数值比较</li>
+<li>如果都是字符串，比较字符串对应的字符编码值</li>
+<li>如果有一方是Symbol，报错</li>
+<li>除上述情况都进行Number()强制转换再比较</li>
 </ul>
-<p>如果依赖数组为[]，效果只会在组件挂载的时候执行，在组件卸载的时候清理</p>
-<ul>
-<li>更新：</li>
+<h4 id="（4）"><a href="#（4）" class="headerlink" title="（4）&#x3D;&#x3D;"></a>（4）&#x3D;&#x3D;</h4><ul>
+<li>类型相同不需要进行类型转换</li>
+<li>如果有一个操作值是null或者undefined，另一个也许必须是null&#x2F;undefined才是true</li>
+<li>如果其中一个是Symbol，返回false</li>
+<li>如果是string&#x2F;boolean类型，就转化为number再比较</li>
+<li>如果一个是Object，就调用Object的valueOf或者toString方法来获取原始值再比较</li>
 </ul>
-<p>如果依赖数组中包含变量，当这些变量发生变化时，useEffect会在每次更新的时候执行。</p>
-<h3 id="三、React和Vue的区别"><a href="#三、React和Vue的区别" class="headerlink" title="三、React和Vue的区别"></a>三、React和Vue的区别</h3><h4 id="（1）设计理念"><a href="#（1）设计理念" class="headerlink" title="（1）设计理念"></a>（1）设计理念</h4><h5 id="React："><a href="#React：" class="headerlink" title="React："></a>React：</h5><p>React 是一个库，专注于构建用户界面，特别是单页应用（SPA）。它采用了“组件化”设计思想，强调通过组合组件来构建复杂的用户界面。</p>
-<h5 id="Vue："><a href="#Vue：" class="headerlink" title="Vue："></a>Vue：</h5><p>Vue 是一个渐进式框架，可以逐步引入，也可以用于构建大型应用程序。</p>
-<h4 id="（2）数据绑定"><a href="#（2）数据绑定" class="headerlink" title="（2）数据绑定"></a>（2）数据绑定</h4><h5 id="React：-1"><a href="#React：-1" class="headerlink" title="React："></a>React：</h5><ul>
-<li>React 使用单向数据流。父组件向子组件传递数据，通过 props 进行通信。子组件不能直接修改父组件的状态。</li>
-<li>需要使用 state 来管理组件的状态。</li>
-</ul>
-<h5 id="Vue：-1"><a href="#Vue：-1" class="headerlink" title="Vue："></a>Vue：</h5><p>Vue 支持双向数据绑定，通过 <code>v-model</code> 指令可以轻松实现。组件的 data 属性与视图保持同步，视图的变化会自动反映到数据上。</p>
-<h4 id="（3）模板语法"><a href="#（3）模板语法" class="headerlink" title="（3）模板语法"></a>（3）模板语法</h4><p>React使用JSX语法，Vue使用的是HTML和JS分开的逻辑</p>
-<h3 id="四、useMemo和useCallback"><a href="#四、useMemo和useCallback" class="headerlink" title="四、useMemo和useCallback"></a>四、useMemo和useCallback</h3><p>useMemo用于记忆（缓存）计算结果，可以避免在每次渲染时重新计算，只有在依赖项发生变化的时候才会重新计算。</p>
-<p>useCallback用于记忆（缓存）函数实例，可以避免在每次渲染时创建新的函数实例，只有在依赖项发生变化的时候才会返回新的函数。这对于依赖于函数的子组件特别重要，因为如果传递给子组件的函数在每次渲染时都不同，子组件会被重新渲染，即使它们的 props 没有变化。通过使用 <code>useCallback</code>，你可以确保传递给子组件的函数实例在依赖项不变时保持一致，从而减少不必要的渲染。</p>
-<h3 id="五、HOOKS"><a href="#五、HOOKS" class="headerlink" title="五、HOOKS"></a>五、HOOKS</h3><h4 id="（1）主要Hook"><a href="#（1）主要Hook" class="headerlink" title="（1）主要Hook"></a>（1）主要Hook</h4><h5 id="1、useState"><a href="#1、useState" class="headerlink" title="1、useState"></a>1、useState</h5><p>用于在函数组件中添加状态，允许组件响应用户交互、数据请求等事件时更新自身的状态，从而重新渲染组件。</p>
-<p>惰性初始状态：接受一个函数作为初始状态的参数，这个函数指挥在初始渲染时执行一次，适用于复杂的初始状态的计算。</p>
-<h5 id="2、useEffect"><a href="#2、useEffect" class="headerlink" title="2、useEffect"></a>2、useEffect</h5><p>用于在函数组件中管理副作用。副作用指的是组件渲染以外需要执行的操作，例如：数据获取、订阅、手动DOM操作等等。</p>
-<p>第一个参数是一个函数，包含副作用的逻辑。React在执行完选然后会调用这个函数。当组件卸载或依赖项更新的时候会调用返回的清理函数。</p>
-<h5 id="3、useRef"><a href="#3、useRef" class="headerlink" title="3、useRef"></a>3、useRef</h5><p>1、访问DOM元素，通过useRef创建的引用可以直接访问某个DOM元素的属性，而不需要在重新渲染组件的时候改变引用的内容。例如当需要访问某个输入框的值、控制焦点或者直接操作某个元素时，可以使用。</p>
-<p>2、保存跨渲染的状态。useRef创建的引用不会因为组件的重新渲染而改变，这让它适合存储不影响渲染逻辑的变量。对于非显示状态的数据useRef是个不错的选择。</p>
-<h4 id="（2）为什么hook要保证顺序"><a href="#（2）为什么hook要保证顺序" class="headerlink" title="（2）为什么hook要保证顺序"></a>（2）为什么hook要保证顺序</h4><p>为了React可以正确地将状态和副作用和相应的组件实例相关联。由于React是基于虚拟DOM的，对组件状态的更新和管理依赖于Hooks的调用顺序。如果顺序发生变化，React将无法正确识别哪些状态或副作用属于哪个组件。</p>
-<p>如果在条件或循环语句调用hook，可能在某些情况下跳过对某些hooks的调用，会导致React认为某个hook的状态已经被销毁或者未定义，从而引发错误。</p>
-<p>React在组件每次重新渲染时都会重新执行函数组件，如果hook的调用顺序不一致，React可能会根据上一次的渲染错误地更新state或effect。</p>
-<p>React的设计目标之一是性能优化，通过固定的调用顺序，React可以在内部进行更多的优化。例如React可以根据hooks调用的顺序快速识别和比较组件状态，从而高效更新组件。</p>
-<h3 id="六、React的并发特性"><a href="#六、React的并发特性" class="headerlink" title="六、React的并发特性"></a>六、React的并发特性</h3><p>旨在提升应用的用户体验和性能。这些特性可以让React在不阻塞主线程的情况下更高效地处理用户交互，帮助开发者创建相应迅速的应用。（<strong>频繁更新、非紧急更新、渲染性能</strong>）</p>
-<h4 id="（1）自动批处理"><a href="#（1）自动批处理" class="headerlink" title="（1）自动批处理"></a>（1）自动批处理</h4><p>React18之前，只会在事件处理器中自动批处理状态更新，在React18中自动批会在任何更新中自动执行。多个setState调用会自动合并，减少渲染次数，提高性能。</p>
-<h4 id="（2）优先级更新"><a href="#（2）优先级更新" class="headerlink" title="（2）优先级更新"></a>（2）优先级更新</h4><p>允许React通过优先级更新模型，决定哪些更新应该优先处理。</p>
-<h4 id="（3）过渡"><a href="#（3）过渡" class="headerlink" title="（3）过渡"></a>（3）过渡</h4><p>transition是一种让React将一些状态更新标记为非紧急。使用startTransition包裹这些更新，React会优先响应紧急更新，标记为过渡的更新会稍后执行。</p>
-<h4 id="（4）useDeferredValue和useTransition"><a href="#（4）useDeferredValue和useTransition" class="headerlink" title="（4）useDeferredValue和useTransition"></a>（4）useDeferredValue和useTransition</h4><p>useDeferredValue适合在高频率更新时缓解性能问题，用于在渲染非紧急内容时延迟展示结果，避免卡顿。</p>
-<p>useTransition用于标记更新为过渡，它会返回一个布尔值表示是否处于过渡状态，以便在过渡状态过程中提供用户反馈。</p>
-<h4 id="（5）并发渲染"><a href="#（5）并发渲染" class="headerlink" title="（5）并发渲染"></a>（5）并发渲染</h4><p>使得React可以暂停渲染并在需要时恢复。在复杂界面比较有用。并发渲染的核心思想是让 React 可以暂停、恢复或放弃渲染任务，以便用户交互能够优先得到响应。</p>
-<p>七、</p>
+<h4 id="（5）下列代码在什么情况下打印出1"><a href="#（5）下列代码在什么情况下打印出1" class="headerlink" title="（5）下列代码在什么情况下打印出1"></a>（5）下列代码在什么情况下打印出1</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">if</span>(a == <span class="hljs-number">1</span> &amp;&amp; a == <span class="hljs-number">2</span> &amp;&amp; a == <span class="hljs-number">3</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>JavaScript 在遇到 <code>==</code> 操作符时，会尝试将操作数转换为相同类型。如果一方是对象，则会调用该对象的 <code>valueOf</code> 或 <code>toString</code> 方法以获取一个原始值。以下方法利用这一机制，每次返回不同的值来满足 <code>==</code> 的比较条件。</p>
+<h5 id="1、valueof"><a href="#1、valueof" class="headerlink" title="1、valueof"></a>1、valueof</h5><p>定义一个对象，并重写它的valueof方法，使得每次转换a为原始值时返回不同的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> a=&#123;<br>   <span class="hljs-attr">value</span>: <span class="hljs-number">1</span>;<br>   <span class="hljs-title function_">valueOf</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">value</span>++;<br>   &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、toString"><a href="#2、toString" class="headerlink" title="2、toString"></a>2、toString</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> a = &#123;<br>  <span class="hljs-attr">value</span>: <span class="hljs-number">1</span>,<br>  <span class="hljs-title function_">toString</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">value</span>++;<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>JavaScript 在遇到 <code>==</code> 操作符时，会尝试将操作数转换为相同类型。如果一方是对象，则会调用该对象的 <code>valueOf</code> 或 <code>toString</code> 方法以获取一个原始值。以上方法利用这一机制，每次返回不同的值来满足 <code>==</code> 的比较条件。</p>
 
                 
               </div>
@@ -422,7 +437,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/c/" class="print-no-link">#c++</a>
+        <a href="/tags/JS/" class="print-no-link">#JS</a>
       
     </div>
   
@@ -434,8 +449,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>前端八股总结-React</div>
-      <div>http://example.com/2024/10/28/前端八股总结-React/</div>
+      <div>前端八股总结JS分支-类型转换</div>
+      <div>http://example.com/2024/11/03/前端八股总结JS分支-类型转换/</div>
     </div>
     <div class="license-meta">
       
@@ -447,7 +462,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 28, 2024</div>
+          <div>November 3, 2024</div>
         </div>
       
       
@@ -479,18 +494,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/10/28/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93JS%E5%88%86%E6%94%AF-%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" title="前端八股总结JS分支-数组常用方法">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">前端八股总结JS分支-数组常用方法</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/28/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93CSS%E5%88%86%E6%94%AF-flex%E5%B8%83%E5%B1%80/" title="前端八股总结CSS分支-flex布局">
-                        <span class="hidden-mobile">前端八股总结CSS分支-flex布局</span>
+                      <a href="/2024/11/03/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93-%E5%87%BD%E6%95%B0%E3%80%81%E5%AF%B9%E8%B1%A1%E5%92%8Cthis/" title="前端八股总结-函数、对象和this">
+                        <span class="hidden-mobile">前端八股总结-函数、对象和this</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

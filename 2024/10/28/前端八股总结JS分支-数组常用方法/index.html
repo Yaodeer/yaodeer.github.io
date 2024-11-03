@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241028221113005.png">
 <meta property="article:published_time" content="2024-10-28T14:13:33.168Z">
-<meta property="article:modified_time" content="2024-10-28T15:42:25.951Z">
+<meta property="article:modified_time" content="2024-11-01T02:29:19.086Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary_large_image">
@@ -263,7 +263,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k words
+          1.5k words
         
       </span>
     
@@ -274,7 +274,7 @@
         
         
         
-          12 mins
+          13 mins
         
       </span>
     
@@ -328,7 +328,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on October 28, 2024 pm
+                    Last updated on November 1, 2024 am
                   
                 
               </p>
@@ -395,7 +395,13 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> num1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<span class="hljs-keyword">const</span> num2 = [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>];<span class="hljs-keyword">const</span> num3 = [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>];<br><span class="hljs-keyword">const</span> numbers = num1.<span class="hljs-title function_">concat</span>(num2, num3);<span class="hljs-comment">//[1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br><br><span class="hljs-keyword">const</span> letters = [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>];<br><span class="hljs-keyword">const</span> alphaNumeric = letters.<span class="hljs-title function_">concat</span>(<span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);<span class="hljs-comment">//[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, 1, 2, 3]</span><br><br><span class="hljs-keyword">const</span> num1 = [[<span class="hljs-number">1</span>]];<span class="hljs-keyword">const</span> num2 = [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>]];<br><span class="hljs-keyword">const</span> numbers = num1.<span class="hljs-title function_">concat</span>(num2);<span class="hljs-comment">//[[1], 2, [3]]</span><br></code></pre></td></tr></table></figure>
 
 <p>在稀疏数组上调用，结果的数组也是稀疏的。</p>
-<h4 id="（3）fill-（是修改方法）"><a href="#（3）fill-（是修改方法）" class="headerlink" title="（3）fill()（是修改方法）"></a>（3）fill()（是修改方法）</h4><ul>
+<h4 id="（3）every"><a href="#（3）every" class="headerlink" title="（3）every"></a>（3）every</h4><p><code>every()</code> 方法测试一个数组内的所有元素是否都能通过指定函数的测试。它返回一个布尔值。（是一种迭代方法，为数组中除空槽外所有元素调用callbackFn函数，直到返回一个假值）</p>
+<p>示例：判断一个数组是否是另一个数组的子集</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">isSubset</span>=(<span class="hljs-params">array1,array2</span>)=&gt;array2.<span class="hljs-title function_">every</span>(<span class="hljs-function"><span class="hljs-params">el</span>=&gt;</span>array1.<span class="hljs-title function_">includes</span>(el));<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="（4）fill-（是修改方法）"><a href="#（4）fill-（是修改方法）" class="headerlink" title="（4）fill()（是修改方法）"></a>（4）fill()（是修改方法）</h4><ul>
 <li>fill(value)</li>
 <li>fill(value, start)</li>
 <li>fill(value, start, end)  （区间左闭右开）</li>
@@ -420,8 +426,7 @@
 
 
 
-
-
+<h4 id="（5）find"><a href="#（5）find" class="headerlink" title="（5）find"></a>（5）find</h4><p>find方法返回数组中满足<strong>提供测试函数的第一个元素的值</strong>。（没有找到则返回undifined）</p>
 
                 
               </div>
@@ -511,6 +516,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/11/03/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%80%BB%E7%BB%93-%E5%87%BD%E6%95%B0%E3%80%81%E5%AF%B9%E8%B1%A1%E5%92%8Cthis/" title="前端八股总结-函数、对象和this">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">前端八股总结-函数、对象和this</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
