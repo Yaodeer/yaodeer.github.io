@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Yaodeer/pict@main/image-20241029125906648.png">
 <meta property="article:published_time" content="2024-10-23T12:23:08.194Z">
-<meta property="article:modified_time" content="2024-11-03T13:51:21.386Z">
+<meta property="article:modified_time" content="2024-11-04T05:38:37.859Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary_large_image">
@@ -274,7 +274,7 @@
         
         
         
-          89 mins
+          91 mins
         
       </span>
     
@@ -328,7 +328,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on November 3, 2024 pm
+                    Last updated on November 4, 2024 pm
                   
                 
               </p>
@@ -844,11 +844,16 @@
 <h4 id="26、requestAnimationFrame"><a href="#26、requestAnimationFrame" class="headerlink" title="26、requestAnimationFrame"></a>26、requestAnimationFrame</h4><p>在它之前，我们使用setTimeout&#x2F;setInterval来编写JS动画。</p>
 <p>编写动画的关键是循环间隔的设置，一方面循环间隔足够段，动画效果才能显得平滑流畅；另一方面，循环间隔要足够长，才能保证浏览器有能力渲染产生的变化。1000ms&#x2F;60</p>
 <p>setTimeout&#x2F;setInterval有一个显著的缺点在于，时间是不精确的，只能保证延时或者间隔不小于设定的时间。因为它们只是把任务添加到了任务队列中，但是如果前面的任务还没有执行完成，就必须要等待。</p>
-<p>requestAnimationFrame采用的是系统时间间隔，可以保持最佳绘制效率，不会因为间隔果断导致过度绘制，增加开销，也不会因为间隔过长导致动画卡顿不流畅。可以让各种王爷动画有一个统一的刷新机制，从而节省系统资源，提高系统性能，改善视觉效果。</p>
+<p>requestAnimationFrame采用的是系统时间间隔，可以保持最佳绘制效率，不会因为间隔过短导致过度绘制，增加开销，也不会因为间隔过长导致动画卡顿不流畅。可以让各种网页动画有一个统一的刷新机制，从而节省系统资源，提高系统性能，改善视觉效果。</p>
 <p>优点：</p>
-<p>不需要设置时间，采用系统时间间隔，达到最佳动画效果</p>
-<p>会把每一帧所有的DOM操作集中起来，再一次重绘或回流中完成</p>
-<p>如果运行在后台或隐藏的<code>&lt;iframe&gt;</code>里，会被暂停调用以提升性能</p>
+<ul>
+<li><p>不需要设置时间，采用系统时间间隔，达到最佳动画效果</p>
+</li>
+<li><p>会把每一帧所有的DOM操作集中起来，再一次重绘或回流中完成</p>
+</li>
+<li><p>如果运行在后台或隐藏的<code>&lt;iframe&gt;</code>里，会被暂停调用以提升性能</p>
+</li>
+</ul>
 <h4 id="27、ES6和CommonJS的差异"><a href="#27、ES6和CommonJS的差异" class="headerlink" title="27、ES6和CommonJS的差异"></a>27、ES6和CommonJS的差异</h4><h5 id="🐄导入导出方式"><a href="#🐄导入导出方式" class="headerlink" title="🐄导入导出方式"></a>🐄导入导出方式</h5><ul>
 <li>ES6使用import&#x2F;export关键字处理导入导出，default关键字处理默认导出</li>
 <li>CommonJS使用require&#x2F;module.exports用于导入和导出</li>
@@ -910,6 +915,13 @@
 <li>当栈顶的函数运行完成后，对应的函数执行上下文会从执行栈Pop出，上下文的控制权将移动到当前执行栈的下一个执行上下文。</li>
 </ul>
 <h5 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h5><p>从当前作用域开始一层一层向上寻找某个变量，直到找到全局作用域还是没找到就宣布放弃。这种一层一层的关系就是作用域链。</p>
+<h4 id="31、WeakMap、WeakSet"><a href="#31、WeakMap、WeakSet" class="headerlink" title="31、WeakMap、WeakSet"></a>31、WeakMap、WeakSet</h4><p>用于存储对象的引用，同时不防止其被垃圾回收。</p>
+<ul>
+<li>键必须是对象，键是弱引用，意味着如果没有其他引用指向该对象，垃圾回收器可以自动回收这个对象，减少内存泄露的风险。</li>
+<li>不支持遍历。意味着不能获取其键或值的列表。</li>
+</ul>
+<p>假设你在开发一个单页应用（SPA），在其中频繁创建和销毁 DOM 元素。你可能希望将某些数据与这些元素关联，但又不想让它们持续占用内存。</p>
+<p>在某些情况下，你需要确保某个对象只能被存储一次。例如，在某些应用中，可能需要跟踪已处理的 DOM 元素或事件处理程序。</p>
 <h4 id="、事件循环"><a href="#、事件循环" class="headerlink" title="、事件循环"></a>、事件循环</h4><blockquote>
 <p>JavaScript 的事件循环（Event Loop）是理解其异步行为和非阻塞特性的核心概念。事件循环使得 JavaScript 能够处理事件和异步操作，尽管它是单线程的。</p>
 </blockquote>

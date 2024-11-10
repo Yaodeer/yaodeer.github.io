@@ -24,7 +24,7 @@
 <meta property="og:description" content="总结一下React常见问题">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-10-28T14:13:25.163Z">
-<meta property="article:modified_time" content="2024-11-03T14:15:20.875Z">
+<meta property="article:modified_time" content="2024-11-04T02:32:58.912Z">
 <meta property="article:author" content="Yaodeer">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary_large_image">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k words
+          1.9k words
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          15 mins
+          16 mins
         
       </span>
     
@@ -326,7 +326,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    Last updated on November 3, 2024 pm
+                    Last updated on November 4, 2024 am
                   
                 
               </p>
@@ -388,7 +388,11 @@
 <h4 id="（4）useDeferredValue和useTransition"><a href="#（4）useDeferredValue和useTransition" class="headerlink" title="（4）useDeferredValue和useTransition"></a>（4）useDeferredValue和useTransition</h4><p>useDeferredValue适合在高频率更新时缓解性能问题，用于在渲染非紧急内容时延迟展示结果，避免卡顿。</p>
 <p>useTransition用于标记更新为过渡，它会返回一个布尔值表示是否处于过渡状态，以便在过渡状态过程中提供用户反馈。</p>
 <h4 id="（5）并发渲染"><a href="#（5）并发渲染" class="headerlink" title="（5）并发渲染"></a>（5）并发渲染</h4><p>使得React可以暂停渲染并在需要时恢复。在复杂界面比较有用。并发渲染的核心思想是让 React 可以暂停、恢复或放弃渲染任务，以便用户交互能够优先得到响应。</p>
-<p>七、</p>
+<h3 id="七、什么样的函数可以称为纯函数？"><a href="#七、什么样的函数可以称为纯函数？" class="headerlink" title="七、什么样的函数可以称为纯函数？"></a>七、什么样的函数可以称为纯函数？</h3><p>一个函数要被称为纯函数，必须满足以下条件：</p>
+<ul>
+<li><strong>输入确定，输出唯一</strong>：对于相同的输入，总是返回相同的输出。</li>
+<li><strong>无副作用</strong>：函数运行时不会改变外部状态，也不会依赖外部的可变状态。它只能根据输入进行运算，并返回新的数据，而不会修改任何传入的参数。</li>
+</ul>
 
                 
               </div>
